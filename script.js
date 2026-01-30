@@ -73,3 +73,8 @@ function login() {
     document.getElementById("erro").innerText = "Usuário ou senha inválidos.";
   }
 }
+
+document.getElementById("r_nome").innerText = nome;
+document.getElementById("r_nasc").innerText = nasc;
+document.getElementById("r_teste").innerText = dataTeste;
+document.getElementById("r_faixa").innerText = faixa ? faixa.nome : "-";
