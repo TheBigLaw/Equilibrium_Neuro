@@ -61,3 +61,15 @@ function carregarLaudos() {
     `;
   });
 }
+/* === LOGIN === */
+function login() {
+  const user = document.getElementById("usuario").value;
+  const pass = document.getElementById("senha").value;
+
+  if (user === "admin" && pass === "1234") {
+    sessionStorage.setItem("logado", "true");
+    window.location.href = "index.html";
+  } else {
+    document.getElementById("erro").innerText = "Usuário ou senha inválidos.";
+  }
+}
