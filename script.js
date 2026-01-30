@@ -1,125 +1,63 @@
-/* ===========================
-   FAIXAS ETÁRIAS (EXEMPLO)
-=========================== */
-
-const normasWISC = [
-  { faixa: "6:0-6:11", minMeses: 72, maxMeses: 83, normas: gerarNormasMock() },
-  { faixa: "7:0-7:11", minMeses: 84, maxMeses: 95, normas: gerarNormasMock() }
-];
-
-/* ===========================
-   FUNÇÕES AUXILIARES
-=========================== */
-
-function gerarNormasMock() {
-  return {
-    Semelhancas: bruto => limitar(bruto),
-    Vocabulario: bruto => limitar(bruto),
-    Compreensao: bruto => limitar(bruto),
-    Cubos: bruto => limitar(bruto),
-    Conceitos: bruto => limitar(bruto),
-    Matricial: bruto => limitar(bruto),
-    Digitos: bruto => limitar(bruto),
-    Sequencia: bruto => limitar(bruto),
-    Codigo: bruto => limitar(bruto),
-    Simbolos: bruto => limitar(bruto),
-    indice: soma => Math.round(40 + soma * 2)
-  };
-}
-
-function limitar(valor) {
-  if (isNaN(valor)) return 0;
-  return Math.min(19, Math.max(1, valor));
-}
-
-function classificar(score) {
-  if (score >= 130) return "Muito Superior";
-  if (score >= 120) return "Superior";
-  if (score >= 90) return "Médio";
-  if (score >= 80) return "Médio Inferior";
-  return "Inferior";
-}
-
-/* ===========================
-   CÁLCULO DA IDADE
-=========================== */
-
-function calcularIdadeEmMeses(dataNascimento) {
+/* === IDADE === */
+function calcularIdadeMeses(dataNascimento) {
   const hoje = new Date();
   const nasc = new Date(dataNascimento);
-
   let meses = (hoje.getFullYear() - nasc.getFullYear()) * 12;
   meses += hoje.getMonth() - nasc.getMonth();
-
-  if (hoje.getDate() < nasc.getDate()) {
-    meses--;
-  }
-
+  if (hoje.getDate() < nasc.getDate()) meses--;
   return meses;
 }
 
-function obterFaixaEtaria() {
-  const dataNascimento = document.getElementById("dataNascimento").value;
-  if (!dataNascimento) return null;
+/* === FAIXAS MOCK === */
+const faixas = [
+  { nome: "6:0–6:11", min: 72, max: 83 },
+  { nome: "7:0–7:11", min: 84, max: 95 }
+];
 
-  const idadeMeses = calcularIdadeEmMeses(dataNascimento);
+/* === CÁLCULO === */
+function calcular(salvar = false) {
+  const nome = document.getElementById("nome").value;
+  const nasc = document.getElementById("dataNascimento").value;
+  const dataTeste = document.getElementById("dataAplicacao").value;
 
-  const anos = Math.floor(idadeMeses / 12);
-  const meses = idadeMeses % 12;
+  const idadeMeses = calcularIdadeMeses(nasc);
+  const faixa = faixas.find(f => idadeMeses >= f.min && idadeMeses <= f.max);
 
   document.getElementById("idadeCalculada").innerText =
-    `Idade calculada: ${anos} anos e ${meses} meses`;
+    `Faixa etária: ${faixa ? faixa.nome : "fora da norma"}`;
 
-  return normasWISC.find(f =>
-    idadeMeses >= f.minMeses && idadeMeses <= f.maxMeses
-  );
-}
-
-/* ===========================
-   CÁLCULO PRINCIPAL
-=========================== */
-
-function calcular() {
-  const faixa = obterFaixaEtaria();
-
-  if (!faixa) {
-    alert("Data de nascimento inválida ou fora das faixas cadastradas.");
-    return;
-  }
-
-  const grupos = {
-    CV: ["Semelhancas","Vocabulario","Compreensao"],
-    RP: ["Cubos","Conceitos","Matricial"],
-    MT: ["Digitos","Sequencia"],
-    VP: ["Codigo","Simbolos"]
+  const resultado = {
+    nome,
+    dataTeste,
+    faixa: faixa ? faixa.nome : "-"
   };
 
-  let resultados = {};
-  let somaQI = 0;
+  document.getElementById("resultado").innerHTML =
+    `<p><strong>Laudo calculado com sucesso.</strong></p>`;
 
-  for (let grupo in grupos) {
-    let soma = 0;
-    grupos[grupo].forEach(teste => {
-      const bruto = parseInt(document.getElementById(teste).value || 0);
-      soma += faixa.normas[teste](bruto);
-    });
+  if (salvar) salvarLaudo(resultado);
+}
 
-    const indice = faixa.normas.indice(soma);
-    resultados[grupo] = indice;
-    somaQI += indice;
-  }
+/* === SALVAMENTO LOCAL === */
+function salvarLaudo(laudo) {
+  const lista = JSON.parse(localStorage.getItem("laudos")) || [];
+  lista.push(laudo);
+  localStorage.setItem("laudos", JSON.stringify(lista));
+  alert("Laudo salvo com sucesso.");
+}
 
-  const QIT = Math.round(somaQI / 4);
+/* === LISTAGEM === */
+function carregarLaudos() {
+  const lista = JSON.parse(localStorage.getItem("laudos")) || [];
+  const tabela = document.getElementById("tabelaLaudos");
 
-  document.getElementById("resultado").innerHTML = `
-    <h2>Resultados (${faixa.faixa})</h2>
-    <table>
-      <tr><th>Índice</th><th>Pontuação</th><th>Classificação</th></tr>
-      <tr><td>Compreensão Verbal</td><td>${resultados.CV}</td><td>${classificar(resultados.CV)}</td></tr>
-      <tr><td>Raciocínio Perceptual</td><td>${resultados.RP}</td><td>${classificar(resultados.RP)}</td></tr>
-      <tr><td>Memória de Trabalho</td><td>${resultados.MT}</td><td>${classificar(resultados.MT)}</td></tr>
-      <tr><td>Velocidade de Processamento</td><td>${resultados.VP}</td><td>${classificar(resultados.VP)}</td></tr>
-      <tr><th>QI Total</th><th>${QIT}</th><th>${classificar(QIT)}</th></tr>
-    </table>
-  `;
+  lista.forEach(l => {
+    const row = tabela.insertRow();
+    row.innerHTML = `
+      <td>${l.nome}</td>
+      <td>${l.dataTeste}</td>
+      <td>${l.faixa}</td>
+      <td><button onclick="window.print()">Imprimir</button></td>
+    `;
+  });
 }
