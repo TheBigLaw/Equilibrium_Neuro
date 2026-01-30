@@ -57,4 +57,10 @@
 
 <script src="script.js"></script>
 </body>
+  <script>
+  if (!sessionStorage.getItem("logado")) {
+    window.location.href = "login.html";
+  }
+</script>
+
 </html>
