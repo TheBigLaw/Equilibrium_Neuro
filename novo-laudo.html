@@ -15,7 +15,7 @@
 
 <div class="container">
 
-<h1>Novo Laudo – WISC-IV</h1>
+<h1 style="color:#1f4fa3">Novo Laudo – WISC-IV</h1>
 
 <h2>Identificação do Avaliado</h2>
 
@@ -39,17 +39,17 @@
 <h2>Lançamento dos Subtestes – Pontos Brutos</h2>
 
 <table>
-<tr><th>Ordem</th><th>Subteste</th><th>Ponto Bruto</th></tr>
-<tr><td>1</td><td>Cubos</td><td><input type="number" id="cubos" min="0"></td></tr>
-<tr><td>2</td><td>Semelhanças</td><td><input type="number" id="semelhancas" min="0"></td></tr>
-<tr><td>3</td><td>Dígitos</td><td><input type="number" id="digitos" min="0"></td></tr>
-<tr><td>4</td><td>Conceitos Figurativos</td><td><input type="number" id="conceitos" min="0"></td></tr>
-<tr><td>5</td><td>Código</td><td><input type="number" id="codigo" min="0"></td></tr>
-<tr><td>6</td><td>Vocabulário</td><td><input type="number" id="vocabulario" min="0"></td></tr>
-<tr><td>7</td><td>Sequência de Números e Letras</td><td><input type="number" id="sequencia" min="0"></td></tr>
-<tr><td>8</td><td>Raciocínio Matricial</td><td><input type="number" id="matricial" min="0"></td></tr>
-<tr><td>9</td><td>Compreensão</td><td><input type="number" id="compreensao" min="0"></td></tr>
-<tr><td>10</td><td>Procurar Símbolos</td><td><input type="number" id="simbolos" min="0"></td></tr>
+<tr><th>Subteste</th><th>Ponto Bruto</th></tr>
+<tr><td>Cubos</td><td><input type="number" id="cubos" min="0"></td></tr>
+<tr><td>Semelhanças</td><td><input type="number" id="semelhancas" min="0"></td></tr>
+<tr><td>Dígitos</td><td><input type="number" id="digitos" min="0"></td></tr>
+<tr><td>Conceitos Figurativos</td><td><input type="number" id="conceitos" min="0"></td></tr>
+<tr><td>Código</td><td><input type="number" id="codigo" min="0"></td></tr>
+<tr><td>Vocabulário</td><td><input type="number" id="vocabulario" min="0"></td></tr>
+<tr><td>Sequência de Números e Letras</td><td><input type="number" id="sequencia" min="0"></td></tr>
+<tr><td>Raciocínio Matricial</td><td><input type="number" id="matricial" min="0"></td></tr>
+<tr><td>Compreensão</td><td><input type="number" id="compreensao" min="0"></td></tr>
+<tr><td>Procurar Símbolos</td><td><input type="number" id="simbolos" min="0"></td></tr>
 </table>
 
 <div class="buttons">
@@ -62,24 +62,15 @@
 <h2>Relatório Psicológico – WISC-IV</h2>
 
 <div class="card">
-  <p><strong>Nome completo:</strong> <span id="r_nome"></span></p>
-  <p><strong>Data de nascimento:</strong> <span id="r_nasc"></span></p>
-  <p><strong>Data de aplicação:</strong> <span id="r_teste"></span></p>
-  <p><strong>Faixa etária normativa:</strong> <span id="r_faixa"></span></p>
+  <p><strong style="color:#1f4fa3">Nome completo:</strong> <span id="r_nome"></span></p>
+  <p><strong style="color:#1f4fa3">Data de nascimento:</strong> <span id="r_nasc"></span></p>
+  <p><strong style="color:#1f4fa3">Data de aplicação:</strong> <span id="r_teste"></span></p>
+  <p><strong style="color:#1f4fa3">Faixa etária normativa:</strong> <span id="r_faixa"></span></p>
 </div>
 
 <div class="card">
   <h3>Perfil dos Pontos Ponderados – Subtestes</h3>
-  <canvas id="graficoSubtestes" width="800" height="300"></canvas>
-</div>
-
-<div class="card">
-  <h3>Observação Técnica</h3>
-  <p>
-    Os resultados apresentados devem ser interpretados exclusivamente
-    por psicólogo habilitado, considerando o contexto clínico,
-    educacional e sociocultural do avaliado.
-  </p>
+  <canvas id="graficoSubtestes" width="760" height="260"></canvas>
 </div>
 
 <p class="assinatura">
