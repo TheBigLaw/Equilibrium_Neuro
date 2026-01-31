@@ -2,102 +2,37 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Novo Laudo | WISC-IV</title>
+  <title>Novo Laudo</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<header>Novo Laudo WISC-IV</header>
 
-<script>
-  if (!sessionStorage.getItem("logado")) {
-    window.location.href = "login.html";
-  }
-</script>
+<main class="container">
+  <section class="card">
+    <h3>Dados do Paciente</h3>
 
-<div class="container">
-
-<h1 style="color:#1f4fa3">Novo Laudo – WISC-IV</h1>
-
-<h2>Identificação do Avaliado</h2>
-
-<div class="grid">
-  <div>
     <label>Nome completo</label>
-    <input type="text" id="nome">
-  </div>
-  <div>
+    <input id="nome">
+
     <label>Data de nascimento</label>
-    <input type="date" id="dataNascimento">
-  </div>
-  <div>
+    <input id="nascimento" type="date">
+
     <label>Data de aplicação</label>
-    <input type="date" id="dataAplicacao">
-  </div>
-</div>
+    <input id="aplicacao" type="date">
+  </section>
 
-<h2>Lançamento dos Subtestes – Pontos Brutos</h2>
+  <section class="card">
+    <h3>Pontos Brutos (na ordem oficial)</h3>
 
-<table>
-<tr><th>Subteste</th><th>Ponto Bruto</th></tr>
-<tr><td>Cubos</td><td><input type="number" id="cubos"></td></tr>
-<tr><td>Semelhanças</td><td><input type="number" id="semelhancas"></td></tr>
-<tr><td>Dígitos</td><td><input type="number" id="digitos"></td></tr>
-<tr><td>Conceitos Figurativos</td><td><input type="number" id="conceitos"></td></tr>
-<tr><td>Código</td><td><input type="number" id="codigo"></td></tr>
-<tr><td>Vocabulário</td><td><input type="number" id="vocabulario"></td></tr>
-<tr><td>Seq. Números e Letras</td><td><input type="number" id="sequencia"></td></tr>
-<tr><td>Raciocínio Matricial</td><td><input type="number" id="matricial"></td></tr>
-<tr><td>Compreensão</td><td><input type="number" id="compreensao"></td></tr>
-<tr><td>Procurar Símbolos</td><td><input type="number" id="simbolos"></td></tr>
-</table>
+    <div class="grid-form" id="subtestes"></div>
 
-<div class="buttons">
-  <button onclick="calcular(true)">Salvar e Calcular</button>
-  <button class="print" onclick="window.print()">Imprimir</button>
-  <button onclick="gerarPDF()">Gerar PDF</button>
-</div>
+    <button onclick="calcularLaudo()">Calcular & Gerar PDF</button>
+  </section>
+</main>
 
-<section id="relatorio" class="relatorio">
-
-<h2>Relatório Psicológico – WISC-IV</h2>
-
-<div class="card">
-  <p><strong>Nome:</strong> <span id="r_nome"></span></p>
-  <p><strong>Nascimento:</strong> <span id="r_nasc"></span></p>
-  <p><strong>Aplicação:</strong> <span id="r_teste"></span></p>
-  <p><strong>Faixa etária:</strong> <span id="r_faixa"></span></p>
-</div>
-
-<div class="card">
-  <h3>Perfil dos Subtestes</h3>
-  <canvas id="graficoSubtestes" width="760" height="260"></canvas>
-</div>
-
-<div class="card">
-  <h3>Índices Cognitivos</h3>
-  <table>
-    <tr><th>Índice</th><th>Pontuação</th><th>Classificação</th></tr>
-    <tr><td>ICV</td><td id="icv_valor"></td><td id="icv_class"></td></tr>
-    <tr><td>IOP</td><td id="iop_valor"></td><td id="iop_class"></td></tr>
-    <tr><td>IMO</td><td id="imo_valor"></td><td id="imo_class"></td></tr>
-    <tr><td>IVP</td><td id="ivp_valor"></td><td id="ivp_class"></td></tr>
-    <tr><td><strong>QI Total</strong></td><td id="qi_valor"></td><td id="qi_class"></td></tr>
-  </table>
-</div>
-
-<div class="card">
-  <h3>Perfil dos Índices</h3>
-  <canvas id="graficoIndices" width="760" height="260"></canvas>
-</div>
-
-<p class="assinatura">
-_______________________________________<br>
-Psicólogo Responsável – CRP
-</p>
-
-</section>
-</div>
-
-<script src="libs/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
