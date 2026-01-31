@@ -1,32 +1,130 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
 
+:root {
+  --azul-claro: #e3f2fd;
+  --azul: #1e88e5;
+  --azul-escuro: #1565c0;
+  --texto: #1e2a38;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
+  margin: 0;
   font-family: 'Inter', sans-serif;
-  background: #f4f8fc;
-  color: #1e2a38;
+  background: var(--azul-claro);
+  color: var(--texto);
 }
 
+/* ================= HEADER FIXO ================= */
 header {
-  background: #1565c0;
-  color: #fff;
-  padding: 12px;
-  text-align: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 70px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,.08);
+  z-index: 10;
 }
 
+header .voltar {
+  position: absolute;
+  left: 20px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: var(--azul);
+  cursor: pointer;
+}
+
+header .logo {
+  height: 40px;
+}
+
+/* ================= CONTEÚDO ================= */
+main {
+  max-width: 900px;
+  margin: 120px auto 60px;
+  padding: 0 20px;
+}
+
+/* ================= CARDS ================= */
 .card {
-  background: #fff;
-  border-radius: 14px;
-  padding: 18px;
-  box-shadow: 0 8px 18px rgba(0,0,0,.08);
+  background: white;
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 22px rgba(0,0,0,.08);
+}
+
+/* ================= FORM ================= */
+label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
 }
 
 input {
-  border-radius: 8px;
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
   border: 1px solid #cfd8dc;
-  padding: 8px;
+  font-size: 14px;
+  margin-bottom: 20px;
 }
 
 button {
-  background: #1e88e5;
-  border-radius: 10px;
+  width: 100%;
+  padding: 12px;
+  background: var(--azul);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--azul-escuro);
+}
+
+/* ================= GRID ================= */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.grid-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 20px;
+}
+
+/* ================= LOGIN ================= */
+.login-page {
+  background: linear-gradient(135deg, var(--azul), var(--azul-escuro));
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-card {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  width: 100%;
+  max-width: 360px;
+  text-align: center;
+}
+
+.login-card img {
+  height: 60px;
+  margin-bottom: 30px;
 }
