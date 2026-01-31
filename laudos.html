@@ -2,31 +2,14 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Laudos | WISC-IV</title>
+  <title>Laudos</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<header>Laudos Salvos</header>
 
-<script>
-  if (!sessionStorage.getItem("logado")) {
-    window.location.href = "login.html";
-  }
-</script>
-
-<div class="container">
-  <h1>Laudos Lançados</h1>
-
-  <table id="tabelaLaudos">
-    <tr>
-      <th>Nome</th>
-      <th>Data de Aplicação</th>
-      <th>Faixa Etária</th>
-    </tr>
-  </table>
-</div>
+<main class="container" id="listaLaudos"></main>
 
 <script src="script.js"></script>
-<script>carregarLaudos();</script>
-
 </body>
 </html>
