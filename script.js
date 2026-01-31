@@ -45,6 +45,26 @@ desenharGraficoIndices(indices);
   r_teste.innerText = teste;
   r_faixa.innerText = faixa ? faixa.nome : "Fora da norma";
 
+  const indices = calcularIndices();
+
+// preencher valores
+icv_valor.innerText = indices.icv;
+iop_valor.innerText = indices.iop;
+imo_valor.innerText = indices.imo;
+ivp_valor.innerText = indices.ivp;
+qi_valor.innerText  = indices.qi;
+
+// preencher classificações
+icv_class.innerText = indices.classificacaoICV;
+iop_class.innerText = indices.classificacaoIOP;
+imo_class.innerText = indices.classificacaoIMO;
+ivp_class.innerText = indices.classificacaoIVP;
+qi_class.innerText  = indices.classificacaoQI;
+
+// gráficos
+desenharGraficoIndices(indices);
+
+
   desenharGraficoSubtestes();
 
   if (salvar) {
@@ -145,6 +165,14 @@ async function gerarPDF() {
   pdf.text(`Nascimento: ${r_nasc.innerText}`, 20, 36);
   pdf.text(`Aplicação: ${r_teste.innerText}`, 20, 42);
   pdf.text(`Faixa etária: ${r_faixa.innerText}`, 20, 48);
+
+  pdf.text("Índices Cognitivos", 20, 105);
+pdf.text(`ICV: ${indices.icv} (${indices.classificacaoICV})`, 20, 112);
+pdf.text(`IOP: ${indices.iop} (${indices.classificacaoIOP})`, 20, 118);
+pdf.text(`IMO: ${indices.imo} (${indices.classificacaoIMO})`, 20, 124);
+pdf.text(`IVP: ${indices.ivp} (${indices.classificacaoIVP})`, 20, 130);
+pdf.text(`QI Total: ${indices.qi} (${indices.classificacaoQI})`, 20, 136);
+
 
   // Gráfico Subtestes
   const g1 = document.getElementById("graficoSubtestes").toDataURL("image/png");
