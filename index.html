@@ -2,26 +2,26 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>WISC-IV | Dashboard</title>
+  <title>Dashboard | WISC-IV</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  
-<div class="container center">
-  <h1>WISC-IV</h1>
-  <p>Sistema de Correção e Laudos</p>
 
-  <div class="dashboard">
-    <a href="laudos.html" class="card">📂<br>Laudos lançados</a>
-    <a href="novo-laudo.html" class="card">➕<br>Novo laudo</a>
-  </div>
-</div>
-
-</body>
-  <script>
+<script>
   if (!sessionStorage.getItem("logado")) {
     window.location.href = "login.html";
   }
 </script>
 
+<div class="container center">
+  <h1>WISC-IV</h1>
+  <p>Sistema de Correção e Laudos</p>
+
+  <div class="dashboard">
+    <a href="laudos.html" class="card-link">📂<br>Laudos lançados</a>
+    <a href="novo-laudo.html" class="card-link">➕<br>Novo laudo</a>
+  </div>
+</div>
+
+</body>
 </html>
