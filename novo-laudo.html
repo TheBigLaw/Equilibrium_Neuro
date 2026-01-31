@@ -7,44 +7,50 @@
 </head>
 <body>
 
+<script>
+  if (!sessionStorage.getItem("logado")) {
+    window.location.href = "login.html";
+  }
+</script>
+
 <div class="container">
 
 <h1>Novo Laudo – WISC-IV</h1>
 
-<h2>Identificação</h2>
+<h2>Identificação do Avaliado</h2>
+
 <div class="grid">
-  <input type="text" id="nome" placeholder="Nome do paciente">
-  <input type="date" id="dataNascimento">
-  <input type="date" id="dataAplicacao">
+  <div>
+    <label>Nome completo do avaliado</label>
+    <input type="text" id="nome">
+  </div>
+  <div>
+    <label>Data de nascimento</label>
+    <input type="date" id="dataNascimento">
+  </div>
+  <div>
+    <label>Data de aplicação do teste</label>
+    <input type="date" id="dataAplicacao">
+  </div>
 </div>
+
 <p id="idadeCalculada"></p>
 
-<!-- SUBTESTES (IGUAL AO QUE JÁ EXISTIA) -->
-<h2>Compreensão Verbal (CV)</h2>
-<div class="grid">
-  <input type="number" id="Semelhancas" placeholder="Semelhanças">
-  <input type="number" id="Vocabulario" placeholder="Vocabulário">
-  <input type="number" id="Compreensao" placeholder="Compreensão">
-</div>
+<h2>Lançamento dos Subtestes – Pontos Brutos</h2>
 
-<h2>Raciocínio Perceptual (RP)</h2>
-<div class="grid">
-  <input type="number" id="Cubos" placeholder="Cubos">
-  <input type="number" id="Conceitos" placeholder="Conceitos Figurativos">
-  <input type="number" id="Matricial" placeholder="Raciocínio Matricial">
-</div>
-
-<h2>Memória de Trabalho (MT)</h2>
-<div class="grid">
-  <input type="number" id="Digitos" placeholder="Dígitos">
-  <input type="number" id="Sequencia" placeholder="Seq. Números e Letras">
-</div>
-
-<h2>Velocidade de Processamento (VP)</h2>
-<div class="grid">
-  <input type="number" id="Codigo" placeholder="Código">
-  <input type="number" id="Simbolos" placeholder="Procurar Símbolos">
-</div>
+<table>
+<tr><th>Ordem</th><th>Subteste</th><th>Ponto Bruto</th></tr>
+<tr><td>1</td><td>Cubos</td><td><input type="number" id="cubos" min="0"></td></tr>
+<tr><td>2</td><td>Semelhanças</td><td><input type="number" id="semelhancas" min="0"></td></tr>
+<tr><td>3</td><td>Dígitos</td><td><input type="number" id="digitos" min="0"></td></tr>
+<tr><td>4</td><td>Conceitos Figurativos</td><td><input type="number" id="conceitos" min="0"></td></tr>
+<tr><td>5</td><td>Código</td><td><input type="number" id="codigo" min="0"></td></tr>
+<tr><td>6</td><td>Vocabulário</td><td><input type="number" id="vocabulario" min="0"></td></tr>
+<tr><td>7</td><td>Sequência de Números e Letras</td><td><input type="number" id="sequencia" min="0"></td></tr>
+<tr><td>8</td><td>Raciocínio Matricial</td><td><input type="number" id="matricial" min="0"></td></tr>
+<tr><td>9</td><td>Compreensão</td><td><input type="number" id="compreensao" min="0"></td></tr>
+<tr><td>10</td><td>Procurar Símbolos</td><td><input type="number" id="simbolos" min="0"></td></tr>
+</table>
 
 <div class="buttons">
   <button onclick="calcular(true)">Salvar e Calcular</button>
@@ -52,72 +58,39 @@
 </div>
 
 <section id="relatorio" class="relatorio">
-  <h2>Relatório Psicológico – WISC-IV</h2>
 
-  <hr>
+<h2>Relatório Psicológico – WISC-IV</h2>
 
-  <h3>Identificação</h3>
-  <p><strong>Paciente:</strong> <span id="r_nome"></span></p>
+<div class="card">
+  <p><strong>Nome completo:</strong> <span id="r_nome"></span></p>
   <p><strong>Data de nascimento:</strong> <span id="r_nasc"></span></p>
   <p><strong>Data de aplicação:</strong> <span id="r_teste"></span></p>
-  <p><strong>Faixa etária:</strong> <span id="r_faixa"></span></p>
+  <p><strong>Faixa etária normativa:</strong> <span id="r_faixa"></span></p>
+</div>
 
-  <hr>
+<div class="card">
+  <h3>Perfil dos Pontos Ponderados – Subtestes</h3>
+  <canvas id="graficoSubtestes" width="800" height="300"></canvas>
+</div>
 
-  <h3>Resultados</h3>
-  <table>
-    <tr>
-      <th>Índice</th>
-      <th>Pontuação</th>
-      <th>Classificação</th>
-    </tr>
-    <tr>
-      <td>Compreensão Verbal</td>
-      <td>–</td>
-      <td>–</td>
-    </tr>
-    <tr>
-      <td>Raciocínio Perceptual</td>
-      <td>–</td>
-      <td>–</td>
-    </tr>
-    <tr>
-      <td>Memória de Trabalho</td>
-      <td>–</td>
-      <td>–</td>
-    </tr>
-    <tr>
-      <td>Velocidade de Processamento</td>
-      <td>–</td>
-      <td>–</td>
-    </tr>
-  </table>
-
-  <hr>
-
+<div class="card">
   <h3>Observação Técnica</h3>
   <p>
-    Os resultados apresentados devem ser interpretados por profissional
-    habilitado, considerando o contexto clínico, escolar e sociocultural
-    do avaliado.
+    Os resultados apresentados devem ser interpretados exclusivamente
+    por psicólogo habilitado, considerando o contexto clínico,
+    educacional e sociocultural do avaliado.
   </p>
+</div>
 
-  <br><br>
+<p class="assinatura">
+  _______________________________________<br>
+  Psicólogo Responsável – CRP
+</p>
 
-  <p class="assinatura">
-    _______________________________________<br>
-    Psicólogo Responsável – CRP
-  </p>
 </section>
 
 </div>
 
 <script src="script.js"></script>
 </body>
-  <script>
-  if (!sessionStorage.getItem("logado")) {
-    window.location.href = "login.html";
-  }
-</script>
-
 </html>
