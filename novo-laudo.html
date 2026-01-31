@@ -85,3 +85,17 @@
 <script src="script.js"></script>
 </body>
 </html>
+
+<div class="buttons">
+  <button onclick="calcular(true)">Salvar e Calcular</button>
+  <button class="print" onclick="window.print()">Imprimir</button>
+  <button onclick="gerarPDF()">Gerar PDF</button>
+</div>
+
+<div class="card">
+  <h3>Perfil dos Índices Cognitivos</h3>
+  <canvas id="graficoIndices" width="760" height="260"></canvas>
+</div>
+
+<script src="libs/jspdf.umd.min.js"></script>
+<script src="script.js"></script>
