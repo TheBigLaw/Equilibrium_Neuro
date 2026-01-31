@@ -21,7 +21,7 @@
 
 <div class="grid">
   <div>
-    <label>Nome completo do avaliado</label>
+    <label>Nome completo</label>
     <input type="text" id="nome">
   </div>
   <div>
@@ -29,99 +29,26 @@
     <input type="date" id="dataNascimento">
   </div>
   <div>
-    <label>Data de aplicação do teste</label>
+    <label>Data de aplicação</label>
     <input type="date" id="dataAplicacao">
   </div>
 </div>
-
-<p id="idadeCalculada"></p>
 
 <h2>Lançamento dos Subtestes – Pontos Brutos</h2>
 
 <table>
 <tr><th>Subteste</th><th>Ponto Bruto</th></tr>
-<tr><td>Cubos</td><td><input type="number" id="cubos" min="0"></td></tr>
-<tr><td>Semelhanças</td><td><input type="number" id="semelhancas" min="0"></td></tr>
-<tr><td>Dígitos</td><td><input type="number" id="digitos" min="0"></td></tr>
-<tr><td>Conceitos Figurativos</td><td><input type="number" id="conceitos" min="0"></td></tr>
-<tr><td>Código</td><td><input type="number" id="codigo" min="0"></td></tr>
-<tr><td>Vocabulário</td><td><input type="number" id="vocabulario" min="0"></td></tr>
-<tr><td>Sequência de Números e Letras</td><td><input type="number" id="sequencia" min="0"></td></tr>
-<tr><td>Raciocínio Matricial</td><td><input type="number" id="matricial" min="0"></td></tr>
-<tr><td>Compreensão</td><td><input type="number" id="compreensao" min="0"></td></tr>
-<tr><td>Procurar Símbolos</td><td><input type="number" id="simbolos" min="0"></td></tr>
+<tr><td>Cubos</td><td><input type="number" id="cubos"></td></tr>
+<tr><td>Semelhanças</td><td><input type="number" id="semelhancas"></td></tr>
+<tr><td>Dígitos</td><td><input type="number" id="digitos"></td></tr>
+<tr><td>Conceitos Figurativos</td><td><input type="number" id="conceitos"></td></tr>
+<tr><td>Código</td><td><input type="number" id="codigo"></td></tr>
+<tr><td>Vocabulário</td><td><input type="number" id="vocabulario"></td></tr>
+<tr><td>Seq. Números e Letras</td><td><input type="number" id="sequencia"></td></tr>
+<tr><td>Raciocínio Matricial</td><td><input type="number" id="matricial"></td></tr>
+<tr><td>Compreensão</td><td><input type="number" id="compreensao"></td></tr>
+<tr><td>Procurar Símbolos</td><td><input type="number" id="simbolos"></td></tr>
 </table>
-
-<div class="buttons">
-  <button onclick="calcular(true)">Salvar e Calcular</button>
-  <button class="print" onclick="window.print()">Imprimir</button>
-</div>
-
-<section id="relatorio" class="relatorio">
-
-<h2>Relatório Psicológico – WISC-IV</h2>
-
-<div class="card">
-  <p><strong style="color:#1f4fa3">Nome completo:</strong> <span id="r_nome"></span></p>
-  <p><strong style="color:#1f4fa3">Data de nascimento:</strong> <span id="r_nasc"></span></p>
-  <p><strong style="color:#1f4fa3">Data de aplicação:</strong> <span id="r_teste"></span></p>
-  <p><strong style="color:#1f4fa3">Faixa etária normativa:</strong> <span id="r_faixa"></span></p>
-</div>
-
-<div class="card">
-  <h3>Perfil dos Pontos Ponderados – Subtestes</h3>
-  <canvas id="graficoSubtestes" width="760" height="260"></canvas>
-</div>
-
-<p class="assinatura">
-  _______________________________________<br>
-  Psicólogo Responsável – CRP
-</p>
-
-  <div class="card">
-  <h3>Índices Cognitivos</h3>
-  <table>
-    <tr>
-      <th>Índice</th>
-      <th>Pontuação</th>
-      <th>Classificação</th>
-    </tr>
-    <tr>
-      <td>Compreensão Verbal (ICV)</td>
-      <td id="icv_valor"></td>
-      <td id="icv_class"></td>
-    </tr>
-    <tr>
-      <td>Raciocínio Perceptual (IOP)</td>
-      <td id="iop_valor"></td>
-      <td id="iop_class"></td>
-    </tr>
-    <tr>
-      <td>Memória Operacional (IMO)</td>
-      <td id="imo_valor"></td>
-      <td id="imo_class"></td>
-    </tr>
-    <tr>
-      <td>Velocidade de Processamento (IVP)</td>
-      <td id="ivp_valor"></td>
-      <td id="ivp_class"></td>
-    </tr>
-    <tr>
-      <td><strong>QI Total</strong></td>
-      <td id="qi_valor"></td>
-      <td id="qi_class"></td>
-    </tr>
-  </table>
-</div>
-
-
-</section>
-
-</div>
-
-<script src="script.js"></script>
-</body>
-</html>
 
 <div class="buttons">
   <button onclick="calcular(true)">Salvar e Calcular</button>
@@ -129,10 +56,48 @@
   <button onclick="gerarPDF()">Gerar PDF</button>
 </div>
 
+<section id="relatorio" class="relatorio">
+
+<h2>Relatório Psicológico – WISC-IV</h2>
+
 <div class="card">
-  <h3>Perfil dos Índices Cognitivos</h3>
+  <p><strong>Nome:</strong> <span id="r_nome"></span></p>
+  <p><strong>Nascimento:</strong> <span id="r_nasc"></span></p>
+  <p><strong>Aplicação:</strong> <span id="r_teste"></span></p>
+  <p><strong>Faixa etária:</strong> <span id="r_faixa"></span></p>
+</div>
+
+<div class="card">
+  <h3>Perfil dos Subtestes</h3>
+  <canvas id="graficoSubtestes" width="760" height="260"></canvas>
+</div>
+
+<div class="card">
+  <h3>Índices Cognitivos</h3>
+  <table>
+    <tr><th>Índice</th><th>Pontuação</th><th>Classificação</th></tr>
+    <tr><td>ICV</td><td id="icv_valor"></td><td id="icv_class"></td></tr>
+    <tr><td>IOP</td><td id="iop_valor"></td><td id="iop_class"></td></tr>
+    <tr><td>IMO</td><td id="imo_valor"></td><td id="imo_class"></td></tr>
+    <tr><td>IVP</td><td id="ivp_valor"></td><td id="ivp_class"></td></tr>
+    <tr><td><strong>QI Total</strong></td><td id="qi_valor"></td><td id="qi_class"></td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h3>Perfil dos Índices</h3>
   <canvas id="graficoIndices" width="760" height="260"></canvas>
+</div>
+
+<p class="assinatura">
+_______________________________________<br>
+Psicólogo Responsável – CRP
+</p>
+
+</section>
 </div>
 
 <script src="libs/jspdf.umd.min.js"></script>
 <script src="script.js"></script>
+</body>
+</html>
