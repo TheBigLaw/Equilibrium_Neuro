@@ -2,9 +2,9 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <base href="/CORRECAO-WISC/">
+  <base href="/Equilibrium_Neuro/">
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Login | Sistema</title>
+  <title>Login | Equilibrium</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/png" href="logo.png" />
 </head>
@@ -13,20 +13,25 @@
     <img class="logo" src="logo2.png" alt="Logo" />
     <p class="muted">Acesso restrito</p>
 
-    <label for="usuarioSelect">Usuário</label>
-    <select id="usuarioSelect"></select>
+    <div class="login-form">
+      <div>
+        <label for="usuarioSelect">Usuário</label>
+        <select id="usuarioSelect"></select>
+      </div>
 
-    <label for="senha">Senha</label>
-    <!-- campo texto (como você pediu) -->
-    <input type="text" id="senha" placeholder="1234" />
+      <div>
+        <label for="senha">Senha</label>
+        <input type="text" id="senha" placeholder="1234" />
+      </div>
 
-    <button class="btn-primary" id="btnEntrar">Entrar</button>
+      <button class="btn-primary" id="btnEntrar">Entrar</button>
+    </div>
+
     <div id="erro" class="error"></div>
   </div>
 
   <script src="js/auth.js"></script>
   <script>
-    // Não aplica guard aqui
     const sel = document.getElementById("usuarioSelect");
     const senha = document.getElementById("senha");
     const erro = document.getElementById("erro");
@@ -37,11 +42,8 @@
     btn.addEventListener("click", () => {
       erro.textContent = "";
       const res = doLogin({ userId: sel.value, password: senha.value });
-      if (!res.ok) {
-        erro.textContent = res.message || "Erro no login.";
-        return;
-      }
-      location.href = "/index.html";
+      if (!res.ok) { erro.textContent = res.message || "Erro no login."; return; }
+      location.href = "index.html";
     });
   </script>
 </body>
