@@ -3,10 +3,10 @@
 const LAUDOS_KEY = "empresa_laudos_wisciv_v1";
 
 let NORMAS = null;
-
 async function carregarNormas(){
   if (NORMAS) return NORMAS;
 
+  // caminho FIXO correto no GitHub Pages (não depende do <base>)
   const url = "Correcao_testes/WISC_IV/data/normas-wisciv.json";
   const resp = await fetch(url, { cache: "no-store" });
 
@@ -15,7 +15,6 @@ async function carregarNormas(){
   }
 
   const json = await resp.json();
-
   if (!json || typeof json !== "object" || Object.keys(json).length === 0) {
     throw new Error("Normas carregadas, mas o JSON veio vazio ou inválido.");
   }
@@ -66,16 +65,10 @@ function calcularIdade(nascISO, aplISO) {
   return { anos, meses, totalMeses: anos * 12 + meses };
 }
 
-/**
- * Converte string de faixa em {minMeses, maxMeses} aceitando:
- *  - "6:0-6:3"  (anos:meses - anos:meses)
- *  - "6:0-0:6"  (caso seu JSON tenha invertido, interpretamos como 6:0-6:0??)
- *  - "72-83"    (caso existam faixas só em meses)
- */
 function parseFaixa(faixaStr){
   if(!faixaStr || typeof faixaStr !== "string") return null;
 
-  // tenta "A:M-B:M" ou "A:M-0:M" etc
+  // formato "A:M-B:M"
   if(faixaStr.includes("-") && faixaStr.includes(":")){
     const [ini, fim] = faixaStr.split("-");
     if(!ini || !fim) return null;
@@ -86,27 +79,21 @@ function parseFaixa(faixaStr){
     const af = Number(afRaw), mf = Number(mfRaw);
     if([ai,mi,af,mf].some(x => Number.isNaN(x))) return null;
 
-    // Caso raro: fim vem como "0:6" por erro de formatação.
-    // Se af === 0 e ai > 0, interpretamos como "ai:mi - ai:mf"
-    // (mantém dentro do mesmo ano)
     let min = ai * 12 + mi;
     let max = af * 12 + mf;
-    if(af === 0 && ai > 0){
-      max = ai * 12 + mf;
-    }
 
-    // garante min<=max
+    // correção p/ casos "6:0-0:6" (interpreta como 6:0-6:6)
+    if(af === 0 && ai > 0) max = ai * 12 + mf;
+
     if(max < min) [min, max] = [max, min];
     return { minMeses: min, maxMeses: max };
   }
 
-  // tenta "72-83" (meses)
+  // formato "72-83" (meses)
   if(/^\d+\s*-\s*\d+$/.test(faixaStr)){
     const [a,b] = faixaStr.split("-").map(x => Number(String(x).trim()));
     if([a,b].some(Number.isNaN)) return null;
-    const minMeses = Math.min(a,b);
-    const maxMeses = Math.max(a,b);
-    return { minMeses, maxMeses };
+    return { minMeses: Math.min(a,b), maxMeses: Math.max(a,b) };
   }
 
   return null;
@@ -117,10 +104,9 @@ function faixaEtaria(normas, idade) {
   const total = idade.totalMeses;
 
   const keys = Object.keys(normas || {});
-  // ordena por minMeses para não depender da ordem do JSON
   const parsed = keys
     .map(k => ({ k, p: parseFaixa(k) }))
-    .filter(x => x.p && Number.isFinite(x.p.minMeses) && Number.isFinite(x.p.maxMeses))
+    .filter(x => x.p)
     .sort((a,b) => a.p.minMeses - b.p.minMeses);
 
   for(const item of parsed){
@@ -349,98 +335,14 @@ async function calcular(salvar){
 
     montarRelatorio({ nome, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo });
 
- async function calcular(salvar){
-  try{
-    // 1) Carrega normas (se falhar aqui, a mensagem vai ser específica)
-    const normas = await carregarNormas();
-
-    const nome = (document.getElementById("nome")?.value || "").trim();
-    const nasc = document.getElementById("dataNascimento")?.value;
-    const apl  = document.getElementById("dataAplicacao")?.value;
-
-    if(!nome || !nasc || !apl){
-      alert("Preencha Nome, Nascimento e Aplicação.");
-      return;
-    }
-
-    const idade = calcularIdade(nasc, apl);
-    if(!idade){
-      alert("Datas inválidas.");
-      return;
-    }
-
-    const faixa = faixaEtaria(normas, idade);
-    if(!faixa){
-      alert("Faixa normativa não encontrada.");
-      return;
-    }
-
-    const resultados = {};
-    const pondByCode = {};
-
-    for(const s of SUBTESTES){
-      const v = document.getElementById(s.id)?.value;
-      if(v === "" || v == null) continue;
-
-      const bruto = Number(v);
-      if(Number.isNaN(bruto) || bruto < 0){
-        alert(`Valor inválido em ${s.nome}`);
-        return;
-      }
-
-      const pond = brutoParaPonderado(normas, faixa, s.codigo, bruto);
-      if(pond == null){
-        alert(`PB fora da norma em ${s.nome} (${s.codigo}) para faixa ${faixa}`);
-        return;
-      }
-
-      resultados[s.codigo] = {
-        nome: s.nome,
-        codigo: s.codigo,
-        bruto,
-        ponderado: pond,
-        classificacao: classificarPonderado(pond)
-      };
-      pondByCode[s.codigo] = pond;
-    }
-
-    if(Object.keys(pondByCode).length === 0){
-      alert("Preencha ao menos um subteste.");
-      return;
-    }
-
-    const indicesInfo = {
-      ICV: somarIndice(pondByCode, INDICES.ICV),
-      IOP: somarIndice(pondByCode, INDICES.IOP),
-      IMO: somarIndice(pondByCode, INDICES.IMO),
-      IVP: somarIndice(pondByCode, INDICES.IVP),
-    };
-
-    const qiInfo = somarQI(pondByCode);
-
-    // 2) Monta relatório (se falhar, vamos saber no console)
-    montarRelatorio({ nome, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo });
-
-    // 3) Se for salvar, garante que o html2pdf existe e gera PDF
     if(salvar){
       if(typeof window.html2pdf !== "function"){
-        alert(
-          "Não foi possível gerar o PDF porque a biblioteca html2pdf não carregou.\n" +
-          "Verifique se o script do html2pdf está incluído na página e se não houve erro 404/ bloqueio."
-        );
+        alert("Biblioteca de PDF (html2pdf) não carregou. Verifique o script do CDN.");
         return;
       }
 
       const rel = document.getElementById("relatorio");
-      if(!rel){
-        alert("Relatório não encontrado na página (div #relatorio).");
-        return;
-      }
-
-      // garante que está visível antes do PDF
-      rel.style.display = "block";
-
-      await window.html2pdf().set({
+      await html2pdf().set({
         margin: 10,
         filename: `WISC-IV_${nome}.pdf`,
         html2canvas: { scale: 2 },
@@ -462,30 +364,9 @@ async function calcular(salvar){
 
   }catch(e){
     console.error(e);
-
-    const msg = String(e?.message || e);
-
-    // Mensagens mais úteis:
-    if(msg.includes("Falha ao carregar normas") || msg.includes("Normas carregadas")){
-      alert(msg);
-      return;
-    }
-
-    if(msg.includes("html2pdf") || msg.includes("HTMLCanvasElement") || msg.includes("canvas")){
-      alert(
-        "Erro ao gerar PDF. Veja o Console (F12) para o detalhe.\n" +
-        "Geralmente é html2pdf/html2canvas não carregado, bloqueado ou falha ao renderizar."
-      );
-      return;
-    }
-
-    alert(
-      "Erro ao calcular/gerar laudo. Abra o Console (F12) para ver o erro exato.\n" +
-      "Mensagem: " + msg
-    );
+    alert(String(e?.message || e));
   }
 }
-
 
 let chartSub = null;
 let chartIdx = null;
@@ -501,7 +382,6 @@ function montarRelatorio(data){
   rel.innerHTML = `
     <div class="topline">
       <div style="display:flex;align-items:center;gap:12px;">
-        <!-- IMPORTANTE: sem caminho absoluto. Usamos a logo do sistema -->
         <img class="logo" src="logo2.png" alt="Logo" onerror="this.style.display='none'">
         <div>
           <div style="font-weight:800;color:#0d47a1;font-size:16px;">Relatório – WISC-IV</div>
@@ -580,7 +460,7 @@ function montarRelatorio(data){
 
 function desenharGraficos(resultados, indicesInfo, qiInfo){
   const ctxSub = document.getElementById("grafSub");
-  if(ctxSub){
+  if(ctxSub && typeof Chart !== "undefined"){
     if(chartSub) chartSub.destroy();
     const labels = Object.values(resultados).map(r=>r.codigo);
     const vals   = Object.values(resultados).map(r=>r.ponderado);
@@ -592,7 +472,7 @@ function desenharGraficos(resultados, indicesInfo, qiInfo){
   }
 
   const ctxIdx = document.getElementById("grafIdx");
-  if(ctxIdx){
+  if(ctxIdx && typeof Chart !== "undefined"){
     if(chartIdx) chartIdx.destroy();
     const labels = ["ICV","IOP","IMO","IVP","QIT"];
     const vals = [
