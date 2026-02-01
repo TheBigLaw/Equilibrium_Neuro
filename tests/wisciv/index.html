@@ -1,1 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WISC-IV | Correção</title>
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+</head>
+<body>
+  <header class="app-header">
+    <button class="back-btn" onclick="history.back()">← Voltar</button>
+    <div class="logo-wrap">
+      <img class="logo" src="/logo.png" alt="Logo" />
+    </div>
+    <button class="exit-btn" onclick="logout()">Sair</button>
+  </header>
 
+  <main class="main">
+    <div class="card">
+      <h1>WISC-IV</h1>
+      <p class="muted">Acesse laudos ou lance um novo.</p>
+      <div class="actions">
+        <button class="btn-primary" onclick="location.href='novo-laudo.html'">+ Novo laudo</button>
+        <button class="btn-outline" onclick="location.href='laudos.html'">Laudos salvos</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="/js/auth.js"></script>
+  <script>guardAuth();</script>
+</body>
+</html>
