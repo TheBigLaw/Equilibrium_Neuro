@@ -37,14 +37,16 @@
         </div>
       </div>
 
-      <p id="idadeCalculada" class="muted" style="margin:10px 0 0;"></p>
-      <p id="faixaCalculada" class="muted" style="margin:6px 0 0;"></p>
+      <p id="idadeCalculada" class="muted"></p>
+      <p id="faixaCalculada" class="muted"></p>
     </div>
 
     <div class="card">
       <h2>Lançamento dos Subtestes (pontos brutos)</h2>
       <table class="table">
-        <thead><tr><th>Subteste</th><th>Ponto bruto</th></tr></thead>
+        <thead>
+          <tr><th>Subteste</th><th>Ponto bruto</th></tr>
+        </thead>
         <tbody id="tbodySubtestes"></tbody>
       </table>
 
@@ -52,20 +54,17 @@
         <button class="btn-primary" onclick="calcular(true)">Salvar e Gerar PDF</button>
         <button class="btn-outline" onclick="calcular(false)">Somente Calcular</button>
       </div>
-
-      <p class="muted" style="margin-top:10px;">* O PDF é baixado automaticamente.</p>
     </div>
 
     <div id="relatorio" class="card report" style="display:none;"></div>
   </main>
 
-    <script src="/Equilibrium_Neuro/js/auth.js"></script>
-    <script>guardAuth();</script>
+  <script src="/Equilibrium_Neuro/js/auth.js"></script>
+  <script>guardAuth();</script>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-    <script src="/Equilibrium_Neuro/Correcao_testes/WISC_IV/script.js"></script>
-
+  <script src="/Equilibrium_Neuro/Correcao_testes/WISC_IV/script.js"></script>
 </body>
 </html>
