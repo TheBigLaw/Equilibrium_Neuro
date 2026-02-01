@@ -5,14 +5,14 @@
   <base href="/Equilibrium_Neuro/">
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Novo Laudo | WISC-IV</title>
-  <link rel="stylesheet" href="/style.css" />
-  <link rel="icon" type="image/png" href="/logo.png" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="logo.png" />
 </head>
 <body>
   <header class="app-header">
     <button class="back-btn" onclick="history.back()">← Voltar</button>
     <div class="logo-wrap">
-      <img class="logo" src="/logo2.png" alt="Logo" />
+      <img class="logo" src="logo2.png" alt="Logo" />
     </div>
     <button class="exit-btn" onclick="logout()">Sair</button>
   </header>
@@ -44,9 +44,7 @@
     <div class="card">
       <h2>Lançamento dos Subtestes (pontos brutos)</h2>
       <table class="table">
-        <thead>
-          <tr><th>Subteste</th><th>Ponto bruto</th></tr>
-        </thead>
+        <thead><tr><th>Subteste</th><th>Ponto bruto</th></tr></thead>
         <tbody id="tbodySubtestes"></tbody>
       </table>
 
@@ -61,11 +59,11 @@
     <div id="relatorio" class="card report" style="display:none;"></div>
   </main>
 
-  <script src="/js/auth.js"></script>
+  <script src="js/auth.js"></script>
   <script>guardAuth();</script>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-  <script src="script.js"></script>
+  <script src="Correcao_testes/WISC_IV/script.js"></script>
 </body>
 </html>
