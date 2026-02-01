@@ -1,20 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Login | WISC-IV</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/png" href="logo.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login | Sistema</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="logo.png" />
 </head>
 <body class="login-page">
-
   <div class="login-card">
-    <img src="logo2.png" alt="Logo">
-    <input id="user" placeholder="Usuário">
-    <input id="pass" type="password" placeholder="Senha">
-    <button onclick="login()">Entrar</button>
+    <img class="logo" src="logo2.png" alt="Logo" />
+    <p class="muted">Acesso restrito</p>
+
+    <label for="usuarioSelect">Usuário</label>
+    <select id="usuarioSelect"></select>
+
+    <label for="senha">Senha</label>
+    <!-- campo texto (como você pediu) -->
+    <input type="text" id="senha" placeholder="1234" />
+
+    <button class="btn-primary" id="btnEntrar">Entrar</button>
+    <div id="erro" class="error"></div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    // Não aplica guard aqui
+    const sel = document.getElementById("usuarioSelect");
+    const senha = document.getElementById("senha");
+    const erro = document.getElementById("erro");
+    const btn = document.getElementById("btnEntrar");
+
+    hydrateLoginUsers(sel);
+
+    btn.addEventListener("click", () => {
+      erro.textContent = "";
+      const res = doLogin({ userId: sel.value, password: senha.value });
+      if (!res.ok) {
+        erro.textContent = res.message || "Erro no login.";
+        return;
+      }
+      location.href = "/index.html";
+    });
+  </script>
 </body>
 </html>
