@@ -1,7 +1,6 @@
 const AUTH_KEY = "equilibrium_auth_v1";
 const AUTH_USER_KEY = "equilibrium_auth_user_v1";
 
-// base do seu repo no GitHub Pages
 const REPO_BASE = "/Equilibrium_Neuro/";
 
 const USERS = [
