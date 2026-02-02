@@ -11,6 +11,12 @@ async function carregarNormas(){
   return NORMAS;
 }
 
+// -----------------------
+// Variáveis globais (evita 'not defined' quando recarrega / redesenha)
+// -----------------------
+let chartSub = null;
+let chartIdx = null;
+
 // Subtestes (ordem objetiva)
 const SUBTESTES = [
   { nome: "Cubos", codigo: "CB", id:"pb_CB" },
@@ -115,6 +121,91 @@ function obterNomeSubteste(codigo){
     AR:"Aritmética", RP:"Raciocínio com Palavras"
   };
   return map[codigo] || codigo;
+}
+
+// -----------------------
+// Helpers do relatório
+// -----------------------
+function formatarDataISO(iso){
+  if(!iso) return "";
+  const d = new Date(iso);
+  if(Number.isNaN(d.getTime())) return String(iso);
+  const dd = String(d.getDate()).padStart(2,"0");
+  const mm = String(d.getMonth()+1).padStart(2,"0");
+  const aa = d.getFullYear();
+  return `${dd}/${mm}/${aa}`;
+}
+
+/**
+ * Plugin decorativo do gráfico de subtestes:
+ * - faixa média (9–11) no eixo Y
+ * - linhas verticais separando domínios
+ * - rótulos de domínio abaixo do eixo X
+ *
+ * IMPORTANTE: vlines devem ser passadas como posições reais (ex: 5.5)
+ */
+function registrarPluginsChart(){
+  if (window.__WISC_CHART_PLUGINS__) return;
+  window.__WISC_CHART_PLUGINS__ = true;
+
+  if (typeof Chart === "undefined") return;
+
+  const plugin = {
+    id: "wiscScatterDecor",
+    beforeDraw(chart, args, opts){
+      try{
+        const o = (opts || {});
+        const { ctx, chartArea, scales } = chart;
+        if(!chartArea || !scales?.x || !scales?.y) return;
+
+        const x = scales.x;
+        const y = scales.y;
+
+        ctx.save();
+
+        // Faixa média (band)
+        if(o.band && typeof o.band.min === "number" && typeof o.band.max === "number"){
+          const yTop = y.getPixelForValue(o.band.max);
+          const yBot = y.getPixelForValue(o.band.min);
+          ctx.fillStyle = "rgba(30,136,229,0.10)";
+          ctx.fillRect(chartArea.left, yTop, chartArea.right - chartArea.left, yBot - yTop);
+        }
+
+        // Linhas verticais (separação de domínios)
+        if(Array.isArray(o.vlines)){
+          ctx.strokeStyle = "rgba(13,71,161,0.22)";
+          ctx.lineWidth = 1;
+          o.vlines.forEach(v=>{
+            const px = x.getPixelForValue(v); // v já é o "meio" (ex: 5.5)
+            ctx.beginPath();
+            ctx.moveTo(px, chartArea.top);
+            ctx.lineTo(px, chartArea.bottom);
+            ctx.stroke();
+          });
+        }
+
+        // Labels dos grupos (domínios) na base
+        if(Array.isArray(o.groupLabels)){
+          const baseY = chartArea.bottom + 16;
+          ctx.fillStyle = "rgba(13,71,161,0.88)";
+          ctx.font = "600 10px Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial";
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
+
+          o.groupLabels.forEach(g=>{
+            const fromPx = x.getPixelForValue(g.from);
+            const toPx = x.getPixelForValue(g.to);
+            const mid = (fromPx + toPx) / 2;
+            ctx.fillText(String(g.text || ""), mid, baseY);
+          });
+        }
+
+        ctx.restore();
+      }catch(_e){}
+    }
+  };
+
+  Chart.register(plugin);
 }
 
 function cellIndice(codigo, setUsado, setPossivel, resultados) {
@@ -293,18 +384,21 @@ async function calcular(salvar){
     if(salvar){
       const rel = document.getElementById("relatorio");
       await esperarImagensCarregarem(rel);
-      await new Promise(r => setTimeout(r, 150));
+      await new Promise(r => setTimeout(r, 200));
 
       await html2pdf().set({
         margin: [8, 8, 8, 8],
         filename: `WISC-IV_${nome}.pdf`,
-        pagebreak: { mode: ["css", "legacy"], avoid: ".no-break" },
+        pagebreak: {
+          mode: ["avoid-all", "css", "legacy"],
+          avoid: [".no-break", ".report-block", "canvas", ".canvas-wrap", ".matrix-card"]
+        },
         html2canvas: {
           scale: 2,
           useCORS: true,
           allowTaint: false,
           backgroundColor: "#ffffff",
-          imageTimeout: 15000
+          imageTimeout: 20000
         },
         jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
       }).from(rel).save();
@@ -330,10 +424,10 @@ async function calcular(salvar){
 
 function renderPerfilSubtestes(resultados){
   const grupos = [
-    { titulo: "Compreensão Verbal", codes: ["SM","VC","CO","IN","RP"] },
-    { titulo: "Organização Perceptual", codes: ["CB","CN","RM","CF"] },
-    { titulo: "Memória Operacional", codes: ["DG","SNL","AR"] },
-    { titulo: "Velocidade de Proc.", codes: ["CD","PS","CA"] },
+    { titulo: "Compreensão Verbal", codes: ["SM","VC","CO","IN","RP"] },   // 5
+    { titulo: "Organização Perceptual", codes: ["CB","CN","RM","CF"] },   // 4
+    { titulo: "Memória Operacional", codes: ["DG","SNL","AR"] },          // 3
+    { titulo: "Velocidade de Proc.", codes: ["CD","PS","CA"] },          // 3
   ];
   const supl = new Set(["CF","CA","IN","AR","RP"]);
 
@@ -360,6 +454,9 @@ function renderPerfilSubtestes(resultados){
   `;
 }
 
+// -----------------------
+// RELATÓRIO (HTML)
+// -----------------------
 function montarRelatorio(data) {
   const rel = document.getElementById("relatorio");
   if (!rel) return;
@@ -370,15 +467,34 @@ function montarRelatorio(data) {
   const matriz = renderMatrizConversao({ resultados, indicesInfo, qiInfo });
   const perfil = renderPerfilSubtestes(resultados);
 
+  const logoTop = `
+    <img class="report-logo report-logo-top"
+      src="logo.png"
+      crossorigin="anonymous"
+      alt="Logo"
+      onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src='logo2.png';}else{this.style.display='none';}">
+  `;
+
+  const logoBottom = `
+    <img class="report-logo report-logo-bottom"
+      src="logo.png"
+      crossorigin="anonymous"
+      alt="Logo"
+      onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src='logo2.png';}else{this.style.display='none';}">
+  `;
+
   rel.style.display = "block";
   rel.innerHTML = `
     <div class="report">
-      <div class="report-header">
-        <img class="report-logo report-logo-top" src="logo2.png" alt="Logo" onerror="this.style.display='none'">
-        <div class="report-title">
-          <div class="t1">Relatório – WISC-IV</div>
-          <div class="t2">Conversão PB → Ponderado e somatórios por índice</div>
+      <div class="report-header no-break">
+        <div class="report-brand">
+          ${logoTop}
+          <div class="report-title">
+            <div class="t1">Relatório – WISC-IV</div>
+            <div class="t2">Conversão PB → Ponderado • Perfil de Subtestes • Somatórios</div>
+          </div>
         </div>
+
         <div class="report-meta">
           <div class="badge">Faixa: ${faixa}</div>
           <div class="muted">Idade: ${idade.anos}a ${idade.meses}m</div>
@@ -393,71 +509,77 @@ function montarRelatorio(data) {
         </div>
       </div>
 
-      <div class="section no-break">
-        <h3>Perfil dos Pontos Ponderados dos Subtestes</h3>
-        <div class="perfil-card">
-          ${perfil}
-          <div class="canvas-wrap perfil-canvas"><canvas id="grafSub" height="220"></canvas></div>
+      <!-- BLOCO 1: Perfil (esquerda) + Índices/QIT (direita) -->
+      <div class="two-col report-block no-break">
+        <div class="section">
+          <h3>Perfil dos Pontos Ponderados dos Subtestes</h3>
+          <div class="perfil-card">
+            ${perfil}
+            <div class="canvas-wrap perfil-canvas">
+              <canvas id="grafSub" height="180"></canvas>
+            </div>
+          </div>
+          <p class="muted hint">Ponderados (1–19). Faixa azul: 9–11. Separação por domínios.</p>
         </div>
-        <p class="muted" style="margin:10px 0 0;">
-          A faixa azul indica a região média aproximada (9–11) dos pontos ponderados.
-        </p>
-      </div>
 
-      <div class="section">
-        <h3>Conversão PB → Ponderado e contribuição nos Índices</h3>
-        <div class="matrix-card no-break">${matriz}</div>
-        <p class="muted" style="margin:10px 0 0;">
-          Células azuis indicam subtestes usados na soma do índice/QIT. Suplementares podem aparecer entre parênteses.
-        </p>
-      </div>
+        <div class="section">
+          <h3>Índices e QIT (somatórios)</h3>
+          <div class="canvas-wrap idx-canvas">
+            <canvas id="grafIdx" height="140"></canvas>
+          </div>
 
-      <div class="section">
-        <h3>Subtestes (detalhamento)</h3>
-        <table class="table">
-          <thead><tr><th>Subteste</th><th>PB</th><th>Ponderado</th><th>Classificação</th></tr></thead>
-          <tbody>
-            ${Object.values(resultados).map(r=>`
+          <table class="table table-compact" style="margin-top:10px;">
+            <thead><tr><th>Medida</th><th>Soma</th><th>Subtestes usados</th></tr></thead>
+            <tbody>
+              ${Object.entries(INDICES).map(([k, def])=>{
+                const info = indicesInfo[k];
+                return `
+                  <tr>
+                    <td><b>${k}</b></td>
+                    <td>${info.soma ?? "—"}</td>
+                    <td>${(info.usados||[]).join(", ") || "—"}</td>
+                  </tr>
+                `;
+              }).join("")}
               <tr>
-                <td><b>${r.nome}</b> <span class="muted">(${r.codigo})</span></td>
-                <td>${r.bruto}</td>
-                <td>${r.ponderado}</td>
-                <td>${r.classificacao}</td>
+                <td><b>QIT</b></td>
+                <td>${qiInfo.soma ?? "—"}</td>
+                <td>${(qiInfo.usados||[]).join(", ") || "—"}</td>
               </tr>
-            `).join("")}
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
       </div>
 
-      <div class="section">
-        <h3>Índices e QIT (somatórios)</h3>
-        <div class="canvas-wrap"><canvas id="grafIdx" height="180"></canvas></div>
+      <!-- BLOCO 2: Matriz (esquerda) + Detalhamento (direita) -->
+      <div class="two-col report-block">
+        <div class="section">
+          <h3>Conversão PB → Ponderado e contribuição nos Índices</h3>
+          <div class="matrix-card">${matriz}</div>
+          <p class="muted hint">Células preenchidas = usadas na soma. Suplementares com (código).</p>
+        </div>
 
-        <table class="table" style="margin-top:12px;">
-          <thead><tr><th>Medida</th><th>Soma (ponderados)</th><th>Subtestes usados</th></tr></thead>
-          <tbody>
-            ${Object.entries(INDICES).map(([k, def])=>{
-              const info = indicesInfo[k];
-              return `
+        <div class="section">
+          <h3>Subtestes (detalhamento)</h3>
+          <table class="table table-compact">
+            <thead><tr><th>Subteste</th><th>PB</th><th>Ponderado</th><th>Classificação</th></tr></thead>
+            <tbody>
+              ${Object.values(resultados).map(r=>`
                 <tr>
-                  <td><b>${k}</b></td>
-                  <td>${info.soma ?? "—"}</td>
-                  <td>${(info.usados||[]).join(", ") || "—"}</td>
+                  <td><b>${r.nome}</b> <span class="muted">(${r.codigo})</span></td>
+                  <td>${r.bruto}</td>
+                  <td>${r.ponderado}</td>
+                  <td>${r.classificacao}</td>
                 </tr>
-              `;
-            }).join("")}
-            <tr>
-              <td><b>QIT</b></td>
-              <td>${qiInfo.soma ?? "—"}</td>
-              <td>${(qiInfo.usados||[]).join(", ") || "—"}</td>
-            </tr>
-          </tbody>
-        </table>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
       </div>
 
-      <div class="report-footer">
+      <div class="report-footer no-break">
         <div class="muted">Documento gerado automaticamente</div>
-        <img class="report-logo report-logo-bottom" src="logo2.png" alt="Logo" onerror="this.style.display='none'">
+        ${logoBottom}
       </div>
     </div>
   `;
@@ -465,15 +587,20 @@ function montarRelatorio(data) {
   desenharGraficos(resultados, indicesInfo, qiInfo);
 }
 
+// -----------------------
+// GRÁFICOS (Chart.js)
+// -----------------------
 function desenharGraficos(resultados, indicesInfo, qiInfo){
   registrarPluginsChart();
 
   // ---------- Subtestes: SCATTER (pontos) ----------
-  const ctxSub = document.getElementById("grafSub");
-  if(ctxSub){
+  const canvasSub = document.getElementById("grafSub");
+  if(canvasSub){
     if(chartSub) chartSub.destroy();
 
+    // Ordem do perfil (por domínio) — precisa bater com as separações
     const labels = ["SM","VC","CO","IN","RP","CB","CN","RM","CF","DG","SNL","AR","CD","PS","CA"];
+
     const points = labels
       .map((c, i) => {
         const v = resultados?.[c]?.ponderado;
@@ -481,13 +608,15 @@ function desenharGraficos(resultados, indicesInfo, qiInfo){
       })
       .filter(Boolean);
 
-    chartSub = new Chart(ctxSub, {
+    // separadores corretos: após 5 (CV) => 5.5 | após 9 (OP) => 9.5 | após 12 (MO) => 12.5
+    chartSub = new Chart(canvasSub, {
       type:"scatter",
       data:{
         datasets:[{
           data: points,
-          pointRadius: 5,
-          pointHoverRadius: 6,
+          pointRadius: 4.2,
+          pointHoverRadius: 5.0,
+          borderWidth: 0,
         }]
       },
       options:{
@@ -497,21 +626,24 @@ function desenharGraficos(resultados, indicesInfo, qiInfo){
           legend:{ display:false },
           wiscScatterDecor:{
             band:{ min:9, max:11 },
-            vlines:[6, 10, 13],
+            vlines:[5.5, 9.5, 12.5],
             groupLabels:[
-              { from:1, to:5, text:"Compreensão Verbal" },
-              { from:6, to:9, text:"Organização Perceptual" },
+              { from:1,  to:5,  text:"Compreensão Verbal" },
+              { from:6,  to:9,  text:"Organização Perceptual" },
               { from:10, to:12, text:"Memória Operacional" },
-              { from:13, to:15, text:"Velocidade de Proc." },
+              { from:13, to:15, text:"Velocidade de Processamento" },
             ]
           }
         },
+        layout:{ padding:{ bottom: 18 } },
         scales:{
           x:{
             min:0.5, max:15.5,
             grid:{ display:false },
             ticks:{
               autoSkip:false,
+              maxRotation:0,
+              minRotation:0,
               callback:(val)=> {
                 const idx = Math.round(val)-1;
                 const c = labels[idx];
@@ -530,9 +662,10 @@ function desenharGraficos(resultados, indicesInfo, qiInfo){
   }
 
   // ---------- Índices e QIT: pontos ----------
-  const ctxIdx = document.getElementById("grafIdx");
-  if(ctxIdx){
+  const canvasIdx = document.getElementById("grafIdx");
+  if(canvasIdx){
     if(chartIdx) chartIdx.destroy();
+
     const labels = ["ICV","IOP","IMO","IVP","QIT"];
     const vals = [
       indicesInfo?.ICV?.soma ?? null,
@@ -541,11 +674,16 @@ function desenharGraficos(resultados, indicesInfo, qiInfo){
       indicesInfo?.IVP?.soma ?? null,
       qiInfo?.soma ?? null,
     ];
-    const pts = vals.map((v,i)=> v==null ? null : ({x:i+1, y:Number(v)})).filter(Boolean);
+    const pts = vals
+      .map((v,i)=> v==null ? null : ({x:i+1, y:Number(v)}))
+      .filter(Boolean);
 
-    chartIdx = new Chart(ctxIdx, {
+    const maxY = Math.max(10, ...vals.filter(v=>v!=null).map(Number));
+    const suggestedMax = Math.ceil(maxY / 5) * 5;
+
+    chartIdx = new Chart(canvasIdx, {
       type:"scatter",
-      data:{ datasets:[{ data: pts, pointRadius:5, pointHoverRadius:6 }] },
+      data:{ datasets:[{ data: pts, pointRadius:4.2, pointHoverRadius:5.0, borderWidth:0 }] },
       options:{
         responsive:true,
         maintainAspectRatio:false,
@@ -562,7 +700,11 @@ function desenharGraficos(resultados, indicesInfo, qiInfo){
               }
             }
           },
-          y:{ beginAtZero:true }
+          y:{
+            beginAtZero:true,
+            suggestedMax,
+            ticks:{ stepSize:5 }
+          }
         }
       }
     });
@@ -620,18 +762,21 @@ async function baixarPDFSalvo(index){
   document.body.appendChild(temp);
 
   await esperarImagensCarregarem(temp);
-  await new Promise(r => setTimeout(r, 150));
+  await new Promise(r => setTimeout(r, 200));
 
   await html2pdf().set({
     margin: [8, 8, 8, 8],
     filename: `WISC-IV_${item.nome}.pdf`,
-    pagebreak: { mode: ["css", "legacy"], avoid: ".no-break" },
+    pagebreak: {
+      mode: ["avoid-all", "css", "legacy"],
+      avoid: [".no-break", ".report-block", "canvas", ".canvas-wrap", ".matrix-card"]
+    },
     html2canvas: {
       scale: 2,
       useCORS: true,
       allowTaint: false,
       backgroundColor: "#ffffff",
-      imageTimeout: 15000
+      imageTimeout: 20000
     },
     jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
   }).from(temp).save();
