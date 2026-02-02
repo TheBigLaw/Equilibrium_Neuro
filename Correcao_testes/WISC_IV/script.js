@@ -292,7 +292,26 @@ async function calcular(salvar){
 
     if(salvar){
       const rel = document.getElementById("relatorio");
-      await imprimirRelatorioComoPDF(rel, `WISC-IV_${nome}`);
+      await esperarImagensCarregarem(rel);
+      const restaurar = aplicarAjustesTemporariosParaPDF(rel);
+      await garantirGraficosProntos();
+      try{
+        await html2pdf().set({
+          margin: [8, 8, 8, 8],
+          filename: `WISC-IV_${nome}.pdf`,
+          pagebreak: { mode: ["css", "legacy"], avoid: ["tr", "img", "canvas"] },
+          html2canvas: {
+            scale: 2,
+            useCORS: true,
+            allowTaint: false,
+            backgroundColor: "#ffffff",
+            imageTimeout: 15000
+          },
+          jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+        }).from(rel).save();
+      }finally{
+        restaurar();
+      }
 
       const laudos = getLaudos();
       laudos.unshift({
@@ -650,61 +669,69 @@ function renderListaLaudos(){
 }
 
 
-// ================================
-// PDF (impressão do navegador) — evita páginas em branco do html2pdf/html2canvas
-// ================================
-async function imprimirRelatorioComoPDF(elementoRelatorio, tituloArquivo = "Relatorio_WISC-IV"){
-  const win = window.open("", "_blank");
-  if(!win){
-    alert("O navegador bloqueou a janela de impressão. Permita pop-ups para este site para gerar o PDF.");
-    return;
-  }
-
-  // copia styles (links e <style>) da página atual para a janela de impressão
-  const styles = Array.from(document.querySelectorAll('link[rel="stylesheet"], style'))
-    .map(n => n.outerHTML)
-    .join("
-");
-
-  win.document.open();
-  win.document.write(`<!doctype html>
-<html lang="pt-BR">
-<head>
-  <meta charset="utf-8" />
-  <title>${tituloArquivo}</title>
-  ${styles}
-  <style>
-    @page{ size:A4; margin:10mm; }
-    html, body{ background:#fff !important; }
-    /* evita cortes ruins */
-    .no-break{ break-inside: avoid; page-break-inside: avoid; }
-  </style>
-</head>
-<body>
-  <div id="print-root"></div>
-</body>
-</html>`);
-  win.document.close();
-
-  const root = win.document.getElementById("print-root");
-  root.innerHTML = elementoRelatorio.outerHTML;
-
-  // espera carregar imagens (logo) antes de imprimir
-  const imgs = Array.from(win.document.querySelectorAll("img"));
+// ===== PDF helpers (não altera cálculo nem fluxo) =====
+async function esperarImagensCarregarem(container){
+  const imgs = Array.from(container.querySelectorAll("img"));
   await Promise.all(imgs.map(img => {
-    if(img.complete && img.naturalWidth > 0) return Promise.resolve();
-    return new Promise(resolve => { img.onload = resolve; img.onerror = resolve; });
+    if (img.complete && img.naturalWidth > 0) return Promise.resolve();
+    return new Promise(resolve => {
+      img.onload = () => resolve();
+      img.onerror = () => resolve();
+    });
   }));
-
-  // dá um respiro para layout estabilizar (ajuda no Windows/iOS)
-  await new Promise(r => setTimeout(r, 150));
-
-  win.focus();
-  win.print();
-
-  // fecha automaticamente depois de abrir a impressão
-  setTimeout(() => { try{ win.close(); }catch(e){} }, 500);
 }
+
+function aplicarAjustesTemporariosParaPDF(container){
+  // Remove comportamentos que quebram paginação do html2pdf/html2canvas (somente durante exportação)
+  const touched = [];
+  const set = (el, prop, val) => {
+    touched.push([el, prop, el.style[prop]]);
+    el.style[prop] = val;
+  };
+
+  // Overflow/scroll costuma gerar páginas vazias
+  container.querySelectorAll(".matrix-card, .perfil-card").forEach(el => {
+    set(el, "overflow", "visible");
+  });
+
+  // Evitar "break-inside: avoid" empurrando cards inteiros e criando grandes vazios
+  container.querySelectorAll(".no-break, .card, .section").forEach(el => {
+    set(el, "breakInside", "auto");
+    set(el, "pageBreakInside", "auto");
+  });
+
+  // Tabelas com sticky header podem dar altura errada no canvas
+  container.querySelectorAll("thead, th").forEach(el => {
+    set(el, "position", "static");
+  });
+
+  return () => {
+    for (let i = touched.length - 1; i >= 0; i--){
+      const [el, prop, prev] = touched[i];
+      el.style[prop] = prev || "";
+    }
+  };
+}
+
+async function garantirGraficosProntos(){
+  // força Chart.js finalizar desenho antes do html2canvas capturar
+  try{
+    if (chartSub){
+      chartSub.options.animation = false;
+      chartSub.update("none");
+    }
+    if (chartIdx){
+      chartIdx.options.animation = false;
+      chartIdx.update("none");
+    }
+  }catch(e){ /* noop */ }
+
+  // espera 2 frames para o canvas estabilizar (Windows/iOS)
+  await new Promise(r => requestAnimationFrame(()=>requestAnimationFrame(r)));
+  // micro delay extra
+  await new Promise(r => setTimeout(r, 80));
+}
+
 
 async function baixarPDFSalvo(index){
   const laudos = getLaudos();
@@ -715,8 +742,27 @@ async function baixarPDFSalvo(index){
   temp.innerHTML = item.htmlRelatorio;
   document.body.appendChild(temp);
 
-  await imprimirRelatorioComoPDF(temp, `WISC-IV_${item.nome}`);
-  temp.remove();
+  await esperarImagensCarregarem(temp);
+  const restaurar = aplicarAjustesTemporariosParaPDF(temp);
+  await garantirGraficosProntos();
+  try{
+    await html2pdf().set({
+      margin: [8, 8, 8, 8],
+      filename: `WISC-IV_${item.nome}.pdf`,
+      pagebreak: { mode: ["css", "legacy"], avoid: ["tr", "img", "canvas"] },
+      html2canvas: {
+        scale: 2,
+        useCORS: true,
+        allowTaint: false,
+        backgroundColor: "#ffffff",
+        imageTimeout: 15000
+      },
+      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+    }).from(temp).save();
+  }finally{
+    restaurar();
+    temp.remove();
+  }
 }
 
 (function init(){
