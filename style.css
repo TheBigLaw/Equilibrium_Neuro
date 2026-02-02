@@ -395,56 +395,45 @@ button{
 
 }
 
-/* =========================================================
-   RELATÓRIO — layout estreito SEM cortar tabelas/gráficos
-   ========================================================= */
+/* ==============================
+   RELATÓRIO: itens estreitos (tipo PDF) SEM cortar
+   ============================== */
 
-/* deixa o relatório centralizado (A4 visual) */
-.report{
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-/* cada section NÃO força largura pequena */
+/* 1) cada item (section) vira um card estreito e centralizado */
 .report .section{
-  max-width: 100%;
-  margin: 0 auto 20px;
+  max-width: 520px;        /* ajuste: 480~560 conforme seu gosto */
+  width: 100%;
+  margin: 0 auto 18px;
 }
 
-/* ===== TABELAS ===== */
-
-/* tabela se adapta ao espaço disponível */
-.report table{
+/* 2) tabelas ocupam 100% do card e cabem sem scroll */
+.report .section table{
   width: 100%;
-  table-layout: auto;       /* CRÍTICO: evita corte */
+  max-width: 100%;
+  table-layout: fixed;     /* CRÍTICO: força caber no card */
   border-collapse: collapse;
 }
 
-/* permite quebra de linha nos textos */
-.report table th,
-.report table td{
-  white-space: normal;      /* CRÍTICO */
-  word-break: break-word;
+/* 3) célula quebra texto e reduz espaçamento para caber */
+.report .section th,
+.report .section td{
   font-size: 12px;
   padding: 6px 6px;
+  white-space: normal;
+  overflow-wrap: anywhere; /* CRÍTICO: quebra até palavras longas */
 }
 
-/* remove qualquer scroll horizontal forçado */
+/* 4) evita qualquer scroll lateral */
 .report .matrix-card{
-  overflow-x: visible;
+  overflow: visible !important;
 }
 
-/* ===== GRÁFICOS ===== */
-
-/* canvas ocupa 100% do espaço disponível */
+/* 5) gráfico ocupa 100% do card */
 .report .canvas-wrap{
   width: 100%;
   max-width: 100%;
-  margin: 0 auto;
 }
 
-/* canvas responsivo */
 .report .canvas-wrap canvas{
   width: 100% !important;
-  height: auto !important;
 }
