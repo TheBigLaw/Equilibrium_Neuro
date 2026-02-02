@@ -292,26 +292,29 @@ async function calcular(salvar){
 
     if(salvar){
       const rel = document.getElementById("relatorio");
-      // garante logo/imagens antes do canvas (especialmente no iOS)
-await esperarImagensCarregarem(rel);
-// pequeno delay para assegurar renderização dos gráficos/canvas
-await new Promise(r => setTimeout(r, 150));
+      await esperarImagensCarregarem(rel);
+const restorePDF = prepararRelatorioParaPDF(rel);
+await garantirGraficosProntos();
 
-await html2pdf().set({
-  margin: [8, 8, 8, 8],
-  filename: `WISC-IV_${nome}.pdf`,
-  pagebreak: { mode: ["css", "legacy"], avoid: ".no-break" },
-  html2canvas: {
-    scale: 2,
-    useCORS: true,
-    allowTaint: false,
-    backgroundColor: "#ffffff",
-    imageTimeout: 15000
-  },
-  jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
-}).from(rel).save();
+try{
+  await html2pdf().set({
+    margin: [8, 8, 8, 8],
+    filename: `WISC-IV_${nome}.pdf`,
+    pagebreak: { mode: ["css", "legacy"], avoid: ".no-break" },
+    html2canvas: {
+      scale: 2,
+      useCORS: true,
+      allowTaint: false,
+      backgroundColor: "#ffffff",
+      imageTimeout: 15000
+    },
+    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+  }).from(rel).save();
+} finally {
+  restorePDF();
+}
 
-const laudos = getLaudos();
+      const laudos = getLaudos();
       laudos.unshift({
         nome,
         dataAplicacao: apl,
@@ -667,19 +670,57 @@ function renderListaLaudos(){
 }
 
 
-
-// =========================
-// PDF (html2pdf) — helpers
-// =========================
 async function esperarImagensCarregarem(container){
   const imgs = Array.from(container.querySelectorAll("img"));
   await Promise.all(imgs.map(img => {
     if (img.complete && img.naturalWidth > 0) return Promise.resolve();
     return new Promise(resolve => {
       img.onload = () => resolve();
-      img.onerror = () => resolve(); // não trava o PDF
+      img.onerror = () => resolve();
     });
   }));
+}
+
+// Ajustes temporários para exportação (evita páginas em branco e canvas vazios)
+function prepararRelatorioParaPDF(container){
+  const changes = [];
+  if(!container) return () => {};
+
+  // remove overflow:auto que costuma quebrar paginação do html2pdf
+  container.querySelectorAll(".matrix-card, .perfil-card, .table-wrap").forEach(el=>{
+    changes.push([el, "overflow", el.style.overflow]);
+    el.style.overflow = "visible";
+  });
+
+  // garante que o card principal não empurre conteúdo para baixo
+  const rep = container.querySelector(".report");
+  if(rep){
+    changes.push([rep, "marginTop", rep.style.marginTop]);
+    rep.style.marginTop = "0";
+  }
+
+  return () => {
+    for(const [el, prop, prev] of changes){
+      el.style[prop] = prev || "";
+    }
+  };
+}
+
+async function garantirGraficosProntos(){
+  // força Chart.js a terminar render (sem animação) antes do html2canvas
+  try{
+    const charts = [window.chartSub, window.chartIdx].filter(Boolean);
+    charts.forEach(ch=>{
+      if(ch?.options){
+        ch.options.animation = false;
+        ch.options.animations = false;
+      }
+      ch.update && ch.update("none");
+    });
+  }catch(e){}
+  // 2 frames + pequeno atraso ajudam muito no Windows/iOS
+  await new Promise(r => requestAnimationFrame(()=>requestAnimationFrame(r)));
+  await new Promise(r => setTimeout(r, 120));
 }
 
 async function baixarPDFSalvo(index){
@@ -691,27 +732,28 @@ async function baixarPDFSalvo(index){
   temp.innerHTML = item.htmlRelatorio;
   document.body.appendChild(temp);
 
-  // garante logo/imagens antes do canvas (especialmente no iOS)
-await esperarImagensCarregarem(temp);
-// pequeno delay para assegurar renderização dos gráficos/canvas
-await new Promise(r => setTimeout(r, 150));
+  await esperarImagensCarregarem(temp);
+const restorePDF = prepararRelatorioParaPDF(temp);
+await garantirGraficosProntos();
 
-await html2pdf().set({
-  margin: [8, 8, 8, 8],
-  filename: `WISC-IV_${item.nome}.pdf`,
-  pagebreak: { mode: ["css", "legacy"], avoid: ".no-break" },
-  html2canvas: {
-    scale: 2,
-    useCORS: true,
-    allowTaint: false,
-    backgroundColor: "#ffffff",
-    imageTimeout: 15000
-  },
-  jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
-}).from(temp).save();
-
-temp.remove();
-
+try{
+  await html2pdf().set({
+    margin: [8, 8, 8, 8],
+    filename: `WISC-IV_${item.nome}.pdf`,
+    pagebreak: { mode: ["css", "legacy"], avoid: ".no-break" },
+    html2canvas: {
+      scale: 2,
+      useCORS: true,
+      allowTaint: false,
+      backgroundColor: "#ffffff",
+      imageTimeout: 15000
+    },
+    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+  }).from(temp).save();
+} finally {
+  restorePDF();
+  temp.remove();
+}
 }
 
 (function init(){
