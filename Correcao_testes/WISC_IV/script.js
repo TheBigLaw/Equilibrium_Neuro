@@ -296,30 +296,21 @@ async function calcular(salvar){
       const restaurar = aplicarAjustesTemporariosParaPDF(rel);
       await garantirGraficosProntos();
       try{
-        await html2pdf().set({
-          margin: [8, 8, 8, 8],
-          filename: `WISC-IV_${nome}.pdf`,
-          pagebreak: { mode: ["css", "legacy"], avoid: ["tr", "img", "canvas"] },
-          html2canvas: {
-            scale: 2,
-            useCORS: true,
-            allowTaint: false,
-            backgroundColor: "#ffffff",
-            imageTimeout: 15000
-          },
-          jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
-        }).from(rel).save();
-      }finally{
-        restaurar();
-      }
+      // garante imagens e gráficos prontos antes de “tirar foto”
+        await garantirGraficosProntos();
 
+        // PDF sem páginas em branco (impressão do navegador)
+        await gerarPDFPorImpressao(rel, `WISC-IV_${nome}`);
+      }finally{
+      restaurar();
+    }
       const laudos = getLaudos();
       laudos.unshift({
         nome,
         dataAplicacao: apl,
         faixa,
         createdAt: new Date().toISOString(),
-        htmlRelatorio: rel.outerHTML
+        htmlRelatorio: serializarRelatorioParaSalvar(rel)
       });
       setLaudos(laudos);
 
@@ -681,6 +672,108 @@ async function esperarImagensCarregarem(container){
   }));
 }
 
+// ================================
+// PDF SUPER ESTÁVEL (sem páginas em branco)
+// - Converte <canvas> (Chart.js) em <img> antes do PDF
+// - Usa impressão do navegador em janela limpa (melhor que html2pdf/html2canvas)
+// ================================
+
+// Clona um elemento e substitui canvases por imagens (dataURL) para preservar os gráficos no PDF
+function clonarComCanvasComoImagem(sourceEl){
+  const clone = sourceEl.cloneNode(true);
+
+  const srcCanvases = Array.from(sourceEl.querySelectorAll("canvas"));
+  const dstCanvases = Array.from(clone.querySelectorAll("canvas"));
+
+  for(let i = 0; i < Math.min(srcCanvases.length, dstCanvases.length); i++){
+    const src = srcCanvases[i];
+    const dst = dstCanvases[i];
+
+    try{
+      const data = src.toDataURL("image/png");
+      const img = document.createElement("img");
+      img.src = data;
+      img.style.width = (src.style.width || "100%");
+      img.style.maxWidth = "100%";
+      img.style.display = "block";
+
+      // mantém altura aproximada (se existir)
+      if (src.getAttribute("height")) img.style.height = "auto";
+
+      dst.replaceWith(img);
+    }catch(e){
+      // se falhar, mantém o canvas original
+    }
+  }
+  return clone;
+}
+
+// Serializa HTML do relatório já com os gráficos como imagem (ideal para salvar no localStorage)
+function serializarRelatorioParaSalvar(relEl){
+  const wrapper = document.createElement("div");
+  wrapper.appendChild(clonarComCanvasComoImagem(relEl));
+  return wrapper.innerHTML;
+}
+
+// Gera PDF via impressão do navegador (mais confiável que html2pdf)
+async function gerarPDFPorImpressao(relEl, tituloArquivo){
+  const win = window.open("", "_blank");
+  if(!win){
+    alert("O navegador bloqueou a janela de impressão. Permita pop-ups para este site para gerar o PDF.");
+    return;
+  }
+
+  // copia CSS (links e <style>) do documento atual para a janela de impressão
+  const styles = Array.from(document.querySelectorAll('link[rel="stylesheet"], style'))
+    .map(n => n.outerHTML)
+    .join("\n");
+
+  // clona relatório e converte canvases -> imgs (para não ficar branco)
+  const clone = clonarComCanvasComoImagem(relEl);
+
+  win.document.open();
+  win.document.write(`<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <title>${tituloArquivo || "Relatorio_WISC-IV"}</title>
+  ${styles}
+  <style>
+    @page{ size:A4; margin:10mm; }
+    html, body{ background:#fff !important; }
+    /* Evita cortes ruins, mas sem empurrar blocos criando "buracos" */
+    .no-break{ break-inside: avoid; page-break-inside: avoid; }
+    /* Em impressão, não queremos overflow/scroll em cards */
+    .matrix-card, .perfil-card{ overflow: visible !important; }
+    thead, th{ position: static !important; }
+  </style>
+</head>
+<body>
+  <div id="print-root"></div>
+</body>
+</html>`);
+  win.document.close();
+
+  const root = win.document.getElementById("print-root");
+  root.appendChild(win.document.importNode(clone, true));
+
+  // espera imagens (logos e imgs geradas dos canvases) carregarem
+  const imgs = Array.from(win.document.querySelectorAll("img"));
+  await Promise.all(imgs.map(img => {
+    if(img.complete && img.naturalWidth > 0) return Promise.resolve();
+    return new Promise(resolve => { img.onload = resolve; img.onerror = resolve; });
+  }));
+
+  // pequena pausa para layout estabilizar
+  await new Promise(r => setTimeout(r, 150));
+
+  win.focus();
+  win.print();
+
+  setTimeout(() => { try{ win.close(); }catch(e){} }, 600);
+}
+
+
 function aplicarAjustesTemporariosParaPDF(container){
   // Remove comportamentos que quebram paginação do html2pdf/html2canvas (somente durante exportação)
   const touched = [];
@@ -743,27 +836,13 @@ async function baixarPDFSalvo(index){
   document.body.appendChild(temp);
 
   await esperarImagensCarregarem(temp);
-  const restaurar = aplicarAjustesTemporariosParaPDF(temp);
-  await garantirGraficosProntos();
-  try{
-    await html2pdf().set({
-      margin: [8, 8, 8, 8],
-      filename: `WISC-IV_${item.nome}.pdf`,
-      pagebreak: { mode: ["css", "legacy"], avoid: ["tr", "img", "canvas"] },
-      html2canvas: {
-        scale: 2,
-        useCORS: true,
-        allowTaint: false,
-        backgroundColor: "#ffffff",
-        imageTimeout: 15000
-      },
-      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
-    }).from(temp).save();
-  }finally{
-    restaurar();
-    temp.remove();
-  }
+
+  // usa impressão do navegador (sem páginas em branco)
+  await gerarPDFPorImpressao(temp, `WISC-IV_${item.nome}`);
+
+  temp.remove();
 }
+
 
 (function init(){
   // novo-laudo
