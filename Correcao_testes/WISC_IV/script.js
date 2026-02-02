@@ -292,26 +292,24 @@ async function calcular(salvar){
 
     if(salvar){
       const rel = document.getElementById("relatorio");
-      // garante logo/imagens antes do canvas (especialmente no iOS)
       await esperarImagensCarregarem(rel);
-    // pequeno delay para assegurar renderização dos gráficos/canvas
       await new Promise(r => setTimeout(r, 150));
 
       await html2pdf().set({
-  margin: [8, 8, 8, 8],
-  filename: `WISC-IV_${nome}.pdf`,
-  pagebreak: { mode: ["css", "legacy"], avoid: ".no-break" },
-  html2canvas: {
-    scale: 2,
-    useCORS: true,
-    allowTaint: false,
-    backgroundColor: "#ffffff",
-    imageTimeout: 15000
-  },
-  jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
-}).from(rel).save();
+        margin: [8, 8, 8, 8],
+        filename: `WISC-IV_${nome}.pdf`,
+        pagebreak: { mode: ["css", "legacy"], avoid: ".no-break" },
+        html2canvas: {
+          scale: 2,
+          useCORS: true,
+          allowTaint: false,
+          backgroundColor: "#ffffff",
+          imageTimeout: 15000
+        },
+        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+      }).from(rel).save();
 
-const laudos = getLaudos();
+      const laudos = getLaudos();
       laudos.unshift({
         nome,
         dataAplicacao: apl,
@@ -328,135 +326,6 @@ const laudos = getLaudos();
     console.error(e);
     alert("Erro ao calcular. Verifique normas-wisciv.json em /tests/wisciv/data/.");
   }
-}
-
-// =====================================================
-// CHECKLIST 1 — opção 1
-// Reorganiza visualmente o relatório SEM alterar HTML
-// =====================================================
-function aplicarLayoutChecklist1(rel){
-  if(!rel) return;
-
-  const secPerfil  = rel.querySelector("#grafSub")?.closest(".section");
-  const secIndices = rel.querySelector("#grafIdx")?.closest(".section");
-  const secMatriz  = rel.querySelector(".matrix-card")?.closest(".section");
-
-  // tenta achar a section de Subtestes pelo título
-  let secSub = Array.from(rel.querySelectorAll(".section")).find(s=>{
-    const h = s.querySelector("h3");
-    return h && /Subtestes/i.test(h.textContent || "");
-  });
-
-  // fallback: qualquer section com tabela que não seja índices ou matriz
-  if(!secSub){
-    const secsComTabela = Array.from(rel.querySelectorAll(".section")).filter(s => s.querySelector("table"));
-    secSub = secsComTabela.find(s => s !== secIndices && s !== secMatriz) || null;
-  }
-
-  if(!secPerfil || !secIndices || !secMatriz || !secSub) return;
-
-  // deixa o relatório mais estreito (inline, sem mexer no CSS global)
-  const reportRoot = rel.querySelector(".report") || rel;
-  reportRoot.style.maxWidth = "900px";
-  reportRoot.style.margin = "0 auto";
-
-  // cria grids (se ainda não existirem)
-  let gridTop = rel.querySelector(".report-grid-2.top");
-  let gridBottom = rel.querySelector(".report-grid-2.bottom");
-
-  if(!gridTop){
-    gridTop = document.createElement("div");
-    gridTop.className = "report-grid-2 top";
-    secPerfil.parentNode.insertBefore(gridTop, secPerfil);
-  }
-
-  if(!gridBottom){
-    gridBottom = document.createElement("div");
-    gridBottom.className = "report-grid-2 bottom";
-    secMatriz.parentNode.insertBefore(gridBottom, secMatriz);
-  }
-
-  // move os blocos
-  gridTop.appendChild(secPerfil);
-  gridTop.appendChild(secIndices);
-
-  gridBottom.appendChild(secMatriz);
-  gridBottom.appendChild(secSub);
-
-  // reduz altura dos gráficos sem perder legibilidade
-  const cSub = rel.querySelector("#grafSub");
-  if(cSub) cSub.setAttribute("height", "160");
-
-  const cIdx = rel.querySelector("#grafIdx");
-  if(cIdx) cIdx.setAttribute("height", "140");
-}
-
-
-// ================= RELATÓRIO + GRÁFICOS + PDF =================
-let chartSub = null;
-let chartIdx = null;
-
-// Desenha banda da média (9–11) e divisórias de grupos no gráfico de subtestes
-const WISC_SCATTER_PLUGIN = {
-  id: "wiscScatterDecor",
-  beforeDraw(chart, args, opts) {
-    const { ctx, chartArea, scales } = chart;
-    if (!chartArea) return;
-
-    // Banda média (9–11)
-    if (opts && opts.band && scales?.y) {
-      const yTop = scales.y.getPixelForValue(opts.band.max);
-      const yBot = scales.y.getPixelForValue(opts.band.min);
-      ctx.save();
-      ctx.fillStyle = "rgba(13, 71, 161, 0.12)"; // azul translúcido
-      ctx.fillRect(chartArea.left, yTop, chartArea.right - chartArea.left, yBot - yTop);
-      ctx.restore();
-    }
-
-    // Divisórias verticais (grupos)
-    if (opts && Array.isArray(opts.vlines) && scales?.x) {
-      ctx.save();
-      ctx.strokeStyle = "rgba(13, 71, 161, 0.35)";
-      ctx.lineWidth = 2;
-      opts.vlines.forEach(v => {
-        const x = scales.x.getPixelForValue(v);
-        ctx.beginPath();
-        ctx.moveTo(x, chartArea.top);
-        ctx.lineTo(x, chartArea.bottom);
-        ctx.stroke();
-      });
-      ctx.restore();
-    }
-
-    // Títulos dos grupos (acima do chartArea)
-    if (opts && Array.isArray(opts.groupLabels) && scales?.x) {
-      ctx.save();
-      ctx.fillStyle = "rgba(13, 71, 161, 0.95)";
-      ctx.font = "600 12px Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial";
-      ctx.textAlign = "center";
-      const y = chartArea.top - 10;
-      opts.groupLabels.forEach(g => {
-        const x1 = scales.x.getPixelForValue(g.from);
-        const x2 = scales.x.getPixelForValue(g.to);
-        const xc = (x1 + x2) / 2;
-        ctx.fillText(g.text, xc, y);
-      });
-      ctx.restore();
-    }
-  }
-};
-
-function registrarPluginsChart(){
-  if (typeof Chart === "undefined") return;
-  // evita registrar duas vezes
-  const already = Chart.registry?.plugins?.get?.("wiscScatterDecor");
-  if (!already) Chart.register(WISC_SCATTER_PLUGIN);
-}
-
-function formatarDataISO(iso){
-  if(!iso) return "";
-  // mantém ISO para consistência no seu sistema, mas permite trocar depois
-  return iso;
 }
 
 function renderPerfilSubtestes(resultados){
@@ -501,16 +370,11 @@ function montarRelatorio(data) {
   const matriz = renderMatrizConversao({ resultados, indicesInfo, qiInfo });
   const perfil = renderPerfilSubtestes(resultados);
 
-    const LOGO_URL = new URL("logo2.png", document.baseURI).href;
-
   rel.style.display = "block";
   rel.innerHTML = `
     <div class="report">
       <div class="report-header">
-        <img class="report-logo report-logo-top" 
-          src="${LOGO_URL}"  
-          alt="Logo" 
-          onerror="this.style.display='none'">
+        <img class="report-logo report-logo-top" src="logo2.png" alt="Logo" onerror="this.style.display='none'">
         <div class="report-title">
           <div class="t1">Relatório – WISC-IV</div>
           <div class="t2">Conversão PB → Ponderado e somatórios por índice</div>
@@ -529,86 +393,75 @@ function montarRelatorio(data) {
         </div>
       </div>
 
-      <!-- GRID 2 COLUNAS: PERFIL + ÍNDICES/QIT -->
-      <div class="report-grid-2">
-        <div class="section report-item no-break">
-          <h3>Perfil dos Pontos Ponderados dos Subtestes</h3>
-          <div class="perfil-card">
-            ${perfil}
-            <div class="canvas-wrap perfil-canvas">
-              <canvas id="grafSub" height="170"></canvas>
-            </div>
-          </div>
-          <p class="muted" style="margin:10px 0 0;">
-            A faixa azul indica a região média aproximada (9–11) dos pontos ponderados.
-          </p>
+      <div class="section no-break">
+        <h3>Perfil dos Pontos Ponderados dos Subtestes</h3>
+        <div class="perfil-card">
+          ${perfil}
+          <div class="canvas-wrap perfil-canvas"><canvas id="grafSub" height="220"></canvas></div>
         </div>
-
-        <div class="section report-item no-break">
-          <h3>Índices e QIT (somatórios)</h3>
-          <div class="canvas-wrap">
-            <canvas id="grafIdx" height="150"></canvas>
-          </div>
-
-          <table class="table" style="margin-top:12px;">
-            <thead><tr><th>Medida</th><th>Soma (ponderados)</th><th>Subtestes usados</th></tr></thead>
-            <tbody>
-              ${Object.entries(INDICES).map(([k, def])=>{
-                const info = indicesInfo[k];
-                return `
-                  <tr>
-                    <td><b>${k}</b></td>
-                    <td>${info.soma ?? "—"}</td>
-                    <td>${(info.usados||[]).join(", ") || "—"}</td>
-                  </tr>
-                `;
-              }).join("")}
-              <tr>
-                <td><b>QIT</b></td>
-                <td>${qiInfo.soma ?? "—"}</td>
-                <td>${(qiInfo.usados||[]).join(", ") || "—"}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <p class="muted" style="margin:10px 0 0;">
+          A faixa azul indica a região média aproximada (9–11) dos pontos ponderados.
+        </p>
       </div>
 
-      <!-- GRID 2 COLUNAS: MATRIZ + SUBTESTES -->
-      <div class="report-grid-2">
-        <div class="section report-item no-break">
-          <h3>Conversão PB → Ponderado e contribuição nos Índices</h3>
-          <div class="matrix-card no-break">${matriz}</div>
-          <p class="muted" style="margin:10px 0 0;">
-            Células azuis indicam subtestes usados na soma do índice/QIT. Suplementares podem aparecer entre parênteses.
-          </p>
-        </div>
+      <div class="section">
+        <h3>Conversão PB → Ponderado e contribuição nos Índices</h3>
+        <div class="matrix-card no-break">${matriz}</div>
+        <p class="muted" style="margin:10px 0 0;">
+          Células azuis indicam subtestes usados na soma do índice/QIT. Suplementares podem aparecer entre parênteses.
+        </p>
+      </div>
 
-        <div class="section report-item no-break">
-          <h3>Subtestes (detalhamento)</h3>
-          <table class="table">
-            <thead><tr><th>Subteste</th><th>PB</th><th>Ponderado</th><th>Classificação</th></tr></thead>
-            <tbody>
-              ${Object.values(resultados).map(r=>`
+      <div class="section">
+        <h3>Subtestes (detalhamento)</h3>
+        <table class="table">
+          <thead><tr><th>Subteste</th><th>PB</th><th>Ponderado</th><th>Classificação</th></tr></thead>
+          <tbody>
+            ${Object.values(resultados).map(r=>`
+              <tr>
+                <td><b>${r.nome}</b> <span class="muted">(${r.codigo})</span></td>
+                <td>${r.bruto}</td>
+                <td>${r.ponderado}</td>
+                <td>${r.classificacao}</td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section">
+        <h3>Índices e QIT (somatórios)</h3>
+        <div class="canvas-wrap"><canvas id="grafIdx" height="180"></canvas></div>
+
+        <table class="table" style="margin-top:12px;">
+          <thead><tr><th>Medida</th><th>Soma (ponderados)</th><th>Subtestes usados</th></tr></thead>
+          <tbody>
+            ${Object.entries(INDICES).map(([k, def])=>{
+              const info = indicesInfo[k];
+              return `
                 <tr>
-                  <td><b>${r.nome}</b> <span class="muted">(${r.codigo})</span></td>
-                  <td>${r.bruto}</td>
-                  <td>${r.ponderado}</td>
-                  <td>${r.classificacao}</td>
+                  <td><b>${k}</b></td>
+                  <td>${info.soma ?? "—"}</td>
+                  <td>${(info.usados||[]).join(", ") || "—"}</td>
                 </tr>
-              `).join("")}
-            </tbody>
-          </table>
-        </div>
+              `;
+            }).join("")}
+            <tr>
+              <td><b>QIT</b></td>
+              <td>${qiInfo.soma ?? "—"}</td>
+              <td>${(qiInfo.usados||[]).join(", ") || "—"}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <div class="report-footer">
         <div class="muted">Documento gerado automaticamente</div>
-        <img class="report-logo report-logo-bottom" src="${LOGO_URL}" alt="Logo" onerror="this.style.display='none'">
+        <img class="report-logo report-logo-bottom" src="logo2.png" alt="Logo" onerror="this.style.display='none'">
       </div>
     </div>
   `;
 
-  aplicarLayoutChecklist1(rel);
   desenharGraficos(resultados, indicesInfo, qiInfo);
 }
 
@@ -620,7 +473,6 @@ function desenharGraficos(resultados, indicesInfo, qiInfo){
   if(ctxSub){
     if(chartSub) chartSub.destroy();
 
-    // ordem do perfil (igual ao manual)
     const labels = ["SM","VC","CO","IN","RP","CB","CN","RM","CF","DG","SNL","AR","CD","PS","CA"];
     const points = labels
       .map((c, i) => {
@@ -645,7 +497,7 @@ function desenharGraficos(resultados, indicesInfo, qiInfo){
           legend:{ display:false },
           wiscScatterDecor:{
             band:{ min:9, max:11 },
-            vlines:[5.5, 9.5, 12.5],
+            vlines:[6, 10, 13],
             groupLabels:[
               { from:1, to:5, text:"Compreensão Verbal" },
               { from:6, to:9, text:"Organização Perceptual" },
@@ -744,8 +596,6 @@ function renderListaLaudos(){
   `;
 }
 
-
-
 // =========================
 // PDF (html2pdf) — helpers
 // =========================
@@ -755,7 +605,7 @@ async function esperarImagensCarregarem(container){
     if (img.complete && img.naturalWidth > 0) return Promise.resolve();
     return new Promise(resolve => {
       img.onload = () => resolve();
-      img.onerror = () => resolve(); // não trava o PDF
+      img.onerror = () => resolve();
     });
   }));
 }
@@ -769,37 +619,34 @@ async function baixarPDFSalvo(index){
   temp.innerHTML = item.htmlRelatorio;
   document.body.appendChild(temp);
 
-  // garante logo/imagens antes do canvas (especialmente no iOS)
-await esperarImagensCarregarem(temp);
-// pequeno delay para assegurar renderização dos gráficos/canvas
-await new Promise(r => setTimeout(r, 150));
+  await esperarImagensCarregarem(temp);
+  await new Promise(r => setTimeout(r, 150));
 
-await html2pdf().set({
-  margin: [8, 8, 8, 8],
-  filename: `WISC-IV_${item.nome}.pdf`,
-  pagebreak: { mode: ["css", "legacy"], avoid: ".no-break" },
-  html2canvas: {
-    scale: 2,
-    useCORS: true,
-    allowTaint: false,
-    backgroundColor: "#ffffff",
-    imageTimeout: 15000
-  },
-  jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
-}).from(temp).save();
+  await html2pdf().set({
+    margin: [8, 8, 8, 8],
+    filename: `WISC-IV_${item.nome}.pdf`,
+    pagebreak: { mode: ["css", "legacy"], avoid: ".no-break" },
+    html2canvas: {
+      scale: 2,
+      useCORS: true,
+      allowTaint: false,
+      backgroundColor: "#ffffff",
+      imageTimeout: 15000
+    },
+    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+  }).from(temp).save();
 
-temp.remove();
-
+  temp.remove();
 }
 
-document.addEventListener("DOMContentLoaded", ()=>{
-  // novo-laudo
+(function init(){
   if(document.getElementById("tbodySubtestes")){
     montarInputsSubtestes();
     document.getElementById("dataNascimento")?.addEventListener("change", atualizarPreviewIdade);
     document.getElementById("dataAplicacao")?.addEventListener("change", atualizarPreviewIdade);
   }
 
-  // laudos
   if(document.getElementById("listaLaudos")){
- 
+    renderListaLaudos();
+  }
+})();
