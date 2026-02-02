@@ -293,11 +293,11 @@ async function calcular(salvar){
     if(salvar){
       const rel = document.getElementById("relatorio");
       // garante logo/imagens antes do canvas (especialmente no iOS)
-await esperarImagensCarregarem(rel);
-// pequeno delay para assegurar renderização dos gráficos/canvas
-await new Promise(r => setTimeout(r, 150));
+      await esperarImagensCarregarem(rel);
+    // pequeno delay para assegurar renderização dos gráficos/canvas
+      await new Promise(r => setTimeout(r, 150));
 
-await html2pdf().set({
+      await html2pdf().set({
   margin: [8, 8, 8, 8],
   filename: `WISC-IV_${nome}.pdf`,
   pagebreak: { mode: ["css", "legacy"], avoid: ".no-break" },
@@ -445,7 +445,10 @@ function montarRelatorio(data) {
   rel.innerHTML = `
     <div class="report">
       <div class="report-header">
-        <img class="report-logo report-logo-top" src="${LOGO_URL}" alt="Logo" onerror="this.style.display='none'">
+        <img class="report-logo report-logo-top" 
+          src="${LOGO_URL}"  
+          alt="Logo" 
+          onerror="this.style.display='none'">
         <div class="report-title">
           <div class="t1">Relatório – WISC-IV</div>
           <div class="t2">Conversão PB → Ponderado e somatórios por índice</div>
@@ -580,7 +583,7 @@ function desenharGraficos(resultados, indicesInfo, qiInfo){
           legend:{ display:false },
           wiscScatterDecor:{
             band:{ min:9, max:11 },
-            vlines:[6, 10, 13],
+            vlines:[5.5, 9.5, 12.5],
             groupLabels:[
               { from:1, to:5, text:"Compreensão Verbal" },
               { from:6, to:9, text:"Organização Perceptual" },
