@@ -491,3 +491,16 @@ button{
 .report .canvas-wrap canvas{
   width: 100% !important;
 }
+
+/* FORÇA: deixa cada bloco do relatório mais estreito */
+#relatorio .section{
+  max-width: 640px !important;
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* evita que a matriz estique além do card */
+#relatorio .matrix-card{
+  max-width: 100% !important;
+}
