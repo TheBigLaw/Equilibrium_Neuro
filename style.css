@@ -406,3 +406,14 @@ button{
   .perfil-card{ overflow: visible !important; }
 }
 
+/* ===== RESET REAL: largura fixa da matriz (modelo PDF) ===== */
+
+#relatorio table.wisc-matrix{
+  width: 680px;          /* largura REAL do PDF */
+  table-layout: fixed;   /* essencial */
+  margin: 0 auto;        /* centraliza */
+}
+
+#relatorio .matrix-card{
+  overflow: visible;     /* nada de scroll */
+}
