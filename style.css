@@ -437,3 +437,57 @@ button{
 .report .canvas-wrap canvas{
   width: 100% !important;
 }
+
+/* === PASSO 1: deixar CADA ITEM do relatório menor, sem cortar conteúdo === */
+
+/* cards menores dentro das 2 colunas */
+.report .report-item{
+  max-width: 460px !important;   /* ajuste fino: 430~500 */
+  width: 100% !important;
+  justify-self: center !important;
+}
+
+/* o grid continua 2 colunas, mas centraliza os cards */
+.report .report-grid-2{
+  align-items: start !important;
+  justify-items: center !important;
+  gap: 16px !important;
+}
+
+/* a matriz NÃO pode ter overflow/scroll */
+.report .matrix-card{
+  overflow: visible !important;
+}
+
+/* tabela da matriz precisa CABER no card */
+.report .wisc-matrix{
+  width: 100% !important;
+  table-layout: fixed !important; /* CRÍTICO: faz caber */
+}
+
+/* comprime a tabela da matriz (sem perder informação) */
+.report .wisc-matrix th,
+.report .wisc-matrix td{
+  font-size: 11px !important;
+  padding: 6px 6px !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+}
+
+/* define larguras proporcionais das colunas para NÃO estourar */
+.report .wisc-matrix th:nth-child(1),
+.report .wisc-matrix td:nth-child(1){ width: 42% !important; text-align:left !important; } /* Subtestes */
+.report .wisc-matrix th:nth-child(2),
+.report .wisc-matrix td:nth-child(2){ width: 8% !important; }  /* PB */
+.report .wisc-matrix th:nth-child(3),
+.report .wisc-matrix td:nth-child(3){ width: 10% !important; } /* Ponderado */
+.report .wisc-matrix th:nth-child(n+4),
+.report .wisc-matrix td:nth-child(n+4){ width: 8% !important; } /* ICV/IOP/IMO/IVP/QIT */
+
+/* gráficos: o card é menor, então o canvas ocupa 100% do card */
+.report .canvas-wrap{
+  width: 100% !important;
+}
+.report .canvas-wrap canvas{
+  width: 100% !important;
+}
