@@ -536,7 +536,7 @@ function montarRelatorio(data) {
           <div class="perfil-card">
             ${perfil}
             <div class="canvas-wrap perfil-canvas">
-              <canvas id="grafSub" height="170"></canvas>
+              <canvas id="grafSub" height="240"></canvas>
             </div>
           </div>
           <p class="muted" style="margin:10px 0 0;">
@@ -547,7 +547,7 @@ function montarRelatorio(data) {
         <div class="section report-item no-break">
           <h3>Índices e QIT (somatórios)</h3>
           <div class="canvas-wrap">
-            <canvas id="grafIdx" height="150"></canvas>
+            <canvas id="grafIdx" height="200"></canvas>
           </div>
 
           <table class="table" style="margin-top:12px;">
