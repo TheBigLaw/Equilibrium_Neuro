@@ -535,8 +535,8 @@ function montarRelatorio(data) {
           <h3>Perfil dos Pontos Ponderados dos Subtestes</h3>
           <div class="perfil-card">
             ${perfil}
-            <div class="canvas-wrap perfil-canvas">
-              <canvas id="grafSub" height="240"></canvas>
+            <div class="canvas-wrap" style="width:680px;margin:0 auto;">
+              <canvas id="grafSub" height="260"></canvas>
             </div>
           </div>
           <p class="muted" style="margin:10px 0 0;">
@@ -546,9 +546,10 @@ function montarRelatorio(data) {
 
         <div class="section report-item no-break">
           <h3>Índices e QIT (somatórios)</h3>
-          <div class="canvas-wrap">
-            <canvas id="grafIdx" height="200"></canvas>
+          <div class="canvas-wrap" style="width:680px;margin:0 auto;">
+              <canvas id="grafIdx" height="220"></canvas>
           </div>
+
 
           <table class="table" style="margin-top:12px;">
             <thead><tr><th>Medida</th><th>Soma (ponderados)</th><th>Subtestes usados</th></tr></thead>
