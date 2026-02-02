@@ -293,26 +293,25 @@ async function calcular(salvar){
     if(salvar){
       const rel = document.getElementById("relatorio");
       await esperarImagensCarregarem(rel);
-const restorePDF = prepararRelatorioParaPDF(rel);
-await garantirGraficosProntos();
-
-try{
-  await html2pdf().set({
-    margin: [8, 8, 8, 8],
-    filename: `WISC-IV_${nome}.pdf`,
-    pagebreak: { mode: ["css", "legacy"], avoid: ".no-break" },
-    html2canvas: {
-      scale: 2,
-      useCORS: true,
-      allowTaint: false,
-      backgroundColor: "#ffffff",
-      imageTimeout: 15000
-    },
-    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
-  }).from(rel).save();
-} finally {
-  restorePDF();
-}
+      const restaurar = aplicarAjustesTemporariosParaPDF(rel);
+      await garantirGraficosProntos();
+      try{
+        await html2pdf().set({
+          margin: [8, 8, 8, 8],
+          filename: `WISC-IV_${nome}.pdf`,
+          pagebreak: { mode: ["css", "legacy"], avoid: ["tr", "img", "canvas"] },
+          html2canvas: {
+            scale: 2,
+            useCORS: true,
+            allowTaint: false,
+            backgroundColor: "#ffffff",
+            imageTimeout: 15000
+          },
+          jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+        }).from(rel).save();
+      }finally{
+        restaurar();
+      }
 
       const laudos = getLaudos();
       laudos.unshift({
@@ -670,6 +669,7 @@ function renderListaLaudos(){
 }
 
 
+// ===== PDF helpers (não altera cálculo nem fluxo) =====
 async function esperarImagensCarregarem(container){
   const imgs = Array.from(container.querySelectorAll("img"));
   await Promise.all(imgs.map(img => {
@@ -681,47 +681,57 @@ async function esperarImagensCarregarem(container){
   }));
 }
 
-// Ajustes temporários para exportação (evita páginas em branco e canvas vazios)
-function prepararRelatorioParaPDF(container){
-  const changes = [];
-  if(!container) return () => {};
+function aplicarAjustesTemporariosParaPDF(container){
+  // Remove comportamentos que quebram paginação do html2pdf/html2canvas (somente durante exportação)
+  const touched = [];
+  const set = (el, prop, val) => {
+    touched.push([el, prop, el.style[prop]]);
+    el.style[prop] = val;
+  };
 
-  // remove overflow:auto que costuma quebrar paginação do html2pdf
-  container.querySelectorAll(".matrix-card, .perfil-card, .table-wrap").forEach(el=>{
-    changes.push([el, "overflow", el.style.overflow]);
-    el.style.overflow = "visible";
+  // Overflow/scroll costuma gerar páginas vazias
+  container.querySelectorAll(".matrix-card, .perfil-card").forEach(el => {
+    set(el, "overflow", "visible");
   });
 
-  // garante que o card principal não empurre conteúdo para baixo
-  const rep = container.querySelector(".report");
-  if(rep){
-    changes.push([rep, "marginTop", rep.style.marginTop]);
-    rep.style.marginTop = "0";
-  }
+  // Evitar "break-inside: avoid" empurrando cards inteiros e criando grandes vazios
+  container.querySelectorAll(".no-break, .card, .section").forEach(el => {
+    set(el, "breakInside", "auto");
+    set(el, "pageBreakInside", "auto");
+  });
+
+  // Tabelas com sticky header podem dar altura errada no canvas
+  container.querySelectorAll("thead, th").forEach(el => {
+    set(el, "position", "static");
+  });
 
   return () => {
-    for(const [el, prop, prev] of changes){
+    for (let i = touched.length - 1; i >= 0; i--){
+      const [el, prop, prev] = touched[i];
       el.style[prop] = prev || "";
     }
   };
 }
 
 async function garantirGraficosProntos(){
-  // força Chart.js a terminar render (sem animação) antes do html2canvas
+  // força Chart.js finalizar desenho antes do html2canvas capturar
   try{
-    const charts = [window.chartSub, window.chartIdx].filter(Boolean);
-    charts.forEach(ch=>{
-      if(ch?.options){
-        ch.options.animation = false;
-        ch.options.animations = false;
-      }
-      ch.update && ch.update("none");
-    });
-  }catch(e){}
-  // 2 frames + pequeno atraso ajudam muito no Windows/iOS
+    if (chartSub){
+      chartSub.options.animation = false;
+      chartSub.update("none");
+    }
+    if (chartIdx){
+      chartIdx.options.animation = false;
+      chartIdx.update("none");
+    }
+  }catch(e){ /* noop */ }
+
+  // espera 2 frames para o canvas estabilizar (Windows/iOS)
   await new Promise(r => requestAnimationFrame(()=>requestAnimationFrame(r)));
-  await new Promise(r => setTimeout(r, 120));
+  // micro delay extra
+  await new Promise(r => setTimeout(r, 80));
 }
+
 
 async function baixarPDFSalvo(index){
   const laudos = getLaudos();
@@ -733,27 +743,26 @@ async function baixarPDFSalvo(index){
   document.body.appendChild(temp);
 
   await esperarImagensCarregarem(temp);
-const restorePDF = prepararRelatorioParaPDF(temp);
-await garantirGraficosProntos();
-
-try{
-  await html2pdf().set({
-    margin: [8, 8, 8, 8],
-    filename: `WISC-IV_${item.nome}.pdf`,
-    pagebreak: { mode: ["css", "legacy"], avoid: ".no-break" },
-    html2canvas: {
-      scale: 2,
-      useCORS: true,
-      allowTaint: false,
-      backgroundColor: "#ffffff",
-      imageTimeout: 15000
-    },
-    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
-  }).from(temp).save();
-} finally {
-  restorePDF();
-  temp.remove();
-}
+  const restaurar = aplicarAjustesTemporariosParaPDF(temp);
+  await garantirGraficosProntos();
+  try{
+    await html2pdf().set({
+      margin: [8, 8, 8, 8],
+      filename: `WISC-IV_${item.nome}.pdf`,
+      pagebreak: { mode: ["css", "legacy"], avoid: ["tr", "img", "canvas"] },
+      html2canvas: {
+        scale: 2,
+        useCORS: true,
+        allowTaint: false,
+        backgroundColor: "#ffffff",
+        imageTimeout: 15000
+      },
+      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+    }).from(temp).save();
+  }finally{
+    restaurar();
+    temp.remove();
+  }
 }
 
 (function init(){
