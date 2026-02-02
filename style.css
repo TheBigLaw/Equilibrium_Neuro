@@ -395,27 +395,56 @@ button{
 
 }
 
-/* ===== Ajuste correto: SECTION do relatório em formato retrato ===== */
+/* =========================================================
+   RELATÓRIO — layout estreito SEM cortar tabelas/gráficos
+   ========================================================= */
 
-/* cada item do relatório vira um "card" estreito */
+/* deixa o relatório centralizado (A4 visual) */
+.report{
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* cada section NÃO força largura pequena */
 .report .section{
-  max-width: 420px;          /* largura real do item */
-  width: 100%;
-  margin: 0 auto 20px;       /* centraliza e separa verticalmente */
-}
-
-/* agora o conteúdo pode ocupar 100% da section */
-.report .canvas-wrap,
-.report .matrix-card,
-.report table.table,
-.report table.wisc-matrix,
-.report table.perfil-table{
   max-width: 100%;
-  width: 100%;
-  margin: 0;
+  margin: 0 auto 20px;
 }
 
-/* canvas ocupa toda a largura do card */
+/* ===== TABELAS ===== */
+
+/* tabela se adapta ao espaço disponível */
+.report table{
+  width: 100%;
+  table-layout: auto;       /* CRÍTICO: evita corte */
+  border-collapse: collapse;
+}
+
+/* permite quebra de linha nos textos */
+.report table th,
+.report table td{
+  white-space: normal;      /* CRÍTICO */
+  word-break: break-word;
+  font-size: 12px;
+  padding: 6px 6px;
+}
+
+/* remove qualquer scroll horizontal forçado */
+.report .matrix-card{
+  overflow-x: visible;
+}
+
+/* ===== GRÁFICOS ===== */
+
+/* canvas ocupa 100% do espaço disponível */
+.report .canvas-wrap{
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* canvas responsivo */
 .report .canvas-wrap canvas{
   width: 100% !important;
+  height: auto !important;
 }
