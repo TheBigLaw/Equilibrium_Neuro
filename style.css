@@ -108,11 +108,11 @@ h1,h2,h3{
 }
 h1{ font-size: 20px; color: var(--blueDark); }
 h2{ font-size: 16px; color: var(--blueDark); }
-h3{ font-size: 14px; color: var(--blueDark); }
+h3{ font-size: 13px; color: var(--blueDark); }
 
 .muted{
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .form-grid{
@@ -160,6 +160,13 @@ input:focus, select:focus{
   color: var(--blueDark);
   font-weight: 700;
   background: rgba(30,136,229,.06);
+}
+
+.table-compact{
+  font-size: 11px;
+}
+.table-compact th, .table-compact td{
+  padding: 6px 6px;
 }
 
 .actions{
@@ -240,267 +247,22 @@ button{
   text-align:center;
 }
 
-/* Report / matriz (mantém o estilo que já tínhamos) */
-.report{ margin-top: 18px; }
-.report .section{
-  margin-top: 16px;
-  padding: 14px;
-  border-radius: 16px;
-  background: rgba(227,242,253,.75);
-}
-.canvas-wrap{
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 14px;
-}
-.matrix-card{
-  background: #fff;
-  border: 1px solid var(--border);
+/* ================= RELATÓRIO (PDF / HTML) ================= */
+
+.report{ 
+  margin-top: 18px;
+  background:#fff;
   border-radius: 18px;
-  box-shadow: var(--shadow);
-  padding: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(13,71,161,.14);
 }
-  
 
+/* A4 friendly: deixa o relatório com largura confortável para PDF */
+#relatorio .report{
+  max-width: 190mm;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-/* ================= RELATÓRIO (PDF) ================= */
-.report{ background:#fff; border-radius:18px; }
 .report-header{
-  display:flex; align-items:center; justify-content:space-between;
-  gap:16px; padding:16px 18px; border-bottom:2px solid rgba(13,71,161,.15);
-}
-.report-title{ flex:1; text-align:center; }
-.report-title .t1{ font-weight:800; color:#0d47a1; font-size:15px; letter-spacing:.2px; }
-.report-title .t2{ color:rgba(0,0,0,.55); font-size:10px; margin-top:4px; }
-.report-meta{ text-align:right; min-width:170px; }
-.report-logo{ width:42px; height:42px; object-fit:contain; }
-.report-logo-top{ margin-left:2px; }
-.report-logo-bottom{ width:36px; height:36px; }
-
-.report-info{ padding:14px 18px; }
-.info-grid{
-  display:grid; grid-template-columns: 1fr 1fr 1fr; gap:10px;
-}
-.info-grid .k{ color:#0d47a1; font-weight:700; }
-.info-grid .v{ color:#111; font-weight:600; }
-
-.perfil-card{
-  border:1px solid rgba(13,71,161,.18);
-  border-radius:18px;
-  padding:14px;
-  overflow:hidden;
-}
-.perfil-table{
-  width:100%;
-  border-collapse:separate;
-  border-spacing:0;
-  margin-bottom:10px;
-}
-.perfil-table th, .perfil-table td{
-  border:1px solid rgba(13,71,161,.18);
-  padding:6px 4px;
-  text-align:center;
-  font-size:10,5px;
-}
-.perfil-table thead th.perfil-group{
-  background:rgba(13,71,161,.10);
-  font-weight:800;
-  color:#0d47a1;
-}
-.perfil-table thead th.perfil-code{
-  background:rgba(13,71,161,.06);
-  font-weight:800;
-  color:#0d47a1;
-}
-.perfil-table td.perfil-val{
-  background:#fff;
-  font-weight:800;
-  color:#0d47a1;
-}
-.perfil-canvas{ height:260px; padding-top:8px; }
-
-.matrix-card{
-  border:1px solid rgba(13,71,161,.18);
-  border-radius:18px;
-  padding:12px;
-  overflow:auto;
-  background:#fff;
-}
-
-.wisc-matrix{
-  width:100%;
-  border-collapse:separate;
-  border-spacing:0;
-  overflow:hidden;
-}
-.wisc-matrix th, .wisc-matrix td{
-  border:1px solid rgba(13,71,161,.18);
-  padding:6px 6px;
-  vertical-align:middle;
-  font-size:10,5px;
-}
-.wisc-matrix thead th{
-  background:rgba(13,71,161,.08);
-  color:#0d47a1;
-  font-weight:800;
-}
-.wisc-matrix .idx{ text-align:center; width:64px; }
-.wisc-matrix .col-sub{ min-width:260px; }
-.wisc-matrix .col-pb, .wisc-matrix .col-pp{ width:90px; text-align:center; }
-.wisc-matrix td.fill{ background:rgba(13,71,161,.12); }
-.wisc-matrix td.empty{ background:rgba(13,71,161,.05); }
-.wisc-matrix .pill{
-  display:inline-block;
-  min-width:28px;
-  padding:3px 6px;
-  border-radius:999px;
-  background:#0d47a1;
-  color:#fff;
-  font-weight:800;
-  font-size:10,5px;
-}
-.wisc-matrix .pill.sup{ background:rgba(13,71,161,.78); }
-.wisc-matrix tfoot td{
-  font-weight:900;
-  background:rgba(13,71,161,.08);
-  text-align:center;
-}
-.wisc-matrix tfoot .sum-label{
-  text-align:left;
-  color:#0d47a1;
-}
-
-.report-footer{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding:12px 18px 16px;
-  border-top:2px solid rgba(13,71,161,.15);
-}
-
-.no-break{ break-inside:avoid; page-break-inside:avoid; }
-
-/* Melhor comportamento de impressão */
-@media print{
-  body{ background:#fff !important; }
-  .app-header, .back-btn, .exit-btn{ display:none !important; }
-  .main{ padding:0 !important; }
-  .card{ box-shadow:none !important; border:none !important; }
-  .matrix-card, .perfil-card{ border:1px solid rgba(0,0,0,.15) !important; }
-  .matrix-card{ overflow: visible !important; }
-  .perfil-card{ overflow: visible !important; }
-}
-
-}
-
-/* ==============================
-   RELATÓRIO: itens estreitos (tipo PDF) SEM cortar
-   ============================== */
-
-/* 1) cada item (section) vira um card estreito e centralizado */
-.report .section{
-  max-width: 520px;        /* ajuste: 480~560 conforme seu gosto */
-  width: 100%;
-  margin: 0 auto 18px;
-}
-
-/* 2) tabelas ocupam 100% do card e cabem sem scroll */
-.report .section table{
-  width: 100%;
-  max-width: 100%;
-  table-layout: fixed;     /* CRÍTICO: força caber no card */
-  border-collapse: collapse;
-}
-
-/* 3) célula quebra texto e reduz espaçamento para caber */
-.report .section th,
-.report .section td{
-  font-size: 12px;
-  padding: 6px 6px;
-  white-space: normal;
-  overflow-wrap: anywhere; /* CRÍTICO: quebra até palavras longas */
-}
-
-/* 4) evita qualquer scroll lateral */
-.report .matrix-card{
-  overflow: visible !important;
-}
-
-/* 5) gráfico ocupa 100% do card */
-.report .canvas-wrap{
-  width: 100%;
-  max-width: 100%;
-}
-
-.report .canvas-wrap canvas{
-  width: 100% !important;
-}
-
-/* === PASSO 1: deixar CADA ITEM do relatório menor, sem cortar conteúdo === */
-
-/* cards menores dentro das 2 colunas */
-.report .report-item{
-  max-width: 460px !important;   /* ajuste fino: 430~500 */
-  width: 100% !important;
-  justify-self: center !important;
-}
-
-/* o grid continua 2 colunas, mas centraliza os cards */
-.report .report-grid-2{
-  align-items: start !important;
-  justify-items: center !important;
-  gap: 16px !important;
-}
-
-/* a matriz NÃO pode ter overflow/scroll */
-.report .matrix-card{
-  overflow: visible !important;
-}
-
-/* tabela da matriz precisa CABER no card */
-.report .wisc-matrix{
-  width: 100% !important;
-  table-layout: fixed !important; /* CRÍTICO: faz caber */
-}
-
-/* comprime a tabela da matriz (sem perder informação) */
-.report .wisc-matrix th,
-.report .wisc-matrix td{
-  font-size: 11px !important;
-  padding: 6px 6px !important;
-  white-space: normal !important;
-  overflow-wrap: anywhere !important;
-}
-
-/* define larguras proporcionais das colunas para NÃO estourar */
-.report .wisc-matrix th:nth-child(1),
-.report .wisc-matrix td:nth-child(1){ width: 42% !important; text-align:left !important; } /* Subtestes */
-.report .wisc-matrix th:nth-child(2),
-.report .wisc-matrix td:nth-child(2){ width: 8% !important; }  /* PB */
-.report .wisc-matrix th:nth-child(3),
-.report .wisc-matrix td:nth-child(3){ width: 10% !important; } /* Ponderado */
-.report .wisc-matrix th:nth-child(n+4),
-.report .wisc-matrix td:nth-child(n+4){ width: 8% !important; } /* ICV/IOP/IMO/IVP/QIT */
-
-/* gráficos: o card é menor, então o canvas ocupa 100% do card */
-.report .canvas-wrap{
-  width: 100% !important;
-}
-.report .canvas-wrap canvas{
-  width: 100% !important;
-}
-
-/* FORÇA: deixa cada bloco do relatório mais estreito */
-#relatorio .section{
-  max-width: 640px !important;
-  width: 100% !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
-/* evita que a matriz estique além do card */
-#relatorio .matrix-card{
-  max-width: 100% !important;
-}
+  display:f
