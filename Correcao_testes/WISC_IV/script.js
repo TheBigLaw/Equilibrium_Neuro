@@ -467,7 +467,7 @@ function montarRelatorio(data) {
         <h3>Perfil dos Pontos Ponderados dos Subtestes</h3>
         <div class="perfil-card">
           ${perfil}
-          <div class="canvas-wrap perfil-canvas"><canvas id="grafSub" height="520"></canvas></div>
+          <div class="canvas-wrap perfil-canvas"><canvas id="grafSub" height="400"></canvas></div>
         </div>
         <p class="muted" style="margin:10px 0 0;">
           A faixa azul indica a região média aproximada (9–11) dos pontos ponderados.
