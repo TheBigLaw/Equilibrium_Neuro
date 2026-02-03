@@ -11,333 +11,433 @@ async function carregarNormas(){
   return NORMAS;
 }
 
+// Subtestes (ordem objetiva)
 const SUBTESTES = [
-  { codigo:"CB", nome:"Cubos", dominio:"IOP", essencial:true },
-  { codigo:"SM", nome:"Semelhanças", dominio:"ICV", essencial:true },
-  { codigo:"DG", nome:"Dígitos", dominio:"IMO", essencial:true },
-  { codigo:"CN", nome:"Conceitos Figurativos", dominio:"IOP", essencial:true },
-  { codigo:"CD", nome:"Código", dominio:"IVP", essencial:true },
-  { codigo:"VC", nome:"Vocabulário", dominio:"ICV", essencial:true },
-  { codigo:"SNL", nome:"Seq. de Núm. e Letras", dominio:"IMO", essencial:true },
-  { codigo:"RM", nome:"Raciocínio Matricial", dominio:"IOP", essencial:true },
-  { codigo:"CO", nome:"Compreensão", dominio:"ICV", essencial:true },
-  { codigo:"PS", nome:"Procurar Símbolos", dominio:"IVP", essencial:true },
-  { codigo:"CF", nome:"Completar Figuras", dominio:"IOP", essencial:false },
-  { codigo:"CA", nome:"Cancelamento", dominio:"IVP", essencial:false },
-  { codigo:"IN", nome:"Informação", dominio:"ICV", essencial:false },
-  { codigo:"AR", nome:"Aritmética", dominio:"IMO", essencial:false },
-  { codigo:"RP", nome:"Raciocínio com Palavras", dominio:"ICV", essencial:false },
+  { nome: "Cubos", codigo: "CB", id:"pb_CB" },
+  { nome: "Semelhanças", codigo: "SM", id:"pb_SM" },
+  { nome: "Dígitos", codigo: "DG", id:"pb_DG" },
+  { nome: "Conceitos Figurativos", codigo: "CN", id:"pb_CN" },
+  { nome: "Código", codigo: "CD", id:"pb_CD" },
+  { nome: "Vocabulário", codigo: "VC", id:"pb_VC" },
+  { nome: "Seq. de Números e Letras", codigo: "SNL", id:"pb_SNL" },
+  { nome: "Raciocínio Matricial", codigo: "RM", id:"pb_RM" },
+  { nome: "Compreensão", codigo: "CO", id:"pb_CO" },
+  { nome: "Procurar Símbolos", codigo: "PS", id:"pb_PS" },
+  // suplementares
+  { nome: "Completar Figuras", codigo: "CF", id:"pb_CF" },
+  { nome: "Cancelamento", codigo: "CA", id:"pb_CA" },
+  { nome: "Informação", codigo: "IN", id:"pb_IN" },
+  { nome: "Aritmética", codigo: "AR", id:"pb_AR" },
+  { nome: "Raciocínio com Palavras", codigo: "RP", id:"pb_RP" },
 ];
 
 const INDICES = {
-  ICV: { core:["SM","VC","CO"], supl:["IN","RP"], label:"Compreensão Verbal" },
-  IOP: { core:["CB","CN","RM"], supl:["CF"], label:"Organização Perceptual" },
-  IMO: { core:["DG","SNL"], supl:["AR"], label:"Memória Operacional" },
-  IVP: { core:["CD","PS"], supl:["CA"], label:"Velocidade de Processamento" },
+  ICV: { nome: "ICV", core: ["SM","VC","CO"], supl: ["IN","RP"], n: 3 },
+  IOP: { nome: "IOP", core: ["CB","CN","RM"], supl: ["CF"], n: 3 },
+  IMO: { nome: "IMO", core: ["DG","SNL"], supl: ["AR"], n: 2 },
+  IVP: { nome: "IVP", core: ["CD","PS"], supl: ["CA"], n: 2 },
 };
 
-const QIT_CORE = ["SM","VC","CO","CB","CN","RM","DG","SNL","CD","PS"];
+const QI_CORE = ["SM","VC","CO","CB","CN","RM","DG","SNL","CD","PS"];
 
-function formatarDataISO(d){
-  if(!d) return "";
-  if(typeof d === "string"){
-    if(d.includes("/")) return d;
-    const [y,m,dd] = d.split("-");
-    if(y && m && dd) return `${dd}/${m}/${y}`;
-    return d;
+function calcularIdade(nascISO, aplISO) {
+  if (!nascISO || !aplISO) return null;
+  const n = new Date(nascISO);
+  const a = new Date(aplISO);
+  if (isNaN(n.getTime()) || isNaN(a.getTime()) || a < n) return null;
+
+  let anos = a.getFullYear() - n.getFullYear();
+  let meses = a.getMonth() - n.getMonth();
+  if (a.getDate() < n.getDate()) meses -= 1;
+  if (meses < 0) { anos -= 1; meses += 12; }
+  return { anos, meses, totalMeses: anos * 12 + meses };
+}
+
+function faixaEtaria(normas, idade) {
+  if (!idade) return null;
+  const total = idade.totalMeses;
+
+  for (const faixa of Object.keys(normas || {})) {
+    const [ini, fim] = faixa.split("-");
+    if (!ini || !fim) continue;
+    const [ai, mi] = ini.split(":").map(Number);
+    const [af, mf] = fim.split(":").map(Number);
+    if ([ai,mi,af,mf].some(x => Number.isNaN(x))) continue;
+
+    const min = ai * 12 + mi;
+    const max = af * 12 + mf;
+    if (total >= min && total <= max) return faixa;
   }
-  try{
-    return new Date(d).toLocaleDateString("pt-BR");
-  }catch(e){
-    return String(d);
-  }
+  return null;
 }
 
-function diffIdade(nascISO, aplISO){
-  const nasc = new Date(nascISO);
-  const apl  = new Date(aplISO);
-  let anos = apl.getFullYear() - nasc.getFullYear();
-  let meses = apl.getMonth() - nasc.getMonth();
-  let dias = apl.getDate() - nasc.getDate();
-  if(dias < 0){
-    meses -= 1;
-    const prev = new Date(apl.getFullYear(), apl.getMonth(), 0).getDate();
-    dias += prev;
-  }
-  if(meses < 0){
-    anos -= 1;
-    meses += 12;
-  }
-  if(anos < 0) anos = 0;
-  return { anos, meses, dias };
+function brutoParaPonderado(normas, faixa, codigo, bruto) {
+  const regras = normas?.[faixa]?.subtestes?.[codigo];
+  if (!Array.isArray(regras)) return null;
+  const r = regras.find(x => bruto >= x.min && bruto <= x.max);
+  return r ? Number(r.ponderado) : null;
 }
 
-function faixaEtaria(idade){
-  const totalMeses = idade.anos*12 + idade.meses;
-  const a = idade.anos;
-  const m = idade.meses;
-  const start = `${a}:${m.toString().padStart(2,"0")}`;
-  const endMeses = totalMeses + 3;
-  const ea = Math.floor(endMeses/12);
-  const em = endMeses%12;
-  const end = `${ea}:${em.toString().padStart(2,"0")}`;
-  return `${start}-${end}`;
+function classificarPonderado(p) {
+  if (p <= 4) return "Muito Inferior";
+  if (p <= 6) return "Inferior";
+  if (p <= 8) return "Médio Inferior";
+  if (p <= 11) return "Médio";
+  if (p <= 13) return "Médio Superior";
+  if (p <= 15) return "Superior";
+  return "Muito Superior";
 }
 
-function classificarPP(pp){
-  if(pp <= 4) return "muito inferior";
-  if(pp <= 6) return "inferior";
-  if(pp <= 8) return "médio inferior";
-  if(pp <= 11) return "médio";
-  if(pp <= 13) return "médio superior";
-  if(pp <= 15) return "superior";
-  return "muito superior";
-}
-
-function getLaudos(){
-  try{
-    return JSON.parse(localStorage.getItem(LAUDOS_KEY) || "[]");
-  }catch(e){
-    return [];
-  }
-}
-
-function setLaudos(arr){
-  localStorage.setItem(LAUDOS_KEY, JSON.stringify(arr));
-}
-
-function adicionarLaudo(laudo){
-  const laudos = getLaudos();
-  laudos.unshift(laudo);
-  setLaudos(laudos);
-}
-
-function lerPBsDoFormulario(){
-  const out = {};
-  for(const st of SUBTESTES){
-    const el = document.getElementById("pb_"+st.codigo);
-    if(!el) continue;
-    const v = el.value.trim();
-    out[st.codigo] = v === "" ? null : Number(v);
-  }
-  return out;
-}
-
-function calcularPonderado(normas, faixa, subCodigo, pb){
-  if(pb == null || pb === "" || Number.isNaN(pb)) return null;
-  const byFaixa = normas[faixa];
-  if(!byFaixa) return null;
-  const mapa = byFaixa[subCodigo];
-  if(!mapa) return null;
-  const key = String(pb);
-  if(mapa[key] == null) return null;
-  return Number(mapa[key]);
-}
-
-function calcularIndices(resultados){
-  const info = {};
-  for(const [idx, def] of Object.entries(INDICES)){
-    const usados = [];
-    let soma = 0;
-
-    const coreDisponiveis = def.core.filter(c => resultados[c]?.ponderado != null);
-    if(coreDisponiveis.length === def.core.length){
-      for(const c of def.core){
-        usados.push(c);
-        soma += resultados[c].ponderado;
-      }
-    }else{
-      const faltantes = def.core.filter(c => resultados[c]?.ponderado == null);
-      const presentes = def.core.filter(c => resultados[c]?.ponderado != null);
-      for(const c of presentes){
-        usados.push(c);
-        soma += resultados[c].ponderado;
-      }
-      for(const supl of def.supl || []){
-        if(faltantes.length === 0) break;
-        if(resultados[supl]?.ponderado != null){
-          usados.push(supl);
-          soma += resultados[supl].ponderado;
-          faltantes.pop();
-        }
-      }
-    }
-
-    info[idx] = { soma: usados.length ? soma : null, usados };
-  }
-  return info;
-}
-
-function calcularQIT(resultados){
-  let soma = 0;
-  const usados = [];
-  for(const c of QIT_CORE){
-    if(resultados[c]?.ponderado != null){
-      soma += resultados[c].ponderado;
-      usados.push(c);
-    }else{
-      return { soma:null, usados };
+function somarIndice(pondByCode, def) {
+  let usados = def.core.filter(c => pondByCode[c] != null);
+  if (usados.length < def.n && def.supl?.length) {
+    for (const s of def.supl) {
+      if (pondByCode[s] != null) { usados.push(s); break; }
     }
   }
+  if (usados.length !== def.n) return { soma: null, usados };
+  const soma = usados.reduce((acc, c) => acc + Number(pondByCode[c]), 0);
   return { soma, usados };
 }
 
-function renderPerfil(resultados){
-  const doms = [
-    { label:"Compreensão Verbal", cods:["SM","VC","CO","IN","RP"] },
-    { label:"Organização Perceptual", cods:["CB","CN","RM","CF"] },
-    { label:"Memória Operacional", cods:["DG","SNL","AR"] },
-    { label:"Velocidade de Proc.", cods:["CD","PS","CA"] },
-  ];
-
-  const header1 = doms.map(d=>`<th colspan="${d.cods.length}">${d.label}</th>`).join("");
-  const header2 = doms.map(d=>d.cods.map(c=>{
-    const isSupl = ["CF","CA","IN","AR","RP"].includes(c);
-    return `<th>${isSupl?`(${c})`:c}</th>`;
-  }).join("")).join("");
-
-  const rowVals = doms.map(d=>d.cods.map(c=>{
-    const v = resultados[c]?.ponderado;
-    const isSupl = ["CF","CA","IN","AR","RP"].includes(c);
-    return `<td>${v==null?"—":(isSupl?`(${v})`:v)}</td>`;
-  }).join("")).join("");
-
-  return `
-    <table class="perfil-table">
-      <thead>
-        <tr>${header1}</tr>
-        <tr>${header2}</tr>
-      </thead>
-      <tbody>
-        <tr>${rowVals}</tr>
-      </tbody>
-    </table>
-  `;
+function somarQI(pondByCode) {
+  const usados = QI_CORE.filter(c => pondByCode[c] != null);
+  if (usados.length !== 10) return { soma: null, usados };
+  const soma = usados.reduce((a,c)=>a+Number(pondByCode[c]),0);
+  return { soma, usados };
 }
 
-function renderMatrizConversao({ resultados, indicesInfo, qiInfo }){
-  const cols = ["ICV","IOP","IMO","IVP","QIT"];
+function obterNomeSubteste(codigo){
+  const map = {
+    CB:"Cubos", SM:"Semelhanças", DG:"Dígitos", CN:"Conceitos Figurativos", CD:"Código",
+    VC:"Vocabulário", SNL:"Seq. Núm. e Letras", RM:"Raciocínio Matricial", CO:"Compreensão",
+    PS:"Procurar Símbolos", CF:"Completar Figuras", CA:"Cancelamento", IN:"Informação",
+    AR:"Aritmética", RP:"Raciocínio com Palavras"
+  };
+  return map[codigo] || codigo;
+}
 
-  function celulaContrib(codigo, col){
-    const usados = (col === "QIT") ? (qiInfo.usados||[]) : (indicesInfo[col]?.usados||[]);
-    const isSupl = ["CF","CA","IN","AR","RP"].includes(codigo);
-    const pp = resultados[codigo]?.ponderado;
-    if(!usados.includes(codigo) || pp==null) return `<td class="muted">—</td>`;
-    return `<td class="pill">${isSupl?`(${pp})`:pp}</td>`;
-  }
+function cellIndice(codigo, setUsado, setPossivel, resultados) {
+  if (!setPossivel.has(codigo)) return `<td class="idx"></td>`;
+  if (!setUsado.has(codigo)) return `<td class="idx fill empty"></td>`;
+  const r = resultados[codigo];
+  if (!r) return `<td class="idx fill"></td>`;
+  const suplementar = ["CF","CA","IN","AR","RP"].includes(codigo);
+  const cls = suplementar ? "pill sup" : "pill";
+  return `<td class="idx fill"><span class="${cls}">${r.ponderado}</span></td>`;
+}
 
-  const rows = SUBTESTES.map(st=>{
-    const r = resultados[st.codigo] || {};
-    const isSupl = !st.essencial;
+function renderMatrizConversao({ resultados, indicesInfo, qiInfo }) {
+  const usadosICV = new Set(indicesInfo?.ICV?.usados || []);
+  const usadosIOP = new Set(indicesInfo?.IOP?.usados || []);
+  const usadosIMO = new Set(indicesInfo?.IMO?.usados || []);
+  const usadosIVP = new Set(indicesInfo?.IVP?.usados || []);
+  const usadosQI  = new Set(qiInfo?.usados || []);
+
+  const possiveis = {
+    ICV: new Set(["SM","VC","CO","IN","RP"]),
+    IOP: new Set(["CB","CN","RM","CF"]),
+    IMO: new Set(["DG","SNL","AR"]),
+    IVP: new Set(["CD","PS","CA"]),
+  };
+
+  const ordem = ["CB","SM","DG","CN","CD","VC","SNL","RM","CO","PS","CF","CA","IN","AR","RP"];
+
+  const linhas = ordem.map(codigo => {
+    const r = resultados[codigo] || { bruto: "", ponderado: "" };
+    const nome = obterNomeSubteste(codigo);
+
+    const qitCell =
+      usadosQI.has(codigo) && resultados[codigo]
+        ? `<td class="idx fill"><span class="pill">${resultados[codigo].ponderado}</span></td>`
+        : usadosQI.has(codigo)
+          ? `<td class="idx fill empty"></td>`
+          : `<td class="idx"></td>`;
+
     return `
-      <tr class="${isSupl?"supl":""}">
-        <td><b>${st.nome}</b> <span class="muted">(${st.codigo})</span></td>
-        <td>${r.bruto==null?"—":r.bruto}</td>
-        <td>${r.ponderado==null?"—":r.ponderado}</td>
-        ${cols.map(c=>celulaContrib(st.codigo, c)).join("")}
+      <tr>
+        <td class="col-sub"><b>${nome}</b> <span class="muted">(${codigo})</span></td>
+        <td class="col-pb">${r.bruto ?? ""}</td>
+        <td class="col-pp">${r.ponderado ?? ""}</td>
+        ${cellIndice(codigo, usadosICV, possiveis.ICV, resultados)}
+        ${cellIndice(codigo, usadosIOP, possiveis.IOP, resultados)}
+        ${cellIndice(codigo, usadosIMO, possiveis.IMO, resultados)}
+        ${cellIndice(codigo, usadosIVP, possiveis.IVP, resultados)}
+        ${qitCell}
       </tr>
     `;
   }).join("");
-
-  const somaIdx = (k)=> (k==="QIT" ? qiInfo.soma : indicesInfo[k]?.soma);
 
   return `
     <table class="wisc-matrix">
       <thead>
         <tr>
-          <th rowspan="2">Subtestes</th>
-          <th rowspan="2">PB</th>
-          <th rowspan="2">Ponderado</th>
+          <th class="col-sub">Subtestes</th>
+          <th class="col-pb">PB</th>
+          <th class="col-pp">Ponderado</th>
           <th colspan="5">Contribuição (Pontos Ponderados)</th>
         </tr>
         <tr>
-          <th>ICV</th><th>IOP</th><th>IMO</th><th>IVP</th><th>QIT</th>
+          <th></th><th></th><th></th>
+          <th class="idx">ICV</th>
+          <th class="idx">IOP</th>
+          <th class="idx">IMO</th>
+          <th class="idx">IVP</th>
+          <th class="idx">QIT</th>
         </tr>
       </thead>
-      <tbody>
-        ${rows}
-      </tbody>
+      <tbody>${linhas}</tbody>
       <tfoot>
         <tr>
-          <td colspan="3"><b>Soma dos Pontos Ponderados</b></td>
-          <td><b>${somaIdx("ICV") ?? "—"}</b></td>
-          <td><b>${somaIdx("IOP") ?? "—"}</b></td>
-          <td><b>${somaIdx("IMO") ?? "—"}</b></td>
-          <td><b>${somaIdx("IVP") ?? "—"}</b></td>
-          <td><b>${somaIdx("QIT") ?? "—"}</b></td>
+          <td class="sum-label" colspan="3">Soma dos Pontos Ponderados</td>
+          <td>${indicesInfo?.ICV?.soma ?? "—"}</td>
+          <td>${indicesInfo?.IOP?.soma ?? "—"}</td>
+          <td>${indicesInfo?.IMO?.soma ?? "—"}</td>
+          <td>${indicesInfo?.IVP?.soma ?? "—"}</td>
+          <td>${qiInfo?.soma ?? "—"}</td>
         </tr>
       </tfoot>
     </table>
   `;
 }
 
-async function calcular(salvar=false){
-  const nome = (document.getElementById("nome")?.value || "").trim();
-  const nasc = document.getElementById("nasc")?.value;
-  const apl  = document.getElementById("apl")?.value;
-  if(!nome) return alert("Informe o nome.");
-  if(!nasc) return alert("Informe a data de nascimento.");
-  if(!apl)  return alert("Informe a data de aplicação.");
-
-  const idade = diffIdade(nasc, apl);
-  const faixa = faixaEtaria(idade);
-
-  const normas = await carregarNormas();
-  const pbs = lerPBsDoFormulario();
-
-  const resultados = {};
-  for(const st of SUBTESTES){
-    const pb = pbs[st.codigo];
-    const pp = calcularPonderado(normas, faixa, st.codigo, pb);
-    resultados[st.codigo] = {
-      codigo: st.codigo,
-      nome: st.nome,
-      bruto: pb,
-      ponderado: pp,
-      classificacao: (pp==null?"—":classificarPP(pp))
-    };
-  }
-
-  const indicesInfo = calcularIndices(resultados);
-  const qiInfo = calcularQIT(resultados);
-
-  montarRelatorio({
-    nome, nasc, apl, idade, faixa,
-    resultados, indicesInfo, qiInfo
+function montarInputsSubtestes(){
+  const tbody = document.getElementById("tbodySubtestes");
+  if(!tbody) return;
+  tbody.innerHTML = "";
+  SUBTESTES.forEach(s=>{
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td><b>${s.nome}</b> <span class="muted">(${s.codigo})</span></td>
+      <td><input type="number" min="0" id="${s.id}" placeholder="Bruto"></td>
+    `;
+    tbody.appendChild(tr);
   });
+}
 
-  if(salvar){
-    const rel = document.getElementById("relatorio");
-    if(!rel) return;
+function atualizarPreviewIdade(){
+  const nasc = document.getElementById("dataNascimento")?.value;
+  const apl  = document.getElementById("dataAplicacao")?.value;
+  const idadeEl = document.getElementById("idadeCalculada");
+  const faixaEl = document.getElementById("faixaCalculada");
+  if(!idadeEl || !faixaEl) return;
 
-    await html2pdf().set({
-      margin: 10,
-      filename: `WISC-IV_${nome}.pdf`,
-      html2canvas: { scale: 2, backgroundColor: "#ffffff" },
-      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
-    }).from(rel).save();
+  if(!nasc || !apl){ idadeEl.textContent=""; faixaEl.textContent=""; return; }
+  const idade = calcularIdade(nasc, apl);
+  if(!idade){ idadeEl.textContent="Datas inválidas."; faixaEl.textContent=""; return; }
 
-    adicionarLaudo({
-      nome,
-      nasc,
-      apl,
-      faixa,
-      criadoEm: new Date().toISOString(),
-      htmlRelatorio: rel.outerHTML
-    });
+  idadeEl.textContent = `Idade na aplicação: ${idade.anos} anos e ${idade.meses} meses.`;
+  carregarNormas().then(normas=>{
+    const faixa = faixaEtaria(normas, idade);
+    faixaEl.textContent = faixa ? `Faixa normativa: ${faixa}` : "Faixa normativa: não encontrada.";
+  }).catch(()=>{});
+}
 
-    alert("Laudo salvo!");
+function getLaudos(){
+  return JSON.parse(localStorage.getItem(LAUDOS_KEY) || "[]");
+}
+function setLaudos(arr){
+  localStorage.setItem(LAUDOS_KEY, JSON.stringify(arr));
+}
+
+async function calcular(salvar){
+  try{
+    const normas = await carregarNormas();
+    const nome = (document.getElementById("nome")?.value || "").trim();
+    const nasc = document.getElementById("dataNascimento")?.value;
+    const apl  = document.getElementById("dataAplicacao")?.value;
+
+    if(!nome || !nasc || !apl){ alert("Preencha Nome, Nascimento e Aplicação."); return; }
+
+    const idade = calcularIdade(nasc, apl);
+    if(!idade){ alert("Datas inválidas."); return; }
+
+    const faixa = faixaEtaria(normas, idade);
+    if(!faixa){ alert("Faixa normativa não encontrada."); return; }
+
+    const resultados = {};
+    const pondByCode = {};
+
+    for(const s of SUBTESTES){
+      const v = document.getElementById(s.id)?.value;
+      if(v === "" || v == null) continue;
+      const bruto = Number(v);
+      if(Number.isNaN(bruto) || bruto < 0){ alert(`Valor inválido em ${s.nome}`); return; }
+
+      const pond = brutoParaPonderado(normas, faixa, s.codigo, bruto);
+      if(pond == null){ alert(`PB fora da norma em ${s.nome} (${s.codigo}) para faixa ${faixa}`); return; }
+
+      resultados[s.codigo] = {
+        nome: s.nome,
+        codigo: s.codigo,
+        bruto,
+        ponderado: pond,
+        classificacao: classificarPonderado(pond)
+      };
+      pondByCode[s.codigo] = pond;
+    }
+
+    if(Object.keys(pondByCode).length === 0){ alert("Preencha ao menos um subteste."); return; }
+
+    const indicesInfo = {
+      ICV: somarIndice(pondByCode, INDICES.ICV),
+      IOP: somarIndice(pondByCode, INDICES.IOP),
+      IMO: somarIndice(pondByCode, INDICES.IMO),
+      IVP: somarIndice(pondByCode, INDICES.IVP),
+    };
+
+    const qiInfo = somarQI(pondByCode);
+
+    montarRelatorio({ nome, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo });
+
+    if(salvar){
+      const rel = document.getElementById("relatorio");
+      // garante logo/imagens antes do canvas (especialmente no iOS)
+await esperarImagensCarregarem(rel);
+// pequeno delay para assegurar renderização dos gráficos/canvas
+await new Promise(r => setTimeout(r, 150));
+
+await html2pdf().set({
+  margin: [8, 8, 8, 8],
+  filename: `WISC-IV_${nome}.pdf`,
+  pagebreak: { mode: ["css", "legacy"], avoid: ".no-break" },
+  html2canvas: {
+    scale: 2,
+    useCORS: true,
+    allowTaint: false,
+    backgroundColor: "#ffffff",
+    imageTimeout: 15000
+  },
+  jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+}).from(rel).save();
+
+const laudos = getLaudos();
+      laudos.unshift({
+        nome,
+        dataAplicacao: apl,
+        faixa,
+        createdAt: new Date().toISOString(),
+        htmlRelatorio: rel.outerHTML
+      });
+      setLaudos(laudos);
+
+      alert("Laudo salvo e PDF gerado.");
+    }
+
+  }catch(e){
+    console.error(e);
+    alert("Erro ao calcular. Verifique normas-wisciv.json em /tests/wisciv/data/.");
   }
 }
 
-function montarRelatorio(data){
+// ================= RELATÓRIO + GRÁFICOS + PDF =================
+let chartSub = null;
+let chartIdx = null;
+
+// Desenha banda da média (9–11) e divisórias de grupos no gráfico de subtestes
+const WISC_SCATTER_PLUGIN = {
+  id: "wiscScatterDecor",
+  beforeDraw(chart, args, opts) {
+    const { ctx, chartArea, scales } = chart;
+    if (!chartArea) return;
+
+    // Banda média (9–11)
+    if (opts && opts.band && scales?.y) {
+      const yTop = scales.y.getPixelForValue(opts.band.max);
+      const yBot = scales.y.getPixelForValue(opts.band.min);
+      ctx.save();
+      ctx.fillStyle = "rgba(13, 71, 161, 0.12)"; // azul translúcido
+      ctx.fillRect(chartArea.left, yTop, chartArea.right - chartArea.left, yBot - yTop);
+      ctx.restore();
+    }
+
+    // Divisórias verticais (grupos)
+    if (opts && Array.isArray(opts.vlines) && scales?.x) {
+      ctx.save();
+      ctx.strokeStyle = "rgba(13, 71, 161, 0.35)";
+      ctx.lineWidth = 2;
+      opts.vlines.forEach(v => {
+        const x = scales.x.getPixelForValue(v);
+        ctx.beginPath();
+        ctx.moveTo(x, chartArea.top);
+        ctx.lineTo(x, chartArea.bottom);
+        ctx.stroke();
+      });
+      ctx.restore();
+    }
+
+    // Títulos dos grupos (acima do chartArea)
+    if (opts && Array.isArray(opts.groupLabels) && scales?.x) {
+      ctx.save();
+      ctx.fillStyle = "rgba(13, 71, 161, 0.95)";
+      ctx.font = "600 12px Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial";
+      ctx.textAlign = "center";
+      const y = chartArea.top - 10;
+      opts.groupLabels.forEach(g => {
+        const x1 = scales.x.getPixelForValue(g.from);
+        const x2 = scales.x.getPixelForValue(g.to);
+        const xc = (x1 + x2) / 2;
+        ctx.fillText(g.text, xc, y);
+      });
+      ctx.restore();
+    }
+  }
+};
+
+function registrarPluginsChart(){
+  if (typeof Chart === "undefined") return;
+  // evita registrar duas vezes
+  const already = Chart.registry?.plugins?.get?.("wiscScatterDecor");
+  if (!already) Chart.register(WISC_SCATTER_PLUGIN);
+}
+
+function formatarDataISO(iso){
+  if(!iso) return "";
+  // mantém ISO para consistência no seu sistema, mas permite trocar depois
+  return iso;
+}
+
+function renderPerfilSubtestes(resultados){
+  const grupos = [
+    { titulo: "Compreensão Verbal", codes: ["SM","VC","CO","IN","RP"] },
+    { titulo: "Organização Perceptual", codes: ["CB","CN","RM","CF"] },
+    { titulo: "Memória Operacional", codes: ["DG","SNL","AR"] },
+    { titulo: "Velocidade de Proc.", codes: ["CD","PS","CA"] },
+  ];
+  const supl = new Set(["CF","CA","IN","AR","RP"]);
+
+  const head1 = grupos.map(g => `<th colspan="${g.codes.length}" class="perfil-group">${g.titulo}</th>`).join("");
+  const codes = grupos.flatMap(g => g.codes).map(c=>{
+    const label = supl.has(c) ? `(${c})` : c;
+    return `<th class="perfil-code">${label}</th>`;
+  }).join("");
+  const vals = grupos.flatMap(g => g.codes).map(c=>{
+    const v = resultados?.[c]?.ponderado;
+    return `<td class="perfil-val">${v ?? "—"}</td>`;
+  }).join("");
+
+  return `
+    <table class="perfil-table">
+      <thead>
+        <tr>${head1}</tr>
+        <tr>${codes}</tr>
+      </thead>
+      <tbody>
+        <tr>${vals}</tr>
+      </tbody>
+    </table>
+  `;
+}
+
+function montarRelatorio(data) {
   const rel = document.getElementById("relatorio");
-  if(!rel) return;
+  if (!rel) return;
+
+  registrarPluginsChart();
 
   const { nome, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo } = data;
-
-  const perfil = renderPerfil(resultados);
   const matriz = renderMatrizConversao({ resultados, indicesInfo, qiInfo });
+  const perfil = renderPerfilSubtestes(resultados);
 
   rel.style.display = "block";
   rel.innerHTML = `
@@ -435,70 +535,54 @@ function montarRelatorio(data){
 }
 
 function desenharGraficos(resultados, indicesInfo, qiInfo){
-  const cSub = document.getElementById("grafSub");
-  if(cSub){
-    const ctx = cSub.getContext("2d");
+  registrarPluginsChart();
 
+  // ---------- Subtestes: SCATTER (pontos) ----------
+  const ctxSub = document.getElementById("grafSub");
+  if(ctxSub){
+    if(chartSub) chartSub.destroy();
+
+    // ordem do perfil (igual ao manual)
     const labels = ["SM","VC","CO","IN","RP","CB","CN","RM","CF","DG","SNL","AR","CD","PS","CA"];
-    const vals = labels.map(c => resultados[c]?.ponderado ?? null);
+    const points = labels
+      .map((c, i) => {
+        const v = resultados?.[c]?.ponderado;
+        return (v == null) ? null : { x: i+1, y: Number(v) };
+      })
+      .filter(Boolean);
 
-    if(window.chartSub) window.chartSub.destroy();
-
-    const deco = {
-      id:"wiscScatterDecor",
-      beforeDraw(chart){
-        const { ctx, chartArea, scales } = chart;
-        if(!chartArea) return;
-        const x = scales.x;
-        const y = scales.y;
-
-        const y9 = y.getPixelForValue(9);
-        const y11 = y.getPixelForValue(11);
-        ctx.save();
-        ctx.fillStyle = "rgba(13,71,161,0.10)";
-        ctx.fillRect(chartArea.left, y11, chartArea.right-chartArea.left, y9-y11);
-        ctx.restore();
-
-        const vlines = [5.5, 9.5, 12.5];
-        ctx.save();
-        ctx.strokeStyle = "rgba(13,71,161,0.35)";
-        ctx.lineWidth = 1;
-        vlines.forEach(v=>{
-          const px = x.getPixelForValue(v);
-          ctx.beginPath();
-          ctx.moveTo(px, chartArea.top);
-          ctx.lineTo(px, chartArea.bottom);
-          ctx.stroke();
-        });
-        ctx.restore();
-      }
-    };
-
-    window.chartSub = new Chart(ctx, {
-      type:"line",
+    chartSub = new Chart(ctxSub, {
+      type:"scatter",
       data:{
-        labels,
         datasets:[{
-          data: vals.map((v,i)=> ({ x:i+1, y:v })),
-          showLine:false,
-          pointRadius:4,
-          pointHoverRadius:5,
-          borderWidth:0
+          data: points,
+          pointRadius: 5,
+          pointHoverRadius: 6,
         }]
       },
       options:{
-        parsing:false,
-        plugins:{ legend:{ display:false } },
+        responsive:true,
+        maintainAspectRatio:false,
+        plugins:{
+          legend:{ display:false },
+          wiscScatterDecor:{
+            band:{ min:9, max:11 },
+            vlines:[6, 10, 13],
+            groupLabels:[
+              { from:1, to:5, text:"Compreensão Verbal" },
+              { from:6, to:9, text:"Organização Perceptual" },
+              { from:10, to:12, text:"Memória Operacional" },
+              { from:13, to:15, text:"Velocidade de Proc." },
+            ]
+          }
+        },
         scales:{
           x:{
-            type:"linear",
-            min:0.5,
-            max:15.5,
+            min:0.5, max:15.5,
             grid:{ display:false },
             ticks:{
               autoSkip:false,
-              stepSize:1,
-              callback:(val)=>{
+              callback:(val)=> {
                 const idx = Math.round(val)-1;
                 const c = labels[idx];
                 if(!c) return "";
@@ -506,121 +590,96 @@ function desenharGraficos(resultados, indicesInfo, qiInfo){
               }
             }
           },
-          y:{ min:1, max:19, ticks:{ stepSize:1 } }
+          y:{
+            min:1, max:19,
+            ticks:{ stepSize:1 },
+          }
         }
-      },
-      plugins:[deco]
+      }
     });
   }
 
-  const cIdx = document.getElementById("grafIdx");
-  if(cIdx){
-    const ctx = cIdx.getContext("2d");
-
+  // ---------- Índices e QIT: pontos ----------
+  const ctxIdx = document.getElementById("grafIdx");
+  if(ctxIdx){
+    if(chartIdx) chartIdx.destroy();
     const labels = ["ICV","IOP","IMO","IVP","QIT"];
     const vals = [
-      indicesInfo.ICV?.score ?? indicesInfo.ICV?.composto ?? indicesInfo.ICV?.pontoComposto ?? null,
-      indicesInfo.IOP?.score ?? indicesInfo.IOP?.composto ?? indicesInfo.IOP?.pontoComposto ?? null,
-      indicesInfo.IMO?.score ?? indicesInfo.IMO?.composto ?? indicesInfo.IMO?.pontoComposto ?? null,
-      indicesInfo.IVP?.score ?? indicesInfo.IVP?.composto ?? indicesInfo.IVP?.pontoComposto ?? null,
-      qiInfo?.score ?? qiInfo?.composto ?? qiInfo?.pontoComposto ?? null,
+      indicesInfo?.ICV?.soma ?? null,
+      indicesInfo?.IOP?.soma ?? null,
+      indicesInfo?.IMO?.soma ?? null,
+      indicesInfo?.IVP?.soma ?? null,
+      qiInfo?.soma ?? null,
     ];
+    const pts = vals.map((v,i)=> v==null ? null : ({x:i+1, y:Number(v)})).filter(Boolean);
 
-    if(window.chartIdx) window.chartIdx.destroy();
-
-    window.chartIdx = new Chart(ctx, {
-      type:"line",
-      data:{
-        labels,
-        datasets:[{
-          data: vals,
-          showLine:false,
-          pointRadius:4,
-          pointHoverRadius:5,
-          borderWidth:0
-        }]
-      },
+    chartIdx = new Chart(ctxIdx, {
+      type:"scatter",
+      data:{ datasets:[{ data: pts, pointRadius:5, pointHoverRadius:6 }] },
       options:{
+        responsive:true,
+        maintainAspectRatio:false,
         plugins:{ legend:{ display:false } },
         scales:{
-          y:{ ticks:{ stepSize:10 } }
+          x:{
+            min:0.5, max:5.5,
+            grid:{ display:false },
+            ticks:{
+              autoSkip:false,
+              callback:(val)=>{
+                const idx=Math.round(val)-1;
+                return labels[idx] || "";
+              }
+            }
+          },
+          y:{ beginAtZero:true }
         }
       }
     });
   }
 }
 
-function montarInputsSubtestes(){
-  const box = document.getElementById("subtestesBox");
+function renderListaLaudos(){
+  const box = document.getElementById("listaLaudos");
   if(!box) return;
-  box.innerHTML = SUBTESTES.map(st=>`
-    <div class="pb-row">
-      <label>${st.nome} <span class="muted">(${st.codigo})</span></label>
-      <input id="pb_${st.codigo}" type="number" min="0" step="1" inputmode="numeric" />
-    </div>
-  `).join("");
-}
-
-function atualizarPreviewIdade(){
-  const nasc = document.getElementById("nasc")?.value;
-  const apl  = document.getElementById("apl")?.value;
-  const out = document.getElementById("idadeOut");
-  if(!out) return;
-
-  if(!nasc || !apl){
-    out.textContent = "—";
-    return;
-  }
-  const id = diffIdade(nasc, apl);
-  out.textContent = `${id.anos}a ${id.meses}m ${id.dias}d`;
-}
-
-async function initNovoLaudo(){
-  montarInputsSubtestes();
-  const nascEl = document.getElementById("nasc");
-  const aplEl  = document.getElementById("apl");
-  if(nascEl) nascEl.addEventListener("input", atualizarPreviewIdade);
-  if(aplEl)  aplEl.addEventListener("input", atualizarPreviewIdade);
-
-  const btnPrev = document.getElementById("btnPreview");
-  const btnSalvar = document.getElementById("btnSalvar");
-  if(btnPrev) btnPrev.addEventListener("click", ()=>calcular(false));
-  if(btnSalvar) btnSalvar.addEventListener("click", ()=>calcular(true));
-}
-
-async function initLaudos(){
-  const tbody = document.getElementById("laudosTbody");
-  if(!tbody) return;
 
   const laudos = getLaudos();
   if(!laudos.length){
-    tbody.innerHTML = `<tr><td colspan="5" class="muted">Nenhum laudo salvo ainda.</td></tr>`;
+    box.innerHTML = `<p class="muted">Nenhum laudo salvo ainda.</p>`;
     return;
   }
 
-  tbody.innerHTML = laudos.map((l, idx)=>`
-    <tr>
-      <td><b>${l.nome}</b></td>
-      <td>${formatarDataISO(l.apl)}</td>
-      <td>${l.faixa}</td>
-      <td>${new Date(l.criadoEm).toLocaleString("pt-BR")}</td>
-      <td style="white-space:nowrap;">
-        <button class="btn-outline" onclick="visualizarLaudo(${idx})">Ver</button>
-        <button class="btn-outline" onclick="baixarPDFSalvo(${idx})">Baixar PDF</button>
-        <button class="btn-danger" onclick="excluirLaudo(${idx})">Excluir</button>
-      </td>
-    </tr>
-  `).join("");
+  box.innerHTML = `
+    <table class="table">
+      <thead><tr><th>Paciente</th><th>Aplicação</th><th>Faixa</th><th>Ações</th></tr></thead>
+      <tbody>
+        ${laudos.map((x, idx)=>`
+          <tr>
+            <td>${x.nome}</td>
+            <td>${x.dataAplicacao}</td>
+            <td><span class="badge">${x.faixa}</span></td>
+            <td><button class="btn-outline" onclick="baixarPDFSalvo(${idx})">Baixar PDF</button></td>
+          </tr>
+        `).join("")}
+      </tbody>
+    </table>
+  `;
 }
 
-function visualizarLaudo(index){
-  const laudos = getLaudos();
-  const item = laudos[index];
-  if(!item) return alert("Laudo não encontrado.");
-  const rel = document.getElementById("relatorio");
-  if(!rel) return;
-  rel.style.display = "block";
-  rel.innerHTML = item.htmlRelatorio;
+
+
+// =========================
+// PDF (html2pdf) — helpers
+// =========================
+async function esperarImagensCarregarem(container){
+  const imgs = Array.from(container.querySelectorAll("img"));
+  await Promise.all(imgs.map(img => {
+    if (img.complete && img.naturalWidth > 0) return Promise.resolve();
+    return new Promise(resolve => {
+      img.onload = () => resolve();
+      img.onerror = () => resolve(); // não trava o PDF
+    });
+  }));
 }
 
 async function baixarPDFSalvo(index){
@@ -632,25 +691,39 @@ async function baixarPDFSalvo(index){
   temp.innerHTML = item.htmlRelatorio;
   document.body.appendChild(temp);
 
-  await html2pdf().set({
-    margin: 10,
-    filename: `WISC-IV_${item.nome}.pdf`,
-    html2canvas: { scale: 2, backgroundColor: "#ffffff" },
-    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
-  }).from(temp).save();
+  // garante logo/imagens antes do canvas (especialmente no iOS)
+await esperarImagensCarregarem(temp);
+// pequeno delay para assegurar renderização dos gráficos/canvas
+await new Promise(r => setTimeout(r, 150));
 
-  temp.remove();
+await html2pdf().set({
+  margin: [8, 8, 8, 8],
+  filename: `WISC-IV_${item.nome}.pdf`,
+  pagebreak: { mode: ["css", "legacy"], avoid: ".no-break" },
+  html2canvas: {
+    scale: 2,
+    useCORS: true,
+    allowTaint: false,
+    backgroundColor: "#ffffff",
+    imageTimeout: 15000
+  },
+  jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+}).from(temp).save();
+
+temp.remove();
+
 }
 
-function excluirLaudo(index){
-  const laudos = getLaudos();
-  laudos.splice(index, 1);
-  setLaudos(laudos);
-  initLaudos();
-}
+(function init(){
+  // novo-laudo
+  if(document.getElementById("tbodySubtestes")){
+    montarInputsSubtestes();
+    document.getElementById("dataNascimento")?.addEventListener("change", atualizarPreviewIdade);
+    document.getElementById("dataAplicacao")?.addEventListener("change", atualizarPreviewIdade);
+  }
 
-document.addEventListener("DOMContentLoaded", ()=>{
-  const page = document.body.dataset.page;
-  if(page === "novo-laudo") initNovoLaudo();
-  if(page === "laudos") initLaudos();
-});
+  // laudos
+  if(document.getElementById("listaLaudos")){
+    renderListaLaudos();
+  }
+})();
