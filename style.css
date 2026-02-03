@@ -456,3 +456,17 @@ button{
 .report .wisc-matrix .idx{
   width: 46px;          /* índices mais estreitos */
 }
+
+/* ===== Item 6: Tabelas do relatório mais compactas ===== */
+.report .table{
+  font-size: 10px;          /* reduz a tipografia no relatório */
+}
+
+.report .table th,
+.report .table td{
+  padding: 5px 6px;         /* menos altura */
+}
+
+.report .table th{
+  background: rgba(13,71,161,.06); /* mais leve */
+}
