@@ -397,15 +397,36 @@ button{
     margin: 0 !important;
     max-width: 100% !important;
     padding: 0 !important;
-  }
+      }
   .card{ box-shadow:none !important; border:none !important; }
   .matrix-card, .perfil-card{ border:1px solid rgba(0,0,0,.15) !important; }
   .matrix-card{ overflow: visible !important; }
   .perfil-card{ overflow: visible !important; }
   .report{
     margin-top: 0 !important;
+    }
+  .report .section,
+  .report .perfil-card,
+  .report .canvas-wrap,
+  .report .report-header,
+  .report .report-info,
+  .report .report-footer{
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
   }
-  
+
+  /* A matriz pode ser grande: permite quebrar, mas sem clipar */
+  .report .matrix-card{
+    break-inside: auto !important;
+    page-break-inside: auto !important;
+    overflow: visible !important;   /* MUITO importante p/ não cortar */
+  }
+
+  /* Evita cortar linhas da tabela no meio da página */
+  .report .wisc-matrix tr{
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
 }
 
 }
