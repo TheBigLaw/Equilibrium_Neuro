@@ -563,6 +563,9 @@ function desenharGraficos(resultados, indicesInfo, qiInfo){
       options:{
         responsive:true,
         maintainAspectRatio:false,
+
+        layout: { padding: { left: 6, right: 6, top: 18, bottom: 6 } },
+        
         plugins:{
           legend:{ display:false },
           wiscScatterDecor:{
@@ -581,7 +584,10 @@ function desenharGraficos(resultados, indicesInfo, qiInfo){
             type: "linear",
               min:0.5, max:15.5,
                 grid:{ display:false },
-                  ticks:{
+                  ticks:{font: { size: 10 },
+                      maxRotation: 0,
+                      minRotation: 0,
+                      padding: 6,
                   stepSize: 1,
                   autoSkip:false,
                    callback:(val)=> {
@@ -595,7 +601,10 @@ function desenharGraficos(resultados, indicesInfo, qiInfo){
 
           y:{
             min:1, max:19,
-            ticks:{ stepSize:1 },
+              grid:{ color: "rgba(13,71,161,.10)" },
+                ticks:{ stepSize:1,
+                  font: { size: 10 },
+            },
           }
         }
       }
