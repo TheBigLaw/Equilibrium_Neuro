@@ -3,13 +3,21 @@
 const LAUDOS_KEY = "empresa_laudos_wisciv_v1";
 
 let NORMAS = null;
+
 async function carregarNormas(){
-  if(NORMAS) return NORMAS;
-  const resp = await fetch("Correcao_testes/WISC_IV/data/normas-wisciv.json");
-  if(!resp.ok) throw new Error("Não foi possível carregar data/normas-wisciv.json");
+  if (NORMAS) return NORMAS;
+
+  const url = "Correcao_testes/WISC_IV/data/normas-wisciv.json";
+
+  const resp = await fetch(url, { cache: "no-store" });
+  if (!resp.ok) {
+    throw new Error(`Erro ao carregar normas (${resp.status}): ${url}`);
+  }
+
   NORMAS = await resp.json();
   return NORMAS;
 }
+
 
 // Subtestes (ordem objetiva)
 const SUBTESTES = [
