@@ -544,13 +544,35 @@ function desenharGraficos(resultados, indicesInfo, qiInfo){
     if(chartSub) chartSub.destroy();
 
     // ordem do perfil (igual ao manual)
-    const labels = ["SM","VC","CO","CB","CN","RM","DG","SNL","CD","PS","IN","RP","CF","AR","CA"];
-    const points = labels
-      .map((c, i) => {
-        const v = resultados?.[c]?.ponderado;
-        return (v == null) ? null : { x: i+1, y: Number(v) };
-      })
-      .filter(Boolean);
+   // ordem + GAPs (retratro e mais legível)
+const groups = [
+  ["SM","VC","CO"],          // ICV core
+  ["CB","CN","RM"],          // IOP core
+  ["DG","SNL"],              // IMO core
+  ["CD","PS"],               // IVP core
+  ["IN","RP","CF","AR","CA"] // suplementares (no fim)
+];
+
+// cria posições com espaços entre grupos
+let x = 1;
+const xPos = {};   // codigo -> x
+const tickAt = []; // x -> codigo (para callback)
+groups.forEach((g, gi) => {
+  g.forEach(code => {
+    xPos[code] = x;
+    tickAt[x] = code;
+    x++;
+  });
+  if (gi < groups.length - 1) x += 1; // <-- GAP entre grupos
+});
+
+// monta pontos usando as posições com GAP
+const points = Object.keys(xPos)
+  .map(code => {
+    const v = resultados?.[code]?.ponderado;
+    return (v == null) ? null : { x: xPos[code], y: Number(v) };
+  })
+  .filter(Boolean);
 
     chartSub = new Chart(ctxSub, {
       type:"scatter",
@@ -571,7 +593,7 @@ function desenharGraficos(resultados, indicesInfo, qiInfo){
           legend:{ display:false },
           wiscScatterDecor:{
             band:{ min:9, max:11 },
-            vlines:[3.5, 6.5, 8.5, 10.5],
+            vlines: [4.5, 8.5, 11.5, 14.5],
             groupLabels:[
               { from:1, to:5, text:"Compreensão Verbal" },
               { from:6, to:9, text:"Organização Perceptual" },
@@ -583,7 +605,8 @@ function desenharGraficos(resultados, indicesInfo, qiInfo){
         scales:{
           x:{
             type: "linear",
-              min:0.5, max:15.5,
+              min: 0.5,
+              max: x - 0.5,
                 grid:{ display:false },
                   ticks:{font: { size: 10 },
                       maxRotation: 0,
@@ -591,11 +614,13 @@ function desenharGraficos(resultados, indicesInfo, qiInfo){
                       padding: 6,
                   stepSize: 1,
                   autoSkip:false,
-                   callback:(val)=> {
-            const idx = Math.round(val)-1;
-            const c = labels[idx];
-            if(!c) return "";
-            return ["CF","CA","IN","AR","RP"].includes(c) ? `(${c})` : c;
+                   callback:(ticks:{
+                    stepSize: 1,
+                    autoSkip: false,
+                      callback: (val) => {
+                      const code = tickAt[Math.round(val)];
+                          if (!code) return ""; // gaps ficam vazios
+                          return ["CF","CA","IN","AR","RP"].includes(code) ? `(${code})` : code;
               }
             }
           },
