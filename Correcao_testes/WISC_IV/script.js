@@ -544,7 +544,7 @@ function desenharGraficos(resultados, indicesInfo, qiInfo){
     if(chartSub) chartSub.destroy();
 
     // ordem do perfil (igual ao manual)
-    const labels = ["SM","VC","CO","IN","RP","CB","CN","RM","CF","DG","SNL","AR","CD","PS","CA"];
+    const labels = ["SM","VC","CO","CB","CN","RM","DG","SNL","CD","PS","IN","RP","CF","AR","CA"];
     const points = labels
       .map((c, i) => {
         const v = resultados?.[c]?.ponderado;
@@ -571,7 +571,7 @@ function desenharGraficos(resultados, indicesInfo, qiInfo){
           legend:{ display:false },
           wiscScatterDecor:{
             band:{ min:9, max:11 },
-            vlines:[6, 10, 13],
+            vlines:[3.5, 6.5, 8.5, 10.5],
             groupLabels:[
               { from:1, to:5, text:"Compreensão Verbal" },
               { from:6, to:9, text:"Organização Perceptual" },
