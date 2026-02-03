@@ -280,8 +280,15 @@ button{
 
 .report-info{ padding:14px 18px; }
 .info-grid{
-  display:grid; grid-template-columns: 1fr 1fr 1fr; gap:10px;
+  display:grid;
+  grid-template-columns: 1fr 1fr; /* retrato: 2 colunas */
+  gap: 8px 14px;
+  align-items: baseline;
 }
+@media (min-width: 720px){
+  .info-grid{ grid-template-columns: 1fr 1fr 1fr; } /* desktop volta 3 colunas */
+}
+
 .info-grid .k{ color:#0d47a1; font-weight:700; }
 .info-grid .v{ color:#111; font-weight:600; }
 
