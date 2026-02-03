@@ -428,3 +428,31 @@ button{
   margin-left: auto;
   margin-right: auto;
 }
+
+/* ===== Item 5: Matriz de conversão sem scroll (retrato) ===== */
+.report .matrix-card{
+  overflow-x: hidden;   /* remove scroll horizontal */
+  overflow-y: visible;
+}
+
+.report .wisc-matrix th,
+.report .wisc-matrix td{
+  padding: 4px 4px;     /* mais compacto */
+  font-size: 9.5px;     /* menor pra caber */
+}
+
+.report .wisc-matrix .col-sub{
+  min-width: 0;         /* remove min-width que estoura */
+  width: auto;
+  white-space: normal;  /* permite quebrar linha */
+  line-height: 1.15;
+}
+
+.report .wisc-matrix .col-pb,
+.report .wisc-matrix .col-pp{
+  width: 56px;          /* colunas numéricas mais estreitas */
+}
+
+.report .wisc-matrix .idx{
+  width: 46px;          /* índices mais estreitos */
+}
