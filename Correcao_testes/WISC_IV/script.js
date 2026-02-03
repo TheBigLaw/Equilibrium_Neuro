@@ -463,7 +463,7 @@ function montarRelatorio(data) {
         </div>
       </div>
 
-      <div class="section no-break">
+      <div class="section no-break page-break-after">
         <h3>Perfil dos Pontos Ponderados dos Subtestes</h3>
         <div class="perfil-card">
           ${perfil}
