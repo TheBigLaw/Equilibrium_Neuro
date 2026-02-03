@@ -368,22 +368,22 @@ const WISC_SCATTER_PLUGIN = {
     }
 
     // Títulos dos grupos (acima do chartArea)
-    if (opts && Array.isArray(opts.groupLabels) && scales?.x) {
-      ctx.save();
-      ctx.fillStyle = "rgba(13, 71, 161, 0.95)";
-      ctx.font = "600 12px Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial";
-      ctx.textAlign = "center";
-      const y = chartArea.top - 10;
-      opts.groupLabels.forEach(g => {
-        const x1 = scales.x.getPixelForValue(g.from);
-        const x2 = scales.x.getPixelForValue(g.to);
-        const xc = (x1 + x2) / 2;
-        ctx.fillText(g.text, xc, y);
-      });
-      ctx.restore();
-    }
-  }
-};
+  //  if (opts && Array.isArray(opts.groupLabels) && scales?.x) {
+    //  ctx.save();
+//      //ctx.fillStyle = "rgba(13, 71, 161, 0.95)";
+  //    ctx.font = "600 12px Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial";
+   //   ctx.textAlign = "center";
+  //    const y = chartArea.top - 10;
+  //    opts.groupLabels.forEach(g => {
+  //      const x1 = scales.x.getPixelForValue(g.from);
+   //     const x2 = scales.x.getPixelForValue(g.to);
+  //      const xc = (x1 + x2) / 2;
+  //      ctx.fillText(g.text, xc, y);
+  //    });
+  //    ctx.restore();
+  //  }
+ // }
+//};
 
 function registrarPluginsChart(){
   if (typeof Chart === "undefined") return;
