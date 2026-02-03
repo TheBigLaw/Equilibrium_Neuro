@@ -608,21 +608,19 @@ const points = Object.keys(xPos)
               min: 0.5,
               max: x - 0.5,
                 grid:{ display:false },
-                  ticks:{font: { size: 10 },
-                      maxRotation: 0,
-                      minRotation: 0,
+                  ticks: {
+                    font: { size: 10 },
+                    maxRotation: 0,
+                     minRotation: 0,
                       padding: 6,
-                  stepSize: 1,
-                  autoSkip:false,
-                   callback:(ticks:{
-                    stepSize: 1,
-                    autoSkip: false,
-                      callback: (val) => {
-                      const code = tickAt[Math.round(val)];
-                          if (!code) return ""; // gaps ficam vazios
+                        stepSize: 1,
+                          autoSkip: false,
+                            callback: (val) => {
+                              const code = tickAt[Math.round(val)];
+                                if (!code) return ""; // gaps ficam vazios
                           return ["CF","CA","IN","AR","RP"].includes(code) ? `(${code})` : code;
+                  }
               }
-            }
           },
 
           y:{
