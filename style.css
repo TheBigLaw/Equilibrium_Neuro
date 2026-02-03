@@ -477,3 +477,28 @@ button{
 .report .table th{
   background: rgba(13,71,161,.06); /* mais leve */
 }
+
+/* ===== Item 9: Hierarquia e espaçamento de seções (laudo clínico) ===== */
+.report .section{
+  margin-top: 12px;
+  padding: 12px 14px;
+}
+
+.report h3{
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .2px;
+  margin-bottom: 6px;
+}
+
+.report h3 + .perfil-card,
+.report h3 + .matrix-card,
+.report h3 + .canvas-wrap,
+.report h3 + table{
+  margin-top: 6px;
+}
+
+.report p.muted{
+  font-size: 9.5px;
+  margin-top: 6px;
+}
