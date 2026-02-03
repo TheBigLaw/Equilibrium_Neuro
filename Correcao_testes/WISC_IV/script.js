@@ -4,12 +4,21 @@ const LAUDOS_KEY = "empresa_laudos_wisciv_v1";
 
 let NORMAS = null;
 async function carregarNormas(){
-  if(NORMAS) return NORMAS;
-  const resp = await fetch("data/normas-wisciv.json", { cache:"no-store" });
-  if(!resp.ok) throw new Error("Não foi possível carregar data/normas-wisciv.json");
+  if (NORMAS) return NORMAS;
+
+  // Resolve correto mesmo com <base href="/Equilibrium_Neuro/">
+  const baseHref = document.querySelector("base")?.href || window.location.href;
+
+  // ✅ nome correto do arquivo: normas-wisciv.json
+  const url = new URL("Correcao_testes/WISC_IV/data/normas-wisciv.json", baseHref).toString();
+
+  const resp = await fetch(url, { cache: "no-store" });
+  if(!resp.ok) throw new Error(`Não foi possível carregar ${url} (HTTP ${resp.status})`);
+
   NORMAS = await resp.json();
   return NORMAS;
 }
+
 
 // Subtestes (ordem objetiva)
 const SUBTESTES = [
