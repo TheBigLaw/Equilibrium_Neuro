@@ -414,7 +414,7 @@ button{
 }
 
 .report .perfil-canvas{
-  height: 560px;          /* mais alto para acomodar canvas 520 */
+  height: 420px;          /* mais alto para acomodar canvas 520 */
 }
 
 .report table.table{
