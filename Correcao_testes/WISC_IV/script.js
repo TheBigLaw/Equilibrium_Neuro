@@ -469,6 +469,7 @@ function montarRelatorio(data) {
           ${perfil}
           <div class="canvas-wrap perfil-canvas"><canvas id="grafSub" height="400"></canvas></div>
         </div>
+         <div class="html2pdf__page-break"></div>
         <p class="muted" style="margin:10px 0 0;">
           A faixa azul indica a região média aproximada (9–11) dos pontos ponderados.
         </p>
