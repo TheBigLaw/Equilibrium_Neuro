@@ -382,8 +382,8 @@ const WISC_SCATTER_PLUGIN = {
   //    });
   //    ctx.restore();
   //  }
- // }
-//};
+ }
+};
 
 function registrarPluginsChart(){
   if (typeof Chart === "undefined") return;
