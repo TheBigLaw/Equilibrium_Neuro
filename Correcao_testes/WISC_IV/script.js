@@ -618,7 +618,7 @@ const points = Object.keys(xPos)
                             callback: (val) => {
                               const code = tickAt[Math.round(val)];
                                 if (!code) return ""; // gaps ficam vazios
-                          return ["CF","CA","IN","AR","RP"].includes(code) ? `(${code})` : code;
+                          return ""; // eixo X sem rótulos (a tabela acima já cumpre esse papel
                   }
               }
           },
