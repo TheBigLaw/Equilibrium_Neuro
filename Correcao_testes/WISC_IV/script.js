@@ -298,19 +298,19 @@ await esperarImagensCarregarem(rel);
 // pequeno delay para assegurar renderização dos gráficos/canvas
 await new Promise(r => setTimeout(r, 150));
 
-await html2pdf().set({
-  margin: [8, 8, 8, 8],
-  filename: `WISC-IV_${nome}.pdf`,
-  pagebreak: { mode: ["css", "legacy"], avoid: ".no-break" },
-  html2canvas: {
-    scale: 2,
-    useCORS: true,
-    allowTaint: false,
-    backgroundColor: "#ffffff",
-    imageTimeout: 15000
-  },
-  jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
-}).from(rel).save();
+//await html2pdf().set({
+//  margin: [8, 8, 8, 8],
+//  filename: `WISC-IV_${nome}.pdf`,
+//  pagebreak: { mode: ["css", "legacy"], avoid: ".no-break" },
+//  html2canvas: {
+//    scale: 2,
+//    useCORS: true,
+//    allowTaint: false,
+//    backgroundColor: "#ffffff",
+//    imageTimeout: 15000
+//  },
+//  jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+//}).from(rel).save();
 
 const laudos = getLaudos();
       laudos.unshift({
@@ -322,7 +322,7 @@ const laudos = getLaudos();
       });
       setLaudos(laudos);
 
-      alert("Laudo salvo e PDF gerado.");
+      alert("Laudo salvo!");
     }
 
   }catch(e){
