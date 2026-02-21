@@ -1,1 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <base href="/Equilibrium_Neuro/">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SRS2 | Equilibrium</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="logo.png" />
+</head>
+<body>
+  <header class="app-header">
+    <button class="back-btn" onclick="history.back()">← Voltar</button>
+    <div class="logo-wrap">
+      <img class="logo" src="logo2.png" alt="Logo" />
+    </div>
+    <button class="exit-btn" onclick="logout()">Sair</button>
+  </header>
 
+  <main class="main">
+    <div class="card">
+      <h1>Correção de testes</h1>
+      <p class="muted">Selecione o instrumento.</p>
+      <div class="actions">
+        <button class="btn-primary" onclick="location.href='Correcao_testes/WISC_IV/index.html'">ADULTO HETERORRELATO</button>
+        <button class="btn-outline" onclick="location.href='Correcao_testes/WAIS/index.html'">ADULTO AUTO-RELATO</button>
+        <button class="btn-primary" onclick="location.href='Correcao_testes/WISC_IV/index.html'">HETERORRELATO</button>
+        <button class="btn-outline" onclick="location.href='Correcao_testes/WAIS/index.html'">AUTO-RELATO</button>
+        <button class="btn-outline" onclick="location.href='Correcao_testes/WAIS/index.html'">IDADE ESCOLAR</button>
+        <button class="btn-outline" onclick="location.href='Correcao_testes/WAIS/index.html'">IDADE PRÉ-ESCOLAR</button>
+        <button class="btn-outline" onclick="location.href='Correcao_testes/WAIS/index.html'">ESCOLAR</button>
+        <button class="btn-outline" onclick="location.href='Correcao_testes/WAIS/index.html'">PRÉ-ESCOLAR</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/auth.js"></script>
+  <script>guardAuth();</script>
+</body>
+</html>
