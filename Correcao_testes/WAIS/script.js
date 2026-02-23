@@ -1,6 +1,6 @@
 
 console.log("SCRIPT WAIS CARREGADO v3");
-// tests/wisciv/script.js
+// tests/wais/script.js
 
 const LAUDOS_KEY = "empresa_laudos_wisciv_v1";
 
@@ -447,7 +447,7 @@ function montarRelatorio(data) {
       <div class="report-header">
         <img class="report-logo report-logo-top" src="/Equilibrium_Neuro/logo2.png" alt="Logo" onerror="this.style.display='none'">
         <div class="report-title">
-          <div class="t1">Relatório – WISC-IV</div>
+          <div class="t1">Relatório – WAIS</div>
           <div class="t2">Conversão PB → Ponderado e somatórios por índice</div>
         </div>
         <div class="report-meta">
