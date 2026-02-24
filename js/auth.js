@@ -4,7 +4,7 @@ const AUTH_USER_KEY = "equilibrium_auth_user_v1";
 const REPO_BASE = "/Equilibrium_Neuro/";
 
 const USERS = [
-  { id: "1", label: "Usuário 1" },
+  { id: "1", label: "Andre" },
   { id: "2", label: "Usuário 2" },
   { id: "3", label: "Usuário 3" },
   { id: "4", label: "Usuário 4" },
@@ -32,7 +32,7 @@ function isAuthed(){
 function doLogin({ userId, password }){
   const pwd = String(password || "").trim();
   if(!userId) return { ok:false, message:"Selecione um usuário." };
-  if(pwd !== "1234") return { ok:false, message:"Senha inválida." };
+  if(pwd !== "3639") return { ok:false, message:"Senha inválida." };
   setAuth(userId);
   return { ok:true };
 }
