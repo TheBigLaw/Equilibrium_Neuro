@@ -577,14 +577,6 @@ const points = LABELS_SUB
 
 const xMax = LABELS_SUB.length;
 
-// monta pontos usando as posições com GAP
-const points = Object.keys(xPos)
-  .map(code => {
-    const v = resultados?.[code]?.ponderado;
-    return (v == null) ? null : { x: xPos[code], y: Number(v) };
-  })
-  .filter(Boolean);
-
     chartSub = new Chart(ctxSub, {
       type:"scatter",
       data:{
@@ -615,31 +607,26 @@ const points = Object.keys(xPos)
         },
         scales:{
           x:{
-            type: "linear",
-              min: 0.5,
-              max: xMax + 0.5,
-              grid:{ display:false },
-                  min: 0.5,
-                  max: xMax + 0.5,
-              grid:{ display:false },
-              ticks:{
-                font:{ size:10 },
-                maxRotation:0,
-                minRotation:0,
-                padding:6,
-                stepSize:1,
-                autoSkip:false,
-                callback:(val)=>{
-                  const code = tickAt[Math.round(val)];
-                  if (!code) return "";
-                  // IN com o sufixo do manual
-                  if (code === "IN") return "IN(R)";
-                 // suplementares entre parênteses (ajuste se você quiser outro padrão)
-                if (["RP","CF","CA","AR"].includes(code)) return `(${code})`;
-                return code;
-                }
-             }
-          },
+  type:"linear",
+  min: 0.5,
+  max: xMax + 0.5,
+  grid:{ display:false },
+  ticks:{
+    font:{ size:10 },
+    maxRotation:0,
+    minRotation:0,
+    padding:6,
+    stepSize:1,
+    autoSkip:false,
+    callback:(val)=>{
+      const code = tickAt[Math.round(val)];
+      if (!code) return "";
+      if (code === "IN") return "IN(R)";
+      if (["RP","CF","CA","AR"].includes(code)) return `(${code})`;
+      return code;
+    }
+  }
+},
 
           y:{
             min:1, max:19,
