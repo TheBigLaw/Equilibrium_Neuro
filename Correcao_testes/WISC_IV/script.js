@@ -548,28 +548,34 @@ function desenharGraficos(resultados, indicesInfo, qiInfo){
   if(ctxSub){
     if(chartSub) chartSub.destroy();
 
-    // ordem do perfil (igual ao manual)
-   // ordem + GAPs (retratro e mais legível)
-const groups = [
-  ["SM","VC","CO"],          // ICV core
-  ["CB","CN","RM"],          // IOP core
-  ["DG","SNL"],              // IMO core
-  ["CD","PS"],               // IVP core
-  ["IN","RP","CF","AR","CA"] // suplementares (no fim)
+   // ordem correta (como você definiu)
+const LABELS_SUB = [
+  "SM","VC","CO","IN","RP",     // CV (5)
+  "CB","CN","RM","CF",          // OP (4)  -> total 9
+  "DG","SNL","AR",              // MO (3)  -> total 12
+  "CD","PS","CA"                // VP (3)  -> total 15
 ];
 
-// cria posições com espaços entre grupos
+// posições fixas 1..15 (sem gaps)
 let x = 1;
-const xPos = {};   // codigo -> x
-const tickAt = []; // x -> codigo (para callback)
-groups.forEach((g, gi) => {
-  g.forEach(code => {
-    xPos[code] = x;
-    tickAt[x] = code;
-    x++;
-  });
-  if (gi < groups.length - 1) x += 1; // <-- GAP entre grupos
+const xPos = {};
+const tickAt = [];
+
+LABELS_SUB.forEach(code => {
+  xPos[code] = x;
+  tickAt[x] = code;
+  x++;
 });
+
+// pontos na ordem
+const points = LABELS_SUB
+  .map(code => {
+    const v = resultados?.[code]?.ponderado;
+    return (v == null) ? null : { x: xPos[code], y: Number(v) };
+  })
+  .filter(Boolean);
+
+const xMax = LABELS_SUB.length;
 
 // monta pontos usando as posições com GAP
 const points = Object.keys(xPos)
@@ -598,12 +604,12 @@ const points = Object.keys(xPos)
           legend:{ display:false },
           wiscScatterDecor:{
             band:{ min:9, max:11 },
-            vlines: [4.5, 8.5, 11.5, 14.5],
+            vlines: [5.5, 9.5, 12.5], // depois do 5º, 9º, 12º
             groupLabels:[
-              { from:1, to:5, text:"Compreensão Verbal" },
-              { from:6, to:9, text:"Organização Perceptual" },
-              { from:10, to:12, text:"Memória Operacional" },
-              { from:13, to:15, text:"Velocidade de Proc." },
+             { from:1,  to:5,  text:"Compreensão Verbal" },
+             { from:6,  to:9,  text:"Organização Perceptual" },
+             { from:10, to:12, text:"Memória Operacional" },
+             { from:13, to:15, text:"Velocidade de Proc." },
             ]
           }
         },
@@ -611,21 +617,28 @@ const points = Object.keys(xPos)
           x:{
             type: "linear",
               min: 0.5,
-              max: x - 0.5,
-                grid:{ display:false },
-                  ticks: {
-                    font: { size: 10 },
-                    maxRotation: 0,
-                     minRotation: 0,
-                      padding: 6,
-                        stepSize: 1,
-                          autoSkip: false,
-                            callback: (val) => {
-                              const code = tickAt[Math.round(val)];
-                                if (!code) return ""; // gaps ficam vazios
-                          return ["CF","CA","IN","AR","RP"].includes(code) ? `(${code})` : code;
-                  }
-              }
+              max: xMax + 0.5,
+              grid:{ display:false },
+                  min: 0.5,
+                  max: xMax + 0.5,
+              grid:{ display:false },
+              ticks:{
+                font:{ size:10 },
+                maxRotation:0,
+                minRotation:0,
+                padding:6,
+                stepSize:1,
+                autoSkip:false,
+                callback:(val)=>{
+                  const code = tickAt[Math.round(val)];
+                  if (!code) return "";
+                  // IN com o sufixo do manual
+                  if (code === "IN") return "IN(R)";
+                 // suplementares entre parênteses (ajuste se você quiser outro padrão)
+                if (["RP","CF","CA","AR"].includes(code)) return `(${code})`;
+                return code;
+                }
+             }
           },
 
           y:{
