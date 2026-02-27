@@ -461,15 +461,15 @@ function montarRelatorio(data) {
 
       <div class="section">
         <div class="info-grid">
-          <div><span class="label">Nome</span><span class="value">${nome}</span></div>
-          <div><span class="label">CPF</span><span class="value">${cpfTxt || "—"}</span></div>
-          <div><span class="label">Sexo</span><span class="value">${sexoTxt || "—"}</span></div>
-          <div><span class="label">Escolaridade</span><span class="value">${escTxt || "—"}</span></div>
-          <div><span class="label">Nascimento</span><span class="value">${nasc}</span></div>
-          <div><span class="label">Aplicação</span><span class="value">${apl}</span></div>
+          <div><span class="k">Nome:</span> <span class="v">${nome}</span></div>
+          <div><span class="k">CPF:</span> <span class="v">${cpfTxt || "—"}</span></div>
+          <div><span class="k">Sexo:</span> <span class="v">${sexoTxt || "—"}</span></div>
+          <div><span class="k">Escolaridade:</span> <span class="v">${escTxt || "—"}</span></div>
+          <div><span class="k">Nascimento:</span> <span class="v">${nasc}</span></div>
+          <div><span class="k">Aplicação:</span> <span class="v">${apl}</span></div>
         </div>
       </div>
-
+      
       <div class="section no-break page-break-after">
         <h3>Perfil dos Pontos Ponderados dos Subtestes</h3>
         <div class="perfil-card">
