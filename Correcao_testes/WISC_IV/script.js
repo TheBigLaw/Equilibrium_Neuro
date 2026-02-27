@@ -255,6 +255,7 @@ async function calcular(salvar){
 
     const idade = calcularIdade(nasc, apl);
     if(!idade){ alert("Datas inválidas."); return; }
+    if(!cpf || !sexo || !escolaridade){alert("Preencha CPF, sexo e escolaridade.");return;}
 
     const faixa = faixaEtaria(normas, idade);
     if(!faixa){ alert("Faixa normativa não encontrada."); return; }
