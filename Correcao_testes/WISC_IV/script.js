@@ -444,6 +444,9 @@ function montarRelatorio(data) {
   registrarPluginsChart();
 
   const { nome, cpf, sexo, escolaridade, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo } = data;
+  const cpfTxt = formatarCPF(cpf);
+  const sexoTxt = sexo;
+  const escTxt = escolaridade;
   const matriz = renderMatrizConversao({ resultados, indicesInfo, qiInfo });
   const perfil = renderPerfilSubtestes(resultados);
 
