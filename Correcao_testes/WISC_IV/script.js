@@ -247,6 +247,9 @@ async function calcular(salvar){
     const nome = (document.getElementById("nome")?.value || "").trim();
     const nasc = document.getElementById("dataNascimento")?.value;
     const apl  = document.getElementById("dataAplicacao")?.value;
+    const cpf = (document.getElementById("cpf")?.value || "").trim();
+    const sexo = document.getElementById("sexo")?.value || "";
+    const escolaridade = document.getElementById("escolaridade")?.value || "";
 
     if(!nome || !nasc || !apl){ alert("Preencha Nome, Nascimento e Aplicação."); return; }
 
