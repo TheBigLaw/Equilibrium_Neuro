@@ -46,5 +46,32 @@
       location.href = "index.html";
     });
   </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // tenta pegar o campo de senha (ajuste os seletores se necessário)
+  const pass =
+    document.querySelector('#password') ||
+    document.querySelector('#senha') ||
+    document.querySelector('input[type="password"]');
+
+  // tenta pegar o botão de login (ajuste se tiver id específico)
+  const btn =
+    document.querySelector('#loginBtn') ||
+    document.querySelector('button[type="submit"]') ||
+    document.querySelector('button') ||
+    document.querySelector('input[type="submit"]');
+
+  if (!pass) return;
+
+  pass.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      if (btn) btn.click(); // dispara exatamente o mesmo fluxo do clique
+    }
+  });
+});
+</script>
+  
 </body>
 </html>
