@@ -293,7 +293,7 @@ async function calcular(salvar){
 
     const qiInfo = somarQI(pondByCode);
 
-    montarRelatorio({ nome, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo });
+    montarRelatorio({ nome, cpf, sexo, escolaridade, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo });
 
     if(salvar){
       const rel = document.getElementById("relatorio");
