@@ -503,48 +503,57 @@ function montarRelatorio(data) {
 
 </div>
 
-      <div class="section">
-        <h3>Subtestes (detalhamento)</h3>
-        <table class="table">
-          <thead><tr><th>Subteste</th><th>PB</th><th>Ponderado</th><th>Classificação</th></tr></thead>
-          <tbody>
-            ${Object.values(resultados).map(r=>`
-              <tr>
-                <td><b>${r.nome}</b> <span class="muted">(${r.codigo})</span></td>
-                <td>${r.bruto}</td>
-                <td>${r.ponderado}</td>
-                <td>${r.classificacao}</td>
-              </tr>
-            `).join("")}
-          </tbody>
-        </table>
-      </div>
+    <div class="duas-colunas">
 
-      <div class="section">
-        <h3>Índices e QIT (somatórios)</h3>
-        <div class="canvas-wrap"><canvas id="grafIdx" height="300"></canvas></div>
+  <!-- SUBTESTES -->
+  <div class="section no-break">
+    <h3>Subtestes (detalhamento)</h3>
+    <table class="table">
+      <thead><tr><th>Subteste</th><th>PB</th><th>Ponderado</th><th>Classificação</th></tr></thead>
+      <tbody>
+        ${Object.values(resultados).map(r=>`
+          <tr>
+            <td><b>${r.nome}</b> <span class="muted">(${r.codigo})</span></td>
+            <td>${r.bruto}</td>
+            <td>${r.ponderado}</td>
+            <td>${r.classificacao}</td>
+          </tr>
+        `).join("")}
+      </tbody>
+    </table>
+  </div>
 
-        <table class="table" style="margin-top:12px;">
-          <thead><tr><th>Medida</th><th>Soma (ponderados)</th><th>Subtestes usados</th></tr></thead>
-          <tbody>
-            ${Object.entries(INDICES).map(([k, def])=>{
-              const info = indicesInfo[k];
-              return `
-                <tr>
-                  <td><b>${k}</b></td>
-                  <td>${info.soma ?? "—"}</td>
-                  <td>${(info.usados||[]).join(", ") || "—"}</td>
-                </tr>
-              `;
-            }).join("")}
+  <!-- INDICES -->
+  <div class="section no-break">
+    <h3>Índices e QIT (somatórios)</h3>
+
+    <div class="canvas-wrap">
+      <canvas id="grafIdx" height="300"></canvas>
+    </div>
+
+    <table class="table" style="margin-top:12px;">
+      <thead><tr><th>Medida</th><th>Soma (ponderados)</th><th>Subtestes usados</th></tr></thead>
+      <tbody>
+        ${Object.entries(INDICES).map(([k, def])=>{
+          const info = indicesInfo[k];
+          return `
             <tr>
-              <td><b>QIT</b></td>
-              <td>${qiInfo.soma ?? "—"}</td>
-              <td>${(qiInfo.usados||[]).join(", ") || "—"}</td>
+              <td><b>${k}</b></td>
+              <td>${info.soma ?? "—"}</td>
+              <td>${(info.usados||[]).join(", ") || "—"}</td>
             </tr>
-          </tbody>
-        </table>
-      </div>
+          `;
+        }).join("")}
+        <tr>
+          <td><b>QIT</b></td>
+          <td>${qiInfo.soma ?? "—"}</td>
+          <td>${(qiInfo.usados||[]).join(", ") || "—"}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
 
       <div class="report-footer">
         <div class="muted">Documento gerado automaticamente</div>
