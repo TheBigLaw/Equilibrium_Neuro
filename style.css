@@ -631,3 +631,36 @@ button{
   font-weight: 700;
   cursor: pointer;
 }
+
+.duas-colunas{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin-top:12px;
+}
+
+.card-relatorio{
+  background:#eef6ff;
+  border:1px solid #cfe3ff;
+  border-radius:12px;
+  padding:12px;
+}
+
+/* evitar overflow de tabela */
+.card-relatorio table{
+  width:100%;
+}
+
+/* mobile */
+@media(max-width:1100px){
+  .duas-colunas{
+    grid-template-columns:1fr;
+  }
+}
+
+/* PDF */
+@media print{
+  .duas-colunas{
+    grid-template-columns:1fr 1fr !important;
+  }
+}
