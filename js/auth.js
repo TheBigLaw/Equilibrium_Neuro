@@ -52,3 +52,9 @@ function guardAuth(){
   location.href = REPO_BASE + "login.html";
   return false;
 }
+document.getElementById("password").addEventListener("keydown", function(e){
+  if(e.key === "Enter"){
+    e.preventDefault();
+    login();   // mesma função usada no botão
+  }
+});
