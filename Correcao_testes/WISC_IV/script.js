@@ -440,7 +440,7 @@ function montarRelatorio(data) {
 
   registrarPluginsChart();
 
-  const { nome, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo } = data;
+  const { nome, cpf, sexo, escolaridade, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo } = data;
   const matriz = renderMatrizConversao({ resultados, indicesInfo, qiInfo });
   const perfil = renderPerfilSubtestes(resultados);
 
