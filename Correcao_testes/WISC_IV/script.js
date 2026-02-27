@@ -484,7 +484,7 @@ function montarRelatorio(data) {
     <div class="perfil-card">
       ${perfil}
       <div class="canvas-wrap perfil-canvas">
-        <canvas id="grafSub" height="400"></canvas>
+        <canvas id="grafSub" height="560"></canvas>
       </div>
     </div>
     <p class="muted" style="margin:10px 0 0;">
