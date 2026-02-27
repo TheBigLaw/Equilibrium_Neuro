@@ -478,7 +478,16 @@ function montarRelatorio(data) {
       
 <div class="duas-colunas">
 
-  <!-- PERFIL (direita no seu exemplo, mas ordem visual é CSS) -->
+  <!-- MATRIZ -->
+  <div class="section no-break">
+    <h3>Conversão PB → Ponderado e contribuição nos Índices</h3>
+    <div class="matrix-card">${matriz}</div>
+    <p class="muted" style="margin:10px 0 0;">
+      Células azuis indicam subtestes usados na soma do índice/QIT. Suplementares podem aparecer entre parênteses.
+    </p>
+  </div>
+
+    <!-- PERFIL (direita no seu exemplo, mas ordem visual é CSS) -->
   <div class="section no-break">
     <h3>Perfil dos Pontos Ponderados dos Subtestes</h3>
     <div class="perfil-card">
@@ -489,15 +498,6 @@ function montarRelatorio(data) {
     </div>
     <p class="muted" style="margin:10px 0 0;">
       A faixa azul indica a região média aproximada (9–11) dos pontos ponderados.
-    </p>
-  </div>
-
-  <!-- MATRIZ -->
-  <div class="section no-break">
-    <h3>Conversão PB → Ponderado e contribuição nos Índices</h3>
-    <div class="matrix-card">${matriz}</div>
-    <p class="muted" style="margin:10px 0 0;">
-      Células azuis indicam subtestes usados na soma do índice/QIT. Suplementares podem aparecer entre parênteses.
     </p>
   </div>
 
