@@ -256,9 +256,12 @@ async function calcular(salvar){
     const idade = calcularIdade(nasc, apl);
     if(!idade){ alert("Datas inválidas."); return; }
     if(!cpf || !sexo || !escolaridade){alert("Preencha CPF, sexo e escolaridade.");return;}
+    if(!validarCPF(cpf)){alert("CPF inválido. Verifique e tente novamente.");return;}
 
     const faixa = faixaEtaria(normas, idade);
     if(!faixa){ alert("Faixa normativa não encontrada."); return; }
+
+
 
     const resultados = {};
     const pondByCode = {};
@@ -819,13 +822,9 @@ temp.remove();
   }
 
   // laudos
-  if(document.getElementById("listaLaudos")){
-    renderListaLaudos();
-  }
-})();
+  if(document.getElementById("listaLaudos")){renderListaLaudos();}})();
 
-async function imprimirRelatorio(){
-  const rel = document.getElementById("relatorio");
+async function imprimirRelatorio(){const rel = document.getElementById("relatorio");
   if(!rel) return;
 
   // garante imagens e gráficos antes de imprimir
