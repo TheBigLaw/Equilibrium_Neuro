@@ -476,25 +476,32 @@ function montarRelatorio(data) {
         </div>
       </div>
       
-      <div class="section no-break page-break-after">
-        <h3>Perfil dos Pontos Ponderados dos Subtestes</h3>
-        <div class="perfil-card">
-          ${perfil}
-          <div class="canvas-wrap perfil-canvas"><canvas id="grafSub" height="400"></canvas></div>
-        </div>
-         <div class="html2pdf__page-break"></div>
-        <p class="muted" style="margin:10px 0 0;">
-          A faixa azul indica a região média aproximada (9–11) dos pontos ponderados.
-        </p>
-      </div>
+<div class="duas-colunas">
 
-      <div class="section">
-        <h3>Conversão PB → Ponderado e contribuição nos Índices</h3>
-        <div class="matrix-card no-break">${matriz}</div>
-        <p class="muted" style="margin:10px 0 0;">
-          Células azuis indicam subtestes usados na soma do índice/QIT. Suplementares podem aparecer entre parênteses.
-        </p>
+  <!-- PERFIL (direita no seu exemplo, mas ordem visual é CSS) -->
+  <div class="section no-break">
+    <h3>Perfil dos Pontos Ponderados dos Subtestes</h3>
+    <div class="perfil-card">
+      ${perfil}
+      <div class="canvas-wrap perfil-canvas">
+        <canvas id="grafSub" height="400"></canvas>
       </div>
+    </div>
+    <p class="muted" style="margin:10px 0 0;">
+      A faixa azul indica a região média aproximada (9–11) dos pontos ponderados.
+    </p>
+  </div>
+
+  <!-- MATRIZ -->
+  <div class="section no-break">
+    <h3>Conversão PB → Ponderado e contribuição nos Índices</h3>
+    <div class="matrix-card">${matriz}</div>
+    <p class="muted" style="margin:10px 0 0;">
+      Células azuis indicam subtestes usados na soma do índice/QIT. Suplementares podem aparecer entre parênteses.
+    </p>
+  </div>
+
+</div>
 
       <div class="section">
         <h3>Subtestes (detalhamento)</h3>
