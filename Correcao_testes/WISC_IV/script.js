@@ -584,12 +584,10 @@ function montarRelatorio(data) {
 
     <tr>
       <td><b>QIT</b></td>
-      <td>${qiInfo.soma ?? "—"}</td>
       <td>${compostos?.QIT?.composto ?? "—"}</td>
       <td>${compostos?.QIT?.percentil ?? "—"}</td>
       <td>${compostos?.QIT?.ic90 ?? "—"}</td>
       <td>${compostos?.QIT?.ic95 ?? "—"}</td>
-      <td>${(qiInfo.usados||[]).join(", ") || "—"}</td>
         </tr>
       </tbody>
     </table>
