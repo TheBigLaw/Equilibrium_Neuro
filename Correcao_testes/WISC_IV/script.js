@@ -12,6 +12,23 @@ async function carregarNormas(){
   return NORMAS;
 }
 
+let COMPOSTOS = null;
+
+async function carregarCompostos(){
+  if (COMPOSTOS) return COMPOSTOS;
+  const resp = await fetch("data/compostos-wisciv.json", { cache:"no-store" });
+  if (!resp.ok) throw new Error("Não foi possível carregar data/compostos-wisciv.json");
+  COMPOSTOS = await resp.json();
+  return COMPOSTOS;
+}
+
+function somaParaComposto(compostos, escala, soma){
+  if (soma == null) return null;
+  const tabela = compostos?.[escala];
+  if (!Array.isArray(tabela)) return null;
+  return tabela.find(x => Number(x.soma) === Number(soma)) || null;
+}
+
 // Subtestes (ordem objetiva)
 const SUBTESTES = [
   { nome: "Cubos", codigo: "CB", id:"pb_CB" },
@@ -295,8 +312,17 @@ async function calcular(salvar){
     };
 
     const qiInfo = somarQI(pondByCode);
+    const compostosData = await carregarCompostos();
 
-    montarRelatorio({ nome, cpf, sexo, escolaridade, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo });
+    const compostos = {
+      ICV: somaParaComposto(compostosData, "ICV", indicesInfo.ICV.soma),
+      IOP: somaParaComposto(compostosData, "IOP", indicesInfo.IOP.soma),
+      IMO: somaParaComposto(compostosData, "IMO", indicesInfo.IMO.soma),
+      IVP: somaParaComposto(compostosData, "IVP", indicesInfo.IVP.soma),
+      QIT: somaParaComposto(compostosData, "QIT", qiInfo.soma),
+    };
+
+    montarRelatorio({ nome, cpf, sexo, escolaridade, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo, compostos });
 
     if(salvar){
       const rel = document.getElementById("relatorio");
@@ -443,7 +469,7 @@ function montarRelatorio(data) {
 
   registrarPluginsChart();
 
-  const { nome, cpf, sexo, escolaridade, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo } = data;
+  const { nome, cpf, sexo, escolaridade, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo, compostos } = data;
   const cpfTxt = formatarCPF(cpf);
   const sexoTxt = sexo;
   const escTxt = escolaridade;
@@ -532,22 +558,42 @@ function montarRelatorio(data) {
     </div>
 
     <table class="table" style="margin-top:12px;">
-      <thead><tr><th>Medida</th><th>Soma (ponderados)</th><th>Subtestes usados</th></tr></thead>
-      <tbody>
-        ${Object.entries(INDICES).map(([k, def])=>{
-          const info = indicesInfo[k];
-          return `
-            <tr>
-              <td><b>${k}</b></td>
-              <td>${info.soma ?? "—"}</td>
-              <td>${(info.usados||[]).join(", ") || "—"}</td>
-            </tr>
-          `;
-        }).join("")}
+  <thead>
+    <tr>
+      <th>Escala</th>
+      <th>Soma (ponderados)</th>
+      <th>Ponto Composto</th>
+      <th>Rank Percentil</th>
+      <th>IC 90%</th>
+      <th>IC 95%</th>
+      <th>Subtestes usados</th>
+    </tr>
+  </thead>
+  <tbody>
+    ${["ICV","IOP","IMO","IVP"].map(k=>{
+      const info = indicesInfo[k];
+      const comp = compostos?.[k];
+      return `
         <tr>
-          <td><b>QIT</b></td>
-          <td>${qiInfo.soma ?? "—"}</td>
-          <td>${(qiInfo.usados||[]).join(", ") || "—"}</td>
+          <td><b>${k}</b></td>
+          <td>${info.soma ?? "—"}</td>
+          <td>${comp?.composto ?? "—"}</td>
+          <td>${comp?.percentil ?? "—"}</td>
+          <td>${comp?.ic90 ?? "—"}</td>
+          <td>${comp?.ic95 ?? "—"}</td>
+          <td>${(info.usados||[]).join(", ") || "—"}</td>
+        </tr>
+      `;
+    }).join("")}
+
+    <tr>
+      <td><b>QIT</b></td>
+      <td>${qiInfo.soma ?? "—"}</td>
+      <td>${compostos?.QIT?.composto ?? "—"}</td>
+      <td>${compostos?.QIT?.percentil ?? "—"}</td>
+      <td>${compostos?.QIT?.ic90 ?? "—"}</td>
+      <td>${compostos?.QIT?.ic95 ?? "—"}</td>
+      <td>${(qiInfo.usados||[]).join(", ") || "—"}</td>
         </tr>
       </tbody>
     </table>
