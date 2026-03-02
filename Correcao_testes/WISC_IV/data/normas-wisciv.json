@@ -1370,11 +1370,6 @@
           "min": 38,
           "max": 41,
           "ponderado": 18
-        },
-        {
-          "min": 42,
-          "max": 68,
-          "ponderado": 19
         }
       ],
       "SM": [
@@ -1442,11 +1437,6 @@
           "min": 26,
           "max": 28,
           "ponderado": 18
-        },
-        {
-          "min": 29,
-          "max": 44,
-          "ponderado": 19
         }
       ],
       "DG": [
@@ -1539,11 +1529,6 @@
           "min": 19,
           "max": 19,
           "ponderado": 18
-        },
-        {
-          "min": 20,
-          "max": 32,
-          "ponderado": 19
         }
       ],
       "CN": [
@@ -1631,11 +1616,6 @@
           "min": 24,
           "max": 24,
           "ponderado": 18
-        },
-        {
-          "min": 25,
-          "max": 28,
-          "ponderado": 19
         }
       ],
       "CD": [
@@ -1820,11 +1800,6 @@
           "min": 36,
           "max": 38,
           "ponderado": 18
-        },
-        {
-          "min": 39,
-          "max": 68,
-          "ponderado": 19
         }
       ],
       "SNL": [
@@ -1902,11 +1877,6 @@
           "min": 19,
           "max": 19,
           "ponderado": 18
-        },
-        {
-          "min": 20,
-          "max": 30,
-          "ponderado": 19
         }
       ],
       "RM": [
@@ -1994,11 +1964,6 @@
           "min": 25,
           "max": 26,
           "ponderado": 18
-        },
-        {
-          "min": 27,
-          "max": 35,
-          "ponderado": 19
         }
       ],
       "CO": [
@@ -2086,11 +2051,6 @@
           "min": 24,
           "max": 25,
           "ponderado": 18
-        },
-        {
-          "min": 26,
-          "max": 42,
-          "ponderado": 19
         }
       ],
       "PS": [
@@ -2178,11 +2138,6 @@
           "min": 34,
           "max": 36,
           "ponderado": 18
-        },
-        {
-          "min": 37,
-          "max": 45,
-          "ponderado": 19
         }
       ],
       "CF": [
@@ -2275,11 +2230,6 @@
           "min": 30,
           "max": 31,
           "ponderado": 18
-        },
-        {
-          "min": 32,
-          "max": 38,
-          "ponderado": 19
         }
       ],
       "CA": [
@@ -2372,11 +2322,6 @@
           "min": 90,
           "max": 96,
           "ponderado": 18
-        },
-        {
-          "min": 97,
-          "max": 136,
-          "ponderado": 19
         }
       ],
       "IN": [
@@ -2449,11 +2394,6 @@
           "min": 15,
           "max": 15,
           "ponderado": 18
-        },
-        {
-          "min": 16,
-          "max": 33,
-          "ponderado": 19
         }
       ],
       "AR": [
@@ -2541,11 +2481,6 @@
           "min": 20,
           "max": 21,
           "ponderado": 18
-        },
-        {
-          "min": 22,
-          "max": 34,
-          "ponderado": 19
         }
       ],
       "RP": [
@@ -2623,11 +2558,6 @@
           "min": 14,
           "max": 14,
           "ponderado": 18
-        },
-        {
-          "min": 15,
-          "max": 24,
-          "ponderado": 19
         }
       ]
     }
@@ -4533,18 +4463,8 @@
       "SNL": [
         {
           "min": 0,
-          "max": 1,
-          "ponderado": 1
-        },
-        {
-          "min": 0,
           "max": 0,
           "ponderado": 2
-        },
-        {
-          "min": 3,
-          "max": 3,
-          "ponderado": 3
         },
         {
           "min": 1,
@@ -4630,7 +4550,7 @@
       "RM": [
         {
           "min": 0,
-          "max": 0,
+          "max": 1,
           "ponderado": 1
         },
         {
@@ -4639,8 +4559,8 @@
           "ponderado": 2
         },
         {
-          "min": 1,
-          "max": 2,
+          "min": 3,
+          "max": 3,
           "ponderado": 3
         },
         {
@@ -4729,6 +4649,11 @@
           "min": 0,
           "max": 0,
           "ponderado": 1
+        },
+        {
+          "min": 1,
+          "max": 2,
+          "ponderado": 3
         },
         {
           "min": 3,
@@ -4828,7 +4753,7 @@
           "ponderado": 3
         },
         {
-          "min": 3,
+          "min": 4,
           "max": 4,
           "ponderado": 4
         },
@@ -4925,83 +4850,83 @@
           "ponderado": 3
         },
         {
-          "min": 4,
+          "min": 3,
           "max": 4,
           "ponderado": 4
         },
         {
           "min": 5,
-          "max": 5,
+          "max": 6,
           "ponderado": 5
         },
         {
-          "min": 6,
-          "max": 6,
+          "min": 7,
+          "max": 8,
           "ponderado": 6
         },
         {
-          "min": 7,
-          "max": 7,
+          "min": 9,
+          "max": 10,
           "ponderado": 7
         },
         {
-          "min": 8,
-          "max": 8,
+          "min": 11,
+          "max": 12,
           "ponderado": 8
         },
         {
-          "min": 9,
-          "max": 9,
+          "min": 13,
+          "max": 14,
           "ponderado": 9
         },
         {
-          "min": 10,
-          "max": 10,
+          "min": 15,
+          "max": 16,
           "ponderado": 10
         },
         {
-          "min": 11,
-          "max": 11,
+          "min": 17,
+          "max": 18,
           "ponderado": 11
         },
         {
-          "min": 12,
-          "max": 12,
+          "min": 19,
+          "max": 20,
           "ponderado": 12
         },
         {
-          "min": 13,
-          "max": 13,
+          "min": 21,
+          "max": 22,
           "ponderado": 13
         },
         {
-          "min": 14,
-          "max": 14,
+          "min": 23,
+          "max": 24,
           "ponderado": 14
         },
         {
-          "min": 15,
-          "max": 15,
+          "min": 25,
+          "max": 26,
           "ponderado": 15
         },
         {
-          "min": 16,
-          "max": 16,
+          "min": 27,
+          "max": 28,
           "ponderado": 16
         },
         {
-          "min": 17,
-          "max": 17,
+          "min": 29,
+          "max": 30,
           "ponderado": 17
         },
         {
-          "min": 18,
-          "max": 18,
+          "min": 31,
+          "max": 32,
           "ponderado": 18
         },
         {
-          "min": 19,
-          "max": 19,
+          "min": 33,
+          "max": 38,
           "ponderado": 19
         }
       ],
@@ -8347,6 +8272,98 @@
       "DG": [
         {
           "min": 0,
+          "max": 4,
+          "ponderado": 1
+        },
+        {
+          "min": 5,
+          "max": 5,
+          "ponderado": 2
+        },
+        {
+          "min": 6,
+          "max": 6,
+          "ponderado": 4
+        },
+        {
+          "min": 7,
+          "max": 7,
+          "ponderado": 5
+        },
+        {
+          "min": 8,
+          "max": 8,
+          "ponderado": 6
+        },
+        {
+          "min": 9,
+          "max": 9,
+          "ponderado": 7
+        },
+        {
+          "min": 10,
+          "max": 10,
+          "ponderado": 8
+        },
+        {
+          "min": 11,
+          "max": 11,
+          "ponderado": 9
+        },
+        {
+          "min": 12,
+          "max": 12,
+          "ponderado": 10
+        },
+        {
+          "min": 13,
+          "max": 13,
+          "ponderado": 11
+        },
+        {
+          "min": 14,
+          "max": 15,
+          "ponderado": 12
+        },
+        {
+          "min": 16,
+          "max": 16,
+          "ponderado": 13
+        },
+        {
+          "min": 17,
+          "max": 17,
+          "ponderado": 14
+        },
+        {
+          "min": 18,
+          "max": 18,
+          "ponderado": 15
+        },
+        {
+          "min": 19,
+          "max": 20,
+          "ponderado": 16
+        },
+        {
+          "min": 21,
+          "max": 21,
+          "ponderado": 17
+        },
+        {
+          "min": 22,
+          "max": 22,
+          "ponderado": 18
+        },
+        {
+          "min": 23,
+          "max": 32,
+          "ponderado": 19
+        }
+      ],
+      "CN": [
+        {
+          "min": 0,
           "max": 1,
           "ponderado": 1
         },
@@ -8437,103 +8454,6 @@
         },
         {
           "min": 26,
-          "max": 32,
-          "ponderado": 19
-        }
-      ],
-      "CN": [
-        {
-          "min": 0,
-          "max": 4,
-          "ponderado": 1
-        },
-        {
-          "min": 5,
-          "max": 5,
-          "ponderado": 2
-        },
-        {
-          "min": 6,
-          "max": 6,
-          "ponderado": 3
-        },
-        {
-          "min": 7,
-          "max": 7,
-          "ponderado": 4
-        },
-        {
-          "min": 8,
-          "max": 8,
-          "ponderado": 5
-        },
-        {
-          "min": 9,
-          "max": 9,
-          "ponderado": 6
-        },
-        {
-          "min": 10,
-          "max": 10,
-          "ponderado": 7
-        },
-        {
-          "min": 11,
-          "max": 11,
-          "ponderado": 8
-        },
-        {
-          "min": 12,
-          "max": 12,
-          "ponderado": 9
-        },
-        {
-          "min": 13,
-          "max": 13,
-          "ponderado": 10
-        },
-        {
-          "min": 14,
-          "max": 14,
-          "ponderado": 11
-        },
-        {
-          "min": 15,
-          "max": 15,
-          "ponderado": 12
-        },
-        {
-          "min": 16,
-          "max": 16,
-          "ponderado": 13
-        },
-        {
-          "min": 17,
-          "max": 17,
-          "ponderado": 14
-        },
-        {
-          "min": 18,
-          "max": 18,
-          "ponderado": 15
-        },
-        {
-          "min": 19,
-          "max": 20,
-          "ponderado": 16
-        },
-        {
-          "min": 21,
-          "max": 21,
-          "ponderado": 17
-        },
-        {
-          "min": 22,
-          "max": 22,
-          "ponderado": 18
-        },
-        {
-          "min": 23,
           "max": 28,
           "ponderado": 19
         }
@@ -15910,11 +15830,11 @@
         },
         {
           "min": 10,
-          "max": 10,
+          "max": 11,
           "ponderado": 7
         },
         {
-          "min": 11,
+          "min": 12,
           "max": 12,
           "ponderado": 8
         },
@@ -15965,11 +15885,6 @@
         },
         {
           "min": 24,
-          "max": 24,
-          "ponderado": 18
-        },
-        {
-          "min": 25,
           "max": 30,
           "ponderado": 19
         }
@@ -16848,9 +16763,9 @@
       ],
       "SM": [
         {
-          "min": 1,
-          "max": 1,
-          "ponderado": 3
+          "min": 0,
+          "max": 0,
+          "ponderado": 1
         },
         {
           "min": 2,
@@ -16986,7 +16901,7 @@
         },
         {
           "min": 16,
-          "max": 16,
+          "max": 17,
           "ponderado": 12
         },
         {
@@ -17421,7 +17336,7 @@
         },
         {
           "min": 4,
-          "max": 4,
+          "max": 5,
           "ponderado": 2
         },
         {
@@ -17446,52 +17361,52 @@
         },
         {
           "min": 12,
-          "max": 12,
-          "ponderado": 7
-        },
-        {
-          "min": 13,
           "max": 13,
-          "ponderado": 8
+          "ponderado": 7
         },
         {
           "min": 14,
           "max": 14,
-          "ponderado": 9
+          "ponderado": 8
         },
         {
           "min": 15,
           "max": 16,
-          "ponderado": 10
+          "ponderado": 9
         },
         {
           "min": 17,
           "max": 17,
-          "ponderado": 11
+          "ponderado": 10
         },
         {
           "min": 18,
           "max": 19,
-          "ponderado": 12
+          "ponderado": 11
         },
         {
           "min": 20,
           "max": 21,
-          "ponderado": 13
+          "ponderado": 12
         },
         {
           "min": 22,
           "max": 22,
-          "ponderado": 14
+          "ponderado": 13
         },
         {
           "min": 23,
           "max": 24,
-          "ponderado": 15
+          "ponderado": 14
         },
         {
           "min": 25,
           "max": 26,
+          "ponderado": 15
+        },
+        {
+          "min": 27,
+          "max": 27,
           "ponderado": 16
         },
         {
@@ -17587,19 +17502,24 @@
           "ponderado": 15
         },
         {
+          "min": 29,
+          "max": 29,
+          "ponderado": 16
+        },
+        {
           "min": 30,
           "max": 31,
-          "ponderado": 16
+          "ponderado": 17
         },
         {
           "min": 32,
           "max": 33,
-          "ponderado": 17
+          "ponderado": 18
         },
         {
           "min": 34,
           "max": 42,
-          "ponderado": 18
+          "ponderado": 19
         }
       ],
       "PS": [
@@ -18013,26 +17933,26 @@
         },
         {
           "min": 15,
-          "max": 15,
+          "max": 16,
           "ponderado": 6
         },
         {
-          "min": 16,
-          "max": 16,
+          "min": 17,
+          "max": 17,
           "ponderado": 7
         },
         {
-          "min": 17,
+          "min": 18,
           "max": 18,
           "ponderado": 8
         },
         {
           "min": 19,
-          "max": 19,
+          "max": 20,
           "ponderado": 9
         },
         {
-          "min": 20,
+          "min": 21,
           "max": 21,
           "ponderado": 10
         },
@@ -18043,36 +17963,36 @@
         },
         {
           "min": 23,
-          "max": 23,
-          "ponderado": 12
-        },
-        {
-          "min": 24,
           "max": 24,
-          "ponderado": 13
+          "ponderado": 12
         },
         {
           "min": 25,
           "max": 25,
-          "ponderado": 14
+          "ponderado": 13
         },
         {
           "min": 26,
           "max": 26,
-          "ponderado": 15
+          "ponderado": 14
         },
         {
           "min": 27,
           "max": 27,
-          "ponderado": 16
+          "ponderado": 15
         },
         {
           "min": 28,
           "max": 28,
-          "ponderado": 17
+          "ponderado": 16
         },
         {
           "min": 29,
+          "max": 29,
+          "ponderado": 17
+        },
+        {
+          "min": 30,
           "max": 30,
           "ponderado": 18
         },
@@ -18381,7 +18301,7 @@
         {
           "min": 9,
           "max": 9,
-          "ponderado": 4
+          "ponderado": 5
         },
         {
           "min": 10,
@@ -18410,46 +18330,46 @@
         },
         {
           "min": 15,
-          "max": 15,
-          "ponderado": 11
-        },
-        {
-          "min": 16,
           "max": 16,
-          "ponderado": 12
+          "ponderado": 11
         },
         {
           "min": 17,
           "max": 17,
-          "ponderado": 13
+          "ponderado": 12
         },
         {
           "min": 18,
           "max": 18,
-          "ponderado": 14
+          "ponderado": 13
         },
         {
           "min": 19,
           "max": 20,
-          "ponderado": 15
+          "ponderado": 14
         },
         {
           "min": 21,
           "max": 21,
-          "ponderado": 16
+          "ponderado": 15
         },
         {
           "min": 22,
-          "max": 23,
+          "max": 22,
+          "ponderado": 16
+        },
+        {
+          "min": 23,
+          "max": 24,
           "ponderado": 17
         },
         {
-          "min": 24,
-          "max": 24,
+          "min": 25,
+          "max": 26,
           "ponderado": 18
         },
         {
-          "min": 25,
+          "min": 27,
           "max": 32,
           "ponderado": 19
         }
@@ -18788,56 +18708,51 @@
         },
         {
           "min": 14,
-          "max": 14,
-          "ponderado": 9
-        },
-        {
-          "min": 15,
           "max": 15,
-          "ponderado": 10
+          "ponderado": 9
         },
         {
           "min": 16,
           "max": 16,
-          "ponderado": 11
+          "ponderado": 10
         },
         {
           "min": 17,
           "max": 17,
-          "ponderado": 12
+          "ponderado": 11
         },
         {
           "min": 18,
-          "max": 18,
-          "ponderado": 13
-        },
-        {
-          "min": 19,
           "max": 19,
-          "ponderado": 14
+          "ponderado": 12
         },
         {
           "min": 20,
           "max": 20,
-          "ponderado": 15
+          "ponderado": 13
         },
         {
           "min": 21,
           "max": 21,
-          "ponderado": 16
+          "ponderado": 14
         },
         {
           "min": 22,
           "max": 22,
-          "ponderado": 17
+          "ponderado": 15
         },
         {
           "min": 23,
           "max": 23,
-          "ponderado": 18
+          "ponderado": 16
         },
         {
           "min": 24,
+          "max": 24,
+          "ponderado": 18
+        },
+        {
+          "min": 25,
           "max": 30,
           "ponderado": 19
         }
@@ -18855,86 +18770,86 @@
         },
         {
           "min": 6,
-          "max": 6,
+          "max": 7,
           "ponderado": 3
         },
         {
-          "min": 7,
-          "max": 7,
+          "min": 8,
+          "max": 8,
           "ponderado": 4
         },
         {
-          "min": 8,
-          "max": 9,
+          "min": 9,
+          "max": 10,
           "ponderado": 5
         },
         {
-          "min": 10,
-          "max": 10,
+          "min": 11,
+          "max": 11,
           "ponderado": 6
         },
         {
-          "min": 11,
-          "max": 12,
-          "ponderado": 7
-        },
-        {
-          "min": 13,
+          "min": 12,
           "max": 13,
-          "ponderado": 8
+          "ponderado": 7
         },
         {
           "min": 14,
           "max": 15,
-          "ponderado": 9
+          "ponderado": 8
         },
         {
           "min": 16,
           "max": 16,
-          "ponderado": 10
+          "ponderado": 9
         },
         {
           "min": 17,
-          "max": 17,
-          "ponderado": 11
+          "max": 18,
+          "ponderado": 10
         },
         {
-          "min": 18,
-          "max": 19,
-          "ponderado": 12
-        },
-        {
-          "min": 20,
+          "min": 19,
           "max": 20,
-          "ponderado": 13
+          "ponderado": 11
         },
         {
           "min": 21,
           "max": 21,
-          "ponderado": 14
+          "ponderado": 12
         },
         {
           "min": 22,
           "max": 23,
-          "ponderado": 15
+          "ponderado": 13
         },
         {
           "min": 24,
           "max": 25,
-          "ponderado": 16
+          "ponderado": 14
         },
         {
           "min": 26,
           "max": 26,
-          "ponderado": 17
+          "ponderado": 15
         },
         {
           "min": 27,
           "max": 28,
-          "ponderado": 18
+          "ponderado": 16
         },
         {
           "min": 29,
+          "max": 30,
+          "ponderado": 17
+        },
+        {
+          "min": 31,
+          "max": 31,
+          "ponderado": 18
+        },
+        {
+          "min": 32,
           "max": 35,
           "ponderado": 19
         }
@@ -19492,11 +19407,11 @@
         },
         {
           "min": 26,
-          "max": 26,
+          "max": 27,
           "ponderado": 14
         },
         {
-          "min": 27,
+          "min": 28,
           "max": 28,
           "ponderado": 15
         },
@@ -19585,12 +19500,12 @@
         {
           "min": 15,
           "max": 15,
-          "ponderado": 14
+          "ponderado": 13
         },
         {
           "min": 16,
           "max": 16,
-          "ponderado": 15
+          "ponderado": 14
         },
         {
           "min": 17,
@@ -19604,6 +19519,11 @@
         },
         {
           "min": 19,
+          "max": 19,
+          "ponderado": 18
+        },
+        {
+          "min": 20,
           "max": 24,
           "ponderado": 19
         }
@@ -21024,12 +20944,12 @@
         {
           "min": 16,
           "max": 16,
-          "ponderado": 15
+          "ponderado": 14
         },
         {
           "min": 17,
           "max": 17,
-          "ponderado": 16
+          "ponderado": 15
         },
         {
           "min": 18,
@@ -23907,7 +23827,7 @@
         {
           "min": 18,
           "max": 18,
-          "ponderado": 15
+          "ponderado": 16
         },
         {
           "min": 19,
@@ -24631,66 +24551,66 @@
         },
         {
           "min": 14,
-          "max": 14,
-          "ponderado": 7
-        },
-        {
-          "min": 15,
           "max": 15,
-          "ponderado": 8
+          "ponderado": 7
         },
         {
           "min": 16,
           "max": 17,
-          "ponderado": 9
+          "ponderado": 8
         },
         {
           "min": 18,
           "max": 18,
-          "ponderado": 10
+          "ponderado": 9
         },
         {
           "min": 19,
           "max": 20,
-          "ponderado": 11
+          "ponderado": 10
         },
         {
           "min": 21,
           "max": 22,
-          "ponderado": 12
+          "ponderado": 11
         },
         {
           "min": 23,
           "max": 23,
-          "ponderado": 13
+          "ponderado": 12
         },
         {
           "min": 24,
           "max": 25,
-          "ponderado": 14
+          "ponderado": 13
         },
         {
           "min": 26,
           "max": 27,
-          "ponderado": 15
+          "ponderado": 14
         },
         {
           "min": 28,
           "max": 28,
-          "ponderado": 16
+          "ponderado": 15
         },
         {
           "min": 29,
           "max": 30,
-          "ponderado": 17
+          "ponderado": 16
         },
         {
           "min": 31,
           "max": 31,
-          "ponderado": 18
+          "ponderado": 17
         },
         {
           "min": 32,
+          "max": 33,
+          "ponderado": 18
+        },
+        {
+          "min": 34,
           "max": 35,
           "ponderado": 19
         }
@@ -28147,12 +28067,12 @@
         {
           "min": 32,
           "max": 32,
-          "ponderado": 17
+          "ponderado": 18
         },
         {
           "min": 33,
           "max": 34,
-          "ponderado": 18
+          "ponderado": 19
         }
       ],
       "RP": [
@@ -28178,7 +28098,7 @@
         },
         {
           "min": 8,
-          "max": 8,
+          "max": 9,
           "ponderado": 5
         },
         {
@@ -28214,7 +28134,7 @@
         {
           "min": 16,
           "max": 16,
-          "ponderado": 13
+          "ponderado": 12
         },
         {
           "min": 17,
@@ -28478,11 +28398,11 @@
         },
         {
           "min": 15,
-          "max": 15,
+          "max": 16,
           "ponderado": 10
         },
         {
-          "min": 16,
+          "min": 17,
           "max": 17,
           "ponderado": 11
         },
@@ -29643,17 +29563,17 @@
         {
           "min": 16,
           "max": 16,
-          "ponderado": 13
+          "ponderado": 12
         },
         {
           "min": 17,
           "max": 17,
-          "ponderado": 14
+          "ponderado": 13
         },
         {
           "min": 18,
           "max": 18,
-          "ponderado": 15
+          "ponderado": 14
         },
         {
           "min": 19,
@@ -30372,76 +30292,76 @@
         },
         {
           "min": 12,
-          "max": 12,
+          "max": 13,
           "ponderado": 5
         },
         {
-          "min": 13,
-          "max": 14,
-          "ponderado": 6
-        },
-        {
-          "min": 15,
+          "min": 14,
           "max": 15,
-          "ponderado": 7
+          "ponderado": 6
         },
         {
           "min": 16,
           "max": 16,
-          "ponderado": 8
+          "ponderado": 7
         },
         {
           "min": 17,
           "max": 18,
-          "ponderado": 9
+          "ponderado": 8
         },
         {
           "min": 19,
           "max": 20,
-          "ponderado": 10
+          "ponderado": 9
         },
         {
           "min": 21,
-          "max": 21,
-          "ponderado": 11
+          "max": 22,
+          "ponderado": 10
         },
         {
-          "min": 22,
+          "min": 23,
           "max": 23,
-          "ponderado": 12
+          "ponderado": 11
         },
         {
           "min": 24,
           "max": 25,
-          "ponderado": 13
+          "ponderado": 12
         },
         {
           "min": 26,
           "max": 27,
-          "ponderado": 14
+          "ponderado": 13
         },
         {
           "min": 28,
           "max": 28,
-          "ponderado": 15
+          "ponderado": 14
         },
         {
           "min": 29,
           "max": 30,
-          "ponderado": 16
+          "ponderado": 15
         },
         {
           "min": 31,
           "max": 32,
-          "ponderado": 17
+          "ponderado": 16
         },
         {
           "min": 33,
           "max": 33,
-          "ponderado": 18
+          "ponderado": 17
         },
         {
           "min": 34,
+          "max": 34,
+          "ponderado": 18
+        },
+        {
+          "min": 35,
           "max": 35,
           "ponderado": 19
         }
@@ -31342,22 +31262,22 @@
         {
           "min": 13,
           "max": 13,
-          "ponderado": 7
+          "ponderado": 8
         },
         {
           "min": 14,
           "max": 14,
-          "ponderado": 8
-        },
-        {
-          "min": 15,
-          "max": 15,
           "ponderado": 9
         },
         {
-          "min": 16,
-          "max": 17,
+          "min": 15,
+          "max": 16,
           "ponderado": 10
+        },
+        {
+          "min": 17,
+          "max": 17,
+          "ponderado": 11
         },
         {
           "min": 18,
@@ -31381,21 +31301,21 @@
         },
         {
           "min": 24,
-          "max": 24,
+          "max": 25,
           "ponderado": 16
         },
         {
-          "min": 25,
-          "max": 26,
+          "min": 26,
+          "max": 27,
           "ponderado": 17
         },
         {
-          "min": 27,
-          "max": 28,
+          "min": 28,
+          "max": 29,
           "ponderado": 18
         },
         {
-          "min": 29,
+          "min": 30,
           "max": 32,
           "ponderado": 19
         }
@@ -31811,11 +31731,11 @@
         },
         {
           "min": 16,
-          "max": 16,
+          "max": 17,
           "ponderado": 7
         },
         {
-          "min": 17,
+          "min": 18,
           "max": 18,
           "ponderado": 8
         },
@@ -31826,41 +31746,41 @@
         },
         {
           "min": 21,
-          "max": 21,
+          "max": 22,
           "ponderado": 10
         },
         {
-          "min": 22,
-          "max": 23,
-          "ponderado": 11
-        },
-        {
-          "min": 24,
+          "min": 23,
           "max": 24,
-          "ponderado": 12
+          "ponderado": 11
         },
         {
           "min": 25,
           "max": 25,
-          "ponderado": 13
+          "ponderado": 12
         },
         {
           "min": 26,
           "max": 27,
-          "ponderado": 14
+          "ponderado": 13
         },
         {
           "min": 28,
           "max": 29,
-          "ponderado": 15
+          "ponderado": 14
         },
         {
           "min": 30,
           "max": 30,
-          "ponderado": 16
+          "ponderado": 15
         },
         {
           "min": 31,
+          "max": 32,
+          "ponderado": 16
+        },
+        {
+          "min": 33,
           "max": 33,
           "ponderado": 17
         },
@@ -31908,16 +31828,16 @@
         },
         {
           "min": 18,
-          "max": 18,
+          "max": 19,
           "ponderado": 7
         },
         {
-          "min": 19,
-          "max": 20,
+          "min": 20,
+          "max": 21,
           "ponderado": 8
         },
         {
-          "min": 21,
+          "min": 22,
           "max": 22,
           "ponderado": 9
         },
@@ -31953,17 +31873,17 @@
         },
         {
           "min": 35,
-          "max": 36,
+          "max": 35,
           "ponderado": 16
         },
         {
-          "min": 37,
-          "max": 38,
+          "min": 36,
+          "max": 37,
           "ponderado": 17
         },
         {
-          "min": 39,
-          "max": 40,
+          "min": 38,
+          "max": 39,
           "ponderado": 18
         },
         {
@@ -32204,11 +32124,11 @@
         },
         {
           "min": 71,
-          "max": 77,
+          "max": 76,
           "ponderado": 8
         },
         {
-          "min": 78,
+          "min": 77,
           "max": 83,
           "ponderado": 9
         },
@@ -32331,11 +32251,11 @@
         },
         {
           "min": 23,
-          "max": 23,
+          "max": 24,
           "ponderado": 14
         },
         {
-          "min": 24,
+          "min": 25,
           "max": 25,
           "ponderado": 15
         },
@@ -32531,7 +32451,7 @@
         {
           "min": 20,
           "max": 20,
-          "ponderado": 17
+          "ponderado": 16
         },
         {
           "min": 21,
@@ -33148,11 +33068,11 @@
         },
         {
           "min": 14,
-          "max": 15,
+          "max": 14,
           "ponderado": 7
         },
         {
-          "min": 16,
+          "min": 15,
           "max": 16,
           "ponderado": 8
         },
@@ -33163,21 +33083,21 @@
         },
         {
           "min": 18,
-          "max": 18,
-          "ponderado": 10
-        },
-        {
-          "min": 19,
           "max": 19,
-          "ponderado": 11
+          "ponderado": 10
         },
         {
           "min": 20,
           "max": 20,
-          "ponderado": 13
+          "ponderado": 11
         },
         {
           "min": 21,
+          "max": 21,
+          "ponderado": 13
+        },
+        {
+          "min": 22,
           "max": 22,
           "ponderado": 14
         },
@@ -33230,61 +33150,61 @@
         },
         {
           "min": 14,
-          "max": 14,
+          "max": 15,
           "ponderado": 6
         },
         {
-          "min": 15,
-          "max": 15,
+          "min": 16,
+          "max": 17,
           "ponderado": 7
         },
         {
-          "min": 16,
-          "max": 16,
+          "min": 18,
+          "max": 19,
           "ponderado": 8
         },
         {
-          "min": 17,
-          "max": 18,
-          "ponderado": 9
-        },
-        {
-          "min": 19,
+          "min": 20,
           "max": 21,
-          "ponderado": 10
+          "ponderado": 9
         },
         {
           "min": 22,
           "max": 22,
-          "ponderado": 11
+          "ponderado": 10
         },
         {
           "min": 23,
           "max": 24,
-          "ponderado": 12
+          "ponderado": 11
         },
         {
           "min": 25,
           "max": 26,
-          "ponderado": 13
+          "ponderado": 12
         },
         {
           "min": 27,
           "max": 27,
-          "ponderado": 14
+          "ponderado": 13
         },
         {
           "min": 28,
           "max": 29,
-          "ponderado": 15
+          "ponderado": 14
         },
         {
           "min": 30,
           "max": 31,
+          "ponderado": 15
+        },
+        {
+          "min": 31,
+          "max": 31,
           "ponderado": 16
         },
         {
-          "min": 32,
+          "min": 33,
           "max": 33,
           "ponderado": 17
         },
@@ -33484,11 +33404,11 @@
         },
         {
           "min": 41,
-          "max": 42,
+          "max": 43,
           "ponderado": 18
         },
         {
-          "min": 43,
+          "min": 44,
           "max": 60,
           "ponderado": 19
         }
@@ -33802,61 +33722,61 @@
         },
         {
           "min": 15,
-          "max": 15,
-          "ponderado": 4
-        },
-        {
-          "min": 16,
           "max": 16,
-          "ponderado": 5
+          "ponderado": 4
         },
         {
           "min": 17,
           "max": 18,
-          "ponderado": 6
+          "ponderado": 5
         },
         {
           "min": 19,
           "max": 19,
-          "ponderado": 7
+          "ponderado": 6
         },
         {
           "min": 20,
           "max": 21,
-          "ponderado": 8
+          "ponderado": 7
         },
         {
           "min": 22,
           "max": 22,
-          "ponderado": 9
+          "ponderado": 8
         },
         {
           "min": 23,
           "max": 23,
-          "ponderado": 10
+          "ponderado": 9
         },
         {
           "min": 24,
           "max": 25,
-          "ponderado": 11
+          "ponderado": 10
         },
         {
           "min": 26,
           "max": 26,
-          "ponderado": 12
+          "ponderado": 11
         },
         {
           "min": 27,
           "max": 27,
-          "ponderado": 13
+          "ponderado": 12
         },
         {
           "min": 28,
           "max": 28,
-          "ponderado": 14
+          "ponderado": 13
         },
         {
           "min": 29,
+          "max": 29,
+          "ponderado": 14
+        },
+        {
+          "min": 30,
           "max": 30,
           "ponderado": 15
         },
@@ -33914,38 +33834,33 @@
         },
         {
           "min": 11,
-          "max": 11,
-          "ponderado": 7
-        },
-        {
-          "min": 12,
           "max": 12,
-          "ponderado": 8
+          "ponderado": 7
         },
         {
           "min": 13,
           "max": 13,
-          "ponderado": 9
+          "ponderado": 8
         },
         {
           "min": 14,
           "max": 14,
-          "ponderado": 10
+          "ponderado": 9
         },
         {
           "min": 15,
           "max": 15,
-          "ponderado": 11
+          "ponderado": 10
         },
         {
           "min": 16,
           "max": 16,
-          "ponderado": 12
+          "ponderado": 11
         },
         {
           "min": 17,
           "max": 17,
-          "ponderado": 13
+          "ponderado": 12
         },
         {
           "min": 18,
@@ -33960,6 +33875,11 @@
         {
           "min": 20,
           "max": 20,
+          "ponderado": 16
+        },
+        {
+          "min": 21,
+          "max": 21,
           "ponderado": 17
         },
         {
@@ -34286,11 +34206,11 @@
         },
         {
           "min": 12,
-          "max": 13,
+          "max": 12,
           "ponderado": 6
         },
         {
-          "min": 14,
+          "min": 13,
           "max": 14,
           "ponderado": 7
         },
@@ -34321,36 +34241,36 @@
         },
         {
           "min": 21,
-          "max": 21,
-          "ponderado": 13
-        },
-        {
-          "min": 22,
           "max": 22,
-          "ponderado": 14
+          "ponderado": 13
         },
         {
           "min": 23,
           "max": 23,
-          "ponderado": 15
+          "ponderado": 14
         },
         {
           "min": 24,
           "max": 24,
-          "ponderado": 16
+          "ponderado": 15
         },
         {
           "min": 25,
           "max": 25,
-          "ponderado": 17
+          "ponderado": 16
         },
         {
           "min": 26,
           "max": 26,
-          "ponderado": 18
+          "ponderado": 17
         },
         {
           "min": 27,
+          "max": 27,
+          "ponderado": 18
+        },
+        {
+          "min": 28,
           "max": 28,
           "ponderado": 19
         }
@@ -34592,11 +34512,11 @@
         },
         {
           "min": 17,
-          "max": 17,
+          "max": 18,
           "ponderado": 9
         },
         {
-          "min": 18,
+          "min": 19,
           "max": 19,
           "ponderado": 10
         },
@@ -34617,21 +34537,21 @@
         },
         {
           "min": 23,
+          "max": 23,
+          "ponderado": 16
+        },
+        {
+          "min": 24,
           "max": 24,
-          "ponderado": 15
+          "ponderado": 17
         },
         {
           "min": 25,
           "max": 25,
-          "ponderado": 16
-        },
-        {
-          "min": 26,
-          "max": 26,
           "ponderado": 18
         },
         {
-          "min": 27,
+          "min": 26,
           "max": 30,
           "ponderado": 19
         }
@@ -34654,78 +34574,73 @@
         },
         {
           "min": 11,
-          "max": 11,
+          "max": 12,
           "ponderado": 4
         },
         {
-          "min": 12,
-          "max": 13,
+          "min": 13,
+          "max": 14,
           "ponderado": 5
         },
         {
-          "min": 14,
-          "max": 15,
+          "min": 15,
+          "max": 16,
           "ponderado": 6
         },
         {
-          "min": 16,
-          "max": 16,
+          "min": 17,
+          "max": 17,
           "ponderado": 7
         },
         {
-          "min": 17,
-          "max": 18,
-          "ponderado": 8
-        },
-        {
-          "min": 19,
+          "min": 18,
           "max": 19,
-          "ponderado": 9
+          "ponderado": 8
         },
         {
           "min": 20,
           "max": 21,
-          "ponderado": 10
+          "ponderado": 9
         },
         {
           "min": 22,
-          "max": 22,
-          "ponderado": 11
+          "max": 23,
+          "ponderado": 10
         },
         {
-          "min": 23,
+          "min": 24,
           "max": 24,
-          "ponderado": 12
+          "ponderado": 11
         },
         {
           "min": 25,
           "max": 26,
-          "ponderado": 13
+          "ponderado": 12
         },
         {
           "min": 27,
           "max": 28,
-          "ponderado": 14
+          "ponderado": 13
         },
         {
           "min": 29,
           "max": 29,
-          "ponderado": 15
+          "ponderado": 14
         },
         {
           "min": 30,
           "max": 31,
-          "ponderado": 16
+          "ponderado": 15
         },
         {
           "min": 32,
           "max": 33,
-          "ponderado": 17
+          "ponderado": 16
         },
         {
           "min": 34,
           "max": 34,
-          "ponderado": 18
+          "ponderado": 17
         },
         {
           "min": 35,
@@ -35011,7 +34926,7 @@
         {
           "min": 37,
           "max": 37,
-          "ponderado": 17
+          "ponderado": 18
         },
         {
           "min": 38,
@@ -35154,61 +35069,61 @@
         },
         {
           "min": 16,
-          "max": 16,
-          "ponderado": 8
-        },
-        {
-          "min": 17,
           "max": 17,
-          "ponderado": 9
+          "ponderado": 8
         },
         {
           "min": 18,
           "max": 18,
-          "ponderado": 10
+          "ponderado": 9
         },
         {
           "min": 19,
           "max": 19,
-          "ponderado": 11
+          "ponderado": 10
         },
         {
           "min": 20,
           "max": 20,
-          "ponderado": 12
+          "ponderado": 11
         },
         {
           "min": 21,
-          "max": 21,
+          "max": 22,
+          "ponderado": 12
+        },
+        {
+          "min": 23,
+          "max": 23,
           "ponderado": 13
         },
         {
-          "min": 22,
-          "max": 23,
-          "ponderado": 14
-        },
-        {
           "min": 24,
-          "max": 24,
-          "ponderado": 15
-        },
-        {
-          "min": 25,
           "max": 25,
-          "ponderado": 16
+          "ponderado": 14
         },
         {
           "min": 26,
           "max": 26,
-          "ponderado": 17
+          "ponderado": 15
         },
         {
           "min": 27,
-          "max": 28,
+          "max": 27,
+          "ponderado": 16
+        },
+        {
+          "min": 28,
+          "max": 29,
+          "ponderado": 17
+        },
+        {
+          "min": 30,
+          "max": 31,
           "ponderado": 18
         },
         {
-          "min": 29,
+          "min": 32,
           "max": 33,
           "ponderado": 19
         }
@@ -35256,16 +35171,16 @@
         },
         {
           "min": 23,
-          "max": 23,
+          "max": 24,
           "ponderado": 9
         },
         {
-          "min": 24,
-          "max": 24,
+          "min": 25,
+          "max": 25,
           "ponderado": 10
         },
         {
-          "min": 25,
+          "min": 26,
           "max": 26,
           "ponderado": 11
         },
@@ -35292,12 +35207,12 @@
         {
           "min": 32,
           "max": 32,
-          "ponderado": 16
+          "ponderado": 17
         },
         {
           "min": 33,
           "max": 33,
-          "ponderado": 17
+          "ponderado": 18
         },
         {
           "min": 34,
@@ -35328,58 +35243,53 @@
         },
         {
           "min": 9,
-          "max": 9,
-          "ponderado": 5
-        },
-        {
-          "min": 10,
           "max": 10,
-          "ponderado": 6
+          "ponderado": 5
         },
         {
           "min": 11,
           "max": 11,
-          "ponderado": 7
+          "ponderado": 6
         },
         {
           "min": 12,
           "max": 12,
-          "ponderado": 8
+          "ponderado": 7
         },
         {
           "min": 13,
           "max": 13,
-          "ponderado": 9
+          "ponderado": 8
         },
         {
           "min": 14,
           "max": 14,
-          "ponderado": 10
+          "ponderado": 9
         },
         {
           "min": 15,
           "max": 15,
-          "ponderado": 11
+          "ponderado": 10
         },
         {
           "min": 16,
           "max": 16,
-          "ponderado": 12
+          "ponderado": 11
         },
         {
           "min": 17,
           "max": 17,
-          "ponderado": 13
+          "ponderado": 12
         },
         {
           "min": 18,
           "max": 18,
-          "ponderado": 14
+          "ponderado": 13
         },
         {
           "min": 19,
           "max": 19,
-          "ponderado": 15
+          "ponderado": 14
         },
         {
           "min": 20,
@@ -35388,6 +35298,16 @@
         },
         {
           "min": 21,
+          "max": 21,
+          "ponderado": 17
+        },
+        {
+          "min": 22,
+          "max": 22,
+          "ponderado": 18
+        },
+        {
+          "min": 23,
           "max": 24,
           "ponderado": 19
         }
@@ -35715,11 +35635,11 @@
         },
         {
           "min": 13,
-          "max": 13,
+          "max": 14,
           "ponderado": 7
         },
         {
-          "min": 14,
+          "min": 15,
           "max": 15,
           "ponderado": 8
         },
@@ -35745,11 +35665,11 @@
         },
         {
           "min": 21,
-          "max": 21,
+          "max": 22,
           "ponderado": 13
         },
         {
-          "min": 22,
+          "min": 23,
           "max": 23,
           "ponderado": 14
         },
@@ -35986,11 +35906,11 @@
         },
         {
           "min": 8,
-          "max": 8,
+          "max": 9,
           "ponderado": 3
         },
         {
-          "min": 9,
+          "min": 10,
           "max": 11,
           "ponderado": 4
         },
@@ -36016,28 +35936,23 @@
         },
         {
           "min": 17,
-          "max": 17,
-          "ponderado": 9
-        },
-        {
-          "min": 18,
           "max": 18,
-          "ponderado": 10
+          "ponderado": 9
         },
         {
           "min": 19,
           "max": 19,
-          "ponderado": 11
+          "ponderado": 10
         },
         {
           "min": 20,
           "max": 20,
-          "ponderado": 12
+          "ponderado": 11
         },
         {
           "min": 21,
           "max": 21,
-          "ponderado": 13
+          "ponderado": 12
         },
         {
           "min": 22,
@@ -36056,11 +35971,11 @@
         },
         {
           "min": 25,
-          "max": 26,
+          "max": 25,
           "ponderado": 18
         },
         {
-          "min": 27,
+          "min": 26,
           "max": 30,
           "ponderado": 19
         }
@@ -36083,78 +35998,73 @@
         },
         {
           "min": 11,
-          "max": 11,
-          "ponderado": 4
-        },
-        {
-          "min": 12,
           "max": 12,
-          "ponderado": 5
+          "ponderado": 4
         },
         {
           "min": 13,
           "max": 14,
-          "ponderado": 6
+          "ponderado": 5
         },
         {
           "min": 15,
           "max": 16,
-          "ponderado": 7
+          "ponderado": 6
         },
         {
           "min": 17,
-          "max": 17,
-          "ponderado": 8
-        },
-        {
-          "min": 18,
           "max": 18,
-          "ponderado": 9
+          "ponderado": 7
         },
         {
           "min": 19,
           "max": 19,
-          "ponderado": 10
+          "ponderado": 8
         },
         {
           "min": 20,
           "max": 21,
-          "ponderado": 11
+          "ponderado": 9
         },
         {
           "min": 22,
           "max": 23,
-          "ponderado": 12
+          "ponderado": 10
         },
         {
           "min": 24,
           "max": 25,
-          "ponderado": 13
+          "ponderado": 11
         },
         {
           "min": 26,
-          "max": 27,
-          "ponderado": 14
+          "max": 26,
+          "ponderado": 12
         },
         {
-          "min": 28,
+          "min": 27,
           "max": 28,
-          "ponderado": 15
+          "ponderado": 13
         },
         {
           "min": 29,
           "max": 30,
-          "ponderado": 16
+          "ponderado": 14
         },
         {
           "min": 31,
+          "max": 31,
+          "ponderado": 15
+        },
+        {
+          "min": 32,
           "max": 33,
-          "ponderado": 17
+          "ponderado": 16
         },
         {
           "min": 34,
           "max": 34,
-          "ponderado": 18
+          "ponderado": 17
         },
         {
           "min": 35,
@@ -36240,11 +36150,11 @@
         },
         {
           "min": 36,
-          "max": 36,
+          "max": 37,
           "ponderado": 16
         },
         {
-          "min": 37,
+          "min": 38,
           "max": 38,
           "ponderado": 17
         },
@@ -36578,66 +36488,66 @@
         },
         {
           "min": 15,
-          "max": 15,
-          "ponderado": 7
-        },
-        {
-          "min": 16,
           "max": 16,
-          "ponderado": 8
+          "ponderado": 7
         },
         {
           "min": 17,
           "max": 17,
-          "ponderado": 9
+          "ponderado": 8
         },
         {
           "min": 18,
           "max": 18,
-          "ponderado": 10
+          "ponderado": 9
         },
         {
           "min": 19,
           "max": 19,
-          "ponderado": 11
+          "ponderado": 10
         },
         {
           "min": 20,
-          "max": 20,
-          "ponderado": 12
-        },
-        {
-          "min": 21,
           "max": 21,
-          "ponderado": 13
+          "ponderado": 11
         },
         {
           "min": 22,
           "max": 22,
-          "ponderado": 14
+          "ponderado": 12
         },
         {
           "min": 23,
           "max": 24,
-          "ponderado": 15
+          "ponderado": 13
         },
         {
           "min": 25,
           "max": 25,
-          "ponderado": 16
+          "ponderado": 14
         },
         {
           "min": 26,
           "max": 26,
-          "ponderado": 17
+          "ponderado": 15
         },
         {
           "min": 27,
           "max": 28,
-          "ponderado": 18
+          "ponderado": 16
         },
         {
           "min": 29,
+          "max": 29,
+          "ponderado": 17
+        },
+        {
+          "min": 30,
+          "max": 31,
+          "ponderado": 18
+        },
+        {
+          "min": 32,
           "max": 33,
           "ponderado": 19
         }
@@ -36670,11 +36580,11 @@
         },
         {
           "min": 19,
-          "max": 20,
+          "max": 19,
           "ponderado": 6
         },
         {
-          "min": 21,
+          "min": 20,
           "max": 21,
           "ponderado": 7
         },
@@ -36685,48 +36595,43 @@
         },
         {
           "min": 23,
-          "max": 23,
+          "max": 24,
           "ponderado": 9
         },
         {
-          "min": 24,
+          "min": 25,
           "max": 25,
           "ponderado": 10
         },
         {
           "min": 26,
-          "max": 26,
-          "ponderado": 11
-        },
-        {
-          "min": 27,
           "max": 27,
-          "ponderado": 12
+          "ponderado": 11
         },
         {
           "min": 28,
           "max": 28,
-          "ponderado": 13
+          "ponderado": 12
         },
         {
           "min": 29,
           "max": 29,
-          "ponderado": 14
+          "ponderado": 13
         },
         {
           "min": 30,
           "max": 30,
-          "ponderado": 15
+          "ponderado": 14
         },
         {
           "min": 31,
           "max": 31,
-          "ponderado": 16
+          "ponderado": 15
         },
         {
           "min": 32,
           "max": 32,
-          "ponderado": 17
+          "ponderado": 16
         },
         {
           "min": 33,
@@ -36757,71 +36662,76 @@
         },
         {
           "min": 8,
-          "max": 8,
-          "ponderado": 4
-        },
-        {
-          "min": 9,
           "max": 9,
-          "ponderado": 5
+          "ponderado": 4
         },
         {
           "min": 10,
           "max": 10,
-          "ponderado": 6
+          "ponderado": 5
         },
         {
           "min": 11,
           "max": 11,
-          "ponderado": 7
+          "ponderado": 6
         },
         {
           "min": 12,
           "max": 12,
-          "ponderado": 8
+          "ponderado": 7
         },
         {
           "min": 13,
           "max": 13,
-          "ponderado": 9
+          "ponderado": 8
         },
         {
           "min": 14,
           "max": 14,
-          "ponderado": 10
+          "ponderado": 9
         },
         {
           "min": 15,
           "max": 15,
-          "ponderado": 11
+          "ponderado": 10
         },
         {
           "min": 16,
           "max": 16,
-          "ponderado": 13
+          "ponderado": 11
         },
         {
           "min": 17,
           "max": 17,
-          "ponderado": 14
+          "ponderado": 12
         },
         {
           "min": 18,
           "max": 18,
-          "ponderado": 15
+          "ponderado": 13
         },
         {
           "min": 19,
           "max": 19,
-          "ponderado": 16
+          "ponderado": 14
         },
         {
           "min": 20,
           "max": 20,
-          "ponderado": 17
+          "ponderado": 15
         },
         {
           "min": 21,
+          "max": 21,
+          "ponderado": 17
+        },
+        {
+          "min": 22,
+          "max": 22,
+          "ponderado": 18
+        },
+        {
+          "min": 23,
           "max": 24,
           "ponderado": 19
         }
@@ -37149,11 +37059,11 @@
         },
         {
           "min": 13,
-          "max": 13,
+          "max": 14,
           "ponderado": 7
         },
         {
-          "min": 14,
+          "min": 15,
           "max": 15,
           "ponderado": 8
         },
@@ -37169,11 +37079,11 @@
         },
         {
           "min": 19,
-          "max": 20,
+          "max": 19,
           "ponderado": 11
         },
         {
-          "min": 21,
+          "min": 20,
           "max": 21,
           "ponderado": 12
         },
@@ -37527,68 +37437,68 @@
         },
         {
           "min": 15,
-          "max": 15,
-          "ponderado": 6
-        },
-        {
-          "min": 16,
           "max": 16,
-          "ponderado": 7
+          "ponderado": 6
         },
         {
           "min": 17,
           "max": 18,
-          "ponderado": 8
+          "ponderado": 7
         },
         {
           "min": 19,
           "max": 20,
-          "ponderado": 9
+          "ponderado": 8
         },
         {
           "min": 21,
           "max": 21,
-          "ponderado": 10
+          "ponderado": 9
         },
         {
           "min": 22,
           "max": 23,
-          "ponderado": 11
+          "ponderado": 10
         },
         {
           "min": 24,
           "max": 25,
-          "ponderado": 12
+          "ponderado": 11
         },
         {
           "min": 26,
-          "max": 27,
-          "ponderado": 13
+          "max": 26,
+          "ponderado": 12
         },
         {
-          "min": 28,
+          "min": 27,
           "max": 28,
-          "ponderado": 14
+          "ponderado": 13
         },
         {
           "min": 29,
           "max": 30,
-          "ponderado": 15
+          "ponderado": 14
         },
         {
           "min": 31,
           "max": 32,
-          "ponderado": 16
+          "ponderado": 15
         },
         {
           "min": 33,
+          "max": 33,
+          "ponderado": 16
+        },
+        {
+          "min": 34,
           "max": 34,
           "ponderado": 17
         },
         {
           "min": 35,
           "max": 35,
-          "ponderado": 18
+          "ponderado": 19
         }
       ],
       "CO": [
@@ -37776,11 +37686,11 @@
         },
         {
           "min": 44,
-          "max": 44,
+          "max": 46,
           "ponderado": 18
         },
         {
-          "min": 45,
+          "min": 47,
           "max": 60,
           "ponderado": 19
         }
@@ -37838,11 +37748,11 @@
         },
         {
           "min": 29,
-          "max": 30,
+          "max": 29,
           "ponderado": 11
         },
         {
-          "min": 31,
+          "min": 30,
           "max": 31,
           "ponderado": 12
         },
@@ -37869,7 +37779,7 @@
         {
           "min": 37,
           "max": 37,
-          "ponderado": 17
+          "ponderado": 18
         },
         {
           "min": 38,
@@ -37997,76 +37907,76 @@
         },
         {
           "min": 13,
-          "max": 13,
-          "ponderado": 5
-        },
-        {
-          "min": 14,
           "max": 14,
-          "ponderado": 6
+          "ponderado": 5
         },
         {
           "min": 15,
           "max": 15,
-          "ponderado": 7
+          "ponderado": 6
         },
         {
           "min": 16,
           "max": 16,
-          "ponderado": 8
+          "ponderado": 7
         },
         {
           "min": 17,
           "max": 17,
-          "ponderado": 9
+          "ponderado": 8
         },
         {
           "min": 18,
-          "max": 19,
-          "ponderado": 10
+          "max": 18,
+          "ponderado": 9
         },
         {
-          "min": 20,
+          "min": 19,
           "max": 20,
-          "ponderado": 11
+          "ponderado": 10
         },
         {
           "min": 21,
           "max": 21,
-          "ponderado": 12
+          "ponderado": 11
         },
         {
           "min": 22,
           "max": 22,
-          "ponderado": 13
+          "ponderado": 12
         },
         {
           "min": 23,
-          "max": 23,
+          "max": 24,
+          "ponderado": 13
+        },
+        {
+          "min": 25,
+          "max": 25,
           "ponderado": 14
         },
         {
-          "min": 24,
-          "max": 25,
+          "min": 26,
+          "max": 27,
           "ponderado": 15
         },
         {
-          "min": 26,
-          "max": 26,
+          "min": 28,
+          "max": 28,
           "ponderado": 16
         },
         {
-          "min": 27,
-          "max": 27,
+          "min": 29,
+          "max": 30,
           "ponderado": 17
         },
         {
-          "min": 28,
-          "max": 30,
+          "min": 31,
+          "max": 31,
           "ponderado": 18
         },
         {
-          "min": 31,
+          "min": 32,
           "max": 33,
           "ponderado": 19
         }
@@ -38109,21 +38019,21 @@
         },
         {
           "min": 22,
-          "max": 22,
+          "max": 23,
           "ponderado": 8
         },
         {
-          "min": 23,
+          "min": 24,
           "max": 24,
           "ponderado": 9
         },
         {
           "min": 25,
-          "max": 25,
+          "max": 26,
           "ponderado": 10
         },
         {
-          "min": 26,
+          "min": 27,
           "max": 27,
           "ponderado": 11
         },
@@ -38155,7 +38065,7 @@
         {
           "min": 33,
           "max": 33,
-          "ponderado": 17
+          "ponderado": 18
         },
         {
           "min": 34,
@@ -38176,76 +38086,81 @@
         },
         {
           "min": 7,
-          "max": 7,
-          "ponderado": 3
-        },
-        {
-          "min": 8,
           "max": 8,
-          "ponderado": 4
+          "ponderado": 3
         },
         {
           "min": 9,
           "max": 9,
-          "ponderado": 5
+          "ponderado": 4
         },
         {
           "min": 10,
           "max": 10,
-          "ponderado": 6
+          "ponderado": 5
         },
         {
           "min": 11,
           "max": 11,
-          "ponderado": 7
+          "ponderado": 6
         },
         {
           "min": 12,
           "max": 12,
-          "ponderado": 8
+          "ponderado": 7
         },
         {
           "min": 13,
           "max": 13,
-          "ponderado": 9
+          "ponderado": 8
         },
         {
           "min": 14,
           "max": 14,
-          "ponderado": 10
+          "ponderado": 9
         },
         {
           "min": 15,
           "max": 15,
-          "ponderado": 11
+          "ponderado": 10
         },
         {
           "min": 16,
           "max": 16,
-          "ponderado": 12
+          "ponderado": 11
         },
         {
           "min": 17,
           "max": 17,
-          "ponderado": 13
+          "ponderado": 12
         },
         {
           "min": 18,
           "max": 18,
-          "ponderado": 14
+          "ponderado": 13
         },
         {
           "min": 19,
           "max": 19,
-          "ponderado": 15
+          "ponderado": 14
         },
         {
           "min": 20,
           "max": 20,
-          "ponderado": 17
+          "ponderado": 15
         },
         {
           "min": 21,
+          "max": 21,
+          "ponderado": 16
+        },
+        {
+          "min": 22,
+          "max": 22,
+          "ponderado": 18
+        },
+        {
+          "min": 23,
           "max": 24,
           "ponderado": 19
         }
@@ -38451,28 +38366,23 @@
       "DG": [
         {
           "min": 0,
-          "max": 6,
-          "ponderado": 1
-        },
-        {
-          "min": 7,
-          "max": 7,
-          "ponderado": 2
-        },
-        {
-          "min": 8,
           "max": 8,
-          "ponderado": 3
+          "ponderado": 1
         },
         {
           "min": 9,
           "max": 9,
-          "ponderado": 4
+          "ponderado": 2
         },
         {
           "min": 10,
+          "max": 10,
+          "ponderado": 3
+        },
+        {
+          "min": 11,
           "max": 11,
-          "ponderado": 5
+          "ponderado": 4
         },
         {
           "min": 12,
@@ -38506,11 +38416,11 @@
         },
         {
           "min": 19,
-          "max": 19,
+          "max": 20,
           "ponderado": 12
         },
         {
-          "min": 20,
+          "min": 21,
           "max": 21,
           "ponderado": 13
         },
@@ -38553,86 +38463,86 @@
         },
         {
           "min": 6,
-          "max": 6,
-          "ponderado": 2
-        },
-        {
-          "min": 7,
           "max": 7,
-          "ponderado": 3
+          "ponderado": 2
         },
         {
           "min": 8,
           "max": 8,
-          "ponderado": 4
+          "ponderado": 3
         },
         {
           "min": 9,
-          "max": 9,
+          "max": 10,
+          "ponderado": 4
+        },
+        {
+          "min": 11,
+          "max": 11,
           "ponderado": 5
         },
         {
-          "min": 10,
-          "max": 11,
-          "ponderado": 6
-        },
-        {
           "min": 12,
-          "max": 12,
-          "ponderado": 7
-        },
-        {
-          "min": 13,
           "max": 13,
-          "ponderado": 8
+          "ponderado": 6
         },
         {
           "min": 14,
           "max": 14,
-          "ponderado": 9
+          "ponderado": 7
         },
         {
           "min": 15,
           "max": 15,
-          "ponderado": 10
+          "ponderado": 8
         },
         {
           "min": 16,
           "max": 17,
-          "ponderado": 11
+          "ponderado": 9
         },
         {
           "min": 18,
           "max": 18,
-          "ponderado": 12
+          "ponderado": 10
         },
         {
           "min": 19,
           "max": 19,
-          "ponderado": 13
+          "ponderado": 11
         },
         {
           "min": 20,
-          "max": 20,
-          "ponderado": 14
-        },
-        {
-          "min": 21,
           "max": 21,
-          "ponderado": 15
+          "ponderado": 12
         },
         {
           "min": 22,
+          "max": 22,
+          "ponderado": 13
+        },
+        {
+          "min": 23,
           "max": 23,
-          "ponderado": 16
+          "ponderado": 14
         },
         {
           "min": 24,
           "max": 24,
-          "ponderado": 17
+          "ponderado": 15
         },
         {
           "min": 25,
+          "max": 25,
+          "ponderado": 16
+        },
+        {
+          "min": 26,
+          "max": 26,
+          "ponderado": 17
+        },
+        {
+          "min": 27,
           "max": 27,
           "ponderado": 18
         },
@@ -38839,21 +38749,21 @@
       "SNL": [
         {
           "min": 0,
-          "max": 3,
+          "max": 5,
           "ponderado": 1
         },
         {
-          "min": 4,
-          "max": 5,
+          "min": 6,
+          "max": 7,
           "ponderado": 2
         },
         {
-          "min": 6,
-          "max": 8,
+          "min": 8,
+          "max": 9,
           "ponderado": 3
         },
         {
-          "min": 9,
+          "min": 10,
           "max": 11,
           "ponderado": 4
         },
@@ -38869,11 +38779,11 @@
         },
         {
           "min": 15,
-          "max": 16,
+          "max": 15,
           "ponderado": 7
         },
         {
-          "min": 17,
+          "min": 16,
           "max": 17,
           "ponderado": 8
         },
@@ -38941,86 +38851,81 @@
         },
         {
           "min": 9,
-          "max": 9,
+          "max": 10,
           "ponderado": 3
         },
         {
-          "min": 10,
-          "max": 10,
+          "min": 11,
+          "max": 12,
           "ponderado": 4
         },
         {
-          "min": 11,
-          "max": 11,
+          "min": 13,
+          "max": 14,
           "ponderado": 5
         },
         {
-          "min": 12,
-          "max": 13,
+          "min": 15,
+          "max": 16,
           "ponderado": 6
         },
         {
-          "min": 14,
-          "max": 14,
+          "min": 17,
+          "max": 18,
           "ponderado": 7
         },
         {
-          "min": 15,
-          "max": 15,
-          "ponderado": 8
-        },
-        {
-          "min": 16,
-          "max": 17,
-          "ponderado": 9
-        },
-        {
-          "min": 18,
-          "max": 19,
-          "ponderado": 10
-        },
-        {
-          "min": 20,
+          "min": 19,
           "max": 20,
-          "ponderado": 11
+          "ponderado": 8
         },
         {
           "min": 21,
           "max": 22,
-          "ponderado": 12
+          "ponderado": 9
         },
         {
           "min": 23,
-          "max": 24,
-          "ponderado": 13
+          "max": 23,
+          "ponderado": 10
         },
         {
-          "min": 25,
-          "max": 26,
-          "ponderado": 14
+          "min": 24,
+          "max": 25,
+          "ponderado": 11
         },
         {
-          "min": 27,
+          "min": 26,
           "max": 27,
-          "ponderado": 15
+          "ponderado": 12
         },
         {
           "min": 28,
-          "max": 29,
-          "ponderado": 16
+          "max": 28,
+          "ponderado": 13
         },
         {
-          "min": 30,
-          "max": 31,
-          "ponderado": 17
+          "min": 29,
+          "max": 30,
+          "ponderado": 14
         },
         {
-          "min": 32,
+          "min": 31,
           "max": 32,
-          "ponderado": 18
+          "ponderado": 15
         },
         {
           "min": 33,
+          "max": 33,
+          "ponderado": 16
+        },
+        {
+          "min": 34,
+          "max": 34,
+          "ponderado": 17
+        },
+        {
+          "min": 35,
           "max": 35,
           "ponderado": 19
         }
@@ -39058,31 +38963,31 @@
         },
         {
           "min": 19,
-          "max": 20,
+          "max": 21,
           "ponderado": 7
         },
         {
-          "min": 21,
-          "max": 22,
+          "min": 22,
+          "max": 23,
           "ponderado": 8
         },
         {
-          "min": 23,
-          "max": 24,
+          "min": 24,
+          "max": 25,
           "ponderado": 9
         },
         {
-          "min": 25,
-          "max": 26,
+          "min": 26,
+          "max": 27,
           "ponderado": 10
         },
         {
-          "min": 27,
-          "max": 28,
+          "min": 28,
+          "max": 29,
           "ponderado": 11
         },
         {
-          "min": 29,
+          "min": 30,
           "max": 30,
           "ponderado": 12
         },
@@ -39303,7 +39208,7 @@
         {
           "min": 37,
           "max": 37,
-          "ponderado": 17
+          "ponderado": 18
         },
         {
           "min": 38,
@@ -39426,81 +39331,81 @@
         },
         {
           "min": 12,
-          "max": 12,
-          "ponderado": 4
-        },
-        {
-          "min": 13,
           "max": 13,
-          "ponderado": 5
+          "ponderado": 4
         },
         {
           "min": 14,
           "max": 14,
-          "ponderado": 6
+          "ponderado": 5
         },
         {
           "min": 15,
           "max": 15,
-          "ponderado": 7
+          "ponderado": 6
         },
         {
           "min": 16,
           "max": 16,
-          "ponderado": 8
+          "ponderado": 7
         },
         {
           "min": 17,
           "max": 17,
-          "ponderado": 9
+          "ponderado": 8
         },
         {
           "min": 18,
-          "max": 18,
-          "ponderado": 10
-        },
-        {
-          "min": 19,
           "max": 19,
-          "ponderado": 11
+          "ponderado": 9
         },
         {
           "min": 20,
           "max": 20,
-          "ponderado": 12
+          "ponderado": 10
         },
         {
           "min": 21,
           "max": 21,
-          "ponderado": 13
+          "ponderado": 11
         },
         {
           "min": 22,
           "max": 23,
-          "ponderado": 14
+          "ponderado": 12
         },
         {
           "min": 24,
           "max": 24,
-          "ponderado": 15
+          "ponderado": 13
         },
         {
           "min": 25,
-          "max": 25,
-          "ponderado": 16
-        },
-        {
-          "min": 26,
           "max": 26,
-          "ponderado": 17
+          "ponderado": 14
         },
         {
           "min": 27,
-          "max": 31,
+          "max": 27,
+          "ponderado": 15
+        },
+        {
+          "min": 28,
+          "max": 29,
+          "ponderado": 16
+        },
+        {
+          "min": 30,
+          "max": 30,
+          "ponderado": 17
+        },
+        {
+          "min": 31,
+          "max": 32,
           "ponderado": 18
         },
         {
-          "min": 32,
+          "min": 33,
           "max": 33,
           "ponderado": 19
         }
@@ -39543,21 +39448,21 @@
         },
         {
           "min": 22,
-          "max": 22,
+          "max": 23,
           "ponderado": 8
         },
         {
-          "min": 23,
+          "min": 24,
           "max": 24,
           "ponderado": 9
         },
         {
           "min": 25,
-          "max": 25,
+          "max": 26,
           "ponderado": 10
         },
         {
-          "min": 26,
+          "min": 27,
           "max": 27,
           "ponderado": 11
         },
@@ -39605,81 +39510,86 @@
         },
         {
           "min": 6,
-          "max": 6,
-          "ponderado": 2
-        },
-        {
-          "min": 7,
           "max": 7,
-          "ponderado": 3
+          "ponderado": 2
         },
         {
           "min": 8,
           "max": 8,
-          "ponderado": 4
+          "ponderado": 3
         },
         {
           "min": 9,
           "max": 9,
-          "ponderado": 5
+          "ponderado": 4
         },
         {
           "min": 10,
           "max": 10,
-          "ponderado": 6
+          "ponderado": 5
         },
         {
           "min": 11,
           "max": 11,
-          "ponderado": 7
+          "ponderado": 6
         },
         {
           "min": 12,
           "max": 12,
-          "ponderado": 8
+          "ponderado": 7
         },
         {
           "min": 13,
           "max": 13,
-          "ponderado": 9
+          "ponderado": 8
         },
         {
           "min": 14,
           "max": 14,
-          "ponderado": 10
+          "ponderado": 9
         },
         {
           "min": 15,
           "max": 15,
-          "ponderado": 11
+          "ponderado": 10
         },
         {
           "min": 16,
           "max": 16,
-          "ponderado": 12
+          "ponderado": 11
         },
         {
           "min": 17,
           "max": 17,
-          "ponderado": 13
+          "ponderado": 12
         },
         {
           "min": 18,
           "max": 18,
-          "ponderado": 14
+          "ponderado": 13
         },
         {
           "min": 19,
           "max": 19,
-          "ponderado": 15
+          "ponderado": 14
         },
         {
           "min": 20,
           "max": 20,
-          "ponderado": 16
+          "ponderado": 15
         },
         {
           "min": 21,
+          "max": 21,
+          "ponderado": 16
+        },
+        {
+          "min": 22,
+          "max": 22,
+          "ponderado": 17
+        },
+        {
+          "min": 23,
           "max": 24,
           "ponderado": 19
         }
@@ -39982,21 +39892,21 @@
         },
         {
           "min": 6,
-          "max": 6,
+          "max": 7,
           "ponderado": 2
         },
         {
-          "min": 7,
+          "min": 8,
           "max": 8,
           "ponderado": 3
         },
         {
           "min": 9,
-          "max": 9,
+          "max": 10,
           "ponderado": 4
         },
         {
-          "min": 10,
+          "min": 11,
           "max": 11,
           "ponderado": 5
         },
@@ -40012,11 +39922,11 @@
         },
         {
           "min": 15,
-          "max": 15,
+          "max": 16,
           "ponderado": 8
         },
         {
-          "min": 16,
+          "min": 17,
           "max": 17,
           "ponderado": 9
         },
@@ -40047,18 +39957,23 @@
         },
         {
           "min": 24,
-          "max": 25,
+          "max": 24,
           "ponderado": 15
+        },
+        {
+          "min": 25,
+          "max": 25,
+          "ponderado": 16
         },
         {
           "min": 26,
           "max": 26,
-          "ponderado": 16
+          "ponderado": 17
         },
         {
           "min": 27,
           "max": 27,
-          "ponderado": 17
+          "ponderado": 18
         },
         {
           "min": 28,
@@ -40216,41 +40131,41 @@
         },
         {
           "min": 39,
-          "max": 41,
+          "max": 40,
           "ponderado": 11
         },
         {
-          "min": 42,
-          "max": 44,
+          "min": 41,
+          "max": 43,
           "ponderado": 12
         },
         {
-          "min": 45,
-          "max": 47,
+          "min": 44,
+          "max": 45,
           "ponderado": 13
         },
         {
-          "min": 48,
-          "max": 49,
+          "min": 46,
+          "max": 48,
           "ponderado": 14
         },
         {
-          "min": 50,
-          "max": 51,
+          "min": 49,
+          "max": 50,
           "ponderado": 15
         },
         {
-          "min": 52,
-          "max": 54,
+          "min": 51,
+          "max": 53,
           "ponderado": 16
         },
         {
-          "min": 55,
-          "max": 56,
+          "min": 54,
+          "max": 55,
           "ponderado": 17
         },
         {
-          "min": 57,
+          "min": 56,
           "max": 58,
           "ponderado": 18
         },
@@ -40278,11 +40193,11 @@
         },
         {
           "min": 11,
-          "max": 11,
+          "max": 13,
           "ponderado": 4
         },
         {
-          "min": 12,
+          "min": 13,
           "max": 13,
           "ponderado": 5
         },
@@ -40314,32 +40229,32 @@
         {
           "min": 21,
           "max": 21,
-          "ponderado": 11
+          "ponderado": 12
         },
         {
           "min": 22,
           "max": 22,
-          "ponderado": 12
+          "ponderado": 13
         },
         {
           "min": 23,
           "max": 23,
-          "ponderado": 14
+          "ponderado": 15
         },
         {
           "min": 24,
           "max": 24,
-          "ponderado": 15
+          "ponderado": 16
         },
         {
           "min": 25,
           "max": 25,
-          "ponderado": 16
+          "ponderado": 17
         },
         {
           "min": 26,
           "max": 26,
-          "ponderado": 17
+          "ponderado": 18
         },
         {
           "min": 27,
@@ -40355,76 +40270,76 @@
         },
         {
           "min": 7,
-          "max": 7,
+          "max": 8,
           "ponderado": 2
         },
         {
-          "min": 8,
-          "max": 9,
-          "ponderado": 3
-        },
-        {
-          "min": 10,
+          "min": 9,
           "max": 10,
-          "ponderado": 4
+          "ponderado": 3
         },
         {
           "min": 11,
           "max": 12,
-          "ponderado": 5
+          "ponderado": 4
         },
         {
           "min": 13,
           "max": 14,
-          "ponderado": 6
+          "ponderado": 5
         },
         {
           "min": 15,
           "max": 16,
-          "ponderado": 7
+          "ponderado": 6
         },
         {
           "min": 17,
           "max": 18,
-          "ponderado": 8
+          "ponderado": 7
         },
         {
           "min": 19,
           "max": 20,
-          "ponderado": 9
+          "ponderado": 8
         },
         {
           "min": 21,
           "max": 22,
-          "ponderado": 10
+          "ponderado": 9
         },
         {
           "min": 23,
           "max": 23,
-          "ponderado": 11
+          "ponderado": 10
         },
         {
           "min": 24,
           "max": 25,
-          "ponderado": 12
+          "ponderado": 11
         },
         {
           "min": 26,
           "max": 27,
-          "ponderado": 13
+          "ponderado": 12
         },
         {
           "min": 28,
           "max": 29,
-          "ponderado": 14
+          "ponderado": 13
         },
         {
           "min": 30,
           "max": 31,
-          "ponderado": 15
+          "ponderado": 14
         },
         {
           "min": 32,
+          "max": 32,
+          "ponderado": 15
+        },
+        {
+          "min": 33,
           "max": 33,
           "ponderado": 16
         },
@@ -40436,7 +40351,7 @@
         {
           "min": 35,
           "max": 35,
-          "ponderado": 18
+          "ponderado": 19
         }
       ],
       "CO": [
@@ -40619,16 +40534,16 @@
         },
         {
           "min": 44,
-          "max": 44,
+          "max": 45,
           "ponderado": 17
         },
         {
-          "min": 45,
-          "max": 45,
+          "min": 46,
+          "max": 47,
           "ponderado": 18
         },
         {
-          "min": 46,
+          "min": 48,
           "max": 60,
           "ponderado": 19
         }
@@ -40686,33 +40601,38 @@
         },
         {
           "min": 30,
-          "max": 31,
+          "max": 30,
           "ponderado": 11
+        },
+        {
+          "min": 31,
+          "max": 31,
+          "ponderado": 12
         },
         {
           "min": 32,
           "max": 33,
-          "ponderado": 12
+          "ponderado": 13
         },
         {
           "min": 34,
           "max": 34,
-          "ponderado": 13
+          "ponderado": 14
         },
         {
           "min": 35,
           "max": 35,
-          "ponderado": 14
+          "ponderado": 15
         },
         {
           "min": 36,
           "max": 36,
-          "ponderado": 15
+          "ponderado": 16
         },
         {
           "min": 37,
           "max": 37,
-          "ponderado": 16
+          "ponderado": 18
         },
         {
           "min": 38,
@@ -40835,81 +40755,81 @@
         },
         {
           "min": 12,
-          "max": 12,
-          "ponderado": 4
-        },
-        {
-          "min": 13,
           "max": 13,
-          "ponderado": 5
+          "ponderado": 4
         },
         {
           "min": 14,
           "max": 14,
-          "ponderado": 6
+          "ponderado": 5
         },
         {
           "min": 15,
           "max": 15,
-          "ponderado": 7
+          "ponderado": 6
         },
         {
           "min": 16,
           "max": 16,
-          "ponderado": 8
+          "ponderado": 7
         },
         {
           "min": 17,
-          "max": 17,
-          "ponderado": 9
-        },
-        {
-          "min": 18,
           "max": 18,
-          "ponderado": 10
+          "ponderado": 8
         },
         {
           "min": 19,
           "max": 19,
-          "ponderado": 11
+          "ponderado": 9
         },
         {
           "min": 20,
           "max": 20,
-          "ponderado": 12
+          "ponderado": 10
         },
         {
           "min": 21,
           "max": 22,
-          "ponderado": 13
+          "ponderado": 11
         },
         {
           "min": 23,
           "max": 23,
-          "ponderado": 14
+          "ponderado": 12
         },
         {
           "min": 24,
           "max": 25,
-          "ponderado": 15
+          "ponderado": 13
         },
         {
           "min": 26,
           "max": 26,
-          "ponderado": 16
+          "ponderado": 14
         },
         {
           "min": 27,
-          "max": 27,
+          "max": 28,
+          "ponderado": 15
+        },
+        {
+          "min": 29,
+          "max": 29,
+          "ponderado": 16
+        },
+        {
+          "min": 30,
+          "max": 31,
           "ponderado": 17
         },
         {
-          "min": 28,
-          "max": 31,
+          "min": 32,
+          "max": 32,
           "ponderado": 18
         },
         {
-          "min": 32,
+          "min": 33,
           "max": 33,
           "ponderado": 19
         }
@@ -40947,26 +40867,26 @@
         },
         {
           "min": 21,
-          "max": 21,
+          "max": 22,
           "ponderado": 7
         },
         {
-          "min": 22,
-          "max": 22,
+          "min": 23,
+          "max": 23,
           "ponderado": 8
         },
         {
-          "min": 23,
-          "max": 24,
+          "min": 24,
+          "max": 25,
           "ponderado": 9
         },
         {
-          "min": 25,
-          "max": 25,
+          "min": 26,
+          "max": 26,
           "ponderado": 10
         },
         {
-          "min": 26,
+          "min": 27,
           "max": 27,
           "ponderado": 11
         },
@@ -40982,18 +40902,13 @@
         },
         {
           "min": 30,
-          "max": 30,
-          "ponderado": 14
-        },
-        {
-          "min": 31,
           "max": 31,
-          "ponderado": 15
+          "ponderado": 14
         },
         {
           "min": 32,
           "max": 32,
-          "ponderado": 16
+          "ponderado": 15
         },
         {
           "min": 33,
@@ -41054,36 +40969,41 @@
         },
         {
           "min": 15,
-          "max": 15,
-          "ponderado": 10
-        },
-        {
-          "min": 16,
           "max": 16,
-          "ponderado": 12
+          "ponderado": 10
         },
         {
           "min": 17,
           "max": 17,
-          "ponderado": 13
+          "ponderado": 11
         },
         {
           "min": 18,
           "max": 18,
-          "ponderado": 14
+          "ponderado": 13
         },
         {
           "min": 19,
           "max": 19,
-          "ponderado": 15
+          "ponderado": 14
         },
         {
           "min": 20,
           "max": 20,
-          "ponderado": 16
+          "ponderado": 15
         },
         {
           "min": 21,
+          "max": 21,
+          "ponderado": 16
+        },
+        {
+          "min": 22,
+          "max": 22,
+          "ponderado": 17
+        },
+        {
+          "min": 23,
           "max": 24,
           "ponderado": 19
         }
@@ -41324,26 +41244,26 @@
         },
         {
           "min": 15,
-          "max": 16,
+          "max": 15,
           "ponderado": 9
         },
         {
-          "min": 17,
+          "min": 16,
           "max": 17,
           "ponderado": 10
         },
         {
           "min": 18,
-          "max": 19,
+          "max": 18,
           "ponderado": 11
         },
         {
-          "min": 20,
-          "max": 21,
+          "min": 19,
+          "max": 20,
           "ponderado": 12
         },
         {
-          "min": 22,
+          "min": 21,
           "max": 22,
           "ponderado": 13
         },
@@ -41354,11 +41274,11 @@
         },
         {
           "min": 24,
-          "max": 24,
+          "max": 25,
           "ponderado": 15
         },
         {
-          "min": 25,
+          "min": 26,
           "max": 26,
           "ponderado": 16
         },
@@ -41391,11 +41311,11 @@
         },
         {
           "min": 8,
-          "max": 9,
+          "max": 8,
           "ponderado": 3
         },
         {
-          "min": 10,
+          "min": 9,
           "max": 10,
           "ponderado": 4
         },
@@ -41416,11 +41336,11 @@
         },
         {
           "min": 15,
-          "max": 15,
+          "max": 16,
           "ponderado": 8
         },
         {
-          "min": 16,
+          "min": 17,
           "max": 17,
           "ponderado": 9
         },
@@ -41451,18 +41371,23 @@
         },
         {
           "min": 24,
-          "max": 25,
+          "max": 24,
           "ponderado": 15
+        },
+        {
+          "min": 25,
+          "max": 25,
+          "ponderado": 16
         },
         {
           "min": 26,
           "max": 26,
-          "ponderado": 16
+          "ponderado": 17
         },
         {
           "min": 27,
           "max": 27,
-          "ponderado": 17
+          "ponderado": 18
         },
         {
           "min": 28,
@@ -41682,36 +41607,36 @@
         },
         {
           "min": 11,
-          "max": 11,
+          "max": 12,
           "ponderado": 4
         },
         {
-          "min": 12,
-          "max": 12,
+          "min": 13,
+          "max": 13,
           "ponderado": 5
         },
         {
-          "min": 13,
+          "min": 14,
           "max": 14,
           "ponderado": 6
         },
         {
           "min": 15,
-          "max": 15,
+          "max": 16,
           "ponderado": 7
         },
         {
-          "min": 16,
-          "max": 16,
+          "min": 17,
+          "max": 17,
           "ponderado": 8
         },
         {
-          "min": 17,
-          "max": 18,
+          "min": 18,
+          "max": 19,
           "ponderado": 9
         },
         {
-          "min": 19,
+          "min": 20,
           "max": 20,
           "ponderado": 10
         },
@@ -41723,22 +41648,22 @@
         {
           "min": 22,
           "max": 22,
-          "ponderado": 12
+          "ponderado": 13
         },
         {
           "min": 23,
           "max": 23,
-          "ponderado": 14
+          "ponderado": 15
         },
         {
           "min": 24,
           "max": 24,
-          "ponderado": 15
+          "ponderado": 16
         },
         {
           "min": 25,
           "max": 25,
-          "ponderado": 16
+          "ponderado": 17
         },
         {
           "min": 26,
@@ -41764,77 +41689,77 @@
         },
         {
           "min": 9,
-          "max": 9,
+          "max": 10,
           "ponderado": 3
         },
         {
-          "min": 10,
-          "max": 11,
+          "min": 11,
+          "max": 12,
           "ponderado": 4
         },
         {
-          "min": 12,
-          "max": 13,
-          "ponderado": 5
-        },
-        {
-          "min": 14,
+          "min": 13,
           "max": 14,
-          "ponderado": 6
+          "ponderado": 5
         },
         {
           "min": 15,
           "max": 16,
-          "ponderado": 7
+          "ponderado": 6
         },
         {
           "min": 17,
           "max": 18,
-          "ponderado": 8
+          "ponderado": 7
         },
         {
           "min": 19,
           "max": 20,
-          "ponderado": 9
+          "ponderado": 8
         },
         {
           "min": 21,
           "max": 22,
-          "ponderado": 10
+          "ponderado": 9
         },
         {
           "min": 23,
           "max": 24,
-          "ponderado": 11
+          "ponderado": 10
         },
         {
           "min": 25,
           "max": 26,
-          "ponderado": 12
+          "ponderado": 11
         },
         {
           "min": 27,
-          "max": 28,
+          "max": 27,
+          "ponderado": 12
+        },
+        {
+          "min": 28,
+          "max": 29,
           "ponderado": 13
         },
         {
-          "min": 29,
-          "max": 30,
+          "min": 30,
+          "max": 31,
           "ponderado": 14
         },
         {
-          "min": 31,
+          "min": 32,
           "max": 32,
           "ponderado": 15
         },
         {
           "min": 33,
-          "max": 34,
+          "max": 33,
           "ponderado": 16
         },
         {
-          "min": 35,
-          "max": 35,
+          "min": 34,
+          "max": 34,
           "ponderado": 17
         },
         {
@@ -41896,43 +41821,48 @@
         },
         {
           "min": 29,
-          "max": 30,
+          "max": 29,
           "ponderado": 11
         },
         {
-          "min": 31,
-          "max": 32,
+          "min": 30,
+          "max": 31,
           "ponderado": 12
         },
         {
-          "min": 33,
-          "max": 34,
+          "min": 32,
+          "max": 33,
           "ponderado": 13
         },
         {
-          "min": 35,
-          "max": 36,
+          "min": 34,
+          "max": 35,
           "ponderado": 14
+        },
+        {
+          "min": 36,
+          "max": 36,
+          "ponderado": 15
         },
         {
           "min": 37,
           "max": 38,
-          "ponderado": 15
+          "ponderado": 16
         },
         {
           "min": 39,
           "max": 39,
-          "ponderado": 16
+          "ponderado": 17
         },
         {
           "min": 40,
           "max": 40,
-          "ponderado": 17
+          "ponderado": 18
         },
         {
           "min": 41,
           "max": 42,
-          "ponderado": 18
+          "ponderado": 19
         }
       ],
       "PS": [
@@ -42080,33 +42010,38 @@
         },
         {
           "min": 30,
-          "max": 31,
+          "max": 30,
           "ponderado": 11
         },
         {
-          "min": 32,
-          "max": 33,
+          "min": 31,
+          "max": 32,
           "ponderado": 12
+        },
+        {
+          "min": 33,
+          "max": 33,
+          "ponderado": 13
         },
         {
           "min": 34,
           "max": 34,
-          "ponderado": 13
+          "ponderado": 14
         },
         {
           "min": 35,
           "max": 35,
-          "ponderado": 14
+          "ponderado": 15
         },
         {
           "min": 36,
           "max": 36,
-          "ponderado": 15
+          "ponderado": 16
         },
         {
           "min": 37,
           "max": 37,
-          "ponderado": 16
+          "ponderado": 17
         },
         {
           "min": 38,
@@ -42229,81 +42164,81 @@
         },
         {
           "min": 12,
-          "max": 12,
-          "ponderado": 4
-        },
-        {
-          "min": 13,
           "max": 13,
-          "ponderado": 5
+          "ponderado": 4
         },
         {
           "min": 14,
           "max": 14,
-          "ponderado": 6
+          "ponderado": 5
         },
         {
           "min": 15,
           "max": 15,
-          "ponderado": 7
+          "ponderado": 6
         },
         {
           "min": 16,
-          "max": 16,
-          "ponderado": 8
-        },
-        {
-          "min": 17,
           "max": 17,
-          "ponderado": 9
+          "ponderado": 7
         },
         {
           "min": 18,
+          "max": 18,
+          "ponderado": 8
+        },
+        {
+          "min": 19,
           "max": 19,
-          "ponderado": 10
+          "ponderado": 9
         },
         {
           "min": 20,
-          "max": 20,
-          "ponderado": 11
-        },
-        {
-          "min": 21,
           "max": 21,
-          "ponderado": 12
+          "ponderado": 10
         },
         {
           "min": 22,
           "max": 22,
-          "ponderado": 13
+          "ponderado": 11
         },
         {
           "min": 23,
-          "max": 23,
-          "ponderado": 14
+          "max": 24,
+          "ponderado": 12
         },
         {
-          "min": 24,
+          "min": 25,
           "max": 25,
-          "ponderado": 15
+          "ponderado": 13
         },
         {
           "min": 26,
           "max": 26,
-          "ponderado": 16
+          "ponderado": 14
         },
         {
           "min": 27,
           "max": 28,
-          "ponderado": 17
+          "ponderado": 15
         },
         {
           "min": 29,
+          "max": 30,
+          "ponderado": 16
+        },
+        {
+          "min": 31,
           "max": 31,
-          "ponderado": 18
+          "ponderado": 17
         },
         {
           "min": 32,
+          "max": 32,
+          "ponderado": 18
+        },
+        {
+          "min": 33,
           "max": 33,
           "ponderado": 19
         }
@@ -42326,41 +42261,41 @@
         },
         {
           "min": 16,
-          "max": 16,
+          "max": 17,
           "ponderado": 4
         },
         {
-          "min": 17,
-          "max": 18,
+          "min": 18,
+          "max": 19,
           "ponderado": 5
         },
         {
-          "min": 19,
+          "min": 20,
           "max": 20,
           "ponderado": 6
         },
         {
           "min": 21,
-          "max": 21,
+          "max": 22,
           "ponderado": 7
         },
         {
-          "min": 22,
-          "max": 22,
+          "min": 23,
+          "max": 23,
           "ponderado": 8
         },
         {
-          "min": 23,
-          "max": 24,
+          "min": 24,
+          "max": 25,
           "ponderado": 9
         },
         {
-          "min": 25,
-          "max": 25,
+          "min": 26,
+          "max": 26,
           "ponderado": 10
         },
         {
-          "min": 26,
+          "min": 27,
           "max": 27,
           "ponderado": 11
         },
@@ -42371,23 +42306,18 @@
         },
         {
           "min": 29,
-          "max": 29,
-          "ponderado": 13
-        },
-        {
-          "min": 30,
           "max": 30,
-          "ponderado": 14
+          "ponderado": 13
         },
         {
           "min": 31,
           "max": 31,
-          "ponderado": 15
+          "ponderado": 14
         },
         {
           "min": 32,
           "max": 32,
-          "ponderado": 16
+          "ponderado": 15
         },
         {
           "min": 33,
@@ -42433,51 +42363,61 @@
         },
         {
           "min": 12,
-          "max": 12,
-          "ponderado": 7
-        },
-        {
-          "min": 13,
           "max": 13,
-          "ponderado": 8
+          "ponderado": 7
         },
         {
           "min": 14,
           "max": 14,
-          "ponderado": 9
+          "ponderado": 8
         },
         {
           "min": 15,
           "max": 15,
-          "ponderado": 10
+          "ponderado": 9
         },
         {
           "min": 16,
           "max": 16,
-          "ponderado": 12
+          "ponderado": 10
         },
         {
           "min": 17,
           "max": 17,
-          "ponderado": 13
+          "ponderado": 11
         },
         {
           "min": 18,
           "max": 18,
-          "ponderado": 14
+          "ponderado": 12
         },
         {
           "min": 19,
           "max": 19,
-          "ponderado": 15
+          "ponderado": 13
         },
         {
           "min": 20,
           "max": 20,
-          "ponderado": 16
+          "ponderado": 15
         },
         {
           "min": 21,
+          "max": 21,
+          "ponderado": 16
+        },
+        {
+          "min": 22,
+          "max": 22,
+          "ponderado": 17
+        },
+        {
+          "min": 23,
+          "max": 23,
+          "ponderado": 18
+        },
+        {
+          "min": 24,
           "max": 24,
           "ponderado": 19
         }
@@ -42571,6 +42511,11 @@
           "min": 67,
           "max": 67,
           "ponderado": 17
+        },
+        {
+          "min": 68,
+          "max": 68,
+          "ponderado": 18
         }
       ],
       "SM": [
@@ -43107,12 +43052,12 @@
         {
           "min": 22,
           "max": 22,
-          "ponderado": 12
+          "ponderado": 13
         },
         {
           "min": 23,
           "max": 23,
-          "ponderado": 14
+          "ponderado": 15
         },
         {
           "min": 24,
@@ -43168,12 +43113,12 @@
         },
         {
           "min": 17,
-          "max": 17,
+          "max": 18,
           "ponderado": 7
         },
         {
-          "min": 18,
-          "max": 19,
+          "min": 19,
+          "max": 20,
           "ponderado": 8
         },
         {
@@ -43623,7 +43568,7 @@
         },
         {
           "min": 12,
-          "max": 12,
+          "max": 13,
           "ponderado": 4
         },
         {
@@ -43638,7 +43583,7 @@
         },
         {
           "min": 16,
-          "max": 16,
+          "max": 17,
           "ponderado": 7
         },
         {
@@ -43849,6 +43794,11 @@
           "min": 18,
           "max": 18,
           "ponderado": 12
+        },
+        {
+          "min": 19,
+          "max": 19,
+          "ponderado": 13
         },
         {
           "min": 20,
@@ -44103,17 +44053,17 @@
         {
           "min": 14,
           "max": 14,
-          "ponderado": 7
+          "ponderado": 8
         },
         {
           "min": 15,
           "max": 15,
-          "ponderado": 8
+          "ponderado": 9
         },
         {
           "min": 16,
           "max": 17,
-          "ponderado": 9
+          "ponderado": 10
         },
         {
           "min": 18,
@@ -44142,16 +44092,16 @@
         },
         {
           "min": 26,
-          "max": 26,
+          "max": 27,
           "ponderado": 16
         },
         {
-          "min": 27,
-          "max": 28,
+          "min": 28,
+          "max": 29,
           "ponderado": 17
         },
         {
-          "min": 29,
+          "min": 30,
           "max": 30,
           "ponderado": 18
         },
@@ -44433,11 +44383,11 @@
         },
         {
           "min": 55,
-          "max": 57,
+          "max": 56,
           "ponderado": 17
         },
         {
-          "min": 58,
+          "min": 57,
           "max": 59,
           "ponderado": 18
         },
@@ -44511,7 +44461,7 @@
         {
           "min": 23,
           "max": 23,
-          "ponderado": 14
+          "ponderado": 15
         },
         {
           "min": 24,
@@ -44607,8 +44557,13 @@
         },
         {
           "min": 32,
-          "max": 33,
+          "max": 32,
           "ponderado": 15
+        },
+        {
+          "min": 33,
+          "max": 33,
+          "ponderado": 16
         },
         {
           "min": 34,
@@ -44674,11 +44629,11 @@
         },
         {
           "min": 29,
-          "max": 31,
+          "max": 30,
           "ponderado": 11
         },
         {
-          "min": 32,
+          "min": 31,
           "max": 32,
           "ponderado": 12
         },
@@ -44699,13 +44654,18 @@
         },
         {
           "min": 38,
-          "max": 39,
+          "max": 38,
           "ponderado": 16
+        },
+        {
+          "min": 39,
+          "max": 39,
+          "ponderado": 17
         },
         {
           "min": 40,
           "max": 40,
-          "ponderado": 17
+          "ponderado": 18
         },
         {
           "min": 41,
@@ -45012,7 +44972,7 @@
         },
         {
           "min": 12,
-          "max": 12,
+          "max": 13,
           "ponderado": 4
         },
         {
@@ -45022,7 +44982,7 @@
         },
         {
           "min": 15,
-          "max": 15,
+          "max": 16,
           "ponderado": 6
         },
         {
@@ -45047,17 +45007,17 @@
         },
         {
           "min": 22,
-          "max": 22,
+          "max": 23,
           "ponderado": 11
         },
         {
-          "min": 23,
+          "min": 24,
           "max": 24,
           "ponderado": 12
         },
         {
           "min": 25,
-          "max": 25,
+          "max": 26,
           "ponderado": 13
         },
         {
@@ -45067,11 +45027,11 @@
         },
         {
           "min": 28,
-          "max": 28,
+          "max": 29,
           "ponderado": 15
         },
         {
-          "min": 29,
+          "min": 30,
           "max": 30,
           "ponderado": 16
         },
@@ -45165,7 +45125,7 @@
         {
           "min": 32,
           "max": 32,
-          "ponderado": 16
+          "ponderado": 15
         },
         {
           "min": 33,
@@ -45444,13 +45404,18 @@
         },
         {
           "min": 37,
-          "max": 38,
+          "max": 37,
           "ponderado": 16
+        },
+        {
+          "min": 38,
+          "max": 38,
+          "ponderado": 17
         },
         {
           "min": 39,
           "max": 39,
-          "ponderado": 17
+          "ponderado": 18
         },
         {
           "min": 40,
@@ -45644,7 +45609,7 @@
         {
           "min": 28,
           "max": 28,
-          "ponderado": 19
+          "ponderado": 18
         }
       ],
       "CD": [
@@ -45905,7 +45870,7 @@
         {
           "min": 23,
           "max": 23,
-          "ponderado": 14
+          "ponderado": 15
         },
         {
           "min": 24,
@@ -45936,88 +45901,83 @@
         },
         {
           "min": 8,
-          "max": 8,
-          "ponderado": 2
-        },
-        {
-          "min": 9,
           "max": 9,
-          "ponderado": 3
+          "ponderado": 2
         },
         {
           "min": 10,
           "max": 11,
-          "ponderado": 4
+          "ponderado": 3
         },
         {
           "min": 12,
           "max": 13,
-          "ponderado": 5
+          "ponderado": 4
         },
         {
           "min": 14,
-          "max": 14,
+          "max": 15,
+          "ponderado": 5
+        },
+        {
+          "min": 16,
+          "max": 17,
           "ponderado": 6
         },
         {
-          "min": 15,
-          "max": 16,
+          "min": 18,
+          "max": 19,
           "ponderado": 7
         },
         {
-          "min": 17,
-          "max": 17,
+          "min": 20,
+          "max": 21,
           "ponderado": 8
         },
         {
-          "min": 18,
-          "max": 20,
+          "min": 22,
+          "max": 23,
           "ponderado": 9
         },
         {
-          "min": 21,
-          "max": 22,
-          "ponderado": 10
-        },
-        {
-          "min": 23,
+          "min": 24,
           "max": 24,
-          "ponderado": 11
+          "ponderado": 10
         },
         {
           "min": 25,
           "max": 26,
-          "ponderado": 12
+          "ponderado": 11
         },
         {
           "min": 27,
           "max": 28,
-          "ponderado": 13
+          "ponderado": 12
         },
         {
           "min": 29,
           "max": 29,
-          "ponderado": 14
+          "ponderado": 13
         },
         {
           "min": 30,
           "max": 31,
-          "ponderado": 15
+          "ponderado": 14
         },
         {
           "min": 32,
           "max": 32,
-          "ponderado": 16
+          "ponderado": 15
         },
         {
           "min": 33,
           "max": 33,
-          "ponderado": 17
+          "ponderado": 16
         },
         {
           "min": 34,
           "max": 34,
-          "ponderado": 18
+          "ponderado": 17
         },
         {
           "min": 35,
@@ -46098,18 +46058,28 @@
         },
         {
           "min": 37,
-          "max": 38,
+          "max": 37,
           "ponderado": 15
         },
         {
-          "min": 39,
-          "max": 40,
+          "min": 38,
+          "max": 38,
           "ponderado": 16
+        },
+        {
+          "min": 39,
+          "max": 39,
+          "ponderado": 17
+        },
+        {
+          "min": 40,
+          "max": 40,
+          "ponderado": 18
         },
         {
           "min": 41,
           "max": 42,
-          "ponderado": 18
+          "ponderado": 19
         }
       ],
       "PS": [
@@ -46411,7 +46381,7 @@
         },
         {
           "min": 12,
-          "max": 12,
+          "max": 13,
           "ponderado": 4
         },
         {
@@ -46421,7 +46391,7 @@
         },
         {
           "min": 15,
-          "max": 15,
+          "max": 16,
           "ponderado": 6
         },
         {
@@ -46431,11 +46401,11 @@
         },
         {
           "min": 18,
-          "max": 18,
+          "max": 19,
           "ponderado": 8
         },
         {
-          "min": 19,
+          "min": 20,
           "max": 20,
           "ponderado": 9
         },
@@ -46446,11 +46416,11 @@
         },
         {
           "min": 22,
-          "max": 22,
+          "max": 23,
           "ponderado": 11
         },
         {
-          "min": 23,
+          "min": 24,
           "max": 24,
           "ponderado": 12
         },
@@ -46466,16 +46436,16 @@
         },
         {
           "min": 28,
-          "max": 28,
+          "max": 29,
           "ponderado": 15
         },
         {
-          "min": 29,
-          "max": 29,
+          "min": 30,
+          "max": 30,
           "ponderado": 16
         },
         {
-          "min": 30,
+          "min": 31,
           "max": 31,
           "ponderado": 17
         },
@@ -46508,16 +46478,16 @@
         },
         {
           "min": 16,
-          "max": 16,
+          "max": 17,
           "ponderado": 4
         },
         {
-          "min": 17,
-          "max": 18,
+          "min": 18,
+          "max": 19,
           "ponderado": 5
         },
         {
-          "min": 19,
+          "min": 20,
           "max": 20,
           "ponderado": 6
         },
@@ -46528,11 +46498,11 @@
         },
         {
           "min": 23,
-          "max": 23,
+          "max": 24,
           "ponderado": 8
         },
         {
-          "min": 24,
+          "min": 25,
           "max": 25,
           "ponderado": 9
         },
@@ -46564,7 +46534,7 @@
         {
           "min": 32,
           "max": 32,
-          "ponderado": 16
+          "ponderado": 15
         },
         {
           "min": 33,
@@ -46615,18 +46585,23 @@
         },
         {
           "min": 14,
-          "max": 15,
+          "max": 14,
           "ponderado": 8
+        },
+        {
+          "min": 15,
+          "max": 15,
+          "ponderado": 9
         },
         {
           "min": 16,
           "max": 16,
-          "ponderado": 9
+          "ponderado": 10
         },
         {
           "min": 17,
           "max": 17,
-          "ponderado": 10
+          "ponderado": 11
         },
         {
           "min": 18,
@@ -46651,7 +46626,7 @@
         {
           "min": 22,
           "max": 22,
-          "ponderado": 17
+          "ponderado": 16
         },
         {
           "min": 23,
