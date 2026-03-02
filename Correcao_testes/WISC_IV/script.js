@@ -561,12 +561,10 @@ function montarRelatorio(data) {
   <thead>
     <tr>
       <th>Escala</th>
-      <th>Soma (ponderados)</th>
       <th>Ponto Composto</th>
       <th>Rank Percentil</th>
       <th>IC 90%</th>
       <th>IC 95%</th>
-      <th>Subtestes usados</th>
     </tr>
   </thead>
   <tbody>
