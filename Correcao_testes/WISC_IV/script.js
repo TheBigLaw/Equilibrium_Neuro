@@ -574,12 +574,10 @@ function montarRelatorio(data) {
       return `
         <tr>
           <td><b>${k}</b></td>
-          <td>${info.soma ?? "—"}</td>
           <td>${comp?.composto ?? "—"}</td>
           <td>${comp?.percentil ?? "—"}</td>
           <td>${comp?.ic90 ?? "—"}</td>
           <td>${comp?.ic95 ?? "—"}</td>
-          <td>${(info.usados||[]).join(", ") || "—"}</td>
         </tr>
       `;
     }).join("")}
