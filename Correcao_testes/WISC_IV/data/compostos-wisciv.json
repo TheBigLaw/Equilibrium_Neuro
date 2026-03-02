@@ -1,0 +1,2567 @@
+{
+  "ICV": [
+    {
+      "soma": 3,
+      "composto": 45,
+      "percentil": "<0,1",
+      "ic90": "43-55",
+      "ic95": "42-56"
+    },
+    {
+      "soma": 4,
+      "composto": 47,
+      "percentil": "<0,1",
+      "ic90": "45-57",
+      "ic95": "43-58"
+    },
+    {
+      "soma": 5,
+      "composto": 49,
+      "percentil": "<0,1",
+      "ic90": "46-59",
+      "ic95": "45-60"
+    },
+    {
+      "soma": 6,
+      "composto": 51,
+      "percentil": "0,1",
+      "ic90": "48-61",
+      "ic95": "47-62"
+    },
+    {
+      "soma": 7,
+      "composto": 53,
+      "percentil": "0,1",
+      "ic90": "50-62",
+      "ic95": "49-64"
+    },
+    {
+      "soma": 8,
+      "composto": 55,
+      "percentil": "0,1",
+      "ic90": "52-64",
+      "ic95": "51-65"
+    },
+    {
+      "soma": 9,
+      "composto": 57,
+      "percentil": "0,2",
+      "ic90": "54-66",
+      "ic95": "53-67"
+    },
+    {
+      "soma": 10,
+      "composto": 59,
+      "percentil": "0,3",
+      "ic90": "56-68",
+      "ic95": "55-69"
+    },
+    {
+      "soma": 11,
+      "composto": 61,
+      "percentil": "0,5",
+      "ic90": "58-70",
+      "ic95": "56-71"
+    },
+    {
+      "soma": 12,
+      "composto": 63,
+      "percentil": "1",
+      "ic90": "60-72",
+      "ic95": "58-73"
+    },
+    {
+      "soma": 13,
+      "composto": 65,
+      "percentil": "1",
+      "ic90": "61-74",
+      "ic95": "60-75"
+    },
+    {
+      "soma": 14,
+      "composto": 67,
+      "percentil": "1",
+      "ic90": "63-75",
+      "ic95": "62-77"
+    },
+    {
+      "soma": 15,
+      "composto": 70,
+      "percentil": "2",
+      "ic90": "66-78",
+      "ic95": "65-79"
+    },
+    {
+      "soma": 16,
+      "composto": 72,
+      "percentil": "3",
+      "ic90": "68-80",
+      "ic95": "67-81"
+    },
+    {
+      "soma": 17,
+      "composto": 74,
+      "percentil": "4",
+      "ic90": "70-82",
+      "ic95": "69-83"
+    },
+    {
+      "soma": 18,
+      "composto": 76,
+      "percentil": "5",
+      "ic90": "72-84",
+      "ic95": "70-85"
+    },
+    {
+      "soma": 19,
+      "composto": 78,
+      "percentil": "7",
+      "ic90": "73-86",
+      "ic95": "72-87"
+    },
+    {
+      "soma": 20,
+      "composto": 80,
+      "percentil": "9",
+      "ic90": "75-87",
+      "ic95": "74-89"
+    },
+    {
+      "soma": 21,
+      "composto": 82,
+      "percentil": "12",
+      "ic90": "77-89",
+      "ic95": "76-90"
+    },
+    {
+      "soma": 22,
+      "composto": 84,
+      "percentil": "14",
+      "ic90": "79-91",
+      "ic95": "78-92"
+    },
+    {
+      "soma": 23,
+      "composto": 86,
+      "percentil": "18",
+      "ic90": "81-93",
+      "ic95": "80-94"
+    },
+    {
+      "soma": 24,
+      "composto": 88,
+      "percentil": "21",
+      "ic90": "83-95",
+      "ic95": "82-96"
+    },
+    {
+      "soma": 25,
+      "composto": 91,
+      "percentil": "27",
+      "ic90": "86-98",
+      "ic95": "84-99"
+    },
+    {
+      "soma": 26,
+      "composto": 93,
+      "percentil": "32",
+      "ic90": "87-100",
+      "ic95": "86-101"
+    },
+    {
+      "soma": 27,
+      "composto": 95,
+      "percentil": "37",
+      "ic90": "89-101",
+      "ic95": "88-103"
+    },
+    {
+      "soma": 28,
+      "composto": 97,
+      "percentil": "42",
+      "ic90": "91-103",
+      "ic95": "90-104"
+    },
+    {
+      "soma": 29,
+      "composto": 99,
+      "percentil": "47",
+      "ic90": "93-105",
+      "ic95": "92-106"
+    },
+    {
+      "soma": 30,
+      "composto": 101,
+      "percentil": "53",
+      "ic90": "95-107",
+      "ic95": "94-108"
+    },
+    {
+      "soma": 31,
+      "composto": 103,
+      "percentil": "58",
+      "ic90": "97-109",
+      "ic95": "96-110"
+    },
+    {
+      "soma": 32,
+      "composto": 104,
+      "percentil": "61",
+      "ic90": "98-110",
+      "ic95": "96-111"
+    },
+    {
+      "soma": 33,
+      "composto": 106,
+      "percentil": "66",
+      "ic90": "100-112",
+      "ic95": "98-113"
+    },
+    {
+      "soma": 34,
+      "composto": 108,
+      "percentil": "70",
+      "ic90": "101-114",
+      "ic95": "100-115"
+    },
+    {
+      "soma": 35,
+      "composto": 110,
+      "percentil": "75",
+      "ic90": "103-115",
+      "ic95": "102-117"
+    },
+    {
+      "soma": 36,
+      "composto": 111,
+      "percentil": "77",
+      "ic90": "104-116",
+      "ic95": "103-117"
+    },
+    {
+      "soma": 37,
+      "composto": 113,
+      "percentil": "81",
+      "ic90": "106-118",
+      "ic95": "105-119"
+    },
+    {
+      "soma": 38,
+      "composto": 115,
+      "percentil": "84",
+      "ic90": "108-120",
+      "ic95": "107-121"
+    },
+    {
+      "soma": 39,
+      "composto": 117,
+      "percentil": "87",
+      "ic90": "110-122",
+      "ic95": "109-123"
+    },
+    {
+      "soma": 40,
+      "composto": 119,
+      "percentil": "90",
+      "ic90": "112-124",
+      "ic95": "110-125"
+    },
+    {
+      "soma": 41,
+      "composto": 121,
+      "percentil": "92",
+      "ic90": "113-126",
+      "ic95": "112-127"
+    },
+    {
+      "soma": 42,
+      "composto": 123,
+      "percentil": "94",
+      "ic90": "115-127",
+      "ic95": "114-129"
+    },
+    {
+      "soma": 43,
+      "composto": 125,
+      "percentil": "95",
+      "ic90": "117-129",
+      "ic95": "116-130"
+    },
+    {
+      "soma": 44,
+      "composto": 126,
+      "percentil": "96",
+      "ic90": "118-130",
+      "ic95": "117-131"
+    },
+    {
+      "soma": 45,
+      "composto": 128,
+      "percentil": "97",
+      "ic90": "120-132",
+      "ic95": "119-133"
+    },
+    {
+      "soma": 46,
+      "composto": 130,
+      "percentil": "98",
+      "ic90": "122-134",
+      "ic95": "121-135"
+    },
+    {
+      "soma": 47,
+      "composto": 132,
+      "percentil": "98",
+      "ic90": "124-136",
+      "ic95": "123-137"
+    },
+    {
+      "soma": 48,
+      "composto": 134,
+      "percentil": "99",
+      "ic90": "126-138",
+      "ic95": "124-139"
+    },
+    {
+      "soma": 49,
+      "composto": 136,
+      "percentil": "99",
+      "ic90": "127-140",
+      "ic95": "126-141"
+    },
+    {
+      "soma": 50,
+      "composto": 138,
+      "percentil": "99",
+      "ic90": "129-141",
+      "ic95": "128-143"
+    },
+    {
+      "soma": 51,
+      "composto": 141,
+      "percentil": "99,7",
+      "ic90": "132-144",
+      "ic95": "131-145"
+    },
+    {
+      "soma": 52,
+      "composto": 143,
+      "percentil": "99,8",
+      "ic90": "134-146",
+      "ic95": "133-147"
+    },
+    {
+      "soma": 53,
+      "composto": 146,
+      "percentil": "99,9",
+      "ic90": "137-149",
+      "ic95": "136-150"
+    },
+    {
+      "soma": 54,
+      "composto": 148,
+      "percentil": "99,9",
+      "ic90": "139-151",
+      "ic95": "137-152"
+    },
+    {
+      "soma": 55,
+      "composto": 151,
+      "percentil": ">99,9",
+      "ic90": "141-154",
+      "ic95": "140-155"
+    },
+    {
+      "soma": 56,
+      "composto": 153,
+      "percentil": ">99,9",
+      "ic90": "143-155",
+      "ic95": "142-157"
+    },
+    {
+      "soma": 57,
+      "composto": 155,
+      "percentil": ">99,9",
+      "ic90": "145-157",
+      "ic95": "144-158"
+    }
+  ],
+  "IOP": [
+    {
+      "soma": 3,
+      "composto": 45,
+      "percentil": "<0,1",
+      "ic90": "43-55",
+      "ic95": "42-56"
+    },
+    {
+      "soma": 4,
+      "composto": 47,
+      "percentil": "<0,1",
+      "ic90": "45-57",
+      "ic95": "43-58"
+    },
+    {
+      "soma": 5,
+      "composto": 49,
+      "percentil": "<0,1",
+      "ic90": "46-59",
+      "ic95": "45-60"
+    },
+    {
+      "soma": 6,
+      "composto": 51,
+      "percentil": "0,1",
+      "ic90": "48-61",
+      "ic95": "47-62"
+    },
+    {
+      "soma": 7,
+      "composto": 53,
+      "percentil": "0,1",
+      "ic90": "50-62",
+      "ic95": "49-64"
+    },
+    {
+      "soma": 8,
+      "composto": 55,
+      "percentil": "0,1",
+      "ic90": "52-64",
+      "ic95": "51-65"
+    },
+    {
+      "soma": 9,
+      "composto": 57,
+      "percentil": "0,2",
+      "ic90": "54-66",
+      "ic95": "53-67"
+    },
+    {
+      "soma": 10,
+      "composto": 59,
+      "percentil": "0,3",
+      "ic90": "56-68",
+      "ic95": "55-69"
+    },
+    {
+      "soma": 11,
+      "composto": 61,
+      "percentil": "0,5",
+      "ic90": "58-70",
+      "ic95": "56-71"
+    },
+    {
+      "soma": 12,
+      "composto": 63,
+      "percentil": "1",
+      "ic90": "60-72",
+      "ic95": "58-73"
+    },
+    {
+      "soma": 13,
+      "composto": 65,
+      "percentil": "1",
+      "ic90": "61-74",
+      "ic95": "60-75"
+    },
+    {
+      "soma": 14,
+      "composto": 67,
+      "percentil": "1",
+      "ic90": "63-75",
+      "ic95": "62-77"
+    },
+    {
+      "soma": 15,
+      "composto": 69,
+      "percentil": "2",
+      "ic90": "65-77",
+      "ic95": "64-78"
+    },
+    {
+      "soma": 16,
+      "composto": 71,
+      "percentil": "3",
+      "ic90": "67-79",
+      "ic95": "66-80"
+    },
+    {
+      "soma": 17,
+      "composto": 73,
+      "percentil": "4",
+      "ic90": "69-81",
+      "ic95": "68-82"
+    },
+    {
+      "soma": 18,
+      "composto": 75,
+      "percentil": "5",
+      "ic90": "71-83",
+      "ic95": "70-84"
+    },
+    {
+      "soma": 19,
+      "composto": 77,
+      "percentil": "6",
+      "ic90": "73-85",
+      "ic95": "71-86"
+    },
+    {
+      "soma": 20,
+      "composto": 79,
+      "percentil": "8",
+      "ic90": "74-87",
+      "ic95": "73-88"
+    },
+    {
+      "soma": 21,
+      "composto": 81,
+      "percentil": "10",
+      "ic90": "76-88",
+      "ic95": "75-90"
+    },
+    {
+      "soma": 22,
+      "composto": 83,
+      "percentil": "13",
+      "ic90": "78-90",
+      "ic95": "77-91"
+    },
+    {
+      "soma": 23,
+      "composto": 86,
+      "percentil": "18",
+      "ic90": "81-93",
+      "ic95": "80-94"
+    },
+    {
+      "soma": 24,
+      "composto": 88,
+      "percentil": "21",
+      "ic90": "83-95",
+      "ic95": "82-96"
+    },
+    {
+      "soma": 25,
+      "composto": 90,
+      "percentil": "25",
+      "ic90": "85-97",
+      "ic95": "83-98"
+    },
+    {
+      "soma": 26,
+      "composto": 92,
+      "percentil": "30",
+      "ic90": "86-99",
+      "ic95": "85-100"
+    },
+    {
+      "soma": 27,
+      "composto": 94,
+      "percentil": "34",
+      "ic90": "88-100",
+      "ic95": "87-102"
+    },
+    {
+      "soma": 28,
+      "composto": 96,
+      "percentil": "39",
+      "ic90": "90-102",
+      "ic95": "89-104"
+    },
+    {
+      "soma": 29,
+      "composto": 98,
+      "percentil": "45",
+      "ic90": "92-104",
+      "ic95": "91-105"
+    },
+    {
+      "soma": 30,
+      "composto": 100,
+      "percentil": "50",
+      "ic90": "94-106",
+      "ic95": "93-107"
+    },
+    {
+      "soma": 31,
+      "composto": 102,
+      "percentil": "55",
+      "ic90": "96-108",
+      "ic95": "95-109"
+    },
+    {
+      "soma": 32,
+      "composto": 104,
+      "percentil": "61",
+      "ic90": "98-110",
+      "ic95": "96-111"
+    },
+    {
+      "soma": 33,
+      "composto": 106,
+      "percentil": "66",
+      "ic90": "100-112",
+      "ic95": "98-113"
+    },
+    {
+      "soma": 34,
+      "composto": 108,
+      "percentil": "70",
+      "ic90": "101-114",
+      "ic95": "100-115"
+    },
+    {
+      "soma": 35,
+      "composto": 110,
+      "percentil": "75",
+      "ic90": "103-115",
+      "ic95": "102-117"
+    },
+    {
+      "soma": 36,
+      "composto": 112,
+      "percentil": "79",
+      "ic90": "105-117",
+      "ic95": "104-118"
+    },
+    {
+      "soma": 37,
+      "composto": 114,
+      "percentil": "82",
+      "ic90": "107-119",
+      "ic95": "106-120"
+    },
+    {
+      "soma": 38,
+      "composto": 116,
+      "percentil": "86",
+      "ic90": "109-121",
+      "ic95": "108-122"
+    },
+    {
+      "soma": 39,
+      "composto": 118,
+      "percentil": "88",
+      "ic90": "111-123",
+      "ic95": "110-124"
+    },
+    {
+      "soma": 40,
+      "composto": 120,
+      "percentil": "91",
+      "ic90": "113-125",
+      "ic95": "111-126"
+    },
+    {
+      "soma": 41,
+      "composto": 122,
+      "percentil": "93",
+      "ic90": "114-127",
+      "ic95": "113-128"
+    },
+    {
+      "soma": 42,
+      "composto": 124,
+      "percentil": "95",
+      "ic90": "116-128",
+      "ic95": "115-130"
+    },
+    {
+      "soma": 43,
+      "composto": 126,
+      "percentil": "96",
+      "ic90": "118-130",
+      "ic95": "117-131"
+    },
+    {
+      "soma": 44,
+      "composto": 128,
+      "percentil": "97",
+      "ic90": "120-132",
+      "ic95": "119-133"
+    },
+    {
+      "soma": 45,
+      "composto": 130,
+      "percentil": "98",
+      "ic90": "122-134",
+      "ic95": "121-135"
+    },
+    {
+      "soma": 46,
+      "composto": 132,
+      "percentil": "98",
+      "ic90": "124-136",
+      "ic95": "123-137"
+    },
+    {
+      "soma": 47,
+      "composto": 134,
+      "percentil": "99",
+      "ic90": "126-138",
+      "ic95": "124-139"
+    },
+    {
+      "soma": 48,
+      "composto": 136,
+      "percentil": "99",
+      "ic90": "127-140",
+      "ic95": "126-141"
+    },
+    {
+      "soma": 49,
+      "composto": 138,
+      "percentil": "99",
+      "ic90": "129-141",
+      "ic95": "128-143"
+    },
+    {
+      "soma": 50,
+      "composto": 140,
+      "percentil": "99,6",
+      "ic90": "131-143",
+      "ic95": "130-144"
+    },
+    {
+      "soma": 51,
+      "composto": 142,
+      "percentil": "99,7",
+      "ic90": "133-145",
+      "ic95": "132-146"
+    },
+    {
+      "soma": 52,
+      "composto": 144,
+      "percentil": "99,8",
+      "ic90": "135-147",
+      "ic95": "134-148"
+    },
+    {
+      "soma": 53,
+      "composto": 146,
+      "percentil": "99,9",
+      "ic90": "137-149",
+      "ic95": "136-150"
+    },
+    {
+      "soma": 54,
+      "composto": 148,
+      "percentil": "99,9",
+      "ic90": "139-151",
+      "ic95": "137-152"
+    },
+    {
+      "soma": 55,
+      "composto": 150,
+      "percentil": ">99,9",
+      "ic90": "140-153",
+      "ic95": "139-154"
+    },
+    {
+      "soma": 56,
+      "composto": 152,
+      "percentil": ">99,9",
+      "ic90": "142-154",
+      "ic95": "141-156"
+    },
+    {
+      "soma": 57,
+      "composto": 155,
+      "percentil": ">99,9",
+      "ic90": "145-157",
+      "ic95": "144-158"
+    }
+  ],
+  "IMO": [
+    {
+      "soma": 2,
+      "composto": 45,
+      "percentil": "<0,1",
+      "ic90": "43-55",
+      "ic95": "42-56"
+    },
+    {
+      "soma": 3,
+      "composto": 49,
+      "percentil": "<0,1",
+      "ic90": "46-59",
+      "ic95": "45-60"
+    },
+    {
+      "soma": 4,
+      "composto": 52,
+      "percentil": "0,1",
+      "ic90": "49-61",
+      "ic95": "48-63"
+    },
+    {
+      "soma": 5,
+      "composto": 56,
+      "percentil": "0,2",
+      "ic90": "53-65",
+      "ic95": "52-66"
+    },
+    {
+      "soma": 6,
+      "composto": 59,
+      "percentil": "0,3",
+      "ic90": "56-68",
+      "ic95": "55-69"
+    },
+    {
+      "soma": 7,
+      "composto": 62,
+      "percentil": "1",
+      "ic90": "59-71",
+      "ic95": "57-72"
+    },
+    {
+      "soma": 8,
+      "composto": 65,
+      "percentil": "1",
+      "ic90": "61-74",
+      "ic95": "60-75"
+    },
+    {
+      "soma": 9,
+      "composto": 68,
+      "percentil": "2",
+      "ic90": "64-76",
+      "ic95": "63-77"
+    },
+    {
+      "soma": 10,
+      "composto": 71,
+      "percentil": "3",
+      "ic90": "67-79",
+      "ic95": "66-80"
+    },
+    {
+      "soma": 11,
+      "composto": 74,
+      "percentil": "4",
+      "ic90": "70-82",
+      "ic95": "69-83"
+    },
+    {
+      "soma": 12,
+      "composto": 77,
+      "percentil": "6",
+      "ic90": "73-85",
+      "ic95": "71-86"
+    },
+    {
+      "soma": 13,
+      "composto": 80,
+      "percentil": "9",
+      "ic90": "75-87",
+      "ic95": "74-89"
+    },
+    {
+      "soma": 14,
+      "composto": 83,
+      "percentil": "13",
+      "ic90": "78-90",
+      "ic95": "77-91"
+    },
+    {
+      "soma": 15,
+      "composto": 85,
+      "percentil": "16",
+      "ic90": "80-92",
+      "ic95": "79-93"
+    },
+    {
+      "soma": 16,
+      "composto": 88,
+      "percentil": "21",
+      "ic90": "83-95",
+      "ic95": "82-96"
+    },
+    {
+      "soma": 17,
+      "composto": 91,
+      "percentil": "27",
+      "ic90": "86-98",
+      "ic95": "84-99"
+    },
+    {
+      "soma": 18,
+      "composto": 94,
+      "percentil": "34",
+      "ic90": "88-100",
+      "ic95": "87-102"
+    },
+    {
+      "soma": 19,
+      "composto": 97,
+      "percentil": "42",
+      "ic90": "91-103",
+      "ic95": "90-104"
+    },
+    {
+      "soma": 20,
+      "composto": 100,
+      "percentil": "50",
+      "ic90": "94-106",
+      "ic95": "93-107"
+    },
+    {
+      "soma": 21,
+      "composto": 103,
+      "percentil": "58",
+      "ic90": "97-109",
+      "ic95": "96-110"
+    },
+    {
+      "soma": 22,
+      "composto": 106,
+      "percentil": "66",
+      "ic90": "100-112",
+      "ic95": "98-113"
+    },
+    {
+      "soma": 23,
+      "composto": 109,
+      "percentil": "73",
+      "ic90": "102-114",
+      "ic95": "101-116"
+    },
+    {
+      "soma": 24,
+      "composto": 112,
+      "percentil": "79",
+      "ic90": "105-117",
+      "ic95": "104-118"
+    },
+    {
+      "soma": 25,
+      "composto": 115,
+      "percentil": "84",
+      "ic90": "108-120",
+      "ic95": "107-121"
+    },
+    {
+      "soma": 26,
+      "composto": 118,
+      "percentil": "88",
+      "ic90": "111-123",
+      "ic95": "110-124"
+    },
+    {
+      "soma": 27,
+      "composto": 120,
+      "percentil": "91",
+      "ic90": "113-125",
+      "ic95": "111-126"
+    },
+    {
+      "soma": 28,
+      "composto": 123,
+      "percentil": "94",
+      "ic90": "115-127",
+      "ic95": "114-129"
+    },
+    {
+      "soma": 29,
+      "composto": 126,
+      "percentil": "96",
+      "ic90": "118-130",
+      "ic95": "117-131"
+    },
+    {
+      "soma": 30,
+      "composto": 129,
+      "percentil": "97",
+      "ic90": "121-133",
+      "ic95": "120-134"
+    },
+    {
+      "soma": 31,
+      "composto": 132,
+      "percentil": "98",
+      "ic90": "124-136",
+      "ic95": "123-137"
+    },
+    {
+      "soma": 32,
+      "composto": 135,
+      "percentil": "99",
+      "ic90": "126-139",
+      "ic95": "125-140"
+    },
+    {
+      "soma": 33,
+      "composto": 138,
+      "percentil": "99",
+      "ic90": "129-141",
+      "ic95": "128-143"
+    },
+    {
+      "soma": 34,
+      "composto": 141,
+      "percentil": "99,7",
+      "ic90": "132-144",
+      "ic95": "131-145"
+    },
+    {
+      "soma": 35,
+      "composto": 144,
+      "percentil": "99,8",
+      "ic90": "135-147",
+      "ic95": "134-148"
+    },
+    {
+      "soma": 36,
+      "composto": 147,
+      "percentil": "99,9",
+      "ic90": "138-150",
+      "ic95": "136-151"
+    },
+    {
+      "soma": 37,
+      "composto": 151,
+      "percentil": ">99,9",
+      "ic90": "141-154",
+      "ic95": "140-155"
+    },
+    {
+      "soma": 38,
+      "composto": 155,
+      "percentil": ">99,9",
+      "ic90": "145-157",
+      "ic95": "144-158"
+    }
+  ],
+  "IVP": [
+    {
+      "soma": 2,
+      "composto": 45,
+      "percentil": "<0,1",
+      "ic90": "44-59",
+      "ic95": "43-61"
+    },
+    {
+      "soma": 3,
+      "composto": 49,
+      "percentil": "<0,1",
+      "ic90": "48-63",
+      "ic95": "46-64"
+    },
+    {
+      "soma": 4,
+      "composto": 52,
+      "percentil": "0,1",
+      "ic90": "50-65",
+      "ic95": "49-67"
+    },
+    {
+      "soma": 5,
+      "composto": 55,
+      "percentil": "0,1",
+      "ic90": "53-68",
+      "ic95": "51-69"
+    },
+    {
+      "soma": 6,
+      "composto": 58,
+      "percentil": "0,3",
+      "ic90": "56-71",
+      "ic95": "54-72"
+    },
+    {
+      "soma": 7,
+      "composto": 61,
+      "percentil": "0,5",
+      "ic90": "58-73",
+      "ic95": "57-75"
+    },
+    {
+      "soma": 8,
+      "composto": 64,
+      "percentil": "1",
+      "ic90": "61-76",
+      "ic95": "59-77"
+    },
+    {
+      "soma": 9,
+      "composto": 68,
+      "percentil": "2",
+      "ic90": "64-79",
+      "ic95": "63-81"
+    },
+    {
+      "soma": 10,
+      "composto": 71,
+      "percentil": "3",
+      "ic90": "67-82",
+      "ic95": "66-83"
+    },
+    {
+      "soma": 11,
+      "composto": 74,
+      "percentil": "4",
+      "ic90": "70-85",
+      "ic95": "68-86"
+    },
+    {
+      "soma": 12,
+      "composto": 77,
+      "percentil": "6",
+      "ic90": "72-87",
+      "ic95": "71-89"
+    },
+    {
+      "soma": 13,
+      "composto": 80,
+      "percentil": "9",
+      "ic90": "75-90",
+      "ic95": "73-91"
+    },
+    {
+      "soma": 14,
+      "composto": 83,
+      "percentil": "13",
+      "ic90": "78-93",
+      "ic95": "76-94"
+    },
+    {
+      "soma": 15,
+      "composto": 86,
+      "percentil": "18",
+      "ic90": "80-95",
+      "ic95": "79-97"
+    },
+    {
+      "soma": 16,
+      "composto": 89,
+      "percentil": "23",
+      "ic90": "83-98",
+      "ic95": "81-99"
+    },
+    {
+      "soma": 17,
+      "composto": 92,
+      "percentil": "30",
+      "ic90": "85-100",
+      "ic95": "84-102"
+    },
+    {
+      "soma": 18,
+      "composto": 95,
+      "percentil": "37",
+      "ic90": "88-103",
+      "ic95": "87-105"
+    },
+    {
+      "soma": 19,
+      "composto": 97,
+      "percentil": "42",
+      "ic90": "90-105",
+      "ic95": "88-106"
+    },
+    {
+      "soma": 20,
+      "composto": 100,
+      "percentil": "50",
+      "ic90": "92-108",
+      "ic95": "91-109"
+    },
+    {
+      "soma": 21,
+      "composto": 103,
+      "percentil": "58",
+      "ic90": "95-110",
+      "ic95": "94-112"
+    },
+    {
+      "soma": 22,
+      "composto": 105,
+      "percentil": "63",
+      "ic90": "97-112",
+      "ic95": "95-113"
+    },
+    {
+      "soma": 23,
+      "composto": 108,
+      "percentil": "70",
+      "ic90": "100-115",
+      "ic95": "98-116"
+    },
+    {
+      "soma": 24,
+      "composto": 111,
+      "percentil": "77",
+      "ic90": "102-117",
+      "ic95": "101-119"
+    },
+    {
+      "soma": 25,
+      "composto": 115,
+      "percentil": "84",
+      "ic90": "106-121",
+      "ic95": "104-122"
+    },
+    {
+      "soma": 26,
+      "composto": 118,
+      "percentil": "88",
+      "ic90": "108-123",
+      "ic95": "107-125"
+    },
+    {
+      "soma": 27,
+      "composto": 121,
+      "percentil": "92",
+      "ic90": "111-126",
+      "ic95": "110-127"
+    },
+    {
+      "soma": 28,
+      "composto": 123,
+      "percentil": "94",
+      "ic90": "113-128",
+      "ic95": "111-129"
+    },
+    {
+      "soma": 29,
+      "composto": 126,
+      "percentil": "96",
+      "ic90": "115-130",
+      "ic95": "114-132"
+    },
+    {
+      "soma": 30,
+      "composto": 129,
+      "percentil": "97",
+      "ic90": "118-133",
+      "ic95": "117-134"
+    },
+    {
+      "soma": 31,
+      "composto": 131,
+      "percentil": "98",
+      "ic90": "120-135",
+      "ic95": "118-136"
+    },
+    {
+      "soma": 32,
+      "composto": 134,
+      "percentil": "99",
+      "ic90": "122-137",
+      "ic95": "121-139"
+    },
+    {
+      "soma": 33,
+      "composto": 137,
+      "percentil": "99",
+      "ic90": "125-140",
+      "ic95": "124-142"
+    },
+    {
+      "soma": 34,
+      "composto": 141,
+      "percentil": "99,7",
+      "ic90": "129-144",
+      "ic95": "127-145"
+    },
+    {
+      "soma": 35,
+      "composto": 144,
+      "percentil": "99,8",
+      "ic90": "131-146",
+      "ic95": "130-148"
+    },
+    {
+      "soma": 36,
+      "composto": 147,
+      "percentil": "99,9",
+      "ic90": "134-149",
+      "ic95": "132-150"
+    },
+    {
+      "soma": 37,
+      "composto": 151,
+      "percentil": ">99,9",
+      "ic90": "137-152",
+      "ic95": "136-154"
+    },
+    {
+      "soma": 38,
+      "composto": 155,
+      "percentil": ">99,9",
+      "ic90": "141-156",
+      "ic95": "139-157"
+    }
+  ],
+  "QIT": [
+    {
+      "soma": 10,
+      "composto": 40,
+      "percentil": "<0,1",
+      "ic90": "38-46",
+      "ic95": "37-47"
+    },
+    {
+      "soma": 11,
+      "composto": 40,
+      "percentil": "<0,1",
+      "ic90": "38-46",
+      "ic95": "37-47"
+    },
+    {
+      "soma": 12,
+      "composto": 41,
+      "percentil": "<0,1",
+      "ic90": "39-47",
+      "ic95": "38-48"
+    },
+    {
+      "soma": 13,
+      "composto": 41,
+      "percentil": "<0,1",
+      "ic90": "39-47",
+      "ic95": "38-48"
+    },
+    {
+      "soma": 14,
+      "composto": 42,
+      "percentil": "<0,1",
+      "ic90": "40-48",
+      "ic95": "39-49"
+    },
+    {
+      "soma": 15,
+      "composto": 43,
+      "percentil": "<0,1",
+      "ic90": "41-49",
+      "ic95": "40-50"
+    },
+    {
+      "soma": 16,
+      "composto": 43,
+      "percentil": "<0,1",
+      "ic90": "41-49",
+      "ic95": "40-50"
+    },
+    {
+      "soma": 17,
+      "composto": 44,
+      "percentil": "<0,1",
+      "ic90": "42-50",
+      "ic95": "41-51"
+    },
+    {
+      "soma": 18,
+      "composto": 44,
+      "percentil": "<0,1",
+      "ic90": "42-50",
+      "ic95": "41-51"
+    },
+    {
+      "soma": 19,
+      "composto": 45,
+      "percentil": "<0,1",
+      "ic90": "43-51",
+      "ic95": "42-52"
+    },
+    {
+      "soma": 20,
+      "composto": 46,
+      "percentil": "<0,1",
+      "ic90": "43-52",
+      "ic95": "43-53"
+    },
+    {
+      "soma": 21,
+      "composto": 46,
+      "percentil": "<0,1",
+      "ic90": "43-52",
+      "ic95": "43-53"
+    },
+    {
+      "soma": 22,
+      "composto": 47,
+      "percentil": "<0,1",
+      "ic90": "44-53",
+      "ic95": "44-54"
+    },
+    {
+      "soma": 23,
+      "composto": 47,
+      "percentil": "<0,1",
+      "ic90": "44-53",
+      "ic95": "44-54"
+    },
+    {
+      "soma": 24,
+      "composto": 48,
+      "percentil": "<0,1",
+      "ic90": "45-54",
+      "ic95": "45-54"
+    },
+    {
+      "soma": 25,
+      "composto": 49,
+      "percentil": "<0,1",
+      "ic90": "46-55",
+      "ic95": "46-55"
+    },
+    {
+      "soma": 26,
+      "composto": 49,
+      "percentil": "<0,1",
+      "ic90": "46-55",
+      "ic95": "46-55"
+    },
+    {
+      "soma": 27,
+      "composto": 50,
+      "percentil": "<0,1",
+      "ic90": "47-56",
+      "ic95": "47-56"
+    },
+    {
+      "soma": 28,
+      "composto": 50,
+      "percentil": "<0,1",
+      "ic90": "47-56",
+      "ic95": "47-56"
+    },
+    {
+      "soma": 29,
+      "composto": 51,
+      "percentil": "0,1",
+      "ic90": "48-57",
+      "ic95": "48-57"
+    },
+    {
+      "soma": 30,
+      "composto": 52,
+      "percentil": "0,1",
+      "ic90": "49-58",
+      "ic95": "49-58"
+    },
+    {
+      "soma": 31,
+      "composto": 52,
+      "percentil": "0,1",
+      "ic90": "49-58",
+      "ic95": "49-58"
+    },
+    {
+      "soma": 32,
+      "composto": 53,
+      "percentil": "0,1",
+      "ic90": "50-59",
+      "ic95": "49-59"
+    },
+    {
+      "soma": 33,
+      "composto": 53,
+      "percentil": "0,1",
+      "ic90": "50-59",
+      "ic95": "49-59"
+    },
+    {
+      "soma": 34,
+      "composto": 54,
+      "percentil": "0,1",
+      "ic90": "51-60",
+      "ic95": "50-60"
+    },
+    {
+      "soma": 35,
+      "composto": 55,
+      "percentil": "0,1",
+      "ic90": "52-60",
+      "ic95": "51-61"
+    },
+    {
+      "soma": 36,
+      "composto": 55,
+      "percentil": "0,1",
+      "ic90": "52-60",
+      "ic95": "51-61"
+    },
+    {
+      "soma": 37,
+      "composto": 56,
+      "percentil": "0,2",
+      "ic90": "53-61",
+      "ic95": "52-62"
+    },
+    {
+      "soma": 38,
+      "composto": 56,
+      "percentil": "0,2",
+      "ic90": "53-61",
+      "ic95": "52-62"
+    },
+    {
+      "soma": 39,
+      "composto": 57,
+      "percentil": "0,2",
+      "ic90": "54-62",
+      "ic95": "53-63"
+    },
+    {
+      "soma": 40,
+      "composto": 58,
+      "percentil": "0,3",
+      "ic90": "55-63",
+      "ic95": "54-64"
+    },
+    {
+      "soma": 41,
+      "composto": 58,
+      "percentil": "0,3",
+      "ic90": "55-63",
+      "ic95": "54-64"
+    },
+    {
+      "soma": 42,
+      "composto": 59,
+      "percentil": "0,3",
+      "ic90": "56-64",
+      "ic95": "55-65"
+    },
+    {
+      "soma": 43,
+      "composto": 59,
+      "percentil": "0,3",
+      "ic90": "56-64",
+      "ic95": "55-65"
+    },
+    {
+      "soma": 44,
+      "composto": 60,
+      "percentil": "0,4",
+      "ic90": "57-65",
+      "ic95": "56-66"
+    },
+    {
+      "soma": 45,
+      "composto": 60,
+      "percentil": "0,4",
+      "ic90": "57-65",
+      "ic95": "56-66"
+    },
+    {
+      "soma": 46,
+      "composto": 61,
+      "percentil": "0,5",
+      "ic90": "58-66",
+      "ic95": "57-67"
+    },
+    {
+      "soma": 47,
+      "composto": 61,
+      "percentil": "0,5",
+      "ic90": "58-66",
+      "ic95": "57-67"
+    },
+    {
+      "soma": 48,
+      "composto": 62,
+      "percentil": "1",
+      "ic90": "59-67",
+      "ic95": "58-68"
+    },
+    {
+      "soma": 49,
+      "composto": 62,
+      "percentil": "1",
+      "ic90": "59-67",
+      "ic95": "58-68"
+    },
+    {
+      "soma": 50,
+      "composto": 63,
+      "percentil": "1",
+      "ic90": "60-68",
+      "ic95": "59-69"
+    },
+    {
+      "soma": 51,
+      "composto": 63,
+      "percentil": "1",
+      "ic90": "60-68",
+      "ic95": "59-69"
+    },
+    {
+      "soma": 52,
+      "composto": 64,
+      "percentil": "1",
+      "ic90": "61-69",
+      "ic95": "60-70"
+    },
+    {
+      "soma": 53,
+      "composto": 65,
+      "percentil": "1",
+      "ic90": "62-70",
+      "ic95": "61-71"
+    },
+    {
+      "soma": 54,
+      "composto": 65,
+      "percentil": "1",
+      "ic90": "62-70",
+      "ic95": "61-71"
+    },
+    {
+      "soma": 55,
+      "composto": 66,
+      "percentil": "1",
+      "ic90": "63-71",
+      "ic95": "62-72"
+    },
+    {
+      "soma": 56,
+      "composto": 67,
+      "percentil": "1",
+      "ic90": "64-72",
+      "ic95": "63-73"
+    },
+    {
+      "soma": 57,
+      "composto": 67,
+      "percentil": "1",
+      "ic90": "64-72",
+      "ic95": "63-73"
+    },
+    {
+      "soma": 58,
+      "composto": 68,
+      "percentil": "2",
+      "ic90": "65-73",
+      "ic95": "64-74"
+    },
+    {
+      "soma": 59,
+      "composto": 69,
+      "percentil": "2",
+      "ic90": "66-74",
+      "ic95": "65-75"
+    },
+    {
+      "soma": 60,
+      "composto": 69,
+      "percentil": "2",
+      "ic90": "66-74",
+      "ic95": "65-75"
+    },
+    {
+      "soma": 61,
+      "composto": 70,
+      "percentil": "2",
+      "ic90": "67-75",
+      "ic95": "66-76"
+    },
+    {
+      "soma": 62,
+      "composto": 71,
+      "percentil": "3",
+      "ic90": "68-76",
+      "ic95": "67-77"
+    },
+    {
+      "soma": 63,
+      "composto": 72,
+      "percentil": "3",
+      "ic90": "69-77",
+      "ic95": "68-78"
+    },
+    {
+      "soma": 64,
+      "composto": 73,
+      "percentil": "4",
+      "ic90": "70-78",
+      "ic95": "69-79"
+    },
+    {
+      "soma": 65,
+      "composto": 73,
+      "percentil": "4",
+      "ic90": "70-78",
+      "ic95": "69-79"
+    },
+    {
+      "soma": 66,
+      "composto": 74,
+      "percentil": "4",
+      "ic90": "71-79",
+      "ic95": "70-80"
+    },
+    {
+      "soma": 67,
+      "composto": 75,
+      "percentil": "5",
+      "ic90": "72-80",
+      "ic95": "71-81"
+    },
+    {
+      "soma": 68,
+      "composto": 76,
+      "percentil": "5",
+      "ic90": "73-81",
+      "ic95": "72-82"
+    },
+    {
+      "soma": 69,
+      "composto": 77,
+      "percentil": "6",
+      "ic90": "74-82",
+      "ic95": "73-83"
+    },
+    {
+      "soma": 70,
+      "composto": 77,
+      "percentil": "6",
+      "ic90": "74-82",
+      "ic95": "73-83"
+    },
+    {
+      "soma": 71,
+      "composto": 78,
+      "percentil": "7",
+      "ic90": "75-83",
+      "ic95": "74-84"
+    },
+    {
+      "soma": 72,
+      "composto": 79,
+      "percentil": "8",
+      "ic90": "75-84",
+      "ic95": "75-85"
+    },
+    {
+      "soma": 73,
+      "composto": 80,
+      "percentil": "9",
+      "ic90": "76-85",
+      "ic95": "76-86"
+    },
+    {
+      "soma": 74,
+      "composto": 81,
+      "percentil": "10",
+      "ic90": "77-86",
+      "ic95": "77-87"
+    },
+    {
+      "soma": 75,
+      "composto": 81,
+      "percentil": "10",
+      "ic90": "77-86",
+      "ic95": "77-87"
+    },
+    {
+      "soma": 76,
+      "composto": 82,
+      "percentil": "12",
+      "ic90": "78-87",
+      "ic95": "78-87"
+    },
+    {
+      "soma": 77,
+      "composto": 83,
+      "percentil": "13",
+      "ic90": "79-88",
+      "ic95": "79-88"
+    },
+    {
+      "soma": 78,
+      "composto": 84,
+      "percentil": "14",
+      "ic90": "80-89",
+      "ic95": "80-89"
+    },
+    {
+      "soma": 79,
+      "composto": 84,
+      "percentil": "14",
+      "ic90": "80-89",
+      "ic95": "80-89"
+    },
+    {
+      "soma": 80,
+      "composto": 85,
+      "percentil": "16",
+      "ic90": "81-90",
+      "ic95": "81-90"
+    },
+    {
+      "soma": 81,
+      "composto": 86,
+      "percentil": "18",
+      "ic90": "82-91",
+      "ic95": "81-91"
+    },
+    {
+      "soma": 82,
+      "composto": 86,
+      "percentil": "18",
+      "ic90": "82-91",
+      "ic95": "81-91"
+    },
+    {
+      "soma": 83,
+      "composto": 87,
+      "percentil": "19",
+      "ic90": "83-92",
+      "ic95": "82-92"
+    },
+    {
+      "soma": 84,
+      "composto": 87,
+      "percentil": "19",
+      "ic90": "83-92",
+      "ic95": "82-92"
+    },
+    {
+      "soma": 85,
+      "composto": 88,
+      "percentil": "21",
+      "ic90": "84-93",
+      "ic95": "83-93"
+    },
+    {
+      "soma": 86,
+      "composto": 89,
+      "percentil": "23",
+      "ic90": "85-93",
+      "ic95": "84-94"
+    },
+    {
+      "soma": 87,
+      "composto": 89,
+      "percentil": "23",
+      "ic90": "85-93",
+      "ic95": "84-94"
+    },
+    {
+      "soma": 88,
+      "composto": 90,
+      "percentil": "25",
+      "ic90": "86-94",
+      "ic95": "85-95"
+    },
+    {
+      "soma": 89,
+      "composto": 91,
+      "percentil": "27",
+      "ic90": "87-95",
+      "ic95": "86-96"
+    },
+    {
+      "soma": 90,
+      "composto": 92,
+      "percentil": "30",
+      "ic90": "88-96",
+      "ic95": "87-97"
+    },
+    {
+      "soma": 91,
+      "composto": 93,
+      "percentil": "32",
+      "ic90": "89-97",
+      "ic95": "88-98"
+    },
+    {
+      "soma": 92,
+      "composto": 94,
+      "percentil": "34",
+      "ic90": "90-98",
+      "ic95": "89-99"
+    },
+    {
+      "soma": 93,
+      "composto": 94,
+      "percentil": "34",
+      "ic90": "90-98",
+      "ic95": "89-99"
+    },
+    {
+      "soma": 94,
+      "composto": 95,
+      "percentil": "37",
+      "ic90": "91-99",
+      "ic95": "90-100"
+    },
+    {
+      "soma": 95,
+      "composto": 96,
+      "percentil": "39",
+      "ic90": "92-100",
+      "ic95": "91-101"
+    },
+    {
+      "soma": 96,
+      "composto": 97,
+      "percentil": "42",
+      "ic90": "93-101",
+      "ic95": "92-102"
+    },
+    {
+      "soma": 97,
+      "composto": 98,
+      "percentil": "45",
+      "ic90": "94-102",
+      "ic95": "93-103"
+    },
+    {
+      "soma": 98,
+      "composto": 98,
+      "percentil": "45",
+      "ic90": "94-102",
+      "ic95": "93-103"
+    },
+    {
+      "soma": 99,
+      "composto": 99,
+      "percentil": "47",
+      "ic90": "95-103",
+      "ic95": "94-104"
+    },
+    {
+      "soma": 100,
+      "composto": 100,
+      "percentil": "50",
+      "ic90": "96-104",
+      "ic95": "95-105"
+    },
+    {
+      "soma": 101,
+      "composto": 101,
+      "percentil": "53",
+      "ic90": "97-105",
+      "ic95": "96-106"
+    },
+    {
+      "soma": 102,
+      "composto": 102,
+      "percentil": "55",
+      "ic90": "98-106",
+      "ic95": "97-107"
+    },
+    {
+      "soma": 103,
+      "composto": 102,
+      "percentil": "55",
+      "ic90": "98-106",
+      "ic95": "97-107"
+    },
+    {
+      "soma": 104,
+      "composto": 103,
+      "percentil": "58",
+      "ic90": "99-107",
+      "ic95": "98-108"
+    },
+    {
+      "soma": 105,
+      "composto": 104,
+      "percentil": "61",
+      "ic90": "100-108",
+      "ic95": "99-109"
+    },
+    {
+      "soma": 106,
+      "composto": 105,
+      "percentil": "63",
+      "ic90": "101-109",
+      "ic95": "100-110"
+    },
+    {
+      "soma": 107,
+      "composto": 105,
+      "percentil": "63",
+      "ic90": "101-109",
+      "ic95": "100-110"
+    },
+    {
+      "soma": 108,
+      "composto": 106,
+      "percentil": "66",
+      "ic90": "102-110",
+      "ic95": "101-111"
+    },
+    {
+      "soma": 109,
+      "composto": 107,
+      "percentil": "68",
+      "ic90": "103-111",
+      "ic95": "102-112"
+    },
+    {
+      "soma": 110,
+      "composto": 107,
+      "percentil": "68",
+      "ic90": "103-111",
+      "ic95": "102-112"
+    },
+    {
+      "soma": 111,
+      "composto": 108,
+      "percentil": "70",
+      "ic90": "104-112",
+      "ic95": "103-113"
+    },
+    {
+      "soma": 112,
+      "composto": 109,
+      "percentil": "73",
+      "ic90": "105-113",
+      "ic95": "104-114"
+    },
+    {
+      "soma": 113,
+      "composto": 110,
+      "percentil": "75",
+      "ic90": "106-114",
+      "ic95": "105-115"
+    },
+    {
+      "soma": 114,
+      "composto": 111,
+      "percentil": "77",
+      "ic90": "107-115",
+      "ic95": "106-116"
+    },
+    {
+      "soma": 115,
+      "composto": 111,
+      "percentil": "77",
+      "ic90": "107-115",
+      "ic95": "106-116"
+    },
+    {
+      "soma": 116,
+      "composto": 112,
+      "percentil": "79",
+      "ic90": "107-116",
+      "ic95": "107-117"
+    },
+    {
+      "soma": 117,
+      "composto": 113,
+      "percentil": "81",
+      "ic90": "108-117",
+      "ic95": "108-118"
+    },
+    {
+      "soma": 118,
+      "composto": 114,
+      "percentil": "82",
+      "ic90": "109-118",
+      "ic95": "109-119"
+    },
+    {
+      "soma": 119,
+      "composto": 114,
+      "percentil": "82",
+      "ic90": "109-118",
+      "ic95": "109-119"
+    },
+    {
+      "soma": 120,
+      "composto": 115,
+      "percentil": "84",
+      "ic90": "110-119",
+      "ic95": "110-119"
+    },
+    {
+      "soma": 121,
+      "composto": 116,
+      "percentil": "86",
+      "ic90": "111-120",
+      "ic95": "111-120"
+    },
+    {
+      "soma": 122,
+      "composto": 117,
+      "percentil": "87",
+      "ic90": "112-121",
+      "ic95": "112-121"
+    },
+    {
+      "soma": 123,
+      "composto": 118,
+      "percentil": "88",
+      "ic90": "113-122",
+      "ic95": "113-122"
+    },
+    {
+      "soma": 124,
+      "composto": 119,
+      "percentil": "90",
+      "ic90": "114-123",
+      "ic95": "113-123"
+    },
+    {
+      "soma": 125,
+      "composto": 119,
+      "percentil": "90",
+      "ic90": "114-123",
+      "ic95": "113-123"
+    },
+    {
+      "soma": 126,
+      "composto": 120,
+      "percentil": "91",
+      "ic90": "115-124",
+      "ic95": "114-124"
+    },
+    {
+      "soma": 127,
+      "composto": 121,
+      "percentil": "92",
+      "ic90": "116-125",
+      "ic95": "115-125"
+    },
+    {
+      "soma": 128,
+      "composto": 122,
+      "percentil": "93",
+      "ic90": "117-125",
+      "ic95": "116-126"
+    },
+    {
+      "soma": 129,
+      "composto": 123,
+      "percentil": "94",
+      "ic90": "118-126",
+      "ic95": "117-127"
+    },
+    {
+      "soma": 130,
+      "composto": 123,
+      "percentil": "94",
+      "ic90": "118-126",
+      "ic95": "117-127"
+    },
+    {
+      "soma": 131,
+      "composto": 124,
+      "percentil": "95",
+      "ic90": "119-127",
+      "ic95": "118-128"
+    },
+    {
+      "soma": 132,
+      "composto": 125,
+      "percentil": "95",
+      "ic90": "120-128",
+      "ic95": "119-129"
+    },
+    {
+      "soma": 133,
+      "composto": 126,
+      "percentil": "96",
+      "ic90": "121-129",
+      "ic95": "120-130"
+    },
+    {
+      "soma": 134,
+      "composto": 126,
+      "percentil": "96",
+      "ic90": "121-129",
+      "ic95": "120-130"
+    },
+    {
+      "soma": 135,
+      "composto": 127,
+      "percentil": "96",
+      "ic90": "122-130",
+      "ic95": "121-131"
+    },
+    {
+      "soma": 136,
+      "composto": 128,
+      "percentil": "97",
+      "ic90": "123-131",
+      "ic95": "122-132"
+    },
+    {
+      "soma": 137,
+      "composto": 129,
+      "percentil": "97",
+      "ic90": "124-132",
+      "ic95": "123-133"
+    },
+    {
+      "soma": 138,
+      "composto": 129,
+      "percentil": "97",
+      "ic90": "124-132",
+      "ic95": "123-133"
+    },
+    {
+      "soma": 139,
+      "composto": 130,
+      "percentil": "98",
+      "ic90": "125-133",
+      "ic95": "124-134"
+    },
+    {
+      "soma": 140,
+      "composto": 131,
+      "percentil": "98",
+      "ic90": "126-134",
+      "ic95": "125-135"
+    },
+    {
+      "soma": 141,
+      "composto": 131,
+      "percentil": "98",
+      "ic90": "126-134",
+      "ic95": "125-135"
+    },
+    {
+      "soma": 142,
+      "composto": 132,
+      "percentil": "98",
+      "ic90": "127-135",
+      "ic95": "126-136"
+    },
+    {
+      "soma": 143,
+      "composto": 133,
+      "percentil": "99",
+      "ic90": "128-136",
+      "ic95": "127-137"
+    },
+    {
+      "soma": 144,
+      "composto": 133,
+      "percentil": "99",
+      "ic90": "128-136",
+      "ic95": "127-137"
+    },
+    {
+      "soma": 145,
+      "composto": 134,
+      "percentil": "99",
+      "ic90": "129-137",
+      "ic95": "128-138"
+    },
+    {
+      "soma": 146,
+      "composto": 134,
+      "percentil": "99",
+      "ic90": "129-137",
+      "ic95": "128-138"
+    },
+    {
+      "soma": 147,
+      "composto": 135,
+      "percentil": "99",
+      "ic90": "130-138",
+      "ic95": "129-139"
+    },
+    {
+      "soma": 148,
+      "composto": 136,
+      "percentil": "99",
+      "ic90": "131-139",
+      "ic95": "130-140"
+    },
+    {
+      "soma": 149,
+      "composto": 136,
+      "percentil": "99",
+      "ic90": "131-139",
+      "ic95": "130-140"
+    },
+    {
+      "soma": 150,
+      "composto": 137,
+      "percentil": "99",
+      "ic90": "132-140",
+      "ic95": "131-141"
+    },
+    {
+      "soma": 151,
+      "composto": 138,
+      "percentil": "99",
+      "ic90": "133-141",
+      "ic95": "132-142"
+    },
+    {
+      "soma": 152,
+      "composto": 138,
+      "percentil": "99",
+      "ic90": "133-141",
+      "ic95": "132-142"
+    },
+    {
+      "soma": 153,
+      "composto": 139,
+      "percentil": "99,5",
+      "ic90": "134-142",
+      "ic95": "133-143"
+    },
+    {
+      "soma": 154,
+      "composto": 140,
+      "percentil": "99,6",
+      "ic90": "135-143",
+      "ic95": "134-144"
+    },
+    {
+      "soma": 155,
+      "composto": 140,
+      "percentil": "99,6",
+      "ic90": "135-143",
+      "ic95": "134-144"
+    },
+    {
+      "soma": 156,
+      "composto": 141,
+      "percentil": "99,7",
+      "ic90": "136-144",
+      "ic95": "135-145"
+    },
+    {
+      "soma": 157,
+      "composto": 142,
+      "percentil": "99,7",
+      "ic90": "137-145",
+      "ic95": "136-146"
+    },
+    {
+      "soma": 158,
+      "composto": 142,
+      "percentil": "99,7",
+      "ic90": "137-145",
+      "ic95": "136-146"
+    },
+    {
+      "soma": 159,
+      "composto": 143,
+      "percentil": "99,8",
+      "ic90": "138-146",
+      "ic95": "137-147"
+    },
+    {
+      "soma": 160,
+      "composto": 144,
+      "percentil": "99,8",
+      "ic90": "139-147",
+      "ic95": "138-148"
+    },
+    {
+      "soma": 161,
+      "composto": 144,
+      "percentil": "99,8",
+      "ic90": "139-147",
+      "ic95": "138-148"
+    },
+    {
+      "soma": 162,
+      "composto": 145,
+      "percentil": "99,9",
+      "ic90": "140-148",
+      "ic95": "139-149"
+    },
+    {
+      "soma": 163,
+      "composto": 146,
+      "percentil": "99,9",
+      "ic90": "140-149",
+      "ic95": "140-150"
+    },
+    {
+      "soma": 164,
+      "composto": 146,
+      "percentil": "99,9",
+      "ic90": "140-149",
+      "ic95": "140-150"
+    },
+    {
+      "soma": 165,
+      "composto": 147,
+      "percentil": "99,9",
+      "ic90": "141-150",
+      "ic95": "141-151"
+    },
+    {
+      "soma": 166,
+      "composto": 148,
+      "percentil": "99,9",
+      "ic90": "142-151",
+      "ic95": "142-151"
+    },
+    {
+      "soma": 167,
+      "composto": 148,
+      "percentil": "99,9",
+      "ic90": "142-151",
+      "ic95": "142-151"
+    },
+    {
+      "soma": 168,
+      "composto": 149,
+      "percentil": "99,9",
+      "ic90": "143-152",
+      "ic95": "143-152"
+    },
+    {
+      "soma": 169,
+      "composto": 150,
+      "percentil": ">99,9",
+      "ic90": "144-153",
+      "ic95": "144-153"
+    },
+    {
+      "soma": 170,
+      "composto": 150,
+      "percentil": ">99,9",
+      "ic90": "144-153",
+      "ic95": "144-153"
+    },
+    {
+      "soma": 171,
+      "composto": 151,
+      "percentil": ">99,9",
+      "ic90": "145-154",
+      "ic95": "145-154"
+    },
+    {
+      "soma": 172,
+      "composto": 151,
+      "percentil": ">99,9",
+      "ic90": "145-154",
+      "ic95": "145-154"
+    },
+    {
+      "soma": 173,
+      "composto": 152,
+      "percentil": ">99,9",
+      "ic90": "146-155",
+      "ic95": "146-155"
+    },
+    {
+      "soma": 174,
+      "composto": 152,
+      "percentil": ">99,9",
+      "ic90": "146-155",
+      "ic95": "146-155"
+    },
+    {
+      "soma": 175,
+      "composto": 153,
+      "percentil": ">99,9",
+      "ic90": "147-156",
+      "ic95": "146-156"
+    },
+    {
+      "soma": 176,
+      "composto": 153,
+      "percentil": ">99,9",
+      "ic90": "147-156",
+      "ic95": "146-156"
+    },
+    {
+      "soma": 177,
+      "composto": 154,
+      "percentil": ">99,9",
+      "ic90": "148-157",
+      "ic95": "147-157"
+    },
+    {
+      "soma": 178,
+      "composto": 154,
+      "percentil": ">99,9",
+      "ic90": "148-157",
+      "ic95": "147-157"
+    },
+    {
+      "soma": 179,
+      "composto": 155,
+      "percentil": ">99,9",
+      "ic90": "149-157",
+      "ic95": "148-158"
+    },
+    {
+      "soma": 180,
+      "composto": 155,
+      "percentil": ">99,9",
+      "ic90": "149-157",
+      "ic95": "148-158"
+    },
+    {
+      "soma": 181,
+      "composto": 156,
+      "percentil": ">99,9",
+      "ic90": "150-158",
+      "ic95": "149-159"
+    },
+    {
+      "soma": 182,
+      "composto": 156,
+      "percentil": ">99,9",
+      "ic90": "150-158",
+      "ic95": "149-159"
+    },
+    {
+      "soma": 183,
+      "composto": 157,
+      "percentil": ">99,9",
+      "ic90": "151-159",
+      "ic95": "150-160"
+    },
+    {
+      "soma": 184,
+      "composto": 157,
+      "percentil": ">99,9",
+      "ic90": "151-159",
+      "ic95": "150-160"
+    },
+    {
+      "soma": 185,
+      "composto": 158,
+      "percentil": ">99,9",
+      "ic90": "152-160",
+      "ic95": "151-161"
+    },
+    {
+      "soma": 186,
+      "composto": 158,
+      "percentil": ">99,9",
+      "ic90": "152-160",
+      "ic95": "151-161"
+    },
+    {
+      "soma": 187,
+      "composto": 159,
+      "percentil": ">99,9",
+      "ic90": "153-161",
+      "ic95": "152-162"
+    },
+    {
+      "soma": 188,
+      "composto": 159,
+      "percentil": ">99,9",
+      "ic90": "153-161",
+      "ic95": "152-162"
+    },
+    {
+      "soma": 189,
+      "composto": 160,
+      "percentil": ">99,9",
+      "ic90": "154-162",
+      "ic95": "153-163"
+    },
+    {
+      "soma": 190,
+      "composto": 160,
+      "percentil": ">99,9",
+      "ic90": "154-162",
+      "ic95": "153-163"
+    }
+  ]
+}
