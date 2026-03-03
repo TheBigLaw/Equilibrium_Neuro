@@ -153,6 +153,19 @@ function rawToScaledWAIS(rawNorms, faixa, codigo, bruto) {
   return null;
 }
 
+function sumToCompositeWAIS(compNorms, scaleType, soma) {
+  const list = compNorms?.sum_to_composite || [];
+  const row = list.find(r => r.scale_type === scaleType && soma >= r.sum_min && soma <= r.sum_max);
+  if (!row) return null;
+
+  return {
+    composto: row.composite_score,
+    percentil: row.percentile,
+    ic90: [row.ci_90_min, row.ci_90_max],
+    ic95: [row.ci_95_min, row.ci_95_max],
+  };
+}
+
 function somarEscala(pondByCode, codigos){
   let soma = 0;
   const usados = [];
@@ -415,6 +428,18 @@ for (const [tipo, codigos] of Object.entries(WAIS_SCALES)) {
 }
 console.log("SOMAS WAIS:", somas);
 
+    const compostos = {
+  ICV: sumToCompositeWAIS(compNorms, "ICV", somas.ICV.soma),
+  IOP: sumToCompositeWAIS(compNorms, "IOP", somas.IOP.soma),
+  IMO: sumToCompositeWAIS(compNorms, "IMO", somas.IMO.soma),
+  IVP: sumToCompositeWAIS(compNorms, "IVP", somas.IVP.soma),
+  QI_VERBAL: sumToCompositeWAIS(compNorms, "QI_VERBAL", somas.QI_VERBAL.soma),
+  QI_EXECUCAO: sumToCompositeWAIS(compNorms, "QI_EXECUCAO", somas.QI_EXECUCAO.soma),
+  QI_TOTAL: sumToCompositeWAIS(compNorms, "QI_TOTAL", somas.QI_TOTAL.soma),
+};
+
+console.log("COMPOSTOS WAIS:", compostos);
+
     if(Object.keys(pondByCode).length === 0){ alert("Preencha ao menos um subteste."); return; }
 
 const indicesInfo = {
@@ -426,7 +451,7 @@ const indicesInfo = {
 
 const qiInfo = somas.QI_TOTAL; // mantém compatível com relatório atual
 
-    montarRelatorio({ nome, cpf, sexo, escolaridade, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo });
+    montarRelatorio({ nome, cpf, sexo, escolaridade, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo, somas, compostos});
 
     if(salvar){
       const rel = document.getElementById("relatorio");
