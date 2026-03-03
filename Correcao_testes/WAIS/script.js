@@ -32,24 +32,25 @@ async function carregarNormas(){
   return { normasWais: NORMAS, rawNorms: RAW_NORMS, compNorms: COMP_NORMS };
 }
 
-// Subtestes (ordem objetiva)
+// Subtestes WAIS-III (BR) — Verbais + Execução
 const SUBTESTES = [
-  { nome: "Cubos", codigo: "CB", id:"pb_CB" },
-  { nome: "Semelhanças", codigo: "SM", id:"pb_SM" },
-  { nome: "Dígitos", codigo: "DG", id:"pb_DG" },
-  { nome: "Conceitos Figurativos", codigo: "CN", id:"pb_CN" },
-  { nome: "Código", codigo: "CD", id:"pb_CD" },
-  { nome: "Vocabulário", codigo: "VC", id:"pb_VC" },
-  { nome: "Seq. de Números e Letras", codigo: "SNL", id:"pb_SNL" },
-  { nome: "Raciocínio Matricial", codigo: "RM", id:"pb_RM" },
-  { nome: "Compreensão", codigo: "CO", id:"pb_CO" },
-  { nome: "Procurar Símbolos", codigo: "PS", id:"pb_PS" },
-  // suplementares
-  { nome: "Completar Figuras", codigo: "CF", id:"pb_CF" },
-  { nome: "Cancelamento", codigo: "CA", id:"pb_CA" },
-  { nome: "Informação", codigo: "IN", id:"pb_IN" },
-  { nome: "Aritmética", codigo: "AR", id:"pb_AR" },
-  { nome: "Raciocínio com Palavras", codigo: "RP", id:"pb_RP" },
+  // VERBAIS
+  { nome: "Vocabulário", codigo: "VC", id: "pb_VC" },
+  { nome: "Semelhanças", codigo: "SM", id: "pb_SM" },
+  { nome: "Aritmética", codigo: "AR", id: "pb_AR" },
+  { nome: "Dígitos", codigo: "DG", id: "pb_DG" },
+  { nome: "Informação", codigo: "IN", id: "pb_IN" },
+  { nome: "Compreensão", codigo: "CO", id: "pb_CO" },
+  { nome: "Sequência de Números e Letras", codigo: "SNL", id: "pb_SNL" },
+
+  // EXECUÇÃO
+  { nome: "Completar Figuras", codigo: "CF", id: "pb_CF" },
+  { nome: "Códigos", codigo: "CD", id: "pb_CD" },
+  { nome: "Cubos", codigo: "CB", id: "pb_CB" },
+  { nome: "Raciocínio Matricial", codigo: "RM", id: "pb_RM" },
+  { nome: "Arranjo de Figuras", codigo: "AF", id: "pb_AF" },
+  { nome: "Procurar Símbolos", codigo: "PS", id: "pb_PS" },
+  { nome: "Armar Objetos", codigo: "AO", id: "pb_AO" },
 ];
 
 const INDICES = {
@@ -126,12 +127,11 @@ function rawToScaledWAIS(rawNorms, faixa, codigo, bruto) {
   const faixaData = rawNorms?.raw_to_scaled?.[faixa];
   if (!faixaData) return null;
 
-  // pega o nome pelo código usando o array SUBTESTES
   const sub = SUBTESTES.find(s => s.codigo === codigo);
   const nome = sub?.nome;
   if (!nome) return null;
 
-  const regras = faixaData[nome]; // ✅ agora bate com o JSON
+  const regras = faixaData[nome]; // ✅ bate com o JSON
   if (!Array.isArray(regras)) return null;
 
   for (const r of regras) {
@@ -140,7 +140,7 @@ function rawToScaledWAIS(rawNorms, faixa, codigo, bruto) {
     }
   }
   return null;
-}
+}}
 
 function classificarPonderado(p) {
   if (p <= 4) return "Muito Inferior";
