@@ -1,4 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Novo Laudo | WAIS</title>
 
+  <link rel="stylesheet" href="/Equilibrium_Neuro/style.css" />
+  <link rel="icon" type="image/png" href="/Equilibrium_Neuro/logo.png" />
+</head>
+<body>
+  <header class="app-header">
+    <button class="back-btn" onclick="history.back()">← Voltar</button>
+    <div class="logo-wrap">
+      <img class="logo" src="/Equilibrium_Neuro/logo2.png" alt="Logo" />
+    </div>
+    <button class="exit-btn" onclick="logout()">Sair</button>
+  </header>
+
+  <main class="main">
+    <div class="card">
+      <h1>Novo Laudo – WAIS</h1>
+      <p class="muted">Informe os dados e pontos brutos. O sistema converte para ponderados pela faixa etária.</p>
+
+      <div class="form-grid">
+        <div>
+          <label>Nome completo</label>
+          <input type="text" id="nome" placeholder="Nome do avaliado" />
+        </div>
+        <div>
+          <label>Data de nascimento</label>
+          <input type="date" id="dataNascimento" />
+        </div>
+        <div>
+          <label>Data de aplicação</label>
+          <input type="date" id="dataAplicacao" />
+        </div>
+        <div>
+          <label>CPF</label>
+          <input type="text" id="cpf" placeholder="000.000.000-00" />
+        </div>
+        <div>
+          <label>Sexo</label>
+          <select id="sexo">
+          <option value="">Selecione</option>
+          <option>Masculino</option>
+          <option>Feminino</option>
+          <option>Outro</option>
+          <option>Prefere não informar</option>
+          </select>
+        </div>
+        <div>
+          <label>Escolaridade</label>
+          <select id="escolaridade">
+          <option value="">Selecione</option>
+          <option>Educação infantil</option>
+          <option>Ensino fundamental incompleto</option>
+          <option>Ensino fundamental completo</option>
+          <option>Ensino médio incompleto</option>
+          <option>Ensino médio completo</option>
+          <option>Ensino superior incompleto</option>
+          <option>Ensino superior completo</option>
+          <option>Pós-graduação</option>
+          </select>
+        </div>
+      </div>
+
+      <p id="idadeCalculada" class="muted"></p>
+      <p id="faixaCalculada" class="muted"></p>
+    </div>
+
+    <div class="card">
+      <h2>Lançamento dos Subtestes (pontos brutos)</h2>
+      <table class="table">
+        <thead><tr><th>Subteste</th><th>Ponto bruto</th></tr></thead>
+        <tbody id="tbodySubtestes"></tbody>
+      </table>
+
+      <div class="actions">
+        <button class="btn-primary" onclick="calcular(true)">Salvar e Gerar PDF</button>
+        <button class="btn-outline" onclick="calcular(false)">Somente Calcular</button>
+      </div>
+    </div>
+
+    <div id="relatorio" class="card report" style="display:none;"></div>
+  </main>
+
+  <script src="/Equilibrium_Neuro/js/auth.js"></script>
+  <script>guardAuth();</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+  <script src="/Equilibrium_Neuro/Correcao_testes/WAIS/script.js"></script>
+</body>
+</html>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
