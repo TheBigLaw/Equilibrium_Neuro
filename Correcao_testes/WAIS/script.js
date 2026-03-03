@@ -52,16 +52,16 @@ const SUBTESTES = [
 
 // WAIS-III — composição das escalas (usando seus códigos)
 const WAIS_SCALES = {
-  // Índices fatoriais
-  ICV: ["SM", "VC", "IN", "CO"],      // Compreensão Verbal
-  IOP: ["CB", "CF", "RM", "AF"],      // Organização Perceptual
-  IMO: ["AR", "DG", "SNL"],           // Memória Operacional
-  IVP: ["CD", "PS"],                 // Velocidade de Processamento
+  // índices fatoriais (core do PDF)
+  ICV: ["SM","VC","IN"],        // (CO não entra no ICV do PDF)
+  IOP: ["CB","CF","RM"],        // (AF não entra no IOP do PDF)
+  IMO: ["AR","DG","SNL"],
+  IVP: ["CD","PS"],
 
-  // QIs (clássicos)
-  QI_VERBAL: ["SM", "VC", "AR", "DG", "IN", "CO"],          // sem SNL
-  QI_EXECUCAO: ["CF", "CD", "CB", "RM", "AF", "PS"],        // sem AO
-  QI_TOTAL: ["SM","VC","AR","DG","IN","CO","CF","CD","CB","RM","AF","PS"], // 12 subtestes
+  // QIs (clássicos do PDF)
+  QI_VERBAL:   ["SM","VC","AR","DG","IN","CO"],          // sem SNL  -> dá 60 no caso Milena
+  QI_EXECUCAO: ["CF","CD","CB","RM","AF"],               // sem PS/AO -> dá 62 no caso Milena
+  QI_TOTAL:    ["SM","VC","AR","DG","IN","CO","CF","CD","CB","RM","AF"], // 11 subtestes -> dá 122
 };
 
 function calcularIdade(nascISO, aplISO) {
@@ -206,7 +206,7 @@ function cellIndice(codigo, setUsado, setPossivel, resultados) {
   if (!setUsado.has(codigo)) return `<td class="idx fill empty"></td>`;
   const r = resultados[codigo];
   if (!r) return `<td class="idx fill"></td>`;
-  const suplementar = ["SNL","AO"].includes(codigo);
+  const suplementar = possiveisSet.has(codigo) && !usadosSet.has(codigo);
   const cls = suplementar ? "pill sup" : "pill";
   return `<td class="idx fill"><span class="${cls}">${r.ponderado}</span></td>`;
 }
