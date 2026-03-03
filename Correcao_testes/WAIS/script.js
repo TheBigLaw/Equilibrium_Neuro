@@ -75,26 +75,33 @@ function calcularIdade(nascISO, aplISO) {
 }
 
 function faixaEtaria(normas, idade) {
-  if (!idade) return null;
+  if (!idade || !normas) return null;
+
   const total = idade.totalMeses;
 
-  for (const faixa of Object.keys( || {})) {
+  for (const faixa of Object.keys(normas || {})) {
     const [ini, fim] = faixa.split("-");
     if (!ini || !fim) continue;
+
     const [ai, mi] = ini.split(":").map(Number);
     const [af, mf] = fim.split(":").map(Number);
     if ([ai,mi,af,mf].some(x => Number.isNaN(x))) continue;
 
     const min = ai * 12 + mi;
     const max = af * 12 + mf;
+
     if (total >= min && total <= max) return faixa;
   }
+
   return null;
 }
 
 function brutoParaPonderado(normas, faixa, codigo, bruto) {
-  const regras = ?.[faixa]?.subtestes?.[codigo];
+  if (!normas?.[faixa]?.subtestes?.[codigo]) return null;
+
+  const regras = normas[faixa].subtestes[codigo];
   if (!Array.isArray(regras)) return null;
+
   const r = regras.find(x => bruto >= x.min && bruto <= x.max);
   return r ? Number(r.ponderado) : null;
 }
