@@ -304,7 +304,7 @@ function setLaudos(arr){
 
 async function calcular(salvar){
   try{
-    const { normasWais: normas, rawNorms, compNorms } = await carregarNormas();
+    const { rawNorms, compNorms } = await carregarNormas();
     const nome = (document.getElementById("nome")?.value || "").trim();
     const nasc = document.getElementById("dataNascimento")?.value;
     const apl  = document.getElementById("dataAplicacao")?.value;
