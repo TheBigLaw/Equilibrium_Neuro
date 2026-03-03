@@ -52,7 +52,14 @@ function guardAuth(){
   location.href = REPO_BASE + "login.html";
   return false;
 }
-["username","password"].forEach(id=>{document.getElementById(id).addEventListener("keydown", e=>{if(e.key === "Enter"){e.preventDefault();
+
+["username","password"].forEach(id => {
+  const el = document.getElementById(id);
+  if (!el) return; // ✅ não quebra em páginas sem esses inputs
+
+  el.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
       login();
     }
   });
