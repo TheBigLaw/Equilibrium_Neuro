@@ -605,6 +605,25 @@ function montarRelatorio(data) {
 
   registrarPluginsChart();
 
+  function fmtIC(arr){
+  if(!Array.isArray(arr)) return "—";
+  return `${arr[0]}–${arr[1]}`;
+}
+
+function getLinha(tipo, titulo){
+  const soma = data.somas?.[tipo]?.soma ?? null;
+  const comp = data.compostos?.[tipo] ?? null;
+
+  return {
+    titulo,
+    soma: (soma == null ? "—" : soma),
+    composto: (comp?.composto ?? "—"),
+    percentil: (comp?.percentil ?? "—"),
+    ic90: fmtIC(comp?.ic90),
+    ic95: fmtIC(comp?.ic95),
+  };
+}
+
   const { nome, cpf, sexo, escolaridade, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo, compostos } = data;
   const cpfTxt = formatarCPF(cpf);
   const sexoTxt = sexo;
@@ -703,29 +722,38 @@ function montarRelatorio(data) {
       <th>IC 95%</th>
     </tr>
   </thead>
-  <tbody>
-    ${["ICV","IOP","IMO","IVP"].map(k=>{
-      const info = indicesInfo[k];
-      const comp = compostos?.[k];
-      return `
-        <tr>
-          <td><b>${k}</b></td>
-          <td>${comp?.composto ?? "—"}</td>
-          <td>${comp?.percentil ?? "—"}</td>
-          <td>${comp?.ic90 ?? "—"}</td>
-          <td>${comp?.ic95 ?? "—"}</td>
-        </tr>
-      `;
-    }).join("")}
+<tbody>
+  ${["ICV","IOP","IMO","IVP"].map(k=>{
+    const comp = compostos?.[k];
+    const ic90 = Array.isArray(comp?.ic90) ? `${comp.ic90[0]}–${comp.ic90[1]}` : "—";
+    const ic95 = Array.isArray(comp?.ic95) ? `${comp.ic95[0]}–${comp.ic95[1]}` : "—";
 
-    <tr>
-      <td><b>QIT</b></td>
-      <td>${compostos?.QIT?.composto ?? "—"}</td>
-      <td>${compostos?.QIT?.percentil ?? "—"}</td>
-      <td>${compostos?.QIT?.ic90 ?? "—"}</td>
-      <td>${compostos?.QIT?.ic95 ?? "—"}</td>
-        </tr>
-      </tbody>
+    return `
+      <tr>
+        <td><b>${k}</b></td>
+        <td>${comp?.composto ?? "—"}</td>
+        <td>${comp?.percentil ?? "—"}</td>
+        <td>${ic90}</td>
+        <td>${ic95}</td>
+      </tr>
+    `;
+  }).join("")}
+
+  <tr>
+    <td><b>QI Total</b></td>
+    ${(()=>{
+      const comp = compostos?.QI_TOTAL;
+      const ic90 = Array.isArray(comp?.ic90) ? `${comp.ic90[0]}–${comp.ic90[1]}` : "—";
+      const ic95 = Array.isArray(comp?.ic95) ? `${comp.ic95[0]}–${comp.ic95[1]}` : "—";
+      return `
+        <td>${comp?.composto ?? "—"}</td>
+        <td>${comp?.percentil ?? "—"}</td>
+        <td>${ic90}</td>
+        <td>${ic95}</td>
+      `;
+    })()}
+  </tr>
+</tbody>
     </table>
   </div>
 
