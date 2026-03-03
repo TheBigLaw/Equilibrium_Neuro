@@ -284,7 +284,7 @@ function atualizarPreviewIdade(){
   if(!idadeEl || !faixaEl) return;
 
   if(!nasc || !apl){ idadeEl.textContent=""; faixaEl.textContent=""; return; }
-  const idade = calcularIdade(nasc, apl);
+  const idade = Idade(nasc, apl);
   if(!idade){ idadeEl.textContent="Datas inválidas."; faixaEl.textContent=""; return; }
 
   idadeEl.textContent = `Idade na aplicação: ${idade.anos} anos e ${idade.meses} meses.`;
@@ -354,7 +354,7 @@ async function calcular(salvar){
 
     const qiInfo = somarQI(pondByCode);
 
-    montarRelatorio({ nome, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo });
+    montarRelatorio({ nome, cpf, sexo, escolaridade, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo });
 
     if(salvar){
       const rel = document.getElementById("relatorio");
@@ -493,6 +493,13 @@ function renderPerfilSubtestes(resultados){
       </tbody>
     </table>
   `;
+}
+
+function formatarCPF(cpf){
+  if(!cpf) return "";
+  const nums = cpf.replace(/\D/g, "");
+  if(nums.length !== 11) return cpf;
+  return nums.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
 }
 
 function montarRelatorio(data) {
