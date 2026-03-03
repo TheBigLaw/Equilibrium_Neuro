@@ -290,10 +290,9 @@ function atualizarPreviewIdade(){
 
   idadeEl.textContent = `Idade na aplicação: ${idade.anos} anos e ${idade.meses} meses.`;
 
-  // ✅ WAIS-III não precisa carregar normas pra descobrir faixa
   const faixa = faixaEtariaWAISIII(idade);
   faixaEl.textContent = faixa ? `Faixa normativa: ${faixa}` : "Faixa normativa: não encontrada.";
-}).catch(()=>{});
+}.catch(()=>{});
 }
 
 function getLaudos(){
