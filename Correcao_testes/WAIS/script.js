@@ -74,7 +74,7 @@ function calcularIdade(nascISO, aplISO) {
   return { anos, meses, totalMeses: anos * 12 + meses };
 }
 
-function faixaEtaria(, idade) {
+function faixaEtaria(normas, idade) {
   if (!idade) return null;
   const total = idade.totalMeses;
 
