@@ -406,14 +406,14 @@ console.log("SOMAS WAIS:", somas);
 
     if(Object.keys(pondByCode).length === 0){ alert("Preencha ao menos um subteste."); return; }
 
-    const indicesInfo = {
-      ICV: somarIndice(pondByCode, INDICES.ICV),
-      IOP: somarIndice(pondByCode, INDICES.IOP),
-      IMO: somarIndice(pondByCode, INDICES.IMO),
-      IVP: somarIndice(pondByCode, INDICES.IVP),
-    };
+const indicesInfo = {
+  ICV: somas.ICV,
+  IOP: somas.IOP,
+  IMO: somas.IMO,
+  IVP: somas.IVP,
+};
 
-    const qiInfo = somarQI(pondByCode);
+const qiInfo = somas.QI_TOTAL; // mantém compatível com relatório atual
 
     montarRelatorio({ nome, cpf, sexo, escolaridade, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo });
 
