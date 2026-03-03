@@ -773,7 +773,7 @@ function getLinha(tipo, titulo){
   desenharGraficos(resultados, indicesInfo, qiInfo);
 }
 
-function desenharGraficos(resultados, indicesInfo, qiInfo){
+function desenharGraficos(resultados, indicesInfo, qiInfo, compostos){
   registrarPluginsChart();
   // ---------- Subtestes: SCATTER (pontos) ----------
   const ctxSub = document.getElementById("grafSub");
@@ -876,13 +876,13 @@ const points = Object.keys(xPos)
   const ctxIdx = document.getElementById("grafIdx");
   if(ctxIdx){
     if(chartIdx) chartIdx.destroy();
-    const labels = ["ICV","IOP","IMO","IVP","QIT"];
+    const labels = ["ICV","IOP","IMO","IVP","QI Total"];
     const vals = [
-      indicesInfo?.ICV?.soma ?? null,
-      indicesInfo?.IOP?.soma ?? null,
-      indicesInfo?.IMO?.soma ?? null,
-      indicesInfo?.IVP?.soma ?? null,
-      qiInfo?.soma ?? null,
+      compostos?.ICV?.composto ?? indicesInfo?.ICV?.soma ?? null,
+      compostos?.IOP?.composto ?? indicesInfo?.IOP?.soma ?? null,
+      compostos?.IMO?.composto ?? indicesInfo?.IMO?.soma ?? null,
+      compostos?.IVP?.composto ?? indicesInfo?.IVP?.soma ?? null,
+      compostos?.QI_TOTAL?.composto ?? qiInfo?.soma ?? null,
     ];
     const pts = vals.map((v,i)=> v==null ? null : ({x:i+1, y:Number(v)})).filter(Boolean);
 
