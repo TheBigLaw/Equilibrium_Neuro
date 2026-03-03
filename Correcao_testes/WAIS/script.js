@@ -625,7 +625,7 @@ function getLinha(tipo, titulo){
   };
 }
 
-  const { nome, cpf, sexo, escolaridade, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo, compostos, compostos, somas } = data;
+  const { nome, cpf, sexo, escolaridade, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo, compostos, somas } = data;
   const cpfTxt = formatarCPF(cpf);
   const sexoTxt = sexo;
   const escTxt = escolaridade;
@@ -707,7 +707,7 @@ function getLinha(tipo, titulo){
 
   <!-- INDICES -->
   <div class="section no-break">
-    <h3>Índices e QIT</h3>
+    <h3>Índices e QI Total</h3>
 
     <div class="canvas-wrap">
       <canvas id="grafIdx" height="300"></canvas>
@@ -831,13 +831,7 @@ const points = Object.keys(xPos)
           legend:{ display:false },
           wiscScatterDecor:{
             band:{ min:9, max:11 },
-            vlines: [4.5, 8.5, 11.5, 14.5],
-            groupLabels:[
-              { from:1, to:5, text:"Compreensão Verbal" },
-              { from:6, to:9, text:"Organização Perceptual" },
-              { from:10, to:12, text:"Memória Operacional" },
-              { from:13, to:15, text:"Velocidade de Proc." },
-            ]
+            vlines: [5.5, 10.5, 14.5, 17.5],
           }
         },
         scales:{
@@ -856,7 +850,7 @@ const points = Object.keys(xPos)
                             callback: (val) => {
                               const code = tickAt[Math.round(val)];
                                 if (!code) return ""; // gaps ficam vazios
-                          return ["CF","CA","IN","AR","RP"].includes(code) ? `(${code})` : code;
+                          return ["SNL","AO"].includes(code) ? `(${code})` : code;
                   }
               }
           },
