@@ -262,13 +262,6 @@ function renderMatrizConversao({ resultados, indicesInfo, somas }) {
     const r = resultados[codigo] || { bruto: "", ponderado: "" };
     const nome = obterNomeSubteste(codigo);
 
-    const qitCell =
-      usadosQI.has(codigo) && resultados[codigo]
-        ? `<td class="idx fill"><span class="pill">${resultados[codigo].ponderado}</span></td>`
-        : usadosQI.has(codigo)
-          ? `<td class="idx fill empty"></td>`
-          : `<td class="idx"></td>`;
-
     return `
       <tr>
         <td class="col-sub"><b>${nome}</b> <span class="muted">(${codigo})</span></td>
@@ -568,12 +561,14 @@ function formatarDataISO(iso){
 
 function renderPerfilSubtestes(resultados){
   const grupos = [
-    { titulo: "Compreensão Verbal", codes: ["SM","VC","CO","IN","RP"] },
-    { titulo: "Organização Perceptual", codes: ["CB","CN","RM","CF"] },
-    { titulo: "Memória Operacional", codes: ["DG","SNL","AR"] },
-    { titulo: "Velocidade de Proc.", codes: ["CD","PS","CA"] },
+    { titulo: "Compreensão Verbal",      codes: ["SM","VC","IN","CO"] },
+    { titulo: "Organização Perceptual",  codes: ["CB","CF","RM","AF"] },
+    { titulo: "Memória Operacional",     codes: ["AR","DG","SNL"] },
+    { titulo: "Velocidade de Proc.",     codes: ["CD","PS"] },
   ];
-  const supl = new Set(["CF","CA","IN","AR","RP"]);
+
+  // suplementares (marcar com parênteses no perfil)
+  const supl = new Set(["SNL","AO"]);
 
   const head1 = grupos.map(g => `<th colspan="${g.codes.length}" class="perfil-group">${g.titulo}</th>`).join("");
   const codes = grupos.flatMap(g => g.codes).map(c=>{
@@ -630,7 +625,7 @@ function getLinha(tipo, titulo){
   };
 }
 
-  const { nome, cpf, sexo, escolaridade, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo, compostos } = data;
+  const { nome, cpf, sexo, escolaridade, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo, compostos, compostos, somas } = data;
   const cpfTxt = formatarCPF(cpf);
   const sexoTxt = sexo;
   const escTxt = escolaridade;
@@ -776,7 +771,7 @@ function getLinha(tipo, titulo){
       </div>
   `;
 
-  desenharGraficos(resultados, indicesInfo, qiInfo);
+  desenharGraficos(resultados, indicesInfo, qiInfo, compostos);
 }
 
 function desenharGraficos(resultados, indicesInfo, qiInfo, compostos){
