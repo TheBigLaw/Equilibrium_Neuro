@@ -292,7 +292,6 @@ function atualizarPreviewIdade(){
 
   const faixa = faixaEtariaWAISIII(idade);
   faixaEl.textContent = faixa ? `Faixa normativa: ${faixa}` : "Faixa normativa: não encontrada.";
-}catch(()=>{});
 }
 
 function getLaudos(){
