@@ -22,15 +22,15 @@ async function carregarNormas(){
     fetch("./data/waisiii_sum_to_composite_br.json", { cache:"no-store" }),
   ]);
 
-  if(!resp.ok) throw new Error("Não foi possível carregar ./data/normas-wais.json");
+  if(!resp.ok) throw new Error("Não foi possível carregar ./data/-wais.json");
   if(!rawResp.ok) throw new Error("Não foi possível carregar ./data/waisiii_raw_to_scaled_br.json");
   if(!compResp.ok) throw new Error("Não foi possível carregar ./data/waisiii_sum_to_composite_br.json");
 
-  NORMAS = await resp.json();
+   = await resp.json();
   RAW_NORMS = await rawResp.json();
   COMP_NORMS = await compResp.json();
 
-  return { normasWais: NORMAS, rawNorms: RAW_NORMS, compNorms: COMP_NORMS };
+  return { Wais: , rawNorms: RAW_NORMS, compNorms: COMP_NORMS };
 }
 
 // Subtestes (ordem objetiva)
@@ -75,11 +75,11 @@ function calcularIdade(nascISO, aplISO) {
   return { anos, meses, totalMeses: anos * 12 + meses };
 }
 
-function faixaEtaria(normas, idade) {
+function faixaEtaria(, idade) {
   if (!idade) return null;
   const total = idade.totalMeses;
 
-  for (const faixa of Object.keys(normas || {})) {
+  for (const faixa of Object.keys( || {})) {
     const [ini, fim] = faixa.split("-");
     if (!ini || !fim) continue;
     const [ai, mi] = ini.split(":").map(Number);
@@ -93,8 +93,8 @@ function faixaEtaria(normas, idade) {
   return null;
 }
 
-function brutoParaPonderado(normas, faixa, codigo, bruto) {
-  const regras = normas?.[faixa]?.subtestes?.[codigo];
+function brutoParaPonderado(, faixa, codigo, bruto) {
+  const regras = ?.[faixa]?.subtestes?.[codigo];
   if (!Array.isArray(regras)) return null;
   const r = regras.find(x => bruto >= x.min && bruto <= x.max);
   return r ? Number(r.ponderado) : null;
@@ -264,7 +264,7 @@ function setLaudos(arr){
 
 async function calcular(salvar){
   try{
-    const normas = await carregarNormas();
+    const { normasWais: normas, rawNorms, compNorms } = await carregarNormas();
     const nome = (document.getElementById("nome")?.value || "").trim();
     const nasc = document.getElementById("dataNascimento")?.value;
     const apl  = document.getElementById("dataAplicacao")?.value;
