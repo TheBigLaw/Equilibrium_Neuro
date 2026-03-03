@@ -11,25 +11,23 @@ let RAW_NORMS = null;
 let COMP_NORMS = null;
 
 async function carregarNormas(){
-  if (NORMAS && RAW_NORMS && COMP_NORMS) {
-    return { normasWais: NORMAS, rawNorms: RAW_NORMS, compNorms: COMP_NORMS };
+  if (RAW_NORMS && COMP_NORMS) {
+    return { rawNorms: RAW_NORMS, compNorms: COMP_NORMS };
   }
 
-  const [resp, rawResp, compResp] = await Promise.all([
-    fetch("./data/normas-wais.json", { cache:"no-store" }),
+  const [rawResp, compResp] = await Promise.all([
     fetch("./data/waisiii_raw_to_scaled_br.json", { cache:"no-store" }),
     fetch("./data/waisiii_sum_to_composite_br.json", { cache:"no-store" }),
   ]);
 
-  if(!resp.ok) throw new Error("Não foi possível carregar ./data/normas-wais.json");
   if(!rawResp.ok) throw new Error("Não foi possível carregar ./data/waisiii_raw_to_scaled_br.json");
   if(!compResp.ok) throw new Error("Não foi possível carregar ./data/waisiii_sum_to_composite_br.json");
 
-  NORMAS = await resp.json();
   RAW_NORMS = await rawResp.json();
   COMP_NORMS = await compResp.json();
 
-  return { normasWais: NORMAS, rawNorms: RAW_NORMS, compNorms: COMP_NORMS };
+  return { rawNorms: RAW_NORMS, compNorms: COMP_NORMS };
+}turn { normasWais: NORMAS, rawNorms: RAW_NORMS, compNorms: COMP_NORMS };
 }
 
 // Subtestes WAIS-III (BR) — Verbais + Execução
