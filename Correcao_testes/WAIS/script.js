@@ -50,6 +50,20 @@ const SUBTESTES = [
   { nome: "Armar Objetos", codigo: "AO", id: "pb_AO" },
 ];
 
+// WAIS-III — composição das escalas (usando seus códigos)
+const WAIS_SCALES = {
+  // Índices fatoriais
+  ICV: ["SM", "VC", "IN", "CO"],      // Compreensão Verbal
+  IOP: ["CB", "CF", "RM", "AF"],      // Organização Perceptual
+  IMO: ["AR", "DG", "SNL"],           // Memória Operacional
+  IVP: ["CD", "PS"],                 // Velocidade de Processamento
+
+  // QIs (clássicos)
+  QI_VERBAL: ["SM", "VC", "AR", "DG", "IN", "CO"],          // sem SNL
+  QI_EXECUCAO: ["CF", "CD", "CB", "RM", "AF", "PS"],        // sem AO
+  QI_TOTAL: ["SM","VC","AR","DG","IN","CO","CF","CD","CB","RM","AF","PS"], // 12 subtestes
+};
+
 const INDICES = {
   ICV: { nome: "ICV", core: ["SM","VC","CO"], supl: ["IN","RP"], n: 3 },
   IOP: { nome: "IOP", core: ["CB","CN","RM"], supl: ["CF"], n: 3 },
@@ -137,6 +151,19 @@ function rawToScaledWAIS(rawNorms, faixa, codigo, bruto) {
     }
   }
   return null;
+}
+
+function somarEscala(pondByCode, codigos){
+  let soma = 0;
+  let usados = 0;
+  for(const c of codigos){
+    const v = pondByCode[c];
+    if(typeof v === "number" && !Number.isNaN(v)){
+      soma += v;
+      usados++;
+    }
+  }
+  return { soma, usados, total: codigos.length };
 }
 
 function classificarPonderado(p) {
@@ -369,6 +396,13 @@ async function calcular(salvar){
       };
       pondByCode[s.codigo] = pond;
     }
+
+    // somatórios WAIS-III
+const somas = {};
+for (const [tipo, codigos] of Object.entries(WAIS_SCALES)) {
+  somas[tipo] = somarEscala(pondByCode, codigos);
+}
+console.log("SOMAS WAIS:", somas);
 
     if(Object.keys(pondByCode).length === 0){ alert("Preencha ao menos um subteste."); return; }
 
