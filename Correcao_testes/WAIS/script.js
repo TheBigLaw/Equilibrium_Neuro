@@ -239,21 +239,24 @@ function cellIndice(codigo, setUsado, setPossivel, resultados) {
   return `<td class="idx fill"><span class="${cls}">${r.ponderado}</span></td>`;
 }
 
-function renderMatrizConversao({ resultados, indicesInfo, qiInfo }) {
+function renderMatrizConversao({ resultados, indicesInfo, somas }) {
   const usadosICV = new Set(indicesInfo?.ICV?.usados || []);
   const usadosIOP = new Set(indicesInfo?.IOP?.usados || []);
   const usadosIMO = new Set(indicesInfo?.IMO?.usados || []);
   const usadosIVP = new Set(indicesInfo?.IVP?.usados || []);
-  const usadosQI  = new Set(qiInfo?.usados || []);
+  const usadosVERBAL = new Set(somas?.QI_VERBAL?.usados || []);
+  const usadosEXEC   = new Set(somas?.QI_EXECUCAO?.usados || []);
 
   const possiveis = {
-    ICV: new Set(["SM","VC","CO","IN","RP"]),
-    IOP: new Set(["CB","CN","RM","CF"]),
-    IMO: new Set(["DG","SNL","AR"]),
-    IVP: new Set(["CD","PS","CA"]),
+    VERBAL: new Set(["VC","SM","AR","DG","IN","CO","SNL"]),
+    EXEC:   new Set(["CF","CD","CB","RM","AF","PS","AO"]),
+    ICV:    new Set(["SM","VC","IN","CO"]),
+    IOP:    new Set(["CB","CF","RM","AF"]),
+    IMO:    new Set(["AR","DG","SNL"]),
+    IVP:    new Set(["CD","PS"]),
   };
 
-  const ordem = ["CB","SM","DG","CN","CD","VC","SNL","RM","CO","PS","CF","CA","IN","AR","RP"];
+  const ordem = ["CF","VC","CD","SM","CB","AR","RM","DG","IN","AF","CO","PS","SNL","AO"];
 
   const linhas = ordem.map(codigo => {
     const r = resultados[codigo] || { bruto: "", ponderado: "" };
@@ -271,46 +274,49 @@ function renderMatrizConversao({ resultados, indicesInfo, qiInfo }) {
         <td class="col-sub"><b>${nome}</b> <span class="muted">(${codigo})</span></td>
         <td class="col-pb">${r.bruto ?? ""}</td>
         <td class="col-pp">${r.ponderado ?? ""}</td>
-        ${cellIndice(codigo, usadosICV, possiveis.ICV, resultados)}
-        ${cellIndice(codigo, usadosIOP, possiveis.IOP, resultados)}
-        ${cellIndice(codigo, usadosIMO, possiveis.IMO, resultados)}
-        ${cellIndice(codigo, usadosIVP, possiveis.IVP, resultados)}
-        ${qitCell}
+          ${cellIndice(codigo, usadosVERBAL, possiveis.VERBAL, resultados)}
+          ${cellIndice(codigo, usadosEXEC,   possiveis.EXEC,   resultados)}
+          ${cellIndice(codigo, usadosICV,    possiveis.ICV,    resultados)}
+          ${cellIndice(codigo, usadosIOP,    possiveis.IOP,    resultados)}
+          ${cellIndice(codigo, usadosIMO,    possiveis.IMO,    resultados)}
+          ${cellIndice(codigo, usadosIVP,    possiveis.IVP,    resultados)}
       </tr>
     `;
   }).join("");
 
-  return `
-    <table class="wisc-matrix">
-      <thead>
-        <tr>
-          <th class="col-sub">Subtestes</th>
-          <th class="col-pb">PB</th>
-          <th class="col-pp">Ponderado</th>
-          <th colspan="5">Contribuição (Pontos Ponderados)</th>
-        </tr>
-        <tr>
-          <th></th><th></th><th></th>
-          <th class="idx">ICV</th>
-          <th class="idx">IOP</th>
-          <th class="idx">IMO</th>
-          <th class="idx">IVP</th>
-          <th class="idx">QIT</th>
-        </tr>
-      </thead>
-      <tbody>${linhas}</tbody>
-      <tfoot>
-        <tr>
-          <td class="sum-label" colspan="3">Soma dos Pontos Ponderados</td>
-          <td>${indicesInfo?.ICV?.soma ?? "—"}</td>
-          <td>${indicesInfo?.IOP?.soma ?? "—"}</td>
-          <td>${indicesInfo?.IMO?.soma ?? "—"}</td>
-          <td>${indicesInfo?.IVP?.soma ?? "—"}</td>
-          <td>${qiInfo?.soma ?? "—"}</td>
-        </tr>
-      </tfoot>
-    </table>
-  `;
+ return `
+  <table class="wisc-matrix">
+    <thead>
+      <tr>
+        <th class="col-sub">Subtestes</th>
+        <th class="col-pb">PB</th>
+        <th class="col-pp">Ponderado</th>
+        <th colspan="6">Contribuição (Pontos Ponderados)</th>
+      </tr>
+      <tr>
+        <th></th><th></th><th></th>
+        <th class="idx">Verbal</th>
+        <th class="idx">Exec.</th>
+        <th class="idx">ICV</th>
+        <th class="idx">IOP</th>
+        <th class="idx">IMO</th>
+        <th class="idx">IVP</th>
+      </tr>
+    </thead>
+    <tbody>${linhas}</tbody>
+    <tfoot>
+      <tr>
+        <td class="sum-label" colspan="3">Soma dos Pontos Ponderados</td>
+        <td>${somas?.QI_VERBAL?.soma ?? "—"}</td>
+        <td>${somas?.QI_EXECUCAO?.soma ?? "—"}</td>
+        <td>${indicesInfo?.ICV?.soma ?? "—"}</td>
+        <td>${indicesInfo?.IOP?.soma ?? "—"}</td>
+        <td>${indicesInfo?.IMO?.soma ?? "—"}</td>
+        <td>${indicesInfo?.IVP?.soma ?? "—"}</td>
+      </tr>
+    </tfoot>
+  </table>
+`;
 }
 
 function montarInputsSubtestes(){
@@ -628,7 +634,7 @@ function getLinha(tipo, titulo){
   const cpfTxt = formatarCPF(cpf);
   const sexoTxt = sexo;
   const escTxt = escolaridade;
-  const matriz = renderMatrizConversao({ resultados, indicesInfo, qiInfo });
+  const matriz = renderMatrizConversao({ resultados, indicesInfo, somas });
   const perfil = renderPerfilSubtestes(resultados);
 
   rel.style.display = "block";
