@@ -15,22 +15,21 @@ async function carregarNormas(){
     return { normasWais: NORMAS, rawNorms: RAW_NORMS, compNorms: COMP_NORMS };
   }
 
-  // ✅ paths corretos (SEM barra no começo)
   const [resp, rawResp, compResp] = await Promise.all([
     fetch("./data/normas-wais.json", { cache:"no-store" }),
     fetch("./data/waisiii_raw_to_scaled_br.json", { cache:"no-store" }),
     fetch("./data/waisiii_sum_to_composite_br.json", { cache:"no-store" }),
   ]);
 
-  if(!resp.ok) throw new Error("Não foi possível carregar ./data/-wais.json");
+  if(!resp.ok) throw new Error("Não foi possível carregar ./data/normas-wais.json");
   if(!rawResp.ok) throw new Error("Não foi possível carregar ./data/waisiii_raw_to_scaled_br.json");
   if(!compResp.ok) throw new Error("Não foi possível carregar ./data/waisiii_sum_to_composite_br.json");
 
-   = await resp.json();
+  NORMAS = await resp.json();
   RAW_NORMS = await rawResp.json();
   COMP_NORMS = await compResp.json();
 
-  return { Wais: , rawNorms: RAW_NORMS, compNorms: COMP_NORMS };
+  return { normasWais: NORMAS, rawNorms: RAW_NORMS, compNorms: COMP_NORMS };
 }
 
 // Subtestes (ordem objetiva)
