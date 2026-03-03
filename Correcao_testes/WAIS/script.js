@@ -201,14 +201,17 @@ function obterNomeSubteste(codigo){
   return map[codigo] || codigo;
 }
 
-function cellIndice(codigo, setUsado, setPossivel, resultados) {
-  if (!setPossivel.has(codigo)) return `<td class="idx"></td>`;
-  if (!setUsado.has(codigo)) return `<td class="idx fill empty"></td>`;
-  const r = resultados[codigo];
-  if (!r) return `<td class="idx fill"></td>`;
-  const suplementar = possiveisSet.has(codigo) && !usadosSet.has(codigo);
+function cellIndice(codigo, usadosSet, possiveisSet, resultados){
+  // se não pertence a essa coluna, célula vazia
+  if(!possiveisSet || !possiveisSet.has(codigo)) return `<td class="idx fill"></td>`;
+  const r = resultados?.[codigo];
+  const v = r?.ponderado;
+  if(v == null || v === "") return `<td class="idx fill"></td>`;
+  // suplementar = aparece na coluna mas não foi usado na soma (fica entre parênteses)
+  const suplementar = !(usadosSet && usadosSet.has(codigo));
   const cls = suplementar ? "pill sup" : "pill";
-  return `<td class="idx fill"><span class="${cls}">${r.ponderado}</span></td>`;
+  const txt = suplementar ? `(${v})` : `${v}`;
+  return `<td class="idx fill"><span class="${cls}">${txt}</span></td>`;
 }
 
 function renderMatrizConversao({ resultados, indicesInfo, somas }) {
