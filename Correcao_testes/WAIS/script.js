@@ -196,7 +196,7 @@ function obterNomeSubteste(codigo){
     CB:"Cubos", SM:"Semelhanças", DG:"Dígitos", CN:"Conceitos Figurativos", CD:"Código",
     VC:"Vocabulário", SNL:"Seq. Núm. e Letras", RM:"Raciocínio Matricial", CO:"Compreensão",
     PS:"Procurar Símbolos", CF:"Completar Figuras", CA:"Cancelamento", IN:"Informação",
-    AR:"Aritmética", RP:"Raciocínio com Palavras"
+    AR:"Aritmética", RP:"Raciocínio com Palavras", AF:"Arranjo de Figuras", AO:"Armar Objetos",
   };
   return map[codigo] || codigo;
 }
