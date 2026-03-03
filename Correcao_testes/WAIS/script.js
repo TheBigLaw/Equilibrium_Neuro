@@ -74,6 +74,22 @@ function calcularIdade(nascISO, aplISO) {
   return { anos, meses, totalMeses: anos * 12 + meses };
 }
 
+function faixaEtariaWAISIII(idade){
+  if(!idade) return null;
+  const anos = idade.anos;
+
+  if (anos >= 16 && anos <= 17) return "16 - 17";
+  if (anos >= 18 && anos <= 19) return "18 - 19";
+  if (anos >= 20 && anos <= 29) return "20 - 29";
+  if (anos >= 30 && anos <= 39) return "30 - 39";
+  if (anos >= 40 && anos <= 49) return "40 - 49";
+  if (anos >= 50 && anos <= 59) return "50 - 59";
+  if (anos >= 60 && anos <= 64) return "60 - 64";
+  if (anos >= 65 && anos <= 89) return "65 - 89";
+
+  return null;
+}
+
 function faixaEtaria(normas, idade) {
   if (!idade || !normas) return null;
 
@@ -107,14 +123,15 @@ function brutoParaPonderado(normas, faixa, codigo, bruto) {
 }
 
 function rawToScaledWAIS(rawNorms, faixa, codigo, bruto) {
-  // faixa aqui PRECISA bater com as chaves do JSON (ex: "20 - 29")
   const faixaData = rawNorms?.raw_to_scaled?.[faixa];
   if (!faixaData) return null;
 
-  // IMPORTANTE: aqui estamos usando "codigo" como chave
-  // então o JSON precisa estar com as chaves iguais ao "codigo"
-  // Ex: "VC", "SM", "DG"...
-  const regras = faixaData[codigo];
+  // pega o nome pelo código usando o array SUBTESTES
+  const sub = SUBTESTES.find(s => s.codigo === codigo);
+  const nome = sub?.nome;
+  if (!nome) return null;
+
+  const regras = faixaData[nome]; // ✅ agora bate com o JSON
   if (!Array.isArray(regras)) return null;
 
   for (const r of regras) {
@@ -275,7 +292,7 @@ function atualizarPreviewIdade(){
 
   idadeEl.textContent = `Idade na aplicação: ${idade.anos} anos e ${idade.meses} meses.`;
   carregarNormas().then(normas=>{
-    const faixa = faixaEtaria(normas, idade);
+    const faixa = faixaEtariaWAISIII(idade);
     faixaEl.textContent = faixa ? `Faixa normativa: ${faixa}` : "Faixa normativa: não encontrada.";
   }).catch(()=>{});
 }
@@ -299,7 +316,7 @@ async function calcular(salvar){
     const idade = calcularIdade(nasc, apl);
     if(!idade){ alert("Datas inválidas."); return; }
 
-    const faixa = faixaEtaria(normas, idade);
+    const faixa = faixaEtariaWAISIII(idade);
     if(!faixa){ alert("Faixa normativa não encontrada."); return; }
 
     const resultados = {};
