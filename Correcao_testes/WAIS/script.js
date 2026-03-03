@@ -64,15 +64,6 @@ const WAIS_SCALES = {
   QI_TOTAL: ["SM","VC","AR","DG","IN","CO","CF","CD","CB","RM","AF","PS"], // 12 subtestes
 };
 
-const INDICES = {
-  ICV: { nome: "ICV", core: ["SM","VC","CO"], supl: ["IN","RP"], n: 3 },
-  IOP: { nome: "IOP", core: ["CB","CN","RM"], supl: ["CF"], n: 3 },
-  IMO: { nome: "IMO", core: ["DG","SNL"], supl: ["AR"], n: 2 },
-  IVP: { nome: "IVP", core: ["CD","PS"], supl: ["CA"], n: 2 },
-};
-
-const QI_CORE = ["SM","VC","CO","CB","CN","RM","DG","SNL","CD","PS"];
-
 function calcularIdade(nascISO, aplISO) {
   if (!nascISO || !aplISO) return null;
   const n = new Date(nascISO);
@@ -200,25 +191,6 @@ function classificarPonderado(p) {
   return "Muito Superior";
 }
 
-function somarIndice(pondByCode, def) {
-  let usados = def.core.filter(c => pondByCode[c] != null);
-  if (usados.length < def.n && def.supl?.length) {
-    for (const s of def.supl) {
-      if (pondByCode[s] != null) { usados.push(s); break; }
-    }
-  }
-  if (usados.length !== def.n) return { soma: null, usados };
-  const soma = usados.reduce((acc, c) => acc + Number(pondByCode[c]), 0);
-  return { soma, usados };
-}
-
-function somarQI(pondByCode) {
-  const usados = QI_CORE.filter(c => pondByCode[c] != null);
-  if (usados.length !== 10) return { soma: null, usados };
-  const soma = usados.reduce((a,c)=>a+Number(pondByCode[c]),0);
-  return { soma, usados };
-}
-
 function obterNomeSubteste(codigo){
   const map = {
     CB:"Cubos", SM:"Semelhanças", DG:"Dígitos", CN:"Conceitos Figurativos", CD:"Código",
@@ -234,7 +206,7 @@ function cellIndice(codigo, setUsado, setPossivel, resultados) {
   if (!setUsado.has(codigo)) return `<td class="idx fill empty"></td>`;
   const r = resultados[codigo];
   if (!r) return `<td class="idx fill"></td>`;
-  const suplementar = ["CF","CA","IN","AR","RP"].includes(codigo);
+  const suplementar = ["SNL","AO"].includes(codigo);
   const cls = suplementar ? "pill sup" : "pill";
   return `<td class="idx fill"><span class="${cls}">${r.ponderado}</span></td>`;
 }
@@ -904,8 +876,8 @@ const points = Object.keys(xPos)
     },
     y:{
       // em vez de beginAtZero, fica clínico e legível
-      suggestedMin: 0,
-      suggestedMax: 60,
+      suggestedMin: 40,
+      suggestedMax: 160,
       ticks:{ font:{ size: 10 } },
       grid:{ color:"rgba(13,71,161,.10)" }
     }
