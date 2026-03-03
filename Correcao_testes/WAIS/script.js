@@ -5,14 +5,32 @@ console.log("SCRIPT WAIS CARREGADO v3");
 const LAUDOS_KEY = "empresa_laudos_wais";
 
 let NORMAS = null;
+
+// novos: normas WAIS-III (as que você subiu na pasta /data)
+let RAW_NORMS = null;
+let COMP_NORMS = null;
+
 async function carregarNormas(){
-  if(NORMAS) return NORMAS;
-  const resp = await fetch("data/normas-wais.json", { cache:"no-store" });
-  const rawNorms = await fetch("/data/waisiii_raw_to_scaled_br.json").then(r => r.json());
-  const compNorms = await fetch("/data/waisiii_sum_to_composite_br.json").then(r => r.json());
-  if(!resp.ok) throw new Error("Não foi possível carregar data/");
+  if (NORMAS && RAW_NORMS && COMP_NORMS) {
+    return { normasWais: NORMAS, rawNorms: RAW_NORMS, compNorms: COMP_NORMS };
+  }
+
+  // ✅ paths corretos (SEM barra no começo)
+  const [resp, rawResp, compResp] = await Promise.all([
+    fetch("./data/normas-wais.json", { cache:"no-store" }),
+    fetch("./data/waisiii_raw_to_scaled_br.json", { cache:"no-store" }),
+    fetch("./data/waisiii_sum_to_composite_br.json", { cache:"no-store" }),
+  ]);
+
+  if(!resp.ok) throw new Error("Não foi possível carregar ./data/normas-wais.json");
+  if(!rawResp.ok) throw new Error("Não foi possível carregar ./data/waisiii_raw_to_scaled_br.json");
+  if(!compResp.ok) throw new Error("Não foi possível carregar ./data/waisiii_sum_to_composite_br.json");
+
   NORMAS = await resp.json();
-  return NORMAS;
+  RAW_NORMS = await rawResp.json();
+  COMP_NORMS = await compResp.json();
+
+  return { normasWais: NORMAS, rawNorms: RAW_NORMS, compNorms: COMP_NORMS };
 }
 
 // Subtestes (ordem objetiva)
