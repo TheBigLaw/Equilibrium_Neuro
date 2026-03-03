@@ -496,7 +496,10 @@ function montarRelatorio(data) {
 
   registrarPluginsChart();
 
-  const { nome, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo } = data;
+  const { nome, cpf, sexo, escolaridade, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo, compostos } = data;
+  const cpfTxt = formatarCPF(cpf);
+  const sexoTxt = sexo;
+  const escTxt = escolaridade;
   const matriz = renderMatrizConversao({ resultados, indicesInfo, qiInfo });
   const perfil = renderPerfilSubtestes(resultados);
 
@@ -515,76 +518,109 @@ function montarRelatorio(data) {
         </div>
       </div>
 
-      <div class="section report-info no-break">
+      <div class="section">
         <div class="info-grid">
           <div><span class="k">Nome:</span> <span class="v">${nome}</span></div>
-          <div><span class="k">Nascimento:</span> <span class="v">${formatarDataISO(nasc)}</span></div>
-          <div><span class="k">Aplicação:</span> <span class="v">${formatarDataISO(apl)}</span></div>
+          <div><span class="k">CPF:</span> <span class="v">${cpfTxt || "—"}</span></div>
+          <div><span class="k">Sexo:</span> <span class="v">${sexoTxt || "—"}</span></div>
+          <div><span class="k">Escolaridade:</span> <span class="v">${escTxt || "—"}</span></div>
+          <div><span class="k">Nascimento:</span> <span class="v">${nasc}</span></div>
+          <div><span class="k">Aplicação:</span> <span class="v">${apl}</span></div>
         </div>
       </div>
+      
+<div class="duas-colunas">
 
-      <div class="section no-break page-break-after">
-        <h3>Perfil dos Pontos Ponderados dos Subtestes</h3>
-        <div class="perfil-card">
-          ${perfil}
-          <div class="canvas-wrap perfil-canvas"><canvas id="grafSub" height="400"></canvas></div>
-        </div>
-         <div class="html2pdf__page-break"></div>
-        <p class="muted" style="margin:10px 0 0;">
-          A faixa azul indica a região média aproximada (9–11) dos pontos ponderados.
-        </p>
+  <!-- MATRIZ -->
+  <div class="section no-break">
+    <h3>Conversão PB → Ponderado e contribuição nos Índices</h3>
+    <div class="matrix-card">${matriz}</div>
+    <p class="muted" style="margin:10px 0 0;">
+      Células azuis indicam subtestes usados na soma do índice/QIT. Suplementares podem aparecer entre parênteses.
+    </p>
+  </div>
+
+    <!-- PERFIL (direita no seu exemplo, mas ordem visual é CSS) -->
+  <div class="section no-break">
+    <h3>Perfil dos Pontos Ponderados dos Subtestes</h3>
+    <div class="perfil-card">
+      ${perfil}
+      <div class="canvas-wrap perfil-canvas">
+        <canvas id="grafSub" height="560"></canvas>
       </div>
+    </div>
+    <p class="muted" style="margin:10px 0 0;">
+      A faixa azul indica a região média aproximada (9–11) dos pontos ponderados.
+    </p>
+  </div>
 
-      <div class="section">
-        <h3>Conversão PB → Ponderado e contribuição nos Índices</h3>
-        <div class="matrix-card no-break">${matriz}</div>
-        <p class="muted" style="margin:10px 0 0;">
-          Células azuis indicam subtestes usados na soma do índice/QIT. Suplementares podem aparecer entre parênteses.
-        </p>
-      </div>
+</div>
 
-      <div class="section">
-        <h3>Subtestes (detalhamento)</h3>
-        <table class="table">
-          <thead><tr><th>Subteste</th><th>PB</th><th>Ponderado</th><th>Classificação</th></tr></thead>
-          <tbody>
-            ${Object.values(resultados).map(r=>`
-              <tr>
-                <td><b>${r.nome}</b> <span class="muted">(${r.codigo})</span></td>
-                <td>${r.bruto}</td>
-                <td>${r.ponderado}</td>
-                <td>${r.classificacao}</td>
-              </tr>
-            `).join("")}
-          </tbody>
-        </table>
-      </div>
+    <div class="duas-colunas">
 
-      <div class="section">
-        <h3>Índices e QIT (somatórios)</h3>
-        <div class="canvas-wrap"><canvas id="grafIdx" height="300"></canvas></div>
+  <!-- SUBTESTES -->
+  <div class="section no-break">
+    <h3>Subtestes (detalhamento)</h3>
+    <table class="table">
+      <thead><tr><th>Subteste</th><th>PB</th><th>Ponderado</th><th>Classificação</th></tr></thead>
+      <tbody>
+        ${Object.values(resultados).map(r=>`
+          <tr>
+            <td><b>${r.nome}</b> <span class="muted">(${r.codigo})</span></td>
+            <td>${r.bruto}</td>
+            <td>${r.ponderado}</td>
+            <td>${r.classificacao}</td>
+          </tr>
+        `).join("")}
+      </tbody>
+    </table>
+  </div>
 
-        <table class="table" style="margin-top:12px;">
-          <thead><tr><th>Medida</th><th>Soma (ponderados)</th><th>Subtestes usados</th></tr></thead>
-          <tbody>
-            ${Object.entries(INDICES).map(([k, def])=>{
-              const info = indicesInfo[k];
-              return `
-                <tr>
-                  <td><b>${k}</b></td>
-                  <td>${info.soma ?? "—"}</td>
-                  <td>${(info.usados||[]).join(", ") || "—"}</td>
-                </tr>
-              `;
-            }).join("")}
-            <tr>
-              <td><b>QIT</b></td>
-              <td>${qiInfo.soma ?? "—"}</td>
-              <td>${(qiInfo.usados||[]).join(", ") || "—"}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+  <!-- INDICES -->
+  <div class="section no-break">
+    <h3>Índices e QIT (somatórios)</h3>
+
+    <div class="canvas-wrap">
+      <canvas id="grafIdx" height="300"></canvas>
+    </div>
+
+    <table class="table" style="margin-top:12px;">
+  <thead>
+    <tr>
+      <th>Escala</th>
+      <th>Ponto Composto</th>
+      <th>Rank Percentil</th>
+      <th>IC 90%</th>
+      <th>IC 95%</th>
+    </tr>
+  </thead>
+  <tbody>
+    ${["ICV","IOP","IMO","IVP"].map(k=>{
+      const info = indicesInfo[k];
+      const comp = compostos?.[k];
+      return `
+        <tr>
+          <td><b>${k}</b></td>
+          <td>${comp?.composto ?? "—"}</td>
+          <td>${comp?.percentil ?? "—"}</td>
+          <td>${comp?.ic90 ?? "—"}</td>
+          <td>${comp?.ic95 ?? "—"}</td>
+        </tr>
+      `;
+    }).join("")}
+
+    <tr>
+      <td><b>QIT</b></td>
+      <td>${compostos?.QIT?.composto ?? "—"}</td>
+      <td>${compostos?.QIT?.percentil ?? "—"}</td>
+      <td>${compostos?.QIT?.ic90 ?? "—"}</td>
+      <td>${compostos?.QIT?.ic95 ?? "—"}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
 
       <div class="report-footer">
         <div class="muted">Documento gerado automaticamente</div>
@@ -602,7 +638,6 @@ function montarRelatorio(data) {
 
 function desenharGraficos(resultados, indicesInfo, qiInfo){
   registrarPluginsChart();
-
   // ---------- Subtestes: SCATTER (pontos) ----------
   const ctxSub = document.getElementById("grafSub");
   if(ctxSub){
