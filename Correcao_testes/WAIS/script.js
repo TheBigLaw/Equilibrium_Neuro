@@ -106,6 +106,25 @@ function brutoParaPonderado(normas, faixa, codigo, bruto) {
   return r ? Number(r.ponderado) : null;
 }
 
+function rawToScaledWAIS(rawNorms, faixa, codigo, bruto) {
+  // faixa aqui PRECISA bater com as chaves do JSON (ex: "20 - 29")
+  const faixaData = rawNorms?.raw_to_scaled?.[faixa];
+  if (!faixaData) return null;
+
+  // IMPORTANTE: aqui estamos usando "codigo" como chave
+  // então o JSON precisa estar com as chaves iguais ao "codigo"
+  // Ex: "VC", "SM", "DG"...
+  const regras = faixaData[codigo];
+  if (!Array.isArray(regras)) return null;
+
+  for (const r of regras) {
+    if (r.rawMin != null && bruto >= r.rawMin && bruto <= r.rawMax) {
+      return Number(r.scaled);
+    }
+  }
+  return null;
+}
+
 function classificarPonderado(p) {
   if (p <= 4) return "Muito Inferior";
   if (p <= 6) return "Inferior";
@@ -292,7 +311,7 @@ async function calcular(salvar){
       const bruto = Number(v);
       if(Number.isNaN(bruto) || bruto < 0){ alert(`Valor inválido em ${s.nome}`); return; }
 
-      const pond = brutoParaPonderado(normas, faixa, s.codigo, bruto);
+      const pond = rawToScaledWAIS(rawNorms, faixa, s.codigo, bruto);
       if(pond == null){ alert(`PB fora da norma em ${s.nome} (${s.codigo}) para faixa ${faixa}`); return; }
 
       resultados[s.codigo] = {
