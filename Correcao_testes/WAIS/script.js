@@ -140,7 +140,7 @@ function rawToScaledWAIS(rawNorms, faixa, codigo, bruto) {
     }
   }
   return null;
-}}
+}
 
 function classificarPonderado(p) {
   if (p <= 4) return "Muito Inferior";
