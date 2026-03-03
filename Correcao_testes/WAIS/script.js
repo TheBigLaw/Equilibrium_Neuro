@@ -27,7 +27,6 @@ async function carregarNormas(){
   COMP_NORMS = await compResp.json();
 
   return { rawNorms: RAW_NORMS, compNorms: COMP_NORMS };
-}turn { normasWais: NORMAS, rawNorms: RAW_NORMS, compNorms: COMP_NORMS };
 }
 
 // Subtestes WAIS-III (BR) — Verbais + Execução
