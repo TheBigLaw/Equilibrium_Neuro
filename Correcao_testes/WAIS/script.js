@@ -92,7 +92,7 @@ function faixaEtaria(normas, idade) {
   return null;
 }
 
-function brutoParaPonderado(, faixa, codigo, bruto) {
+function brutoParaPonderado(normas, faixa, codigo, bruto) {
   const regras = ?.[faixa]?.subtestes?.[codigo];
   if (!Array.isArray(regras)) return null;
   const r = regras.find(x => bruto >= x.min && bruto <= x.max);
