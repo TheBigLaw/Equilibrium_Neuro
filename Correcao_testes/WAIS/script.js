@@ -706,7 +706,7 @@ function getLinha(tipo, titulo){
 
   <!-- INDICES -->
   <div class="section no-break">
-    <h3>Índices e QIT (somatórios)</h3>
+    <h3>Índices e QIT</h3>
 
     <div class="canvas-wrap">
       <canvas id="grafIdx" height="300"></canvas>
@@ -783,11 +783,11 @@ function desenharGraficos(resultados, indicesInfo, qiInfo){
     // ordem do perfil (igual ao manual)
    // ordem + GAPs (retratro e mais legível)
 const groups = [
-  ["SM","VC","CO"],          // ICV core
-  ["CB","CN","RM"],          // IOP core
-  ["DG","SNL"],              // IMO core
-  ["CD","PS"],               // IVP core
-  ["IN","RP","CF","AR","CA"] // suplementares (no fim)
+  ["SM","VC","IN","CO"],       // ICV
+  ["CB","CF","RM","AF"],       // IOP
+  ["AR","DG","SNL"],           // IMO
+  ["CD","PS"],                 // IVP
+  ["AO"]                       // suplementar (se quiser separar)
 ];
 
 // cria posições com espaços entre grupos
