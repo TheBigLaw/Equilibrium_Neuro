@@ -307,11 +307,16 @@ async function calcular(salvar){
     const nome = (document.getElementById("nome")?.value || "").trim();
     const nasc = document.getElementById("dataNascimento")?.value;
     const apl  = document.getElementById("dataAplicacao")?.value;
+    const cpf = (document.getElementById("cpf")?.value || "").trim();
+    const sexo = document.getElementById("sexo")?.value || "";
+    const escolaridade = document.getElementById("escolaridade")?.value || "";
 
     if(!nome || !nasc || !apl){ alert("Preencha Nome, Nascimento e Aplicação."); return; }
 
     const idade = calcularIdade(nasc, apl);
     if(!idade){ alert("Datas inválidas."); return; }
+    if(!cpf || !sexo || !escolaridade){alert("Preencha CPF, sexo e escolaridade.");return;}
+    if(!validarCPF(cpf)){alert("CPF inválido. Verifique e tente novamente.");return;}
 
     const faixa = faixaEtariaWAISIII(idade);
     if(!faixa){ alert("Faixa normativa não encontrada."); return; }
