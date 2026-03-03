@@ -2,13 +2,15 @@
 console.log("SCRIPT WAIS CARREGADO v3");
 // tests/wais/script.js
 
-const LAUDOS_KEY = "empresa_laudos_wisciv_v1";
+const LAUDOS_KEY = "empresa_laudos_wais";
 
 let NORMAS = null;
 async function carregarNormas(){
   if(NORMAS) return NORMAS;
   const resp = await fetch("data/normas-wais.json", { cache:"no-store" });
-  if(!resp.ok) throw new Error("Não foi possível carregar data/normas-wais.json");
+  const rawNorms = await fetch("/data/waisiii_raw_to_scaled_br.json").then(r => r.json());
+  const compNorms = await fetch("/data/waisiii_sum_to_composite_br.json").then(r => r.json());
+  if(!resp.ok) throw new Error("Não foi possível carregar data/");
   NORMAS = await resp.json();
   return NORMAS;
 }
