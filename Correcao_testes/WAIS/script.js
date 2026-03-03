@@ -155,15 +155,26 @@ function rawToScaledWAIS(rawNorms, faixa, codigo, bruto) {
 
 function somarEscala(pondByCode, codigos){
   let soma = 0;
-  let usados = 0;
+  const usados = [];
+  const faltando = [];
+
   for(const c of codigos){
     const v = pondByCode[c];
     if(typeof v === "number" && !Number.isNaN(v)){
       soma += v;
-      usados++;
+      usados.push(c);      // ✅ agora é array
+    } else {
+      faltando.push(c);
     }
   }
-  return { soma, usados, total: codigos.length };
+
+  return {
+    soma,
+    usados,               // ✅ compatível com renderMatrizConversao
+    faltando,
+    usadosCount: usados.length,
+    total: codigos.length
+  };
 }
 
 function classificarPonderado(p) {
