@@ -4,10 +4,10 @@ const AUTH_USER_KEY = "equilibrium_auth_user_v1";
 const REPO_BASE = "/Equilibrium_Neuro/";
 
 const USERS = [
-  { id: "1", label: "Andre" },
-  { id: "2", label: "Usuário 2" },
-  { id: "3", label: "Usuário 3" },
-  { id: "4", label: "Usuário 4" },
+  { id: "1", label: "Admin", password: "3639" },
+  { id: "2", label: "Usuário 2", password: "2222" },
+  { id: "3", label: "Usuário 3", password: "3333" },
+  { id: "4", label: "Usuário 4", password: "4444" },
 ];
 
 function hydrateLoginUsers(selectEl){
@@ -36,8 +36,14 @@ function isAuthed(){
 
 function doLogin({ userId, password }){
   const pwd = String(password || "").trim();
+
   if(!userId) return { ok:false, message:"Selecione um usuário." };
-  if(pwd !== "3639") return { ok:false, message:"Senha inválida." };
+
+  const user = USERS.find(u => u.id === String(userId));
+  if(!user) return { ok:false, message:"Usuário inválido." };
+
+  if(pwd !== String(user.password)) return { ok:false, message:"Senha inválida." };
+
   setAuth(userId);
   return { ok:true };
 }
