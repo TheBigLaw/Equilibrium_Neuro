@@ -1,26 +1,37 @@
 :root{
-  /* Paleta tipo WISC */
-  --brand:#0d4aa2;            /* barra superior */
-  --brand-2:#1e66d0;          /* hover/acentos */
-  --bg:#eef4ff;               /* fundo claro */
-  --card:#ffffff;             /* cards */
-  --text:#0b1b3a;             /* texto principal */
-  --muted:#5a6b86;            /* texto secundário */
-  --line:#d7e3fb;             /* bordas */
-  --shadow: 0 10px 30px rgba(13,74,162,.12);
+  /* Tema roxo (igual print) */
+  --brand:#4c1d95;          /* barra superior */
+  --brand-2:#6d28d9;        /* acentos */
+  --brand-3:#7c3aed;
+
+  /* Fundo */
+  --bg:#eef4ff;             /* azul bem claro do fundo */
+  --bg-2:#f6f3ff;           /* leve lavanda */
+
+  /* Cards e bordas */
+  --card:#ffffff;
+  --line:#d8ccff;           /* borda lilás */
+
+  /* Texto */
+  --text:#0b1b3a;
+  --muted:#5a6b86;
+
+  /* Sombras (roxo suave) */
+  --shadow: 0 18px 38px rgba(124,58,237,.18);
+  --shadow-soft: 0 10px 24px rgba(76,29,149,.14);
 
   /* Inputs */
-  --input-bg:#eaf1ff;
-  --input-border:#cfe0ff;
+  --input-bg:#ece7ff;       /* lavanda clara */
+  --input-border:#d1c6ff;
 
   /* Pills */
-  --pill-bg:#e9f1ff;
-  --pill-border:#cfe0ff;
+  --pill-bg:#eef2ff;
+  --pill-border:#d7dbff;
 
   /* Raio */
   --r-lg:16px;
-  --r-md:12px;
-  --r-sm:10px;
+  --r-md:14px;
+  --r-sm:12px;
 }
 
 *{ box-sizing:border-box; }
@@ -28,11 +39,11 @@
 body{
   margin:0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  background: var(--bg);
+  background: linear-gradient(180deg, var(--bg-2), var(--bg));
   color: var(--text);
 }
 
-/* ===== Topo (igual o WISC) ===== */
+/* ===== Topo roxo ===== */
 .app-header{
   position: sticky;
   top: 0;
@@ -43,34 +54,32 @@ body{
   align-items:center;
   justify-content:space-between;
   padding: 0 18px;
-  box-shadow: 0 6px 22px rgba(0,0,0,.18);
+  box-shadow: 0 10px 26px rgba(0,0,0,.20);
 }
 
 .app-header .logo-wrap{
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:10px;
 }
 
 .app-header .logo{
   height: 34px;
   width: auto;
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,.22));
   opacity: .95;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.22));
 }
 
 .back-btn,
 .exit-btn{
   appearance:none;
-  border:1px solid rgba(255,255,255,.20);
-  background: rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.22);
+  background: rgba(255,255,255,.12);
   color:#fff;
   padding:10px 14px;
   border-radius: 999px;
   cursor:pointer;
   font-weight:700;
-  letter-spacing:.2px;
 }
 
 .back-btn:hover,
@@ -79,19 +88,19 @@ body{
   border-color: rgba(255,255,255,.35);
 }
 
-/* ===== Header interno do módulo (barra com título + botões) ===== */
+/* ===== Header interno (título + pills + botões) ===== */
 header.no-print{
   position: sticky;
-  top: 78px;           /* fica abaixo da barra azul */
+  top: 78px;
   z-index: 15;
   background: rgba(238,244,255,.92);
   backdrop-filter: blur(8px);
-  border-bottom:1px solid rgba(13,74,162,.10);
+  border-bottom:1px solid rgba(124,58,237,.18);
   padding: 14px 18px 12px;
 }
 
 header.no-print .row{
-  max-width: 1400px; /* antes 1100 */
+  max-width: 1400px;
   margin: 0 auto;
   display:flex;
   gap:12px;
@@ -103,9 +112,8 @@ header.no-print .row{
 h1{
   margin:0;
   font-size: 18px;
-  font-weight: 800;     /* menos pesado */
+  font-weight: 800;
   letter-spacing:.2px;
-  color: var(--text);
 }
 
 .sub{
@@ -116,7 +124,7 @@ h1{
 
 /* ===== Layout ===== */
 main{
-  max-width: 1400px;   /* mais largo: “Dados e itens” maiores */
+  max-width: 1400px;
   margin: 0 auto;
   padding: 18px;
   width: 100%;
@@ -125,34 +133,29 @@ main{
 .grid{
   display:grid;
   grid-template-columns: 1fr;
-  gap: 16px;
+  gap: 18px;
   align-items: start;
 }
 
-/* Desktop: esquerda grande + sidebar fixa (Resultados) no canto */
+/* Desktop: esquerda grande + sidebar fixa */
 @media (min-width: 1100px){
   .grid{
-    grid-template-columns: 1fr 360px; /* direita fixa */
-    gap: 18px;
+    grid-template-columns: 1fr 360px;
   }
 
-  /* Sidebar “gruda” ao rolar */
   .grid > aside.card{
     position: sticky;
-    top: calc(78px + 14px + 70px); /* barra azul + header interno */
+    top: calc(78px + 14px + 70px);
     height: calc(100vh - (78px + 14px + 70px) - 18px);
     overflow: auto;
   }
 }
 
-/* Telas intermediárias */
 @media (min-width: 980px) and (max-width: 1099px){
-  .grid{
-    grid-template-columns: 1fr 320px;
-  }
+  .grid{ grid-template-columns: 1fr 320px; }
 }
 
-/* ===== Cards ===== */
+/* ===== Cards (branco + borda lilás + sombra roxa) ===== */
 .card{
   background: var(--card);
   border: 1px solid var(--line);
@@ -164,17 +167,17 @@ main{
 .card h2{
   margin:0 0 12px;
   font-size: 14px;
-  font-weight: 800; /* menos pesado */
-  color: var(--brand);
+  font-weight: 800;
+  color: var(--brand-2);
 }
 
 .sep{
   border:0;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid rgba(216,204,255,.9);
   margin: 14px 0;
 }
 
-/* ===== Toolbar ===== */
+/* ===== Pills ===== */
 .toolbar{
   display:flex;
   gap:10px;
@@ -191,9 +194,9 @@ main{
   border-radius: 999px;
   border:1px solid var(--pill-border);
   background: var(--pill-bg);
-  color: var(--muted);
+  color: #4b5563;
   font-size: 12px;
-  font-weight: 600; /* menos pesado */
+  font-weight: 600;
 }
 
 .pill strong{
@@ -201,21 +204,21 @@ main{
   font-weight: 800;
 }
 
-/* Botões (leve/clean) */
+/* Botões do header interno */
 button{
   appearance:none;
-  border:1px solid var(--input-border);
+  border:1px solid rgba(124,58,237,.25);
   background: #fff;
-  color: var(--brand);
+  color: var(--brand-2);
   padding: 10px 12px;
   border-radius: 999px;
   cursor:pointer;
-  font-weight: 800; /* menos pesado */
+  font-weight: 800;
 }
 
 button:hover{
-  border-color: var(--brand-2);
-  color: var(--brand-2);
+  border-color: rgba(124,58,237,.55);
+  color: var(--brand-3);
 }
 
 button.secondary{
@@ -229,10 +232,9 @@ button.danger{
 
 button.danger:hover{
   border-color:#fca5a5;
-  color:#b91c1c;
 }
 
-/* ===== Campos (igual WISC) ===== */
+/* ===== Campos ===== */
 .meta{
   display:grid;
   grid-template-columns: 1fr;
@@ -251,8 +253,8 @@ button.danger:hover{
 
 .field label{
   font-size: 12px;
-  color: var(--brand);
-  font-weight: 700; /* menos pesado */
+  color: var(--brand-2);
+  font-weight: 700;
 }
 
 .field input, .field select{
@@ -262,12 +264,12 @@ button.danger:hover{
   padding: 10px 12px;
   color: var(--text);
   outline:none;
-  font-weight: 600; /* menos pesado */
+  font-weight: 600;
 }
 
 .field input:focus, .field select:focus{
-  border-color: var(--brand-2);
-  box-shadow: 0 0 0 4px rgba(30,102,208,.15);
+  border-color: rgba(124,58,237,.75);
+  box-shadow: 0 0 0 4px rgba(124,58,237,.18);
 }
 
 /* ===== Status ===== */
@@ -288,14 +290,15 @@ button.danger:hover{
 /* ===== Itens ===== */
 .itens{
   display:grid;
-  gap: 12px;
+  gap: 14px;
 }
 
 .item{
-  border: 1px solid var(--line);
-  border-radius: 16px;    /* mais “card” */
-  padding: 14px;          /* maior */
+  border: 1px solid rgba(209,198,255,.95);
+  border-radius: 16px;
+  padding: 14px;
   background: #fff;
+  box-shadow: var(--shadow-soft);
 }
 
 .item .top{
@@ -312,42 +315,42 @@ button.danger:hover{
   display:flex;
   align-items:center;
   justify-content:center;
-  background: var(--input-bg);
-  border:1px solid var(--input-border);
-  color: var(--brand);
-  font-weight: 800;       /* menos pesado */
+  background: rgba(236,231,255,.9);
+  border:1px solid rgba(209,198,255,.95);
+  color: var(--brand-2);
+  font-weight: 800;
   font-size: 13px;
 }
 
 .item .txt{
   flex: 1;
-  font-size: 14px;        /* maior */
+  font-size: 14px;
   line-height: 1.35rem;
   color: var(--text);
-  font-weight: 500;       /* NÃO tudo em negrito */
+  font-weight: 500;
 }
 
 .item .tag{
   font-size: 11px;
   padding: 5px 9px;
   border-radius: 999px;
-  border: 1px solid var(--pill-border);
-  background: var(--pill-bg);
-  color: var(--muted);
-  font-weight: 700;       /* menos pesado */
+  border: 1px solid rgba(209,198,255,.95);
+  background: rgba(236,231,255,.9);
+  color: #4b5563;
+  font-weight: 700;
 }
 
-/* ===== Opções (4 alinhadas na mesma linha) ===== */
+/* ===== Opções: 4 na mesma linha ===== */
 .opts{
   display: grid;
-  grid-template-columns: 1fr 1fr; /* mobile: 2 por linha */
+  grid-template-columns: 1fr 1fr; /* mobile */
   gap: 10px;
   margin-top: 10px;
 }
 
 @media (min-width: 720px){
   .opts{
-    grid-template-columns: repeat(4, 1fr); /* desktop: 4 por linha */
+    grid-template-columns: repeat(4, 1fr); /* desktop: 4 */
   }
 }
 
@@ -357,25 +360,25 @@ button.danger:hover{
   gap:8px;
   align-items:center;
   justify-content:flex-start;
-  border:1px solid var(--input-border);
-  background: var(--input-bg);
+  border:1px solid rgba(209,198,255,.95);
+  background: rgba(236,231,255,.85);
   border-radius: 999px;
   padding: 8px 10px;
   cursor:pointer;
   user-select:none;
   font-size: 12px;
   color: var(--text);
-  font-weight: 600; /* menos pesado */
+  font-weight: 600;
 }
 
 .opt:hover{
-  border-color: var(--brand-2);
+  border-color: rgba(124,58,237,.65);
 }
 
 .opt input{ cursor:pointer; }
 
 .opt span{
-  white-space: nowrap; /* mantém em uma linha */
+  white-space: nowrap;
 }
 
 /* ===== Tabelas ===== */
@@ -393,21 +396,21 @@ table{
 }
 
 th, td{
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid rgba(216,204,255,.9);
   padding: 10px 8px;
   text-align:left;
   vertical-align: top;
 }
 
 th{
-  color: var(--brand);
-  font-weight: 800; /* menos pesado */
-  background: rgba(234,241,255,.55);
+  color: var(--brand-2);
+  font-weight: 800;
+  background: rgba(236,231,255,.55);
 }
 
 td{
   color: var(--text);
-  font-weight: 500; /* menos pesado */
+  font-weight: 500;
 }
 
 .right{ text-align:right; }
@@ -418,6 +421,6 @@ td{
   .app-header, header.no-print, .no-print{ display:none !important; }
   body{ background:#fff; color:#111; }
   main{ max-width: 100%; padding: 0; }
-  .card{ box-shadow:none; border:1px solid #ddd; }
+  .card, .item{ box-shadow:none; border:1px solid #ddd; }
   th{ background:#f3f6ff; }
 }
