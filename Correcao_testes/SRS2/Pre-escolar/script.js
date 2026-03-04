@@ -279,7 +279,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     atualizarContagemRespondidos();
 
     $("#btnRecalc").addEventListener("click", () => {
-      calcularEExibir();
+   //   calcularEExibir();
     });
 
     $("#btnClear").addEventListener("click", () => {
@@ -612,6 +612,6 @@ function instalarPrintComRelatorio(){
     if(result){
       preencherRelatorioSRS2(result);
     }
-    window.print();
+   // window.print();
   });
 }
