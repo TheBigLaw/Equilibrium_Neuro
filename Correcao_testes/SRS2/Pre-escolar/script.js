@@ -607,11 +607,11 @@ function instalarPrintComRelatorio(){
   const btn = document.getElementById("btnPrint");
   if(!btn) return;
 
-  btn.addEventListener("click", () => {
-    const result = calcularEExibir();
-    if(result){
-      preencherRelatorioSRS2(result);
-    }
-   window.print();
-  });
+btn.addEventListener("click", () => {
+  const result = calcularEExibir();
+  if(result){
+    preencherRelatorioSRS2(result);
+  }
+  window.print();
+});
 }
