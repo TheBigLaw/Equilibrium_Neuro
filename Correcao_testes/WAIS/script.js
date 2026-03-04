@@ -689,47 +689,40 @@ function getLinha(tipo, titulo){
     </div>
 
     <table class="table" style="margin-top:12px;">
-  <thead>
-    <tr>
-      <th>Escala</th>
-      <th>Ponto Composto</th>
-      <th>Rank Percentil</th>
-      <th>IC 90%</th>
-      <th>IC 95%</th>
-    </tr>
-  </thead>
-<tbody>
-  ${["ICV","IOP","IMO","IVP"].map(k=>{
-    const comp = compostos?.[k];
-    const ic90 = Array.isArray(comp?.ic90) ? `${comp.ic90[0]}–${comp.ic90[1]}` : "—";
-    const ic95 = Array.isArray(comp?.ic95) ? `${comp.ic95[0]}–${comp.ic95[1]}` : "—";
-
-    return `
+    <thead>
       <tr>
-        <td><b>${k}</b></td>
-        <td>${comp?.composto ?? "—"}</td>
-        <td>${comp?.percentil ?? "—"}</td>
-        <td>${ic90}</td>
-        <td>${ic95}</td>
+        <th>Escala</th>
+        <th>Soma ponderados</th>
+        <th>QI / Índice</th>
+        <th>Rank Percentil</th>
+        <th>IC 90%</th>
+        <th>IC 95%</th>
       </tr>
-    `;
-  }).join("")}
-
-  <tr>
-    <td><b>QI Total</b></td>
-    ${(()=>{
-      const comp = compostos?.QI_TOTAL;
-      const ic90 = Array.isArray(comp?.ic90) ? `${comp.ic90[0]}–${comp.ic90[1]}` : "—";
-      const ic95 = Array.isArray(comp?.ic95) ? `${comp.ic95[0]}–${comp.ic95[1]}` : "—";
-      return `
-        <td>${comp?.composto ?? "—"}</td>
-        <td>${comp?.percentil ?? "—"}</td>
-        <td>${ic90}</td>
-        <td>${ic95}</td>
-      `;
-    })()}
-  </tr>
-</tbody>
+    </thead>
+    <tbody>
+        ${[
+          ["QIV", "QI_VERBAL"],
+          ["QIE", "QI_EXECUCAO"],
+          ["QIT", "QI_TOTAL"],
+          ["ICV", "ICV"],
+          ["IOP", "IOP"],
+          ["IMO", "IMO"],
+          ["IVP", "IVP"],
+        ].map(([rotulo, chave]) => {
+          const s = somas?.[chave];
+          const c = compostos?.[chave];
+          return `
+            <tr>
+              <td><b>${rotulo}</b></td>
+              <td>${somas?.[chave]?.soma ?? "—"}</td>
+              <td>${compostos?.[chave]?.composto ?? "—"}</td>
+              <td>${compostos?.[chave]?.percentil ?? "—"}</td>
+              <td>${compostos?.[chave]?.ic90 ?? "—"}</td>
+              <td>${compostos?.[chave]?.ic95 ?? "—"}</td>
+            </tr>
+          `;
+        }).join("")}
+      </tbody>
     </table>
   </div>
 
@@ -846,13 +839,15 @@ const points = Object.keys(xPos)
   const ctxIdx = document.getElementById("grafIdx");
   if(ctxIdx){
     if(chartIdx) chartIdx.destroy();
-    const labels = ["ICV","IOP","IMO","IVP","QI Total"];
+    const labels = ["QIV","QIE","QIT","ICV","IOP","IMO","IVP"];
     const vals = [
-      compostos?.ICV?.composto ?? indicesInfo?.ICV?.soma ?? null,
-      compostos?.IOP?.composto ?? indicesInfo?.IOP?.soma ?? null,
-      compostos?.IMO?.composto ?? indicesInfo?.IMO?.soma ?? null,
-      compostos?.IVP?.composto ?? indicesInfo?.IVP?.soma ?? null,
-      compostos?.QI_TOTAL?.composto ?? qiInfo?.soma ?? null,
+      compostos?.QI_VERBAL?.composto ?? null,
+      compostos?.QI_EXECUCAO?.composto ?? null,
+      compostos?.QI_TOTAL?.composto ?? null,
+      compostos?.ICV?.composto ?? null,
+      compostos?.IOP?.composto ?? null,
+      compostos?.IMO?.composto ?? null,
+      compostos?.IVP?.composto ?? null,
     ];
     const pts = vals.map((v,i)=> v==null ? null : ({x:i+1, y:Number(v)})).filter(Boolean);
 
