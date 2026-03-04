@@ -2,7 +2,7 @@
 /**
  * TROQUE SOMENTE ISSO EM CADA PASTA
  */
-const FORM_KEY = "adulto_autorrelato";
+const FORM_KEY = "idade_escolar_feminino";
 // Exemplos:
 // "pre_escolar"
 // "idade_escolar_feminino"
