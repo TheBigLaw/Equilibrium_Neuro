@@ -511,3 +511,23 @@ td{
     color:#111 !important;
   }
 }
+
+@media print{
+
+  body *{
+    visibility: hidden !important;
+  }
+
+  #report,
+  #report *{
+    visibility: visible !important;
+  }
+
+  #report{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+  }
+
+}
