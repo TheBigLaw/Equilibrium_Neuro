@@ -1,30 +1,98 @@
 :root{
-  --bg:#0b0f14;
-  --card:#111826;
-  --muted:#9aa4b2;
-  --text:#e5e7eb;
-  --line:#223046;
-  --accent:#60a5fa;
+  /* Paleta tipo WISC */
+  --brand:#0d4aa2;            /* barra superior */
+  --brand-2:#1e66d0;          /* hover/acentos */
+  --bg:#eef4ff;               /* fundo claro */
+  --card:#ffffff;             /* cards */
+  --text:#0b1b3a;             /* texto principal */
+  --muted:#5a6b86;            /* texto secundário */
+  --line:#d7e3fb;             /* bordas */
+  --shadow: 0 10px 30px rgba(13,74,162,.12);
+
+  /* Inputs */
+  --input-bg:#eaf1ff;
+  --input-border:#cfe0ff;
+
+  /* Pills */
+  --pill-bg:#e9f1ff;
+  --pill-border:#cfe0ff;
+
+  /* Raio */
+  --r-lg:16px;
+  --r-md:12px;
+  --r-sm:10px;
 }
+
+*{ box-sizing:border-box; }
 
 body{
   margin:0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  background: linear-gradient(180deg, #070a0f, var(--bg));
+  background: var(--bg);
   color: var(--text);
 }
 
-header{
-  padding:18px 18px 8px;
-  border-bottom:1px solid rgba(255,255,255,.06);
-  position:sticky;
-  top:0;
-  background: rgba(11,15,20,.86);
-  backdrop-filter: blur(8px);
-  z-index: 10;
+/* ===== Topo (igual o WISC) ===== */
+.app-header{
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  height: 78px;
+  background: var(--brand);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding: 0 18px;
+  box-shadow: 0 6px 22px rgba(0,0,0,.18);
 }
 
-header .row{
+.app-header .logo-wrap{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
+
+.app-header .logo{
+  height: 34px;
+  width: auto;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.22));
+  opacity: .95;
+}
+
+.back-btn,
+.exit-btn{
+  appearance:none;
+  border:1px solid rgba(255,255,255,.20);
+  background: rgba(255,255,255,.10);
+  color:#fff;
+  padding:10px 14px;
+  border-radius: 999px;
+  cursor:pointer;
+  font-weight:700;
+  letter-spacing:.2px;
+}
+
+.back-btn:hover,
+.exit-btn:hover{
+  background: rgba(255,255,255,.18);
+  border-color: rgba(255,255,255,.35);
+}
+
+/* ===== Header interno do módulo (barra com título + botões) ===== */
+header.no-print{
+  position: sticky;
+  top: 78px;           /* fica abaixo da barra azul */
+  z-index: 15;
+  background: rgba(238,244,255,.92);
+  backdrop-filter: blur(8px);
+  border-bottom:1px solid rgba(13,74,162,.10);
+  padding: 14px 18px 12px;
+}
+
+header.no-print .row{
+  max-width: 1100px;
+  margin: 0 auto;
   display:flex;
   gap:12px;
   align-items:center;
@@ -34,49 +102,58 @@ header .row{
 
 h1{
   margin:0;
-  font-size:18px;
-  letter-spacing:.3px;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing:.2px;
+  color: var(--text);
 }
 
 .sub{
-  margin:4px 0 0;
+  margin: 4px 0 0;
+  font-size: 12px;
   color: var(--muted);
-  font-size:12px;
 }
 
+/* ===== Layout ===== */
 main{
   max-width: 1100px;
   margin: 0 auto;
   padding: 18px;
-  display:grid;
-  gap:14px;
 }
 
 .grid{
   display:grid;
   grid-template-columns: 1fr;
-  gap:14px;
+  gap: 16px;
 }
 
 @media (min-width: 980px){
   .grid{ grid-template-columns: 1.25fr .75fr; }
 }
 
+/* ===== Cards ===== */
 .card{
-  background: rgba(17,24,38,.92);
-  border:1px solid rgba(255,255,255,.08);
-  border-radius: 14px;
-  padding: 14px;
-  box-shadow: 0 10px 25px rgba(0,0,0,.25);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 16px;
+  box-shadow: var(--shadow);
 }
 
 .card h2{
-  margin:0 0 10px;
-  font-size:14px;
-  letter-spacing:.2px;
-  color:#cbd5e1;
+  margin:0 0 12px;
+  font-size: 14px;
+  font-weight: 900;
+  color: var(--brand);
 }
 
+.sep{
+  border:0;
+  border-top: 1px solid var(--line);
+  margin: 14px 0;
+}
+
+/* ===== Toolbar ===== */
 .toolbar{
   display:flex;
   gap:10px;
@@ -85,46 +162,60 @@ main{
   justify-content:flex-end;
 }
 
-button{
-  appearance:none;
-  border:1px solid rgba(255,255,255,.10);
-  background: rgba(96,165,250,.14);
-  color: var(--text);
-  padding: 10px 12px;
-  border-radius: 10px;
-  cursor:pointer;
-  font-weight:600;
-  letter-spacing:.2px;
-}
-
-button:hover{ border-color: rgba(96,165,250,.55); }
-
-button.secondary{
-  background: rgba(255,255,255,.06);
-}
-
-button.danger{
-  background: rgba(248,113,113,.12);
-}
-
 .pill{
-  font-size:12px;
-  padding:6px 10px;
-  border-radius: 999px;
-  border:1px solid rgba(255,255,255,.10);
-  color: var(--muted);
   display:inline-flex;
   gap:6px;
   align-items:center;
-  user-select:none;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border:1px solid var(--pill-border);
+  background: var(--pill-bg);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
 }
 
-.pill strong{ color: var(--text); font-weight:700; }
+.pill strong{
+  color: var(--text);
+  font-weight: 900;
+}
 
+/* Botões (igual o WISC: leve/clean) */
+button{
+  appearance:none;
+  border:1px solid var(--input-border);
+  background: #fff;
+  color: var(--brand);
+  padding: 10px 12px;
+  border-radius: 999px;
+  cursor:pointer;
+  font-weight: 900;
+}
+
+button:hover{
+  border-color: var(--brand-2);
+  color: var(--brand-2);
+}
+
+button.secondary{
+  background:#fff;
+}
+
+button.danger{
+  border-color:#ffd2d2;
+  color:#b91c1c;
+}
+
+button.danger:hover{
+  border-color:#fca5a5;
+  color:#b91c1c;
+}
+
+/* ===== Campos (igual WISC) ===== */
 .meta{
   display:grid;
   grid-template-columns: 1fr;
-  gap:10px;
+  gap: 12px;
 }
 
 @media (min-width: 780px){
@@ -138,102 +229,128 @@ button.danger{
 }
 
 .field label{
-  font-size:12px;
-  color: var(--muted);
+  font-size: 12px;
+  color: var(--brand);
+  font-weight: 900;
 }
 
 .field input, .field select{
-  background: rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.10);
-  border-radius: 10px;
-  padding: 10px 10px;
+  background: var(--input-bg);
+  border:1px solid var(--input-border);
+  border-radius: 12px;
+  padding: 10px 12px;
   color: var(--text);
   outline:none;
+  font-weight: 700;
 }
 
+.field input:focus, .field select:focus{
+  border-color: var(--brand-2);
+  box-shadow: 0 0 0 4px rgba(30,102,208,.15);
+}
+
+/* ===== Status ===== */
 .status{
   display:flex;
   gap:10px;
   align-items:center;
   justify-content:space-between;
-  margin: 8px 0 0;
   flex-wrap:wrap;
+  margin-top: 8px;
 }
 
 .small{
-  font-size:12px;
+  font-size: 12px;
   color: var(--muted);
 }
 
-.sep{
-  border:0;
-  border-top:1px solid rgba(255,255,255,.08);
-  margin:12px 0;
-}
-
+/* ===== Itens ===== */
 .itens{
   display:grid;
-  gap:10px;
+  gap: 12px;
 }
 
 .item{
-  border:1px solid rgba(255,255,255,.08);
-  border-radius: 12px;
-  padding: 10px;
-  background: rgba(0,0,0,.12);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 12px;
+  background: #fff;
 }
 
 .item .top{
   display:flex;
-  gap:10px;
+  gap: 10px;
   align-items:flex-start;
   justify-content:space-between;
 }
 
 .item .qid{
-  font-weight:800;
-  color:#cbd5e1;
-  min-width: 40px;
+  min-width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: var(--input-bg);
+  border:1px solid var(--input-border);
+  color: var(--brand);
+  font-weight: 900;
 }
 
 .item .txt{
-  flex:1;
-  color:#e5e7eb;
-  line-height: 1.25rem;
+  flex: 1;
   font-size: 13px;
+  line-height: 1.25rem;
+  color: var(--text);
+  font-weight: 700;
 }
 
 .item .tag{
-  font-size:11px;
-  padding:4px 8px;
+  font-size: 11px;
+  padding: 5px 9px;
   border-radius: 999px;
-  border:1px solid rgba(255,255,255,.12);
+  border: 1px solid var(--pill-border);
+  background: var(--pill-bg);
   color: var(--muted);
-  white-space:nowrap;
+  font-weight: 900;
 }
 
+/* Opções como “chips” */
 .opts{
   display:flex;
   flex-wrap:wrap;
-  gap:8px;
-  margin-top:10px;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 .opt{
   display:flex;
   gap:8px;
   align-items:center;
-  border:1px solid rgba(255,255,255,.10);
+  border:1px solid var(--input-border);
+  background: var(--input-bg);
   border-radius: 999px;
-  padding:6px 10px;
-  background: rgba(255,255,255,.04);
+  padding: 8px 10px;
   cursor:pointer;
   user-select:none;
-  font-size:12px;
-  color:#cbd5e1;
+  font-size: 12px;
+  color: var(--text);
+  font-weight: 800;
+}
+
+.opt:hover{
+  border-color: var(--brand-2);
 }
 
 .opt input{ cursor:pointer; }
+
+/* ===== Tabelas ===== */
+.table-wrap{
+  margin-top:10px;
+  overflow:auto;
+}
+
+.table-wrap.maxh{ max-height: 60vh; }
 
 table{
   width:100%;
@@ -242,65 +359,28 @@ table{
 }
 
 th, td{
-  border-bottom: 1px solid rgba(255,255,255,.08);
-  padding: 8px 6px;
+  border-bottom: 1px solid var(--line);
+  padding: 10px 8px;
   text-align:left;
   vertical-align: top;
 }
 
-th{ color:#cbd5e1; font-weight:800; }
+th{
+  color: var(--brand);
+  font-weight: 900;
+  background: rgba(234,241,255,.55);
+}
+
+td{ color: var(--text); font-weight: 700; }
 
 .right{ text-align:right; }
 .nowrap{ white-space:nowrap; }
 
-.table-wrap{
-  margin-top:10px;
-  overflow:auto;
-}
-
-.table-wrap.maxh{
-  max-height: 60vh;
-}
-
-/* Print */
-@media print {
-  header, .no-print { display:none !important; }
+/* ===== Print ===== */
+@media print{
+  .app-header, header.no-print, .no-print{ display:none !important; }
   body{ background:#fff; color:#111; }
-  .card{ box-shadow:none; border:1px solid #ddd; background:#fff; }
-  th, td{ border-bottom:1px solid #ddd; }
-  .item{ border:1px solid #ddd; background:#fff; }
-  .opt{ border:1px solid #ddd; background:#fff; }
-}
-
-.app-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:20px 24px;
-  border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-.logo-wrap{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-
-.logo{
-  height:120px;
-}
-
-.back-btn,
-.exit-btn{
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.10);
-  border-radius:10px;
-  padding:8px 12px;
-  color:#e5e7eb;
-  cursor:pointer;
-}
-
-.back-btn:hover,
-.exit-btn:hover{
-  border-color:#60a5fa;
+  main{ max-width: 100%; padding: 0; }
+  .card{ box-shadow:none; border:1px solid #ddd; }
+  th{ background:#f3f6ff; }
 }
