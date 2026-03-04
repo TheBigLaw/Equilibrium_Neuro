@@ -12,7 +12,12 @@ const USERS = [
 
 function hydrateLoginUsers(selectEl){
   if(!selectEl) return;
-  selectEl.innerHTML = USERS.map(u => `<option value="${u.id}">${u.label}</option>`).join("");
+
+  const placeholder = `<option value="" selected disabled>Selecione um usuário...</option>`;
+  const options = USERS.map(u => `<option value="${u.id}">${u.label}</option>`).join("");
+
+  selectEl.innerHTML = placeholder + options;
+  selectEl.value = ""; // garante que começa sem userId
 }
 
 function setAuth(userId){
