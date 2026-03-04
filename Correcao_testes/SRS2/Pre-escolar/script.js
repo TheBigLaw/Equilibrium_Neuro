@@ -1,13 +1,15 @@
 /**
  * TROQUE SOMENTE ISSO EM CADA PASTA
  */
-const FORM_KEY = "adulto_heterorrelato";
+const FORM_KEY = "Pre-escolar";
 // Exemplos:
 // "pre_escolar"
 // "idade_escolar_feminino"
 // "idade_escolar_masculino"
 // "adulto_autorrelato"
 // "adulto_heterorrelato"
+
+fetch("../data/srs2_rules.json")
 
 let SRS2_RULES = null;
 
