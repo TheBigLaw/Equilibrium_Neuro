@@ -713,6 +713,7 @@ function getLinha(tipo, titulo){
           const c = compostos?.[chave];
           return `
             <tr>
+              <td>${rotulo}</td>
               <td>${s?.soma ?? "—"}</td>
               <td>${c?.composto ?? "—"}</td>
               <td>${c?.percentil ?? "—"}</td>
