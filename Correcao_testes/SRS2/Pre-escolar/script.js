@@ -9,8 +9,6 @@ const FORM_KEY = "pre_escolar";
 // "adulto_autorrelato"
 // "adulto_heterorrelato"
 
-fetch("../data/srs2_rules.json")
-
 let SRS2_RULES = null;
 
 const $ = (sel) => document.querySelector(sel);
