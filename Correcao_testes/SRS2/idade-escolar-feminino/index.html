@@ -1,1 +1,117 @@
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Adulto Autorelato</title>
+  <link rel="stylesheet" href="./style.css?v=20260305">
+  <link rel="icon" type="image/png" href="/Equilibrium_Neuro/logo.png" />
+</head>
+<body>
+  <header class="app-header">
+    <button class="back-btn" onclick="history.back()">← Voltar</button>
+    <div class="logo-wrap">
+      <img class="logo" src="/Equilibrium_Neuro/logo2.png" alt="Logo" />
+    </div>
+    <button class="exit-btn" onclick="logout()">Sair</button>
+  </header>
+
+  <header class="no-print">
+    <div class="row">
+      <div>
+        <h1>SRS-2 • Adulto Autorelato</h1>
+        <div class="sub" id="subtitle">Carregando regras…</div>
+      </div>
+
+      <div class="toolbar">
+        <span class="pill">Formulário: <strong id="pillForm">—</strong></span>
+        <span class="pill">Respondidos: <strong id="pillAnswered">0</strong></span>
+        <button class="secondary" id="btnRecalc" type="button">Recalcular</button>
+        <button class="secondary" id="btnPrint" type="button">Imprimir / Salvar PDF</button>
+        <button class="danger" id="btnClear" type="button">Limpar</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="grid">
+
+      <!-- ESQUERDA: Itens -->
+      <section class="card">
+        <h2>Dados e Itens</h2>
+
+        <div class="meta">
+          <div class="field">
+            <label>Paciente</label>
+            <input id="paciente" type="text" placeholder="Nome do paciente" />
+          </div>
+          <div class="field">
+            <label>Data</label>
+            <input id="data" type="date" />
+          </div>
+          <div class="field">
+            <label>Avaliador</label>
+            <input id="avaliador" type="text" placeholder="Nome do avaliador" />
+          </div>
+        </div>
+
+        <div class="status">
+          <div class="small" id="hintForm">—</div>
+          <div class="small">Escala de resposta: 1–4 → pontos 0–3 (itens reversos invertidos)</div>
+        </div>
+
+        <hr class="sep">
+
+        <div id="itens" class="itens"></div>
+
+      </section>
+
+      <!-- DIREITA: Resultado -->
+      <aside class="card">
+        <h2>Resultados</h2>
+
+        <div class="small" id="summaryLine">Preencha os itens e clique em “Recalcular”.</div>
+
+        <div class="table-wrap">
+          <table id="tblResultados">
+            <thead>
+              <tr>
+                <th>Escala</th>
+                <th class="right nowrap">Bruto</th>
+                <th class="right nowrap">T</th>
+                <th class="nowrap">Classificação</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <hr class="sep">
+
+        <h2>Detalhe de itens (auditoria)</h2>
+        <div class="small">Conferência: resposta → pontos → reverso.</div>
+
+        <div class="table-wrap maxh">
+          <table id="tblItens">
+            <thead>
+              <tr>
+                <th class="nowrap">Item</th>
+                <th class="nowrap">Resp</th>
+                <th class="right nowrap">Pontos</th>
+                <th class="nowrap">Reverso</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <script src="./script.js?v=20260304"></script>
+</body>
+</html>
+

@@ -1,0 +1,423 @@
+:root{
+  /* Paleta tipo WISC */
+  --brand:#0d4aa2;            /* barra superior */
+  --brand-2:#1e66d0;          /* hover/acentos */
+  --bg:#eef4ff;               /* fundo claro */
+  --card:#ffffff;             /* cards */
+  --text:#0b1b3a;             /* texto principal */
+  --muted:#5a6b86;            /* texto secundário */
+  --line:#d7e3fb;             /* bordas */
+  --shadow: 0 10px 30px rgba(13,74,162,.12);
+
+  /* Inputs */
+  --input-bg:#eaf1ff;
+  --input-border:#cfe0ff;
+
+  /* Pills */
+  --pill-bg:#e9f1ff;
+  --pill-border:#cfe0ff;
+
+  /* Raio */
+  --r-lg:16px;
+  --r-md:12px;
+  --r-sm:10px;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ===== Topo (igual o WISC) ===== */
+.app-header{
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  height: 78px;
+  background: var(--brand);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding: 0 18px;
+  box-shadow: 0 6px 22px rgba(0,0,0,.18);
+}
+
+.app-header .logo-wrap{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
+
+.app-header .logo{
+  height: 34px;
+  width: auto;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.22));
+  opacity: .95;
+}
+
+.back-btn,
+.exit-btn{
+  appearance:none;
+  border:1px solid rgba(255,255,255,.20);
+  background: rgba(255,255,255,.10);
+  color:#fff;
+  padding:10px 14px;
+  border-radius: 999px;
+  cursor:pointer;
+  font-weight:700;
+  letter-spacing:.2px;
+}
+
+.back-btn:hover,
+.exit-btn:hover{
+  background: rgba(255,255,255,.18);
+  border-color: rgba(255,255,255,.35);
+}
+
+/* ===== Header interno do módulo (barra com título + botões) ===== */
+header.no-print{
+  position: sticky;
+  top: 78px;           /* fica abaixo da barra azul */
+  z-index: 15;
+  background: rgba(238,244,255,.92);
+  backdrop-filter: blur(8px);
+  border-bottom:1px solid rgba(13,74,162,.10);
+  padding: 14px 18px 12px;
+}
+
+header.no-print .row{
+  max-width: 1400px; /* antes 1100 */
+  margin: 0 auto;
+  display:flex;
+  gap:12px;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+
+h1{
+  margin:0;
+  font-size: 18px;
+  font-weight: 800;     /* menos pesado */
+  letter-spacing:.2px;
+  color: var(--text);
+}
+
+.sub{
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ===== Layout ===== */
+main{
+  max-width: 1400px;   /* mais largo: “Dados e itens” maiores */
+  margin: 0 auto;
+  padding: 18px;
+  width: 100%;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+/* Desktop: esquerda grande + sidebar fixa (Resultados) no canto */
+@media (min-width: 1100px){
+  .grid{
+    grid-template-columns: 1fr 360px; /* direita fixa */
+    gap: 18px;
+  }
+
+  /* Sidebar “gruda” ao rolar */
+  .grid > aside.card{
+    position: sticky;
+    top: calc(78px + 14px + 70px); /* barra azul + header interno */
+    height: calc(100vh - (78px + 14px + 70px) - 18px);
+    overflow: auto;
+  }
+}
+
+/* Telas intermediárias */
+@media (min-width: 980px) and (max-width: 1099px){
+  .grid{
+    grid-template-columns: 1fr 320px;
+  }
+}
+
+/* ===== Cards ===== */
+.card{
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+
+.card h2{
+  margin:0 0 12px;
+  font-size: 14px;
+  font-weight: 800; /* menos pesado */
+  color: var(--brand);
+}
+
+.sep{
+  border:0;
+  border-top: 1px solid var(--line);
+  margin: 14px 0;
+}
+
+/* ===== Toolbar ===== */
+.toolbar{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:flex-end;
+}
+
+.pill{
+  display:inline-flex;
+  gap:6px;
+  align-items:center;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border:1px solid var(--pill-border);
+  background: var(--pill-bg);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600; /* menos pesado */
+}
+
+.pill strong{
+  color: var(--text);
+  font-weight: 800;
+}
+
+/* Botões (leve/clean) */
+button{
+  appearance:none;
+  border:1px solid var(--input-border);
+  background: #fff;
+  color: var(--brand);
+  padding: 10px 12px;
+  border-radius: 999px;
+  cursor:pointer;
+  font-weight: 800; /* menos pesado */
+}
+
+button:hover{
+  border-color: var(--brand-2);
+  color: var(--brand-2);
+}
+
+button.secondary{
+  background:#fff;
+}
+
+button.danger{
+  border-color:#ffd2d2;
+  color:#b91c1c;
+}
+
+button.danger:hover{
+  border-color:#fca5a5;
+  color:#b91c1c;
+}
+
+/* ===== Campos (igual WISC) ===== */
+.meta{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 780px){
+  .meta{ grid-template-columns: 2fr 1fr 1fr; }
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.field label{
+  font-size: 12px;
+  color: var(--brand);
+  font-weight: 700; /* menos pesado */
+}
+
+.field input, .field select{
+  background: var(--input-bg);
+  border:1px solid var(--input-border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  color: var(--text);
+  outline:none;
+  font-weight: 600; /* menos pesado */
+}
+
+.field input:focus, .field select:focus{
+  border-color: var(--brand-2);
+  box-shadow: 0 0 0 4px rgba(30,102,208,.15);
+}
+
+/* ===== Status ===== */
+.status{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  margin-top: 8px;
+}
+
+.small{
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ===== Itens ===== */
+.itens{
+  display:grid;
+  gap: 12px;
+}
+
+.item{
+  border: 1px solid var(--line);
+  border-radius: 16px;    /* mais “card” */
+  padding: 14px;          /* maior */
+  background: #fff;
+}
+
+.item .top{
+  display:flex;
+  gap: 10px;
+  align-items:flex-start;
+  justify-content:space-between;
+}
+
+.item .qid{
+  min-width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: var(--input-bg);
+  border:1px solid var(--input-border);
+  color: var(--brand);
+  font-weight: 800;       /* menos pesado */
+  font-size: 13px;
+}
+
+.item .txt{
+  flex: 1;
+  font-size: 14px;        /* maior */
+  line-height: 1.35rem;
+  color: var(--text);
+  font-weight: 500;       /* NÃO tudo em negrito */
+}
+
+.item .tag{
+  font-size: 11px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--pill-border);
+  background: var(--pill-bg);
+  color: var(--muted);
+  font-weight: 700;       /* menos pesado */
+}
+
+/* ===== Opções (4 alinhadas na mesma linha) ===== */
+.opts{
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* mobile: 2 por linha */
+  gap: 10px;
+  margin-top: 10px;
+}
+
+@media (min-width: 720px){
+  .opts{
+    grid-template-columns: repeat(4, 1fr); /* desktop: 4 por linha */
+  }
+}
+
+.opt{
+  width: 100%;
+  display:flex;
+  gap:8px;
+  align-items:center;
+  justify-content:flex-start;
+  border:1px solid var(--input-border);
+  background: var(--input-bg);
+  border-radius: 999px;
+  padding: 8px 10px;
+  cursor:pointer;
+  user-select:none;
+  font-size: 12px;
+  color: var(--text);
+  font-weight: 600; /* menos pesado */
+}
+
+.opt:hover{
+  border-color: var(--brand-2);
+}
+
+.opt input{ cursor:pointer; }
+
+.opt span{
+  white-space: nowrap; /* mantém em uma linha */
+}
+
+/* ===== Tabelas ===== */
+.table-wrap{
+  margin-top:10px;
+  overflow:auto;
+}
+
+.table-wrap.maxh{ max-height: 60vh; }
+
+table{
+  width:100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+th, td{
+  border-bottom: 1px solid var(--line);
+  padding: 10px 8px;
+  text-align:left;
+  vertical-align: top;
+}
+
+th{
+  color: var(--brand);
+  font-weight: 800; /* menos pesado */
+  background: rgba(234,241,255,.55);
+}
+
+td{
+  color: var(--text);
+  font-weight: 500; /* menos pesado */
+}
+
+.right{ text-align:right; }
+.nowrap{ white-space:nowrap; }
+
+/* ===== Print ===== */
+@media print{
+  .app-header, header.no-print, .no-print{ display:none !important; }
+  body{ background:#fff; color:#111; }
+  main{ max-width: 100%; padding: 0; }
+  .card{ box-shadow:none; border:1px solid #ddd; }
+  th{ background:#f3f6ff; }
+}
