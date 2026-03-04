@@ -487,21 +487,27 @@ td{
 @media print{
   @page { margin: 10mm; }
 
-  /* Esconde a interface (perguntas/itens/página toda) */
-  .app-header,
-  header.no-print,
-  main{
-    display:none !important;
+  /* 1) Esconde TUDO da página */
+  body *{
+    visibility: hidden !important;
   }
 
-  /* Mostra só o relatório */
-  .report{
-    display:block !important;
+  /* 2) Mostra SOMENTE o relatório */
+  #report, #report *{
+    visibility: visible !important;
   }
 
+  /* 3) Garante que o relatório começa no topo */
+  #report{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  /* Opcional: garante branco no fundo */
   body{
-    background:#fff !important;
+    background: #fff !important;
     color:#111 !important;
   }
 }
-
