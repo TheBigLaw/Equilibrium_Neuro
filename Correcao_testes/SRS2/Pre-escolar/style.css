@@ -550,17 +550,85 @@ td{
   color:#555;
 }
 
+/* ===== RELATÓRIO CLÍNICO (A4) ===== */
+.rep-page{
+  width: 210mm;
+  min-height: 297mm;
+  padding: 12mm 12mm 16mm;
+  background:#fff;
+  color:#111;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.rep-head{
+  display:flex;
+  justify-content:space-between;
+  gap: 10mm;
+  padding-bottom: 5mm;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.rep-brand{
+  display:flex;
+  gap: 8mm;
+  align-items:center;
+}
+.rep-logo{ height: 16mm; width:auto; }
+
+.rep-h1{ font-size: 13pt; font-weight:700; margin:0; }
+.rep-h2{ font-size: 10pt; font-weight:700; margin:2mm 0 0; color:#222; }
+
+.rep-patient{
+  font-size: 9.5pt;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+.rep-patient span{ color:#555; }
+
+.rep-block{ margin-top: 7mm; }
+.rep-block-title{ font-size: 12pt; font-weight:700; margin:0 0 3mm; }
+.rep-text{ font-size: 10pt; line-height: 1.45; color:#222; }
+
+.rep-table{
+  width:100%;
+  border-collapse: collapse;
+  font-size: 10pt;
+  margin-top: 2mm;
+}
+.rep-table th, .rep-table td{
+  border: 1px solid #d9d9d9;
+  padding: 7px 8px;
+}
+.rep-table th{
+  background:#f3f6ff;
+  font-weight:700;
+}
+.right{ text-align:right; }
+
+.rep-break{ page-break-before: always; break-before: page; }
+
+.rep-foot{
+  position: fixed;
+  left: 12mm;
+  right: 12mm;
+  bottom: 8mm;
+  display:flex;
+  justify-content:space-between;
+  font-size: 9pt;
+  color:#555;
+}
+
 @media print{
   @page { margin: 10mm; }
 
-  /* esconde toda a interface do formulário */
+  /* Esconde a interface (perguntas/itens/página toda) */
   .app-header,
   header.no-print,
   main{
     display:none !important;
   }
 
-  /* mostra apenas o relatório */
+  /* Mostra só o relatório */
   .report{
     display:block !important;
   }
@@ -570,3 +638,4 @@ td{
     color:#111 !important;
   }
 }
+
