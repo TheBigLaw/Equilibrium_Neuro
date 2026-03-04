@@ -601,11 +601,13 @@ function getLinha(tipo, titulo){
 }
 
   const { nome, cpf, sexo, escolaridade, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo, compostos, somas } = data;
+  const textoInterp = gerarTextoInterpretativo({ nome, compostos });
   const cpfTxt = formatarCPF(cpf);
   const sexoTxt = sexo;
   const escTxt = escolaridade;
   const matriz = renderMatrizConversao({ resultados, indicesInfo, somas });
   const perfil = renderPerfilSubtestes(resultados);
+  
 
   rel.style.display = "block";
   rel.innerHTML = `
@@ -725,7 +727,11 @@ function getLinha(tipo, titulo){
       </tbody>
     </table>
   </div>
+</div>
 
+<div class="section no-break">
+  <h3>Interpretação (síntese)</h3>
+  ${textoInterp.split("\n\n").map(p => `<p class="interp">${p}</p>`).join("")}
 </div>
 
       <div class="report-footer">
@@ -928,6 +934,117 @@ async function esperarImagensCarregarem(container){
       img.onerror = () => resolve(); // não trava o PDF
     });
   }));
+}
+
+function pctText(p){
+  if(p == null || p === "" || Number.isNaN(+p)) return "—";
+  const n = +p;
+  // texto estilo laudo: "aproximadamente 66 %"
+  return `${n} %`;
+}
+
+function fmtICRange(ic){
+  // ic pode ser "102–110" (string) ou [102,110]
+  if(!ic) return "—";
+  if(Array.isArray(ic)) return `${ic[0]}–${ic[1]}`;
+  return String(ic).replace(",", "–");
+}
+
+function classByComposite(score){
+  // Padrão clínico comum (ajuste se você usa outro)
+  const s = +score;
+  if(Number.isNaN(s)) return null;
+  if(s >= 130) return "Muito Superior";
+  if(s >= 120) return "Superior";
+  if(s >= 110) return "Médio Superior";
+  if(s >= 90)  return "Médio";
+  if(s >= 80)  return "Médio Inferior";
+  if(s >= 70)  return "Limítrofe";
+  return "Extremamente Baixo";
+}
+
+function introVerbByClass(cls){
+  // varia o texto para não ficar repetitivo
+  const map = {
+    "Muito Superior": "situa-se muito acima",
+    "Superior": "situa-se acima",
+    "Médio Superior": "situa-se acima",
+    "Médio": "situa-se na faixa média",
+    "Médio Inferior": "situa-se ligeiramente abaixo",
+    "Limítrofe": "situa-se abaixo",
+    "Extremamente Baixo": "situa-se muito abaixo",
+  };
+  return map[cls] || "situa-se";
+}
+
+function scaleLabelLong(key){
+  const map = {
+    QI_TOTAL: "QI Total (QIT)",
+    QI_VERBAL: "QI Verbal (QIV)",
+    QI_EXECUCAO: "QI de Execução (QIE)",
+    ICV: "Índice de Compreensão Verbal (ICV)",
+    IOP: "Índice de Organização Perceptual (IOP)",
+    IMO: "Índice de Memória Operacional (IMO)",
+    IVP: "Índice de Velocidade de Processamento (IVP)",
+  };
+  return map[key] || key;
+}
+
+function abilityDescription(key){
+  // descrições base (curtas) por escala — você pode refinar depois
+  const map = {
+    QI_TOTAL: "funcionamento intelectual global",
+    QI_VERBAL: "conhecimento adquirido, raciocínio verbal e atenção a materiais verbais",
+    QI_EXECUCAO: "raciocínio fluido, processamento espacial, atenção a detalhes e integração visomotora",
+    ICV: "raciocínio verbal e formação de conceitos",
+    IOP: "raciocínio não verbal, atenção a detalhes e integração visomotora",
+    IMO: "atenção, concentração e controle mental para manipular informações",
+    IVP: "rapidez e eficiência para processar informações visuais simples",
+  };
+  return map[key] || "habilidades cognitivas avaliadas";
+}
+
+function makeParagraph({ nome, key, comp, percentil, ic95 }){
+  const cls = classByComposite(comp);
+  const verb = introVerbByClass(cls);
+  const label = scaleLabelLong(key);
+  const abil = abilityDescription(key);
+
+  // variação de conectores para não ficar sempre igual
+  const openings = [
+    `${nome}, ${label}:`,
+    `Quanto ao ${label},`,
+    `Em relação ao ${label},`,
+  ];
+  const open = openings[Math.floor(Math.random() * openings.length)];
+
+  const pTxt = pctText(percentil);
+  const icTxt = fmtICRange(ic95);
+
+  // texto estilo PDF, mas personalizado
+  return `${open} as habilidades relacionadas a ${abil} ${verb} em comparação a pessoas de mesma faixa etária (pontuação composta = ${comp}; percentil ≈ ${pTxt}; IC 95% = ${icTxt}${cls ? `; classificação: ${cls}` : ""}).`;
+}
+
+function gerarTextoInterpretativo({ nome, compostos }){
+  // monta os parágrafos na ordem “tipo PDF”
+  const keys = ["QI_TOTAL","QI_VERBAL","QI_EXECUCAO","ICV","IOP","IMO","IVP"];
+  const parts = [];
+
+  for(const key of keys){
+    const c = compostos?.[key];
+    if(!c?.composto) continue;
+    parts.push(
+      makeParagraph({
+        nome,
+        key,
+        comp: c.composto,
+        percentil: c.percentil,
+        ic95: c.ic95,
+      })
+    );
+  }
+
+  return parts.join("\n\n");
 }
 
 async function baixarPDFSalvo(index){
