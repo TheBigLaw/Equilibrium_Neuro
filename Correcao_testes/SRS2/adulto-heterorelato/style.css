@@ -484,6 +484,11 @@ td{
   color:#555;
 }
 
+/* Relatório nunca aparece na tela */
+#report{
+  display: none !important;
+}
+
 @media print{
   @page { margin: 10mm; }
 
