@@ -713,12 +713,11 @@ function getLinha(tipo, titulo){
           const c = compostos?.[chave];
           return `
             <tr>
-              <td><b>${rotulo}</b></td>
-              <td>${somas?.[chave]?.soma ?? "—"}</td>
-              <td>${compostos?.[chave]?.composto ?? "—"}</td>
-              <td>${compostos?.[chave]?.percentil ?? "—"}</td>
-              <td>${compostos?.[chave]?.ic90 ?? "—"}</td>
-              <td>${compostos?.[chave]?.ic95 ?? "—"}</td>
+              <td>${s?.soma ?? "—"}</td>
+              <td>${c?.composto ?? "—"}</td>
+              <td>${c?.percentil ?? "—"}</td>
+              <td>${fmtIC(c?.ic90)}</td>
+              <td>${fmtIC(c?.ic95)}</td>
             </tr>
           `;
         }).join("")}
@@ -861,7 +860,8 @@ const points = Object.keys(xPos)
   plugins:{ legend:{ display:false } },
   scales:{
     x:{
-      min:0.5, max:5.5,
+      min: 0.5,
+      max: labels.length + 0.5, // 7.5
       grid:{ display:false },
       ticks:{
         autoSkip:false,
