@@ -416,15 +416,6 @@ td{
 .right{ text-align:right; }
 .nowrap{ white-space:nowrap; }
 
-/* ===== Print ===== */
-@media print{
-  .app-header, header.no-print, .no-print{ display:none !important; }
-  body{ background:#fff; color:#111; }
-  main{ max-width: 100%; padding: 0; }
-  .card, .item{ box-shadow:none; border:1px solid #ddd; }
-  th{ background:#f3f6ff; }
-}
-
 /* =========================
    RELATÓRIO (PRINT)
 ========================= */
@@ -559,8 +550,23 @@ td{
   color:#555;
 }
 
-/* PRINT: esconde tela e mostra relatório */
 @media print{
-  .app-header, header.no-print, main{ display:none !important; }
-  .report{ display:block !important; }
+  @page { margin: 10mm; }
+
+  /* esconde toda a interface do formulário */
+  .app-header,
+  header.no-print,
+  main{
+    display:none !important;
+  }
+
+  /* mostra apenas o relatório */
+  .report{
+    display:block !important;
+  }
+
+  body{
+    background:#fff !important;
+    color:#111 !important;
+  }
 }
