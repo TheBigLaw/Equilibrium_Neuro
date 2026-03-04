@@ -612,6 +612,6 @@ function instalarPrintComRelatorio(){
     if(result){
       preencherRelatorioSRS2(result);
     }
-   // window.print();
+   window.print();
   });
 }
