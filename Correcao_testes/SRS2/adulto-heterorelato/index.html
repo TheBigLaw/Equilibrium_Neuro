@@ -111,7 +111,65 @@
     </div>
   </main>
 
+  <!-- RELATÓRIO (SÓ APARECE NA IMPRESSÃO) -->
+<section id="report" class="report">
+  <div class="rep-page">
+
+    <div class="rep-head">
+      <div class="rep-brand">
+        <img class="rep-logo" src="/Equilibrium_Neuro/logo.png" alt="Equilibrium">
+        <div class="rep-head-txt">
+          <div class="rep-h1" id="repTitle">Escala de Responsividade Social - 2</div>
+          <div class="rep-h2" id="repSubTitle">—</div>
+        </div>
+      </div>
+
+      <div class="rep-patient">
+        <div><span>Paciente:</span> <strong id="repPaciente">—</strong></div>
+        <div><span>Data:</span> <strong id="repData">—</strong></div>
+        <div><span>Avaliador:</span> <strong id="repAvaliador">—</strong></div>
+      </div>
+    </div>
+
+    <!-- 1) PERFIL -->
+    <div class="rep-block">
+      <div class="rep-block-title" id="repProfileTitle">Heterorrelato Adulto • Escore T (50+10z)</div>
+      <div id="repProfileChart" class="rep-profile"></div>
+    </div>
+
+    <!-- 2) TABELA DE ESCORES -->
+    <div class="rep-block rep-break">
+      <div class="rep-block-title">Tabela de escores</div>
+      <div class="rep-sub" id="repTableSub">—</div>
+      <table class="rep-table" id="repScoreTable">
+        <thead>
+          <tr>
+            <th>Escala</th>
+            <th class="right">Pontuação bruta</th>
+            <th class="right">Valor da norma</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- 3) BLOCOS POR ESCALA -->
+    <div id="repScaleSections"></div>
+
+    <!-- 4) INTERPRETAÇÃO FINAL -->
+    <div class="rep-block rep-break">
+      <div class="rep-block-title">Interpretação (Escore-T)</div>
+      <div class="rep-text" id="repInterpretation"></div>
+    </div>
+
+    <div class="rep-foot">
+      <div>Equilibrium • Correção automatizada</div>
+      <div>Página <span class="pageNumber"></span></div>
+    </div>
+
+  </div>
+</section>
+
   <script src="./script.js?v=20260304"></script>
 </body>
 </html>
-
