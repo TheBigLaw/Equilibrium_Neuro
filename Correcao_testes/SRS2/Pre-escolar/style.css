@@ -91,7 +91,7 @@ header.no-print{
 }
 
 header.no-print .row{
-  max-width: 1100px;
+  max-width: 1400px; /* antes 1100 */
   margin: 0 auto;
   display:flex;
   gap:12px;
@@ -103,7 +103,7 @@ header.no-print .row{
 h1{
   margin:0;
   font-size: 18px;
-  font-weight: 900;
+  font-weight: 800;     /* menos pesado */
   letter-spacing:.2px;
   color: var(--text);
 }
@@ -116,19 +116,40 @@ h1{
 
 /* ===== Layout ===== */
 main{
-  max-width: 1100px;
+  max-width: 1400px;   /* mais largo: “Dados e itens” maiores */
   margin: 0 auto;
   padding: 18px;
+  width: 100%;
 }
 
 .grid{
   display:grid;
   grid-template-columns: 1fr;
   gap: 16px;
+  align-items: start;
 }
 
-@media (min-width: 980px){
-  .grid{ grid-template-columns: 1.25fr .75fr; }
+/* Desktop: esquerda grande + sidebar fixa (Resultados) no canto */
+@media (min-width: 1100px){
+  .grid{
+    grid-template-columns: 1fr 360px; /* direita fixa */
+    gap: 18px;
+  }
+
+  /* Sidebar “gruda” ao rolar */
+  .grid > aside.card{
+    position: sticky;
+    top: calc(78px + 14px + 70px); /* barra azul + header interno */
+    height: calc(100vh - (78px + 14px + 70px) - 18px);
+    overflow: auto;
+  }
+}
+
+/* Telas intermediárias */
+@media (min-width: 980px) and (max-width: 1099px){
+  .grid{
+    grid-template-columns: 1fr 320px;
+  }
 }
 
 /* ===== Cards ===== */
@@ -143,7 +164,7 @@ main{
 .card h2{
   margin:0 0 12px;
   font-size: 14px;
-  font-weight: 900;
+  font-weight: 800; /* menos pesado */
   color: var(--brand);
 }
 
@@ -172,15 +193,15 @@ main{
   background: var(--pill-bg);
   color: var(--muted);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 600; /* menos pesado */
 }
 
 .pill strong{
   color: var(--text);
-  font-weight: 900;
+  font-weight: 800;
 }
 
-/* Botões (igual o WISC: leve/clean) */
+/* Botões (leve/clean) */
 button{
   appearance:none;
   border:1px solid var(--input-border);
@@ -189,7 +210,7 @@ button{
   padding: 10px 12px;
   border-radius: 999px;
   cursor:pointer;
-  font-weight: 900;
+  font-weight: 800; /* menos pesado */
 }
 
 button:hover{
@@ -231,7 +252,7 @@ button.danger:hover{
 .field label{
   font-size: 12px;
   color: var(--brand);
-  font-weight: 900;
+  font-weight: 700; /* menos pesado */
 }
 
 .field input, .field select{
@@ -241,7 +262,7 @@ button.danger:hover{
   padding: 10px 12px;
   color: var(--text);
   outline:none;
-  font-weight: 700;
+  font-weight: 600; /* menos pesado */
 }
 
 .field input:focus, .field select:focus{
@@ -272,8 +293,8 @@ button.danger:hover{
 
 .item{
   border: 1px solid var(--line);
-  border-radius: var(--r-md);
-  padding: 12px;
+  border-radius: 16px;    /* mais “card” */
+  padding: 14px;          /* maior */
   background: #fff;
 }
 
@@ -285,24 +306,25 @@ button.danger:hover{
 }
 
 .item .qid{
-  min-width: 30px;
-  height: 30px;
-  border-radius: 10px;
+  min-width: 34px;
+  height: 34px;
+  border-radius: 12px;
   display:flex;
   align-items:center;
   justify-content:center;
   background: var(--input-bg);
   border:1px solid var(--input-border);
   color: var(--brand);
-  font-weight: 900;
+  font-weight: 800;       /* menos pesado */
+  font-size: 13px;
 }
 
 .item .txt{
   flex: 1;
-  font-size: 13px;
-  line-height: 1.25rem;
+  font-size: 14px;        /* maior */
+  line-height: 1.35rem;
   color: var(--text);
-  font-weight: 700;
+  font-weight: 500;       /* NÃO tudo em negrito */
 }
 
 .item .tag{
@@ -312,21 +334,29 @@ button.danger:hover{
   border: 1px solid var(--pill-border);
   background: var(--pill-bg);
   color: var(--muted);
-  font-weight: 900;
+  font-weight: 700;       /* menos pesado */
 }
 
-/* Opções como “chips” */
+/* ===== Opções (4 alinhadas na mesma linha) ===== */
 .opts{
-  display:flex;
-  flex-wrap:wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* mobile: 2 por linha */
   gap: 10px;
   margin-top: 10px;
 }
 
+@media (min-width: 720px){
+  .opts{
+    grid-template-columns: repeat(4, 1fr); /* desktop: 4 por linha */
+  }
+}
+
 .opt{
+  width: 100%;
   display:flex;
   gap:8px;
   align-items:center;
+  justify-content:flex-start;
   border:1px solid var(--input-border);
   background: var(--input-bg);
   border-radius: 999px;
@@ -335,7 +365,7 @@ button.danger:hover{
   user-select:none;
   font-size: 12px;
   color: var(--text);
-  font-weight: 800;
+  font-weight: 600; /* menos pesado */
 }
 
 .opt:hover{
@@ -343,6 +373,10 @@ button.danger:hover{
 }
 
 .opt input{ cursor:pointer; }
+
+.opt span{
+  white-space: nowrap; /* mantém em uma linha */
+}
 
 /* ===== Tabelas ===== */
 .table-wrap{
@@ -367,11 +401,14 @@ th, td{
 
 th{
   color: var(--brand);
-  font-weight: 900;
+  font-weight: 800; /* menos pesado */
   background: rgba(234,241,255,.55);
 }
 
-td{ color: var(--text); font-weight: 700; }
+td{
+  color: var(--text);
+  font-weight: 500; /* menos pesado */
+}
 
 .right{ text-align:right; }
 .nowrap{ white-space:nowrap; }
