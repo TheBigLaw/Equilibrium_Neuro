@@ -282,11 +282,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       calcularEExibir();
     });
 
-    $("#btnPrint").addEventListener("click", () => {
-      calcularEExibir();
-      window.print();
-    });
-
     $("#btnClear").addEventListener("click", () => {
       limparTudo();
     });
