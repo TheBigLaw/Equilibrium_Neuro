@@ -235,7 +235,7 @@ function calcularEExibir(){
   const tscores = calcularTscores(brutos);
 
   renderTabelaResultados(brutos, tscores);
-  renderTabelaItens(respostas);
+  //renderTabelaItens(respostas);
 
   const total = form.items.length;
   const answered = total - missing;
@@ -283,7 +283,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     $("#btnClear").addEventListener("click", () => {
-      limparTudo();
+     // limparTudo();
     });
     instalarPrintComRelatorio();
 
