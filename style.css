@@ -668,3 +668,9 @@ button{
 .perfil-canvas{
   min-height: 560px;
 }
+
+.interp{
+  text-align: justify;
+  line-height: 1.55;
+  margin: 8px 0;
+}
