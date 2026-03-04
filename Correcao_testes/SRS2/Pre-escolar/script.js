@@ -290,6 +290,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     $("#btnClear").addEventListener("click", () => {
       limparTudo();
     });
+    instalarPrintComRelatorio();
 
   }catch(err){
     console.error(err);
