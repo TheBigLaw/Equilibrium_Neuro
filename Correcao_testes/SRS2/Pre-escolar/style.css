@@ -531,3 +531,22 @@ td{
   }
 
 }
+
+@media print {
+
+  body * {
+    display: none !important;
+  }
+
+  #report, #report * {
+    display: block !important;
+  }
+
+  #report {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
+}
