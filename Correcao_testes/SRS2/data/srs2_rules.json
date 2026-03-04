@@ -2,332 +2,645 @@
   "test": "SRS-2",
   "forms": [
     {
-      "form": "PRÉ ESCOLAR",
+      "form": "pre_escolar",
       "items": [
         {
           "id": 1,
           "text": "Parece muito mais inquieta em situações sociais do que quando está sozinha.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 2,
           "text": "As expressões em seu rosto não combinam com o que está dizendo.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 3,
           "text": "Parece confiante ( ou segura ) quando está interagindo com outras pessoas.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 4,
           "text": "Quando há sobrecarga de estímulos, a criança parece se desligar do ambiente, apresentando padrões rígidos e inflexíveis de comportamento, aparentemente estranhos.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padr_es_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 5,
           "text": "Não percebe quando os outros estão tentando tirar vantagem dela.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 6,
           "text": "Prefere estar sozinha do que com os outros.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 7,
           "text": "Demonstra perceber o que os outros estão pensando ou sentindo.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 8,
           "text": "Se comporta de maneira estranha ou bizarra.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padr_es_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 9,
           "text": "Fica próxima a adultos, parece ser muito dependente deles.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 10,
           "text": "É incapaz de compreender o sentido da conversa de crianças mais velhas ou adultos",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 11,
           "text": "É autoconfiante.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 12,
           "text": "É capaz de comunicar seus sentimentos a outras pessoas com gestos e palavras.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 13,
           "text": "É devagar ou não consegue interagir com os colegas.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 14,
           "text": "Não tem boa coordenação nas atividades motoras.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padr_es_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 15,
           "text": "É capaz de entender o tom de voz e as expressões faciais das outras pessoas.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 16,
           "text": "Evita o contato visual ou tem contato visual diferente.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 17,
           "text": "Reconhece quando algo é injusto.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 18,
           "text": "Quando está no parquinho ou em um grupo com outras crianças pequenas, não tenta interagir com elas",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 19,
           "text": "Fica frustrada quando não consegue expressar suas ideias em uma conversa.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 20,
           "text": "Tem um jeito estranho de brincar com brinquedos.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padr_es_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 21,
           "text": "É capaz de imitar as ações de outras pessoas.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 22,
           "text": "Brinca adequadamente com crianças da sua idade.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 23,
           "text": "Não participa de atividades em grupo a menos que seja convidada a fazê-lo.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 24,
           "text": "Tem mais dificuldade do que as outras crianças com mudanças na sua rotina.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padr_es_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 25,
           "text": "Não parece se importar em estar fora de sintonia ou em um \"mundo\" diferente dos outros.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 26,
           "text": "Oferece conforto para os outros quando estão tristes.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 27,
           "text": "Evita iniciar interações sociais com seus colegas ou adultos.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 28,
           "text": "Pensa ou fala sobre a mesma coisa repetidamente.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padr_es_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 29,
           "text": "É considerada como estranha ou esquisita por outras crianças.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padr_es_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 30,
           "text": "Fica perturbada em uma situação com muitas coisas acontecendo.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 31,
           "text": "Não consegue tirar algo da sua mente uma vez que começa a pensar sobre isso.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padr_es_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 32,
           "text": "Quer ser trocada quando a fralda ou a cueca / calcinha está suja ou molhada.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 33,
           "text": "É socialmente inadequada, mesmo quando tenta ser educada.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 34,
           "text": "Evita pessoas que querem se aproximar dela por meio de contato afetivo.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 35,
           "text": "Tem dificuldade em manter uma interação normal com outras crianças.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 36,
           "text": "Tem dificuldade em se relacionar com adultos.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 37,
           "text": "Tem dificuldade em se relacionar com seus colegas.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 38,
           "text": "Responde adequadamente às mudanças de humor dos outros ( por exemplo, quando o humor de um amigo muda de feliz para triste).",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 39,
           "text": "Tem uma variedade de interesses extraordinariamente incomuns.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padr_es_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 40,
           "text": "É imaginativa, hábil em fantasiar ( contudo sem perder contato com a realidade ).",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 41,
           "text": "Muda em uma alternativa para outra sem objetivo aparente.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 42,
           "text": "Parece excessivamente sensível aos sons, texturas ou cheiros.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 43,
           "text": "Separa-se facilmente ( ou frequentemente ) dos cuidadores.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 44,
           "text": "Não entende como os eventos se encadeiam, se sucedem, da mesma forma que outras crianças da sua idade o fazem.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 45,
           "text": "Focaliza ( ou dirige ) sua atenção para onde os outros estão olhando ou ouvindo.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 46,
           "text": "Tem expressão facial excessivamente séria.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 47,
           "text": "Comporta-se como tola ou ri de forma inadequada.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 48,
           "text": "Tem senso de humor e entende as piadas",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 49,
           "text": "É extremamente hábil em algumas tarefas específicas, mas não é tão boa em outras tarefas .",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padr_es_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 50,
           "text": "Tem comportamentos repetitivos, estranhos, tais como agitar as mãos ou balançar o corpo fora do contexto.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padr_es_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 51,
           "text": "Responde a questões claras e diretas de maneira que não parecem fazer nenhum sentido.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 52,
           "text": "Sabe quando está falando muito alto ou fazendo muito barulho.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 53,
           "text": "Fala com as pessoas com um tom de voz incomum ( por exemplo , fala como um robô ou como se estivesse dando uma palestra).",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 54,
           "text": "Parece agir com as pessoas como se elas fossem objetos.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 55,
           "text": "Sabe quando está muito próxima ou invadindo o espaço de alguém.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 56,
           "text": "Caminha entre duas pessoas que estão conversando.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 57,
           "text": "Outras crianças não gostam de brincar com ela.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 58,
           "text": "Concentra-se muito nos detalhes das coisas ao invés de ver o todo. Por exemplo, gira as rodas de um carrinho, mas não brinca como se fosse um carro, ou brinca com o cabelo de uma boneca, mas não com ela toda.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 59,
           "text": "É excessivamente desconfiada.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 60,
           "text": "É emocionalmente distante, não demonstrando seus sentimentos.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 61,
           "text": "É inflexível, leva muito tempo para mudar suas ideias.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 62,
           "text": "Dá explicações incomuns ou ilógicas do porquê de fazer as coisas.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 63,
           "text": "Toca os outros de maneira incomum ( por exemplo, pode tocar em alguém apenas para fazer contato e depois ir embora sem dizer nada ).",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padr_es_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 64,
           "text": "Fica muito agitada em situações sociais.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 65,
           "text": "Fica com olhar perdido ou olha fixamente para o nada.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         }
       ],
       "scales": [
@@ -343,7 +656,8 @@
             52,
             54,
             56
-          ]
+          ],
+          "label": "PERCEPÇÃO SOCIAL"
         },
         {
           "key": "cogni_o_social",
@@ -361,7 +675,8 @@
             58,
             59,
             62
-          ]
+          ],
+          "label": "COGNIÇÃO SOCIAL"
         },
         {
           "key": "comunica_o_social",
@@ -389,7 +704,8 @@
             57,
             60,
             61
-          ]
+          ],
+          "label": "COMUNICAÇÃO SOCIAL"
         },
         {
           "key": "motiva_o_social",
@@ -406,7 +722,8 @@
             43,
             64,
             65
-          ]
+          ],
+          "label": "MOTIVAÇÃO SOCIAL"
         },
         {
           "key": "padr_es_restritivos_e_repetitivos",
@@ -424,7 +741,8 @@
             49,
             50,
             63
-          ]
+          ],
+          "label": "PADRÕES RESTRITIVOS E REPETITIVOS"
         },
         {
           "key": "comunica_o_e_intera_o",
@@ -483,7 +801,8 @@
             62,
             64,
             65
-          ]
+          ],
+          "label": "COMUNICAÇÃO E INTERAÇÃO"
         },
         {
           "key": "total",
@@ -554,7 +873,8 @@
             63,
             64,
             65
-          ]
+          ],
+          "label": "TOTAL"
         }
       ],
       "norms": {
@@ -1303,335 +1623,655 @@
           "min": 76,
           "label": "severo"
         }
-      ]
+      ],
+      "label": "Pré-Escolar",
+      "answer_labels": {
+        "1": "Nunca",
+        "2": "Às vezes",
+        "3": "Frequentemente",
+        "4": "Quase sempre"
+      }
     },
     {
-      "form": "IDADE ESCOLAR - FEMININO",
+      "form": "idade_escolar_feminino",
       "items": [
         {
           "id": 1,
           "text": "Parece muito mais inquieta em situações sociais do que quando está sozinha.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 2,
           "text": "As expressões em seu rosto não combinam com o que está dizendo.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 3,
           "text": "Parece confiante (ou segura) quando está interagindo com outras pessoas.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 4,
           "text": "Quando há sobrecarga de estímulos, apresenta padrões rígidos ou inflexíveis de comportamento que parecem estranhos.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 5,
           "text": "Não percebe quando os outros estão tentando tirar vantagem dela.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 6,
           "text": "Prefere estar sozinha do que com os outros.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 7,
           "text": "Demonstra perceber o que os outros estão pensando ou sentindo.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 8,
           "text": "Se comporta de maneira estranha ou bizarra.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 9,
           "text": "Fica próxima a adultos, parece ser muito dependente deles.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 10,
           "text": "Leva as coisas muito \"ao pé da letra\" e não compreende o real significado de uma conversa.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 11,
           "text": "É autoconfiante.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 12,
           "text": "É capaz de comunicar seus sentimentos para as outras pessoas.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 13,
           "text": "É estranha na \"tomada de vez\" das interações com seus colegas (por exemplo, não parece entender a reciprocidade de uma conversa).",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 14,
           "text": "Não tem boa coordenação.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 15,
           "text": "É capaz de entender o tom de voz e as expressões faciais das outras pessoas.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 16,
           "text": "Evita o cantata visual ou tem cantata visual diferente.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 17,
           "text": "Reconhece quando algo é injusto.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 18,
           "text": "Tem dificuldade em fazer amigos, mesmo tentando dar o melhor de si.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 19,
           "text": "Fica frustrada quando não consegue expressar suas ideias em uma conversa.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 20,
           "text": "Mostra interesses sensoriais incomuns (por exemplo, coloca na boca ou gira objetos) ou formas estranhas de brincar com brinquedos.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 21,
           "text": "É capaz de imitar as ações de outras pessoas.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 22,
           "text": "Brinca adequadamente com crianças da sua idade.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 23,
           "text": "Não participa de atividades em grupo a menos que seja convidada a fazé-lo.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 24,
           "text": "Tem mai s dificuldade do que outras crianças com mudanças na sua rotina.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 25,
           "text": "Não parece se importar em estar fora de sintonia ou em um \"mundo\" diferente dos outros.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 26,
           "text": "Oferece conforto para os outros quando estão tristes.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 27,
           "text": "Evita iniciar interações sociai s com seus colegas ou adultos.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 28,
           "text": "Pensa ou fala sobre a mesma coi sa repetidamente.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 29,
           "text": "É considerada como estranha ou esquisita por outras crianças.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 30,
           "text": "Fica perturbada em uma situação com muitas coisas acontecendo.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 31,
           "text": "Não consegue tirar algo da sua mente uma vez que começa a pensar sobre isso.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 32,
           "text": "Tem boa higiene pessoal.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 33,
           "text": "É socialmente desajeitada, mesmo quando tenta ser educada.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 34,
           "text": "Evita pessoas que querem se aproximar dela por meio de cantata afetivo.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 35,
           "text": "Tem dificuldade em acompanhar o fluxo de uma conversa normal.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 36,
           "text": "Tem dificuldade em se relacionar com adultos.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 37,
           "text": "Tem dificuldade em se relacionar com seus colegas.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 38,
           "text": "Responde adequadamente às mudanças de humor dos outros (por exemplo, quando o humor de um amigo ou companheiro muda de feliz para triste).",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 39,
           "text": "Tem uma variedade de interesses extraordinariamente incomuns.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 40,
           "text": "É imaginativa. hábil em fantasiar (contudo sem perder cantata com a real idade).",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 41,
           "text": "Muda de uma atividade para outra sem objetivo aparente.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 42,
           "text": "Parece excessivamente sensível aos sons, texturas ou cheiros.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 43,
           "text": "Se separa facilmente (ou frequentemente) dos cuidadores.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 44,
           "text": "Não entende como os acontecimentos se encadeiam entre si (causa e efeito), da mesma maneira que outros da sua idade fazem.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 45,
           "text": "Focaliza (ou dirige) sua atenção para onde os outros estão olhando ou ouvindo.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 46,
           "text": "Tem expressão facial excessivamente séria.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 47,
           "text": "Comporta-se como tola ou ri de forma inadequada.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 48,
           "text": "Tem senso de humor e entende as piadas.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 49,
           "text": "É extremamente hábil em algumas tarefas específicas, mas não consegue fazer tão bem a maioria das outras tarefas.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 50,
           "text": "Tem comportamentos repetitivos, estranhos, tais como agitar as mãos ou balançar o corpo.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 51,
           "text": "Tem dificuldade em responder perguntas diretamente e acaba falando em torno do assunto.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 52,
           "text": "Sabe quando está falando muito alto ou fazendo muito barulho.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 53,
           "text": "Fala com as pessoas com um tom de voz incom um (por exemplo, fala como um robô ou como se estivesse dando uma palestra).",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 54,
           "text": "Parece agir com as pessoas como se elas fossem objetos.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 55,
           "text": "Sabe quando está muito próxima ou invadindo o espaço de alguém.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 56,
           "text": "Caminha entre duas pessoas que estão conversando.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 57,
           "text": "Sofre provocações de colegas.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 58,
           "text": "Concentra-se demais em partes das coisas ao invés de ver o todo. Por exemplo. se solicitada para descrever o que aconteceu em uma história, ela pode falar apenas sobre o tipo de para descrever o que aconteceu em uma história, ela pode falar apenas sobre o tipo de roupa que os personagens estavam vestindo.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 59,
           "text": "É excessivamente desconfiada.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 60,
           "text": "É emocionalmente distante, não demonstrando seus sentimentos.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 61,
           "text": "É inflexível e tem dificuldade para mudar de ideia.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 62,
           "text": "Dá explicações incomuns ou ilógicas do porquê de fazer as coisas.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 63,
           "text": "Toca os outros de maneira incomum (por exemplo, pode tocar em alguém apenas para fazer cantata e depois ir embora sem dizer nada).",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 64,
           "text": "Fica muito agitada em situações sociais.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 65,
           "text": "Fica com olhar perdido ou olha fixamente para o nada.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         }
       ],
       "scales": [
@@ -1647,7 +2287,8 @@
             52,
             54,
             56
-          ]
+          ],
+          "label": "PERCEPÇÃO SOCIAL"
         },
         {
           "key": "cogni_o_social",
@@ -1665,7 +2306,8 @@
             58,
             59,
             62
-          ]
+          ],
+          "label": "COGNIÇÃO SOCIAL"
         },
         {
           "key": "comunica_o_social",
@@ -1693,7 +2335,8 @@
             57,
             60,
             61
-          ]
+          ],
+          "label": "COMUNICAÇÃO SOCIAL"
         },
         {
           "key": "motiva_o_social",
@@ -1710,7 +2353,8 @@
             43,
             64,
             65
-          ]
+          ],
+          "label": "MOTIVAÇÃO SOCIAL"
         },
         {
           "key": "padroes_restritivos_e_repetitivos",
@@ -1728,7 +2372,8 @@
             49,
             50,
             63
-          ]
+          ],
+          "label": "PADROES RESTRITIVOS E REPETITIVOS"
         },
         {
           "key": "comunica_o_e_intera_o",
@@ -1787,7 +2432,8 @@
             62,
             64,
             65
-          ]
+          ],
+          "label": "COMUNICAÇÃO E INTERAÇÃO"
         },
         {
           "key": "total",
@@ -1858,7 +2504,8 @@
             63,
             64,
             65
-          ]
+          ],
+          "label": "TOTAL"
         }
       ],
       "norms": {
@@ -2607,685 +3254,655 @@
           "min": 76,
           "label": "severo"
         }
-      ]
+      ],
+      "label": "Idade escolar — Feminino",
+      "answer_labels": {
+        "1": "Nunca",
+        "2": "Às vezes",
+        "3": "Frequentemente",
+        "4": "Quase sempre"
+      }
     },
     {
-      "form": "IDADE ESCOLAR - MASCULINO",
+      "form": "idade_escolar_masculino",
       "items": [
         {
           "id": 1,
           "text": "Parece muito mais inquieta em situações sociais do que quando está sozinha.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 2,
           "text": "As expressões em seu rosto não combinam com o que está dizendo.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 3,
           "text": "Parece confiante (ou segura) quando está interagindo com outras pessoas.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 4,
           "text": "Quando há sobrecarga de estímulos, apresenta padrões rígidos ou inflexíveis de comportamento que parecem estranhos.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 5,
           "text": "Não percebe quando os outros estão tentando tirar vantagem dela.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 6,
           "text": "Prefere estar sozinha do que com os outros.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 7,
           "text": "Demonstra perceber o que os outros estão pensando ou sentindo.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 8,
           "text": "Se comporta de maneira estranha ou bizarra.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 9,
           "text": "Fica próxima a adultos, parece ser muito dependente deles.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 10,
           "text": "Leva as coisas muito \"ao pé da letra\" e não compreende o real significado de uma conversa.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 11,
           "text": "É autoconfiante.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 12,
           "text": "É capaz de comunicar seus sentimentos para as outras pessoas.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 13,
           "text": "É estranha na \"tomada de vez\" das interações com seus colegas (por exemplo, não parece entender a reciprocidade de uma conversa).",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 14,
           "text": "Não tem boa coordenação.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 15,
           "text": "É capaz de entender o tom de voz e as expressões faciais das outras pessoas.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 16,
           "text": "Evita o cantata visual ou tem cantata visual diferente.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 17,
           "text": "Reconhece quando algo é injusto.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 18,
           "text": "Tem dificuldade em fazer amigos, mesmo tentando dar o melhor de si.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 19,
           "text": "Fica frustrada quando não consegue expressar suas ideias em uma conversa.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 20,
           "text": "Mostra interesses sensoriais incomuns (por exemplo, coloca na boca ou gira objetos) ou formas estranhas de brincar com brinquedos.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 21,
           "text": "É capaz de imitar as ações de outras pessoas.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 22,
           "text": "Brinca adequadamente com crianças da sua idade.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 23,
           "text": "Não participa de atividades em grupo a menos que seja convidada a fazé-lo.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 24,
           "text": "Tem mai s dificuldade do que outras crianças com mudanças na sua rotina.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 25,
           "text": "Não parece se importar em estar fora de sintonia ou em um \"mundo\" diferente dos outros.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 26,
           "text": "Oferece conforto para os outros quando estão tristes.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 27,
           "text": "Evita iniciar interações sociai s com seus colegas ou adultos.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 28,
           "text": "Pensa ou fala sobre a mesma coi sa repetidamente.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 29,
           "text": "É considerada como estranha ou esquisita por outras crianças.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 30,
           "text": "Fica perturbada em uma situação com muitas coisas acontecendo.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 31,
           "text": "Não consegue tirar algo da sua mente uma vez que começa a pensar sobre isso.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 32,
           "text": "Tem boa higiene pessoal.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 33,
           "text": "É socialmente desajeitada, mesmo quando tenta ser educada.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 34,
           "text": "Evita pessoas que querem se aproximar dela por meio de cantata afetivo.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 35,
           "text": "Tem dificuldade em acompanhar o fluxo de uma conversa normal.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 36,
           "text": "Tem dificuldade em se relacionar com adultos.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 37,
           "text": "Tem dificuldade em se relacionar com seus colegas.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 38,
           "text": "Responde adequadamente às mudanças de humor dos outros (por exemplo, quando o humor de um amigo ou companheiro muda de feliz para triste).",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 39,
           "text": "Tem uma variedade de interesses extraordinariamente incomuns.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 40,
           "text": "É imaginativa. hábil em fantasiar (contudo sem perder cantata com a real idade).",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 41,
           "text": "Muda de uma atividade para outra sem objetivo aparente.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 42,
           "text": "Parece excessivamente sensível aos sons, texturas ou cheiros.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 43,
           "text": "Se separa facilmente (ou frequentemente) dos cuidadores.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 44,
           "text": "Não entende como os acontecimentos se encadeiam entre si (causa e efeito), da mesma maneira que outros da sua idade fazem.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 45,
           "text": "Focaliza (ou dirige) sua atenção para onde os outros estão olhando ou ouvindo.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 46,
           "text": "Tem expressão facial excessivamente séria.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 47,
           "text": "Comporta-se como tola ou ri de forma inadequada.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 48,
           "text": "Tem senso de humor e entende as piadas.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 49,
           "text": "É extremamente hábil em algumas tarefas específicas, mas não consegue fazer tão bem a maioria das outras tarefas.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 50,
           "text": "Tem comportamentos repetitivos, estranhos, tais como agitar as mãos ou balançar o corpo.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 51,
           "text": "Tem dificuldade em responder perguntas diretamente e acaba falando em torno do assunto.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 52,
           "text": "Sabe quando está falando muito alto ou fazendo muito barulho.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 53,
           "text": "Fala com as pessoas com um tom de voz incom um (por exemplo, fala como um robô ou como se estivesse dando uma palestra).",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 54,
           "text": "Parece agir com as pessoas como se elas fossem objetos.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 55,
           "text": "Sabe quando está muito próxima ou invadindo o espaço de alguém.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 56,
           "text": "Caminha entre duas pessoas que estão conversando.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 57,
           "text": "Sofre provocações de colegas.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 58,
           "text": "Concentra-se demais em partes das coisas ao invés de ver o todo. Por exemplo. se solicitada para descrever o que aconteceu em uma história, ela pode falar apenas sobre o tipo de para descrever o que aconteceu em uma história, ela pode falar apenas sobre o tipo de roupa que os personagens estavam vestindo.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 59,
           "text": "É excessivamente desconfiada.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 60,
           "text": "É emocionalmente distante, não demonstrando seus sentimentos.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 61,
           "text": "É inflexível e tem dificuldade para mudar de ideia.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 62,
           "text": "Dá explicações incomuns ou ilógicas do porquê de fazer as coisas.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 63,
           "text": "Toca os outros de maneira incomum (por exemplo, pode tocar em alguém apenas para fazer cantata e depois ir embora sem dizer nada).",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 64,
           "text": "Fica muito agitada em situações sociais.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 65,
           "text": "Fica com olhar perdido ou olha fixamente para o nada.",
-          "reverse": false
-        }
-      ],
-      "scales": [],
-      "norms": {},
-      "classification": [
-        {
-          "max": 59,
-          "label": "normal"
-        },
-        {
-          "max": 65,
-          "label": "leve"
-        },
-        {
-          "max": 75,
-          "label": "moderado"
-        },
-        {
-          "min": 76,
-          "label": "severo"
-        }
-      ]
-    },
-    {
-      "form": "ADULTO AUTORRELATO",
-      "items": [
-        {
-          "id": 1,
-          "text": "Eu fico mais desconfortável em situações sociais do que quando estou sozinho.",
-          "reverse": false
-        },
-        {
-          "id": 2,
-          "text": "Minhas expressões faciais passam uma mensagem errada aos outros sobre o que estou dizendo.",
-          "reverse": false
-        },
-        {
-          "id": 3,
-          "text": "Eu me sinto confiante (ou seguro) quando estou interagindo com os outros.",
-          "reverse": true
-        },
-        {
-          "id": 4,
-          "text": "Quando estou sob estresse , tenho um comportamento rígido e inflexível que parece estranho para os outros.",
-          "reverse": false
-        },
-        {
-          "id": 5,
-          "text": "Eu não reconheço quando os outros estão tentando tirar vantagem sobre mim.",
-          "reverse": false
-        },
-        {
-          "id": 6,
-          "text": "Eu prefiro estar sozinho do que com os outros.",
-          "reverse": false
-        },
-        {
-          "id": 7,
-          "text": "Normalmente eu consigo perceber como os outros estão se sentindo.",
-          "reverse": true
-        },
-        {
-          "id": 8,
-          "text": "Eu me comporto de maneiras que parecem estranhas ou esquisitas aos outros.",
-          "reverse": false
-        },
-        {
-          "id": 9,
-          "text": "Eu sou excessivamente dependente dos outros para me ajudar a entender as minhas necessidades diárias.",
-          "reverse": false
-        },
-        {
-          "id": 10,
-          "text": "Eu levo as coisas muito \"ao pé da letra\", e por causa disso, eu interpreto mal o significado pretendido de partes de uma conversa.",
-          "reverse": false
-        },
-        {
-          "id": 11,
-          "text": "Eu sou autoconfiante.",
-          "reverse": true
-        },
-        {
-          "id": 12,
-          "text": "Eu sou capaz de comunicar meus sentimentos aos outros.",
-          "reverse": true
-        },
-        {
-          "id": 13,
-          "text": "Eu fico estranho nas interações com os colegas (por exemplo, não pareço entender a reciprocidade de uma conversa).",
-          "reverse": false
-        },
-        {
-          "id": 14,
-          "text": "Eu não sou bem coordenado.",
-          "reverse": false
-        },
-        {
-          "id": 15,
-          "text": "Quando as pessoas mudam seu tom ou expressão facial, eu normalmente entendo o que isso significa.",
-          "reverse": true
-        },
-        {
-          "id": 16,
-          "text": "Eu evito o contato visual ou me dizem que eu tenho contato visual diferente.",
-          "reverse": false
-        },
-        {
-          "id": 17,
-          "text": "Eu reconheço quando algo é injusto.",
-          "reverse": true
-        },
-        {
-          "id": 18,
-          "text": "Eu tenho dificuldade em fazer amigos, mesmo tentando dar o melhor de mim.",
-          "reverse": false
-        },
-        {
-          "id": 19,
-          "text": "Eu fico frustrado tentando expressar minhas ideias em uma conversa.",
-          "reverse": false
-        },
-        {
-          "id": 20,
-          "text": "Eu tenho interesses sensoriais incomuns (por exemplo, cheirar meus dedos com frequência) ou estranhos, como chacoalhar repetidamente pequenos itens.",
-          "reverse": false
-        },
-        {
-          "id": 21,
-          "text": "Eu sou capaz de imitar a ação e expressão dos outros quando é socialmente apropriado.",
-          "reverse": true
-        },
-        {
-          "id": 22,
-          "text": "Eu interajo apropriadamente com outros adultos.",
-          "reverse": true
-        },
-        {
-          "id": 23,
-          "text": "Eu não participo de atividades em grupo e eventos sociais a menos que seja obrigado a fazê-lo.",
-          "reverse": false
-        },
-        {
-          "id": 24,
-          "text": "Eu tenho mais dificuldade do que outras pessoas com mudanças em minha rotina.",
-          "reverse": false
-        },
-        {
-          "id": 25,
-          "text": "Eu não me importo de não estar \"na mesma onda\" ou fora de sintonia com os outros.",
-          "reverse": false
-        },
-        {
-          "id": 26,
-          "text": "Eu ofereço conforto para os outros quando estão tristes.",
-          "reverse": true
-        },
-        {
-          "id": 27,
-          "text": "Eu evito iniciar interações sociais com outros adultos.",
-          "reverse": false
-        },
-        {
-          "id": 28,
-          "text": "Eu penso ou falo sobre a mesma coisa repetidamente.",
-          "reverse": false
-        },
-        {
-          "id": 29,
-          "text": "Eu sou considerado pelos outros como estranho ou esquisito.",
-          "reverse": false
-        },
-        {
-          "id": 30,
-          "text": "Eu fico pertubado em situações com muitas coisas acontecendo.",
-          "reverse": false
-        },
-        {
-          "id": 31,
-          "text": "Eu não consigo tirar algo da minha mente uma vez que começo a pensar sobre isso.",
-          "reverse": false
-        },
-        {
-          "id": 32,
-          "text": "Eu tenho boa higiene pessoal.",
-          "reverse": true
-        },
-        {
-          "id": 33,
-          "text": "Meu comportamento é socialmente desajeitado, mesmo quando eu estou tentando ser educado.",
-          "reverse": false
-        },
-        {
-          "id": 34,
-          "text": "Eu evito pessoas que querem ser emocionalmente próximas a mim.",
-          "reverse": false
-        },
-        {
-          "id": 35,
-          "text": "Eu tenho dificuldade em acompanhar o fluxo de uma conversa normal.",
-          "reverse": false
-        },
-        {
-          "id": 36,
-          "text": "Eu tenho dificuldade em me relacionar com os membros da minha família.",
-          "reverse": false
-        },
-        {
-          "id": 37,
-          "text": "Eu tenho dificuldade em me relacionar com pessoas que não são da minha família.",
-          "reverse": false
-        },
-        {
-          "id": 38,
-          "text": "Eu respondo adequadamente às mudanças de humor das outras pessoas (por exemplo, quando o humor de um amigo muda de feliz para triste).",
-          "reverse": true
-        },
-        {
-          "id": 39,
-          "text": "As pessoas me acham muito interessado em poucos assuntos, ou que eu me \"deixo levar\" por esses assuntos",
-          "reverse": false
-        },
-        {
-          "id": 40,
-          "text": "Eu sou imaginativo",
-          "reverse": true
-        },
-        {
-          "id": 41,
-          "text": "Eu às vezes mudo de uma atividade para outra sem nenhuma razão.",
-          "reverse": false
-        },
-        {
-          "id": 42,
-          "text": "Eu sou excessivamente sensível a certos sons, texturas ou cheiros.",
-          "reverse": false
-        },
-        {
-          "id": 43,
-          "text": "Eu gosto de conversas ( conversas casuais com os outros )",
-          "reverse": true
-        },
-        {
-          "id": 44,
-          "text": "Eu tenho mais problema do que a maioria das pessoas com o entendimento da causalidade ( em outras palavras, como os eventos estão relacionados uns com os outros )",
-          "reverse": false
-        },
-        {
-          "id": 45,
-          "text": "Quando os outros ao redor de mim estão prestando atenção em algo, eu fico interessado no que eles estão atentos.",
-          "reverse": true
-        },
-        {
-          "id": 46,
-          "text": "Os outros sentem que eu tenho expressões faciais excessivamente sérias.",
-          "reverse": false
-        },
-        {
-          "id": 47,
-          "text": "Eu rio em momentos inapropriados.",
-          "reverse": false
-        },
-        {
-          "id": 48,
-          "text": "Eu tenho um bom senso de humor e consigo entender piadas.",
-          "reverse": true
-        },
-        {
-          "id": 49,
-          "text": "Eu sou extremamente bom em certos tipos de tarefas intelectuais, mas não sou tão bom na maioria das outras tarefas.",
-          "reverse": false
-        },
-        {
-          "id": 50,
-          "text": "Eu tenho comportamentos repetitivos que as outras pessoas consideram estranhos.",
-          "reverse": false
-        },
-        {
-          "id": 51,
-          "text": "Eu tenho dificuldade de responder perguntas diretamente e acabo discursando sobre o assunto.",
-          "reverse": false
-        },
-        {
-          "id": 52,
-          "text": "Eu falo muito alto sem perceber.",
-          "reverse": true
-        },
-        {
-          "id": 53,
-          "text": "Eu tenho tendência a falar com uma voz monótona ( em outras palavras , menor inflexão da voz que a maioria das pessoas demonstram ).",
-          "reverse": false
-        },
-        {
-          "id": 54,
-          "text": "Eu tenho uma tendência a pensar sobre as pessoas do mesmo jeito que eu faço com os objetos.",
-          "reverse": false
-        },
-        {
-          "id": 55,
-          "text": "Eu fico muito perto dos outros ou invado o espaço pessoal deles sem perceber.",
-          "reverse": true
-        },
-        {
-          "id": 56,
-          "text": "Às vezes eu cometo o erro de andar entre duas pessoas que estão tentando conversar uma com a outra.",
-          "reverse": false
-        },
-        {
-          "id": 57,
-          "text": "Eu tenho uma tendência a me isolar",
-          "reverse": false
-        },
-        {
-          "id": 58,
-          "text": "Eu me concentro demais nas partes das coisas ao invés de ver a figura como um todo.",
-          "reverse": false
-        },
-        {
-          "id": 59,
-          "text": "Eu sou mais desconfiado que a maioria das pessoas.",
-          "reverse": false
-        },
-        {
-          "id": 60,
-          "text": "As outras pessoas me acham emocionalmente distante e que não demonstro meus sentimentos.",
-          "reverse": false
-        },
-        {
-          "id": 61,
-          "text": "Eu tenho uma tendência a ser inflexível.",
-          "reverse": false
-        },
-        {
-          "id": 62,
-          "text": "Quando eu conto a alguém a minha razão para fazer alguma coisa, a pessoa acha que é incomum, sem lógica.",
-          "reverse": false
-        },
-        {
-          "id": 63,
-          "text": "Meu jeito de cumprimentar uma outra pessoa é incomum.",
-          "reverse": false
-        },
-        {
-          "id": 64,
-          "text": "Eu sou muito mais tenso em situações sociais do que quando eu estou sozinho.",
-          "reverse": false
-        },
-        {
-          "id": 65,
-          "text": "Eu me pego olhando fixo para o espaço.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         }
       ],
       "scales": [
@@ -3301,7 +3918,8 @@
             52,
             54,
             56
-          ]
+          ],
+          "label": "PERCEPÇÃO SOCIAL"
         },
         {
           "key": "cogni_o_social",
@@ -3319,7 +3937,8 @@
             58,
             59,
             62
-          ]
+          ],
+          "label": "COGNIÇÃO SOCIAL"
         },
         {
           "key": "comunica_o_social",
@@ -3347,7 +3966,8 @@
             57,
             60,
             61
-          ]
+          ],
+          "label": "COMUNICAÇÃO SOCIAL"
         },
         {
           "key": "motiva_o_social",
@@ -3364,7 +3984,8 @@
             43,
             64,
             65
-          ]
+          ],
+          "label": "MOTIVAÇÃO SOCIAL"
         },
         {
           "key": "padroes_restritivos_e_repetitivos",
@@ -3382,7 +4003,8 @@
             49,
             50,
             63
-          ]
+          ],
+          "label": "PADROES RESTRITIVOS E REPETITIVOS"
         },
         {
           "key": "comunica_o_e_intera_o",
@@ -3441,7 +4063,8 @@
             62,
             64,
             65
-          ]
+          ],
+          "label": "COMUNICAÇÃO E INTERAÇÃO"
         },
         {
           "key": "total",
@@ -3512,7 +4135,911 @@
             63,
             64,
             65
+          ],
+          "label": "TOTAL"
+        }
+      ],
+      "norms": {},
+      "classification": [
+        {
+          "max": 59,
+          "label": "normal"
+        },
+        {
+          "max": 65,
+          "label": "leve"
+        },
+        {
+          "max": 75,
+          "label": "moderado"
+        },
+        {
+          "min": 76,
+          "label": "severo"
+        }
+      ],
+      "label": "Idade escolar — Masculino",
+      "answer_labels": {
+        "1": "Nunca",
+        "2": "Às vezes",
+        "3": "Frequentemente",
+        "4": "Quase sempre"
+      }
+    },
+    {
+      "form": "adulto_autorrelato",
+      "items": [
+        {
+          "id": 1,
+          "text": "Eu fico mais desconfortável em situações sociais do que quando estou sozinho.",
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
           ]
+        },
+        {
+          "id": 2,
+          "text": "Minhas expressões faciais passam uma mensagem errada aos outros sobre o que estou dizendo.",
+          "reverse": false,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 3,
+          "text": "Eu me sinto confiante (ou seguro) quando estou interagindo com os outros.",
+          "reverse": true,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 4,
+          "text": "Quando estou sob estresse , tenho um comportamento rígido e inflexível que parece estranho para os outros.",
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
+        },
+        {
+          "id": 5,
+          "text": "Eu não reconheço quando os outros estão tentando tirar vantagem sobre mim.",
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 6,
+          "text": "Eu prefiro estar sozinho do que com os outros.",
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 7,
+          "text": "Normalmente eu consigo perceber como os outros estão se sentindo.",
+          "reverse": true,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 8,
+          "text": "Eu me comporto de maneiras que parecem estranhas ou esquisitas aos outros.",
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
+        },
+        {
+          "id": 9,
+          "text": "Eu sou excessivamente dependente dos outros para me ajudar a entender as minhas necessidades diárias.",
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 10,
+          "text": "Eu levo as coisas muito \"ao pé da letra\", e por causa disso, eu interpreto mal o significado pretendido de partes de uma conversa.",
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 11,
+          "text": "Eu sou autoconfiante.",
+          "reverse": true,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 12,
+          "text": "Eu sou capaz de comunicar meus sentimentos aos outros.",
+          "reverse": true,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 13,
+          "text": "Eu fico estranho nas interações com os colegas (por exemplo, não pareço entender a reciprocidade de uma conversa).",
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 14,
+          "text": "Eu não sou bem coordenado.",
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
+        },
+        {
+          "id": 15,
+          "text": "Quando as pessoas mudam seu tom ou expressão facial, eu normalmente entendo o que isso significa.",
+          "reverse": true,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 16,
+          "text": "Eu evito o contato visual ou me dizem que eu tenho contato visual diferente.",
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 17,
+          "text": "Eu reconheço quando algo é injusto.",
+          "reverse": true,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 18,
+          "text": "Eu tenho dificuldade em fazer amigos, mesmo tentando dar o melhor de mim.",
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 19,
+          "text": "Eu fico frustrado tentando expressar minhas ideias em uma conversa.",
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 20,
+          "text": "Eu tenho interesses sensoriais incomuns (por exemplo, cheirar meus dedos com frequência) ou estranhos, como chacoalhar repetidamente pequenos itens.",
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
+        },
+        {
+          "id": 21,
+          "text": "Eu sou capaz de imitar a ação e expressão dos outros quando é socialmente apropriado.",
+          "reverse": true,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 22,
+          "text": "Eu interajo apropriadamente com outros adultos.",
+          "reverse": true,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 23,
+          "text": "Eu não participo de atividades em grupo e eventos sociais a menos que seja obrigado a fazê-lo.",
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 24,
+          "text": "Eu tenho mais dificuldade do que outras pessoas com mudanças em minha rotina.",
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
+        },
+        {
+          "id": 25,
+          "text": "Eu não me importo de não estar \"na mesma onda\" ou fora de sintonia com os outros.",
+          "reverse": false,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 26,
+          "text": "Eu ofereço conforto para os outros quando estão tristes.",
+          "reverse": true,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 27,
+          "text": "Eu evito iniciar interações sociais com outros adultos.",
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 28,
+          "text": "Eu penso ou falo sobre a mesma coisa repetidamente.",
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
+        },
+        {
+          "id": 29,
+          "text": "Eu sou considerado pelos outros como estranho ou esquisito.",
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
+        },
+        {
+          "id": 30,
+          "text": "Eu fico pertubado em situações com muitas coisas acontecendo.",
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 31,
+          "text": "Eu não consigo tirar algo da minha mente uma vez que começo a pensar sobre isso.",
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
+        },
+        {
+          "id": 32,
+          "text": "Eu tenho boa higiene pessoal.",
+          "reverse": true,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 33,
+          "text": "Meu comportamento é socialmente desajeitado, mesmo quando eu estou tentando ser educado.",
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 34,
+          "text": "Eu evito pessoas que querem ser emocionalmente próximas a mim.",
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 35,
+          "text": "Eu tenho dificuldade em acompanhar o fluxo de uma conversa normal.",
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 36,
+          "text": "Eu tenho dificuldade em me relacionar com os membros da minha família.",
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 37,
+          "text": "Eu tenho dificuldade em me relacionar com pessoas que não são da minha família.",
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 38,
+          "text": "Eu respondo adequadamente às mudanças de humor das outras pessoas (por exemplo, quando o humor de um amigo muda de feliz para triste).",
+          "reverse": true,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 39,
+          "text": "As pessoas me acham muito interessado em poucos assuntos, ou que eu me \"deixo levar\" por esses assuntos",
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
+        },
+        {
+          "id": 40,
+          "text": "Eu sou imaginativo",
+          "reverse": true,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 41,
+          "text": "Eu às vezes mudo de uma atividade para outra sem nenhuma razão.",
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 42,
+          "text": "Eu sou excessivamente sensível a certos sons, texturas ou cheiros.",
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 43,
+          "text": "Eu gosto de conversas ( conversas casuais com os outros )",
+          "reverse": true,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 44,
+          "text": "Eu tenho mais problema do que a maioria das pessoas com o entendimento da causalidade ( em outras palavras, como os eventos estão relacionados uns com os outros )",
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 45,
+          "text": "Quando os outros ao redor de mim estão prestando atenção em algo, eu fico interessado no que eles estão atentos.",
+          "reverse": true,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 46,
+          "text": "Os outros sentem que eu tenho expressões faciais excessivamente sérias.",
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 47,
+          "text": "Eu rio em momentos inapropriados.",
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 48,
+          "text": "Eu tenho um bom senso de humor e consigo entender piadas.",
+          "reverse": true,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 49,
+          "text": "Eu sou extremamente bom em certos tipos de tarefas intelectuais, mas não sou tão bom na maioria das outras tarefas.",
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
+        },
+        {
+          "id": 50,
+          "text": "Eu tenho comportamentos repetitivos que as outras pessoas consideram estranhos.",
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
+        },
+        {
+          "id": 51,
+          "text": "Eu tenho dificuldade de responder perguntas diretamente e acabo discursando sobre o assunto.",
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 52,
+          "text": "Eu falo muito alto sem perceber.",
+          "reverse": true,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 53,
+          "text": "Eu tenho tendência a falar com uma voz monótona ( em outras palavras , menor inflexão da voz que a maioria das pessoas demonstram ).",
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 54,
+          "text": "Eu tenho uma tendência a pensar sobre as pessoas do mesmo jeito que eu faço com os objetos.",
+          "reverse": false,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 55,
+          "text": "Eu fico muito perto dos outros ou invado o espaço pessoal deles sem perceber.",
+          "reverse": true,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 56,
+          "text": "Às vezes eu cometo o erro de andar entre duas pessoas que estão tentando conversar uma com a outra.",
+          "reverse": false,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 57,
+          "text": "Eu tenho uma tendência a me isolar",
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 58,
+          "text": "Eu me concentro demais nas partes das coisas ao invés de ver a figura como um todo.",
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 59,
+          "text": "Eu sou mais desconfiado que a maioria das pessoas.",
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 60,
+          "text": "As outras pessoas me acham emocionalmente distante e que não demonstro meus sentimentos.",
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 61,
+          "text": "Eu tenho uma tendência a ser inflexível.",
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 62,
+          "text": "Quando eu conto a alguém a minha razão para fazer alguma coisa, a pessoa acha que é incomum, sem lógica.",
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 63,
+          "text": "Meu jeito de cumprimentar uma outra pessoa é incomum.",
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
+        },
+        {
+          "id": 64,
+          "text": "Eu sou muito mais tenso em situações sociais do que quando eu estou sozinho.",
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        },
+        {
+          "id": 65,
+          "text": "Eu me pego olhando fixo para o espaço.",
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
+        }
+      ],
+      "scales": [
+        {
+          "key": "percep_o_social",
+          "name": "PERCEPÇÃO SOCIAL",
+          "items": [
+            2,
+            7,
+            25,
+            32,
+            45,
+            52,
+            54,
+            56
+          ],
+          "label": "PERCEPÇÃO SOCIAL"
+        },
+        {
+          "key": "cogni_o_social",
+          "name": "COGNIÇÃO SOCIAL",
+          "items": [
+            5,
+            10,
+            15,
+            17,
+            30,
+            40,
+            42,
+            44,
+            48,
+            58,
+            59,
+            62
+          ],
+          "label": "COGNIÇÃO SOCIAL"
+        },
+        {
+          "key": "comunica_o_social",
+          "name": "COMUNICAÇÃO SOCIAL",
+          "items": [
+            12,
+            13,
+            16,
+            18,
+            19,
+            21,
+            22,
+            26,
+            33,
+            35,
+            36,
+            37,
+            38,
+            41,
+            46,
+            47,
+            51,
+            53,
+            55,
+            57,
+            60,
+            61
+          ],
+          "label": "COMUNICAÇÃO SOCIAL"
+        },
+        {
+          "key": "motiva_o_social",
+          "name": "MOTIVAÇÃO SOCIAL",
+          "items": [
+            1,
+            3,
+            6,
+            9,
+            11,
+            23,
+            27,
+            34,
+            43,
+            64,
+            65
+          ],
+          "label": "MOTIVAÇÃO SOCIAL"
+        },
+        {
+          "key": "padroes_restritivos_e_repetitivos",
+          "name": "PADROES RESTRITIVOS E REPETITIVOS",
+          "items": [
+            4,
+            8,
+            14,
+            20,
+            24,
+            28,
+            29,
+            31,
+            39,
+            49,
+            50,
+            63
+          ],
+          "label": "PADROES RESTRITIVOS E REPETITIVOS"
+        },
+        {
+          "key": "comunica_o_e_intera_o",
+          "name": "COMUNICAÇÃO E INTERAÇÃO",
+          "items": [
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            9,
+            10,
+            11,
+            12,
+            13,
+            15,
+            16,
+            17,
+            18,
+            19,
+            21,
+            22,
+            23,
+            25,
+            26,
+            27,
+            30,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            64,
+            65
+          ],
+          "label": "COMUNICAÇÃO E INTERAÇÃO"
+        },
+        {
+          "key": "total",
+          "name": "TOTAL",
+          "items": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65
+          ],
+          "label": "TOTAL"
         }
       ],
       "norms": {
@@ -4287,335 +5814,655 @@
           "min": 76,
           "label": "severo"
         }
-      ]
+      ],
+      "label": "Adulto — Autorrelato",
+      "answer_labels": {
+        "1": "Nunca",
+        "2": "Às vezes",
+        "3": "Frequentemente",
+        "4": "Quase sempre"
+      }
     },
     {
-      "form": "ADULTO HETERORRELATO",
+      "form": "adulto_heterorrelato",
       "items": [
         {
           "id": 1,
           "text": "Parece muito mais desconfortável em situações sociais do que quando está sozinha.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 2,
           "text": "As expressões em seu rosto não combinam com o que está dizendo.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 3,
           "text": "Parece confiante (ou segura) quando está interagindo com outras pessoas.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 4,
           "text": "Quando há sobrecarga de estímulos, apresenta padrões rígidos e inflexíveis de comportamento, frequentemente estranhos.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 5,
           "text": "Não percebe quando os outros estão tentando tirar vantagem dela.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 6,
           "text": "Prefere estar sozinha do que com os outros.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 7,
           "text": "Demonstra perceber o que os outros estão pensando ou sentindo.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 8,
           "text": "Se comporta de maneira estranha ou bizarra.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 9,
           "text": "Precisa da ajuda de outras pessoas para satisfazer suas necessidades básicas.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 10,
           "text": "Leva as coisas muito \"ao pé da letra\" e não compreende o real significado de uma conversa.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 11,
           "text": "É autoconfiante.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 12,
           "text": "É capaz de comunicar seus sentimentos para as outras pessoas.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 13,
           "text": "É estranha na \"tomada de vez\" das interações com seus colegas (por exemplo, não parece entender a reciprocidade de uma conversa).",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 14,
           "text": "Não tem boa coordenação.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 15,
           "text": "Reconhece e responde de forma apropriada às mudanças no tom de voz e expressões faciais dos outros.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 16,
           "text": "Evita o contato visual ou tem contato visual diferente.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 17,
           "text": "Reconhece quando algo é injusto.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 18,
           "text": "Tem dificuldade em fazer amigos, mesmo tentando dar o melhor de si.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 19,
           "text": "Fica frustrada tentando expressar suas ideias em uma conversa.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 20,
           "text": "Mostra interesses sensoriais incomuns (por exemplo, cheirar seus dedos com frequência) ou estranhos, como chacoalhar repetidamente pequenos itens.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 21,
           "text": "É capaz de imitar ações e comportamento de outras pessoas quando é socialmente apropriado fazê-lo",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 22,
           "text": "Interage apropriadamente com outros adultos.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 23,
           "text": "Não participa de atividades em grupo e eventos sociais a menos que seja convidada a fazê-lo.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 24,
           "text": "Tem mais dificuldade do que outras pessoas com mudanças em sua rotina.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 25,
           "text": "Não parece se importar em estar fora de sintonia ou em um \"mundo\" diferentes dos outros.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 26,
           "text": "Oferece conforto para os outros quando estão tristes.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 27,
           "text": "Evita iniciar interações sociais com outros adultos.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 28,
           "text": "Pensa ou fala sobre a mesma coisa repetidamente.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 29,
           "text": "É considerada estranha ou esquisita pelas outras pessoas.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 30,
           "text": "Fica perturbada em uma situação com muitas coisas acontecendo.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 31,
           "text": "Não consegue tirar algo da sua mente uma vez que começa a pensar sobre isso.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 32,
           "text": "Tem boa higiene pessoal.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 33,
           "text": "É socialmente desajeitada, mesmo quando tenta ser educada.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 34,
           "text": "Evita pessoas que querem se aproximar dela por meio de contato afetivo.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 35,
           "text": "Tem dificuldade em acompanhar o fluxo de uma conversa normal.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 36,
           "text": "Tem dificuldade em se relacionar com os membros da família.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 37,
           "text": "Tem dificuldade em se relacionar com adultos.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 38,
           "text": "Responde adequadamente às mudanças de humor das outras pessoas (por exemplo, quando o humor de um amigo muda de feliz para triste).",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 39,
           "text": "Tem uma variedade de interesses extraordinariamente incomuns.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 40,
           "text": "É imaginativa sem perder contato com a realidade.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 41,
           "text": "Muda de uma atividade para outra sem objetivo aparente.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 42,
           "text": "Parece excessivamente sensível aos sons, texturas ou cheiros.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 43,
           "text": "Gosta de se mostrar \"boa de conversa\" (conversa informal com os outros).",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 44,
           "text": "Não entende como os acontecimentos estão relacionados entre si (causa e efeito), da mesma forma que outros adultos.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 45,
           "text": "Geralmente fica interessada no que as pessoas próximas estão prestando atenção.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 46,
           "text": "Tem expressão facial excessivamente séria.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 47,
           "text": "Ri em momentos inapropriados.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 48,
           "text": "Tem senso de humor e entende as piadas.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 49,
           "text": "É extremamente hábil em tarefas intelectuais ou computacionais, mas não consegue fazer tão bem a maioria das outras tarefas.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 50,
           "text": "Tem comportamentos estranhos e repetitivos.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 51,
           "text": "Tem dificuldade em responder perguntas diretamente e acaba falando em torno do assunto.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 52,
           "text": "Sabe quando está falando muito alto ou fazendo muito barulho.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 53,
           "text": "Fala com as pessoas com um tom de voz incomum (por exemplo, fala como um robô ou como se estivesse dando uma palestra).",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 54,
           "text": "Parece agir com as pessoas como se elas fossem objetos.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 55,
           "text": "Sabe quando está muito próxima ou invadindo o espaço de alguém.",
-          "reverse": true
+          "reverse": true,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 56,
           "text": "Caminha entre duas pessoas que estão conversando.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "percep_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 57,
           "text": "Isolada; tende a não deixar sua casa.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 58,
           "text": "Concentra-se demais em partes das coisas ao invés de ver o todo.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 59,
           "text": "É excessivamente desconfiada.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 60,
           "text": "É emocionalmente distante, não demonstrando seus sentimentos.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 61,
           "text": "É inflexível e tem dificuldade para mudar de ideia.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "comunica_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 62,
           "text": "Dá explicações incomuns ou ilógicas do porquê de fazer as coisas.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "cogni_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 63,
           "text": "Toca ou cumprimenta os outros de uma maneira incomum.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "padroes_restritivos_e_repetitivos",
+            "total"
+          ]
         },
         {
           "id": 64,
           "text": "Fica muito agitada em situações sociais.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         },
         {
           "id": 65,
           "text": "Fica com olhar perdido ou olha fixamente para o nada.",
-          "reverse": false
+          "reverse": false,
+          "scales": [
+            "motiva_o_social",
+            "comunica_o_e_intera_o",
+            "total"
+          ]
         }
       ],
       "scales": [
@@ -4631,7 +6478,8 @@
             52,
             54,
             56
-          ]
+          ],
+          "label": "PERCEPÇÃO SOCIAL"
         },
         {
           "key": "cogni_o_social",
@@ -4649,7 +6497,8 @@
             58,
             59,
             62
-          ]
+          ],
+          "label": "COGNIÇÃO SOCIAL"
         },
         {
           "key": "comunica_o_social",
@@ -4677,7 +6526,8 @@
             57,
             60,
             61
-          ]
+          ],
+          "label": "COMUNICAÇÃO SOCIAL"
         },
         {
           "key": "motiva_o_social",
@@ -4694,7 +6544,8 @@
             43,
             64,
             65
-          ]
+          ],
+          "label": "MOTIVAÇÃO SOCIAL"
         },
         {
           "key": "padroes_restritivos_e_repetitivos",
@@ -4712,7 +6563,8 @@
             49,
             50,
             63
-          ]
+          ],
+          "label": "PADROES RESTRITIVOS E REPETITIVOS"
         },
         {
           "key": "comunica_o_e_intera_o",
@@ -4771,7 +6623,8 @@
             62,
             64,
             65
-          ]
+          ],
+          "label": "COMUNICAÇÃO E INTERAÇÃO"
         },
         {
           "key": "total",
@@ -4842,7 +6695,8 @@
             63,
             64,
             65
-          ]
+          ],
+          "label": "TOTAL"
         }
       ],
       "norms": {
@@ -5647,7 +7501,16 @@
           "min": 76,
           "label": "severo"
         }
-      ]
+      ],
+      "label": "Adulto — Heterorrelato",
+      "answer_labels": {
+        "1": "Nunca",
+        "2": "Às vezes",
+        "3": "Frequentemente",
+        "4": "Quase sempre"
+      }
     }
-  ]
+  ],
+  "version": "1.1",
+  "notes": "Adjusted for site engine: normalized form keys, added labels, derived item.scales; male school-age norms missing in source so Tscores will be null unless norms added."
 }
