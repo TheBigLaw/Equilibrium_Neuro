@@ -470,6 +470,8 @@ function montarRelatorio(data) {
   registrarPluginsChart();
 
   const { nome, cpf, sexo, escolaridade, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo, compostos } = data;
+  const faixaEtariaTxt = data?.faixa ?? ""; // ou o texto que você já exibe no relatório
+  const textoInterp = gerarTextoInterpretativoWISC({ nome, compostos, faixaEtariaTxt });
   const cpfTxt = formatarCPF(cpf);
   const sexoTxt = sexo;
   const escTxt = escolaridade;
@@ -593,6 +595,11 @@ function montarRelatorio(data) {
     </table>
   </div>
 
+</div>
+
+<div class="section no-break">
+  <h3>Interpretação (síntese)</h3>
+  ${textoInterp.split("\n\n").map(p => `<p class="interp">${p}</p>`).join("")}
 </div>
 
       <div class="report-footer">
@@ -799,6 +806,119 @@ async function esperarImagensCarregarem(container){
       img.onerror = () => resolve(); // não trava o PDF
     });
   }));
+}
+
+function pctText(p){
+  if(p == null || p === "" || Number.isNaN(+p)) return "—";
+  return `${+p} %`;
+}
+
+function fmtICRange(ic){
+  if(!ic) return "—";
+  if(Array.isArray(ic)) return `${ic[0]}–${ic[1]}`;
+  return String(ic).replace(",", "–");
+}
+
+// Classificação típica para índices/QIT (WISC-IV usa média 100, DP 15)
+function classByCompositeWISC(score){
+  const s = +score;
+  if(Number.isNaN(s)) return null;
+  if(s >= 130) return "Muito Superior";
+  if(s >= 120) return "Superior";
+  if(s >= 110) return "Médio Superior";
+  if(s >= 90)  return "Médio";
+  if(s >= 80)  return "Médio Inferior";
+  if(s >= 70)  return "Limítrofe";
+  return "Extremamente Baixo";
+}
+
+function introVerbByClass(cls){
+  const map = {
+    "Muito Superior": "situa-se muito acima",
+    "Superior": "situa-se acima",
+    "Médio Superior": "situa-se acima",
+    "Médio": "situa-se na faixa média",
+    "Médio Inferior": "situa-se ligeiramente abaixo",
+    "Limítrofe": "situa-se abaixo",
+    "Extremamente Baixo": "situa-se muito abaixo",
+  };
+  return map[cls] || "situa-se";
+}
+
+function wiscScaleLabelLong(key){
+  const map = {
+    QIT: "QI Total (QIT)",
+    ICV: "Índice de Compreensão Verbal (ICV)",
+    IOP: "Índice de Organização Perceptual (IOP)",
+    IMO: "Índice de Memória Operacional (IMO)",
+    IVP: "Índice de Velocidade de Processamento (IVP)",
+  };
+  return map[key] || key;
+}
+
+function wiscAbilityDescription(key){
+  const map = {
+    QIT: "funcionamento intelectual global",
+
+    ICV: "raciocínio verbal, formação de conceitos e conhecimento adquirido",
+    IOP: "raciocínio fluido não verbal, processamento visuoespacial e integração visomotora",
+    IMO: "atenção, memória de curto prazo e manipulação mental de informações",
+    IVP: "rapidez e eficiência no processamento de informações visuais simples sob demanda de tempo",
+  };
+  return map[key] || "habilidades cognitivas avaliadas";
+}
+
+function makeWiscParagraph({ nome, key, comp, percentil, ic95, faixaEtariaTxt }){
+  const cls = classByCompositeWISC(comp);
+  const verb = introVerbByClass(cls);
+  const label = wiscScaleLabelLong(key);
+  const abil = wiscAbilityDescription(key);
+
+  const openings = [
+    `${nome}, ${label}:`,
+    `Quanto ao ${label},`,
+    `Em relação ao ${label},`,
+  ];
+  const open = openings[Math.floor(Math.random() * openings.length)];
+
+  const pTxt = pctText(percentil);
+  const icTxt = fmtICRange(ic95);
+
+  const faixa = faixaEtariaTxt ? ` (faixa etária normativa: ${faixaEtariaTxt})` : "";
+
+  return `${open} as habilidades relacionadas a ${abil} ${verb} em comparação a crianças da mesma faixa etária${faixa} (pontuação composta = ${comp}; percentil ≈ ${pTxt}; IC 95% = ${icTxt}${cls ? `; classificação: ${cls}` : ""}).`;
+}
+
+/**
+ * Gera síntese interpretativa estilo laudo para WISC-IV.
+ * Espera um objeto "compostos" no formato:
+ * { ICV:{composto,percentil,ic95}, IOP:{...}, IMO:{...}, IVP:{...}, QIT:{...} }
+ */
+function gerarTextoInterpretativoWISC({ nome, compostos, faixaEtariaTxt }){
+  const keys = ["QIT","ICV","IOP","IMO","IVP"];
+  const parts = [];
+
+  // parágrafo introdutório (opcional) no estilo “decisão de subtestes”
+  parts.push(
+    `O WISC-IV permite a interpretação por meio do QI Total (QIT) e dos Índices fatoriais (ICV, IOP, IMO e IVP), considerando a consistência do perfil e a adequação da faixa etária normativa aplicada.`
+  );
+
+  for(const key of keys){
+    const c = compostos?.[key];
+    if(!c?.composto) continue;
+    parts.push(
+      makeWiscParagraph({
+        nome,
+        key,
+        comp: c.composto,
+        percentil: c.percentil,
+        ic95: c.ic95,
+        faixaEtariaTxt,
+      })
+    );
+  }
+
+  return parts.join("\n\n");
 }
 
 function limparCPF(cpf){
