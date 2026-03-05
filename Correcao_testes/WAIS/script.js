@@ -231,7 +231,22 @@ function renderMatrizConversao({ resultados, indicesInfo, somas }) {
     IVP:    new Set(["CD","PS"]),
   };
 
-  const ordem = ["CF","VC","CD","SM","CB","AR","RM","DG","IN","AF","CO","PS","SNL","AO"];
+  const ordem = [
+  "CF", // Completar Figuras
+  "VC", // Vocabulário
+  "CD", // Códigos
+  "SM", // Semelhanças
+  "CB", // Cubos
+  "AR", // Aritmética
+  "RM", // Raciocínio Matricial
+  "DG", // Dígitos
+  "IN", // Informação
+  "AF", // Arranjo de Figuras
+  "CO", // Compreensão
+  "PS", // Procurar Símbolos
+  "SNL", // Sequência de Números e Letras
+  "AO"  // Armar Objetos
+];
 
   const linhas = ordem.map(codigo => {
     const r = resultados[codigo] || { bruto: "", ponderado: "" };
