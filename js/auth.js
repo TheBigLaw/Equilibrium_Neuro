@@ -5,7 +5,7 @@ const REPO_BASE = "/";
 
 const USERS = [
   { id: "1", label: "Admin", password: "3639" },
-  { id: "2", label: "Anna Luiza", password: "0000" },
+  { id: "2", label: "Natalia", password: "0000" },
   { id: "3", label: "Usuário 3", password: "3333" },
   { id: "4", label: "Usuário 4", password: "4444" },
 ];
