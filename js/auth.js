@@ -60,7 +60,7 @@ function guardAuth(){
 
   if(isAuthed()) return true;
 
-  location.href = REPO_BASE + "login.html";
+  location.href = REPO_BASE + "/";
   return false;
 }
 
