@@ -43,7 +43,7 @@
       erro.textContent = "";
       const res = doLogin({ userId: sel.value, password: senha.value });
       if (!res.ok) { erro.textContent = res.message || "Erro no login."; return; }
-      location.href = "index.html";
+      location.href = "/";
     });
   </script>
 
