@@ -30,23 +30,22 @@ async function carregarNormas(){
 }
 
 // Subtestes WAIS-III (BR) — Verbais + Execução
+
 const SUBTESTES = [
-  // VERBAIS
+  // ordem desejada (igual à sua lista)
+  { nome: "Completar Figuras", codigo: "CF", id: "pb_CF" },
   { nome: "Vocabulário", codigo: "VC", id: "pb_VC" },
+  { nome: "Códigos", codigo: "CD", id: "pb_CD" },
   { nome: "Semelhanças", codigo: "SM", id: "pb_SM" },
+  { nome: "Cubos", codigo: "CB", id: "pb_CB" },
   { nome: "Aritmética", codigo: "AR", id: "pb_AR" },
+  { nome: "Raciocínio Matricial", codigo: "RM", id: "pb_RM" },
   { nome: "Dígitos", codigo: "DG", id: "pb_DG" },
   { nome: "Informação", codigo: "IN", id: "pb_IN" },
-  { nome: "Compreensão", codigo: "CO", id: "pb_CO" },
-  { nome: "Sequência de Números e Letras", codigo: "SNL", id: "pb_SNL" },
-
-  // EXECUÇÃO
-  { nome: "Completar Figuras", codigo: "CF", id: "pb_CF" },
-  { nome: "Códigos", codigo: "CD", id: "pb_CD" },
-  { nome: "Cubos", codigo: "CB", id: "pb_CB" },
-  { nome: "Raciocínio Matricial", codigo: "RM", id: "pb_RM" },
   { nome: "Arranjo de Figuras", codigo: "AF", id: "pb_AF" },
+  { nome: "Compreensão", codigo: "CO", id: "pb_CO" },
   { nome: "Procurar Símbolos", codigo: "PS", id: "pb_PS" },
+  { nome: "Sequência de Números e Letras", codigo: "SNL", id: "pb_SNL" },
   { nome: "Armar Objetos", codigo: "AO", id: "pb_AO" },
 ];
 
