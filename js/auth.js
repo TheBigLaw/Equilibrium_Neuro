@@ -50,7 +50,7 @@ function doLogin({ userId, password }){
 
 function logout(){
   clearAuth();
-  location.href = REPO_BASE + "login.html";
+  location.href = REPO_BASE + "";
 }
 
 function guardAuth(){
