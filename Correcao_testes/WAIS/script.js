@@ -1117,3 +1117,25 @@ async function imprimirRelatorio(){
 
   window.print();
 }
+
+async function testarAPIWais() {
+  try {
+    const resposta = await fetch("http://localhost:3000/wais/calcular", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        nome: "Andre",
+        teste: "WAIS"
+      })
+    });
+
+    const dados = await resposta.json();
+    console.log("Resposta da API:", dados);
+    alert("API respondeu com sucesso");
+  } catch (erro) {
+    console.error("Erro ao chamar API:", erro);
+    alert("Erro ao chamar API");
+  }
+}
