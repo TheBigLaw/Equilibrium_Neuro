@@ -324,7 +324,7 @@ function atualizarPreviewIdade(){
 
   if(!nasc || !apl){ idadeEl.textContent=""; faixaEl.textContent=""; return; }
 
-  const idade = calcularIdade(nasc, apl); // ✅ aqui
+  const idade = Idade(nasc, apl); // ✅ aqui
   if(!idade){ idadeEl.textContent="Datas inválidas."; faixaEl.textContent=""; return; }
 
   idadeEl.textContent = `Idade na aplicação: ${idade.anos} anos e ${idade.meses} meses.`;
@@ -448,19 +448,21 @@ await esperarImagensCarregarem(rel);
 // pequeno delay para assegurar renderização dos gráficos/canvas
 await new Promise(r => setTimeout(r, 150));
 
-//await html2pdf().set({
-// margin: [8, 8, 8, 8],
-//  filename: `WISC-IV_${nome}.pdf`,
-//  pagebreak: { mode: ["css", "legacy"], avoid: ".no-break" },
-//  html2canvas: {
-//    scale: 2,
-//    useCORS: true,
-//    allowTaint: false,
-//    backgroundColor: "#ffffff",
-//    imageTimeout: 15000
-//  },
-//  jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
-//}).from(rel).save();
+const pdfBlob = await html2pdf().set({
+ margin: [8,8,8,8],
+ filename: `${nome} - WAIS.pdf`,
+ pagebreak: { mode:["css","legacy"], avoid:".no-break" },
+ html2canvas:{
+   scale:2,
+   useCORS:true,
+   allowTaint:false,
+   backgroundColor:"#ffffff",
+   imageTimeout:15000
+ },
+ jsPDF:{ unit:"mm", format:"a4", orientation:"portrait" }
+}).from(rel).outputPdf("blob");
+
+await salvarPDFnoFirebase(pdfBlob,nome,"WAIS");
 
 const laudos = getLaudos();
       laudos.unshift({
