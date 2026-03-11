@@ -369,7 +369,7 @@ function validarCPF(cpfInput){
 
 async function calcular(salvar){
   try{
-    const { rawNorms, compNorms } = await carregarNormas();
+
     const nome = (document.getElementById("nome")?.value || "").trim();
     const nasc = document.getElementById("dataNascimento")?.value;
     const apl  = document.getElementById("dataAplicacao")?.value;
@@ -377,70 +377,121 @@ async function calcular(salvar){
     const sexo = document.getElementById("sexo")?.value || "";
     const escolaridade = document.getElementById("escolaridade")?.value || "";
 
-    if(!nome || !nasc || !apl){ alert("Preencha Nome, Nascimento e Aplicação."); return; }
-
-    const idade = calcularIdade(nasc, apl);
-    if(!idade){ alert("Datas inválidas."); return; }
-    if(!cpf || !sexo || !escolaridade){alert("Preencha CPF, sexo e escolaridade.");return;}
-    if(!validarCPF(cpf)){alert("CPF inválido. Verifique e tente novamente.");return;}
-
-    const faixa = faixaEtariaWAISIII(idade);
-    if(!faixa){ alert("Faixa normativa não encontrada."); return; }
-
-    const resultados = {};
-    const pondByCode = {};
-
-    for(const s of SUBTESTES){
-      const v = document.getElementById(s.id)?.value;
-      if(v === "" || v == null) continue;
-      const bruto = Number(v);
-      if(Number.isNaN(bruto) || bruto < 0){ alert(`Valor inválido em ${s.nome}`); return; }
-
-      const pond = rawToScaledWAIS(rawNorms, faixa, s.codigo, bruto);
-      if(pond == null){ alert(`PB fora da norma em ${s.nome} (${s.codigo}) para faixa ${faixa}`); return; }
-
-      resultados[s.codigo] = {
-        nome: s.nome,
-        codigo: s.codigo,
-        bruto,
-        ponderado: pond,
-        classificacao: classificarPonderado(pond)
-      };
-      pondByCode[s.codigo] = pond;
+    if(!nome || !nasc || !apl){
+      alert("Preencha Nome, Nascimento e Aplicação.");
+      return;
     }
 
-    // somatórios WAIS-III
-const somas = {};
-for (const [tipo, codigos] of Object.entries(WAIS_SCALES)) {
-  somas[tipo] = somarEscala(pondByCode, codigos);
+    const idade = calcularIdade(nasc, apl);
+
+    if(!idade){
+      alert("Datas inválidas.");
+      return;
+    }
+
+    if(!cpf || !sexo || !escolaridade){
+      alert("Preencha CPF, sexo e escolaridade.");
+      return;
+    }
+
+    if(!validarCPF(cpf)){
+      alert("CPF inválido.");
+      return;
+    }
+
+    const faixa = faixaEtariaWAISIII(idade);
+
+    if(!faixa){
+      alert("Faixa normativa não encontrada.");
+      return;
+    }
+
+    // =====================
+    // coletar subtestes
+    // =====================
+
+    const subtestes = {};
+
+    for(const s of SUBTESTES){
+
+      const v = document.getElementById(s.id)?.value;
+
+      if(v === "" || v == null) continue;
+
+      const bruto = Number(v);
+
+      if(Number.isNaN(bruto) || bruto < 0){
+        alert(`Valor inválido em ${s.nome}`);
+        return;
+      }
+
+      subtestes[s.codigo] = bruto;
+    }
+
+    if(Object.keys(subtestes).length === 0){
+      alert("Preencha ao menos um subteste.");
+      return;
+    }
+
+    // =====================
+    // chamar API
+    // =====================
+
+    const response = await fetch(
+      "https://equilibrium-api-yjxx.onrender.com/wais/calcular",
+      {
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body: JSON.stringify({
+          idade,
+          faixa,
+          subtestes
+        })
+      }
+    );
+
+    const apiResultado = await response.json();
+
+    const resultados = apiResultado.resultados;
+    const somas = apiResultado.somas;
+    const compostos = apiResultado.compostos;
+
+    // =====================
+    // compatibilidade relatório
+    // =====================
+
+    const indicesInfo = {
+      ICV: somas.ICV,
+      IOP: somas.IOP,
+      IMO: somas.IMO,
+      IVP: somas.IVP,
+    };
+
+    const qiInfo = somas.QI_TOTAL;
+
+    montarRelatorio({
+      nome,
+      cpf,
+      sexo,
+      escolaridade,
+      nasc,
+      apl,
+      idade,
+      faixa,
+      resultados,
+      indicesInfo,
+      qiInfo,
+      somas,
+      compostos
+    });
+
+  }catch(e){
+    console.error(e);
+    alert("Erro ao calcular.");
+  }
 }
-console.log("SOMAS WAIS:", somas);
-
-    const compostos = {
-  ICV: sumToCompositeWAIS(compNorms, "ICV", somas.ICV.soma),
-  IOP: sumToCompositeWAIS(compNorms, "IOP", somas.IOP.soma),
-  IMO: sumToCompositeWAIS(compNorms, "IMO", somas.IMO.soma),
-  IVP: sumToCompositeWAIS(compNorms, "IVP", somas.IVP.soma),
-  QI_VERBAL: sumToCompositeWAIS(compNorms, "QI_VERBAL", somas.QI_VERBAL.soma),
-  QI_EXECUCAO: sumToCompositeWAIS(compNorms, "QI_EXECUCAO", somas.QI_EXECUCAO.soma),
-  QI_TOTAL: sumToCompositeWAIS(compNorms, "QI_TOTAL", somas.QI_TOTAL.soma),
-};
-
-console.log("COMPOSTOS WAIS:", compostos);
-
-    if(Object.keys(pondByCode).length === 0){ alert("Preencha ao menos um subteste."); return; }
-
-const indicesInfo = {
-  ICV: somas.ICV,
-  IOP: somas.IOP,
-  IMO: somas.IMO,
-  IVP: somas.IVP,
-};
-
-const qiInfo = somas.QI_TOTAL; // mantém compatível com relatório atual
-
-    montarRelatorio({ nome, cpf, sexo, escolaridade, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo, somas, compostos});
-
     if(salvar){
       const rel = document.getElementById("relatorio");
       // garante logo/imagens antes do canvas (especialmente no iOS)
@@ -1155,12 +1206,3 @@ async function testarAPIWais() {
         teste: "WAIS"
       })
     });
-
-    const dados = await resposta.json();
-    console.log("Resposta da API:", dados);
-    alert("API respondeu com sucesso");
-  } catch (erro) {
-    console.error("Erro ao chamar API:", erro);
-    alert("Erro ao chamar API");
-  }
-}
