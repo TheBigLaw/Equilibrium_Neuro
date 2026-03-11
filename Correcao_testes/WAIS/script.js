@@ -462,7 +462,7 @@ const pdfBlob = await html2pdf().set({
  jsPDF:{ unit:"mm", format:"a4", orientation:"portrait" }
 }).from(rel).outputPdf("blob");
 
-await salvarPDFnoFirebase(pdfBlob,nome,"WAIS");
+await salvarPDF(pdfBlob,nome,"WAIS");
 
 const laudos = getLaudos();
       laudos.unshift({
