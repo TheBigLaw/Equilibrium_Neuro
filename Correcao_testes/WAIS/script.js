@@ -1,4 +1,4 @@
-
+import { salvarPDF } from "/js/salvar-pdf.js";
 console.log("SCRIPT WAIS CARREGADO v3");
 // tests/wais/script.js
 
