@@ -528,12 +528,6 @@ const laudos = getLaudos();
       alert("Laudo salvo!");
     }
 
-  catch(e){
-    console.error(e);
-    alert("Erro ao calcular. Verifique os arquivos em /WAIS/data (waisiii_raw_to_scaled_br.json e waisiii_sum_to_composite_br.json).");
-  }
-}
-
 // ================= RELATÓRIO + GRÁFICOS + PDF =================
 let chartSub = null;
 let chartIdx = null;
