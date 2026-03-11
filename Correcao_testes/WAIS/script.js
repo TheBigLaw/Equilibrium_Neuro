@@ -1186,17 +1186,3 @@ async function testarAPIWais() {
     alert("Erro ao chamar API");
   }
 }
-
-//API - IMPLEMENTADO POR ANDRE//
-async function testarAPIWais() {
-  try {
-    const resposta = await fetch("http://localhost:3000/wais/calcular", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        nome: "Andre",
-        teste: "WAIS"
-      })
-    });
