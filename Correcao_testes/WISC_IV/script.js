@@ -1,222 +1,34 @@
-console.log("SCRIPT WISC CARREGADO v3");
-// tests/wisciv/script.js
+console.log("SCRIPT WISC-IV CARREGADO - API INTEGRAD");
+const LAUDOS_KEY = "empresa_laudos_wisc";
 
-const LAUDOS_KEY = "empresa_laudos_wisciv_v1";
-
-let NORMAS = null;
-async function carregarNormas(){
-  if(NORMAS) return NORMAS;
-  const resp = await fetch("data/normas-wisciv.json", { cache:"no-store" });
-  if(!resp.ok) throw new Error("Não foi possível carregar data/normas-wisciv.json");
-  NORMAS = await resp.json();
-  return NORMAS;
-}
-
-let COMPOSTOS = null;
-
-async function carregarCompostos(){
-  if (COMPOSTOS) return COMPOSTOS;
-  const resp = await fetch("data/compostos-wisciv.json", { cache:"no-store" });
-  if (!resp.ok) throw new Error("Não foi possível carregar data/compostos-wisciv.json");
-  COMPOSTOS = await resp.json();
-  return COMPOSTOS;
-}
-
-function somaParaComposto(compostos, escala, soma){
-  if (soma == null) return null;
-  const tabela = compostos?.[escala];
-  if (!Array.isArray(tabela)) return null;
-  return tabela.find(x => Number(x.soma) === Number(soma)) || null;
-}
-
-// Subtestes (ordem objetiva)
 const SUBTESTES = [
-  { nome: "Cubos", codigo: "CB", id:"pb_CB" },
-  { nome: "Semelhanças", codigo: "SM", id:"pb_SM" },
-  { nome: "Dígitos", codigo: "DG", id:"pb_DG" },
-  { nome: "Conceitos Figurativos", codigo: "CN", id:"pb_CN" },
-  { nome: "Código", codigo: "CD", id:"pb_CD" },
-  { nome: "Vocabulário", codigo: "VC", id:"pb_VC" },
-  { nome: "Seq. de Números e Letras", codigo: "SNL", id:"pb_SNL" },
-  { nome: "Raciocínio Matricial", codigo: "RM", id:"pb_RM" },
-  { nome: "Compreensão", codigo: "CO", id:"pb_CO" },
-  { nome: "Procurar Símbolos", codigo: "PS", id:"pb_PS" },
-  // suplementares
-  { nome: "Completar Figuras", codigo: "CF", id:"pb_CF" },
-  { nome: "Cancelamento", codigo: "CA", id:"pb_CA" },
-  { nome: "Informação", codigo: "IN", id:"pb_IN" },
-  { nome: "Aritmética", codigo: "AR", id:"pb_AR" },
-  { nome: "Raciocínio com Palavras", codigo: "RP", id:"pb_RP" },
+  { nome: "Cubos", codigo: "CB", id: "pb_CB" },
+  { nome: "Semelhanças", codigo: "SM", id: "pb_SM" },
+  { nome: "Dígitos", codigo: "DG", id: "pb_DG" },
+  { nome: "Conceitos Figurativos", codigo: "CN", id: "pb_CN" },
+  { nome: "Código", codigo: "CD", id: "pb_CD" },
+  { nome: "Vocabulário", codigo: "VC", id: "pb_VC" },
+  { nome: "Seq. Núm. e Letras", codigo: "SNL", id: "pb_SNL" },
+  { nome: "Raciocínio Matricial", codigo: "RM", id: "pb_RM" },
+  { nome: "Compreensão", codigo: "CO", id: "pb_CO" },
+  { nome: "Procurar Símbolos", codigo: "PS", id: "pb_PS" },
+  { nome: "Completar Figuras", codigo: "CF", id: "pb_CF" },
+  { nome: "Cancelamento", codigo: "CA", id: "pb_CA" },
+  { nome: "Informação", codigo: "IN", id: "pb_IN" },
+  { nome: "Aritmética", codigo: "AR", id: "pb_AR" },
+  { nome: "Raciocínio com Palavras", codigo: "RP", id: "pb_RP" }
 ];
-
-const INDICES = {
-  ICV: { nome: "ICV", core: ["SM","VC","CO"], supl: ["IN","RP"], n: 3 },
-  IOP: { nome: "IOP", core: ["CB","CN","RM"], supl: ["CF"], n: 3 },
-  IMO: { nome: "IMO", core: ["DG","SNL"], supl: ["AR"], n: 2 },
-  IVP: { nome: "IVP", core: ["CD","PS"], supl: ["CA"], n: 2 },
-};
-
-const QI_CORE = ["SM","VC","CO","CB","CN","RM","DG","SNL","CD","PS"];
 
 function calcularIdade(nascISO, aplISO) {
   if (!nascISO || !aplISO) return null;
   const n = new Date(nascISO);
   const a = new Date(aplISO);
   if (isNaN(n.getTime()) || isNaN(a.getTime()) || a < n) return null;
-
   let anos = a.getFullYear() - n.getFullYear();
   let meses = a.getMonth() - n.getMonth();
   if (a.getDate() < n.getDate()) meses -= 1;
   if (meses < 0) { anos -= 1; meses += 12; }
   return { anos, meses, totalMeses: anos * 12 + meses };
-}
-
-function faixaEtaria(normas, idade) {
-  if (!idade) return null;
-  const total = idade.totalMeses;
-
-  for (const faixa of Object.keys(normas || {})) {
-    const [ini, fim] = faixa.split("-");
-    if (!ini || !fim) continue;
-    const [ai, mi] = ini.split(":").map(Number);
-    const [af, mf] = fim.split(":").map(Number);
-    if ([ai,mi,af,mf].some(x => Number.isNaN(x))) continue;
-
-    const min = ai * 12 + mi;
-    const max = af * 12 + mf;
-    if (total >= min && total <= max) return faixa;
-  }
-  return null;
-}
-
-function brutoParaPonderado(normas, faixa, codigo, bruto) {
-  const regras = normas?.[faixa]?.subtestes?.[codigo];
-  if (!Array.isArray(regras)) return null;
-  const r = regras.find(x => bruto >= x.min && bruto <= x.max);
-  return r ? Number(r.ponderado) : null;
-}
-
-function classificarPonderado(p) {
-  if (p <= 4) return "Muito Inferior";
-  if (p <= 6) return "Inferior";
-  if (p <= 8) return "Médio Inferior";
-  if (p <= 11) return "Médio";
-  if (p <= 13) return "Médio Superior";
-  if (p <= 15) return "Superior";
-  return "Muito Superior";
-}
-
-function somarIndice(pondByCode, def) {
-  let usados = def.core.filter(c => pondByCode[c] != null);
-  if (usados.length < def.n && def.supl?.length) {
-    for (const s of def.supl) {
-      if (pondByCode[s] != null) { usados.push(s); break; }
-    }
-  }
-  if (usados.length !== def.n) return { soma: null, usados };
-  const soma = usados.reduce((acc, c) => acc + Number(pondByCode[c]), 0);
-  return { soma, usados };
-}
-
-function somarQI(pondByCode) {
-  const usados = QI_CORE.filter(c => pondByCode[c] != null);
-  if (usados.length !== 10) return { soma: null, usados };
-  const soma = usados.reduce((a,c)=>a+Number(pondByCode[c]),0);
-  return { soma, usados };
-}
-
-function obterNomeSubteste(codigo){
-  const map = {
-    CB:"Cubos", SM:"Semelhanças", DG:"Dígitos", CN:"Conceitos Figurativos", CD:"Código",
-    VC:"Vocabulário", SNL:"Seq. Núm. e Letras", RM:"Raciocínio Matricial", CO:"Compreensão",
-    PS:"Procurar Símbolos", CF:"Completar Figuras", CA:"Cancelamento", IN:"Informação",
-    AR:"Aritmética", RP:"Raciocínio com Palavras"
-  };
-  return map[codigo] || codigo;
-}
-
-function cellIndice(codigo, setUsado, setPossivel, resultados) {
-  if (!setPossivel.has(codigo)) return `<td class="idx"></td>`;
-  if (!setUsado.has(codigo)) return `<td class="idx fill empty"></td>`;
-  const r = resultados[codigo];
-  if (!r) return `<td class="idx fill"></td>`;
-  const suplementar = ["CF","CA","IN","AR","RP"].includes(codigo);
-  const cls = suplementar ? "pill sup" : "pill";
-  return `<td class="idx fill"><span class="${cls}">${r.ponderado}</span></td>`;
-}
-
-function renderMatrizConversao({ resultados, indicesInfo, qiInfo }) {
-  const usadosICV = new Set(indicesInfo?.ICV?.usados || []);
-  const usadosIOP = new Set(indicesInfo?.IOP?.usados || []);
-  const usadosIMO = new Set(indicesInfo?.IMO?.usados || []);
-  const usadosIVP = new Set(indicesInfo?.IVP?.usados || []);
-  const usadosQI  = new Set(qiInfo?.usados || []);
-
-  const possiveis = {
-    ICV: new Set(["SM","VC","CO","IN","RP"]),
-    IOP: new Set(["CB","CN","RM","CF"]),
-    IMO: new Set(["DG","SNL","AR"]),
-    IVP: new Set(["CD","PS","CA"]),
-  };
-
-  const ordem = ["CB","SM","DG","CN","CD","VC","SNL","RM","CO","PS","CF","CA","IN","AR","RP"];
-
-  const linhas = ordem.map(codigo => {
-    const r = resultados[codigo] || { bruto: "", ponderado: "" };
-    const nome = obterNomeSubteste(codigo);
-
-    const qitCell =
-      usadosQI.has(codigo) && resultados[codigo]
-        ? `<td class="idx fill"><span class="pill">${resultados[codigo].ponderado}</span></td>`
-        : usadosQI.has(codigo)
-          ? `<td class="idx fill empty"></td>`
-          : `<td class="idx"></td>`;
-
-    return `
-      <tr>
-        <td class="col-sub"><b>${nome}</b> <span class="muted">(${codigo})</span></td>
-        <td class="col-pb">${r.bruto ?? ""}</td>
-        <td class="col-pp">${r.ponderado ?? ""}</td>
-        ${cellIndice(codigo, usadosICV, possiveis.ICV, resultados)}
-        ${cellIndice(codigo, usadosIOP, possiveis.IOP, resultados)}
-        ${cellIndice(codigo, usadosIMO, possiveis.IMO, resultados)}
-        ${cellIndice(codigo, usadosIVP, possiveis.IVP, resultados)}
-        ${qitCell}
-      </tr>
-    `;
-  }).join("");
-
-  return `
-    <table class="wisc-matrix">
-      <thead>
-        <tr>
-          <th class="col-sub">Subtestes</th>
-          <th class="col-pb">PB</th>
-          <th class="col-pp">Ponderado</th>
-          <th colspan="5">Contribuição (Pontos Ponderados)</th>
-        </tr>
-        <tr>
-          <th></th><th></th><th></th>
-          <th class="idx">ICV</th>
-          <th class="idx">IOP</th>
-          <th class="idx">IMO</th>
-          <th class="idx">IVP</th>
-          <th class="idx">QIT</th>
-        </tr>
-      </thead>
-      <tbody>${linhas}</tbody>
-      <tfoot>
-        <tr>
-          <td class="sum-label" colspan="3">Soma dos Pontos Ponderados</td>
-          <td>${indicesInfo?.ICV?.soma ?? "—"}</td>
-          <td>${indicesInfo?.IOP?.soma ?? "—"}</td>
-          <td>${indicesInfo?.IMO?.soma ?? "—"}</td>
-          <td>${indicesInfo?.IVP?.soma ?? "—"}</td>
-          <td>${qiInfo?.soma ?? "—"}</td>
-        </tr>
-      </tfoot>
-    </table>
-  `;
 }
 
 function montarInputsSubtestes(){
@@ -241,26 +53,36 @@ function atualizarPreviewIdade(){
   if(!idadeEl || !faixaEl) return;
 
   if(!nasc || !apl){ idadeEl.textContent=""; faixaEl.textContent=""; return; }
+
   const idade = calcularIdade(nasc, apl);
   if(!idade){ idadeEl.textContent="Datas inválidas."; faixaEl.textContent=""; return; }
 
   idadeEl.textContent = `Idade na aplicação: ${idade.anos} anos e ${idade.meses} meses.`;
-  carregarNormas().then(normas=>{
-    const faixa = faixaEtaria(normas, idade);
-    faixaEl.textContent = faixa ? `Faixa normativa: ${faixa}` : "Faixa normativa: não encontrada.";
-  }).catch(()=>{});
+  faixaEl.textContent = "Faixa normativa será definida no laudo."; // A API fará o cálculo exato da faixa em meses
 }
 
-function getLaudos(){
-  return JSON.parse(localStorage.getItem(LAUDOS_KEY) || "[]");
-}
-function setLaudos(arr){
-  localStorage.setItem(LAUDOS_KEY, JSON.stringify(arr));
+function getLaudos(){ return JSON.parse(localStorage.getItem(LAUDOS_KEY) || "[]"); }
+function setLaudos(arr){ localStorage.setItem(LAUDOS_KEY, JSON.stringify(arr)); }
+function limparCPF(cpf){ return (cpf || "").replace(/\D/g, ""); }
+
+function validarCPF(cpfInput){
+  const cpf = limparCPF(cpfInput);
+  if (cpf.length !== 11) return false;
+  if (/^(\d)\1{10}$/.test(cpf)) return false;
+  let soma = 0;
+  for (let i = 0; i < 9; i++) soma += Number(cpf[i]) * (10 - i);
+  let d1 = (soma * 10) % 11;
+  if (d1 === 10) d1 = 0;
+  soma = 0;
+  for (let i = 0; i < 10; i++) soma += Number(cpf[i]) * (11 - i);
+  let d2 = (soma * 10) % 11;
+  if (d2 === 10) d2 = 0;
+  return d1 === Number(cpf[9]) && d2 === Number(cpf[10]);
 }
 
+// === A FUNÇÃO QUE CONECTA COM A API ===
 async function calcular(salvar){
   try{
-    const normas = await carregarNormas();
     const nome = (document.getElementById("nome")?.value || "").trim();
     const nasc = document.getElementById("dataNascimento")?.value;
     const apl  = document.getElementById("dataAplicacao")?.value;
@@ -269,746 +91,266 @@ async function calcular(salvar){
     const escolaridade = document.getElementById("escolaridade")?.value || "";
 
     if(!nome || !nasc || !apl){ alert("Preencha Nome, Nascimento e Aplicação."); return; }
-
-    const idade = calcularIdade(nasc, apl);
-    if(!idade){ alert("Datas inválidas."); return; }
     if(!cpf || !sexo || !escolaridade){alert("Preencha CPF, sexo e escolaridade.");return;}
     if(!validarCPF(cpf)){alert("CPF inválido. Verifique e tente novamente.");return;}
 
-    const faixa = faixaEtaria(normas, idade);
-    if(!faixa){ alert("Faixa normativa não encontrada."); return; }
-
-
-
-    const resultados = {};
-    const pondByCode = {};
-
+    const brutos = {};
     for(const s of SUBTESTES){
       const v = document.getElementById(s.id)?.value;
-      if(v === "" || v == null) continue;
-      const bruto = Number(v);
-      if(Number.isNaN(bruto) || bruto < 0){ alert(`Valor inválido em ${s.nome}`); return; }
-
-      const pond = brutoParaPonderado(normas, faixa, s.codigo, bruto);
-      if(pond == null){ alert(`PB fora da norma em ${s.nome} (${s.codigo}) para faixa ${faixa}`); return; }
-
-      resultados[s.codigo] = {
-        nome: s.nome,
-        codigo: s.codigo,
-        bruto,
-        ponderado: pond,
-        classificacao: classificarPonderado(pond)
-      };
-      pondByCode[s.codigo] = pond;
+      if(v !== "" && v != null) {
+        const bruto = Number(v);
+        if(Number.isNaN(bruto) || bruto < 0){ alert(`Valor inválido em ${s.nome}`); return; }
+        brutos[s.codigo] = bruto;
+      }
     }
 
-    if(Object.keys(pondByCode).length === 0){ alert("Preencha ao menos um subteste."); return; }
+    if(Object.keys(brutos).length === 0){ alert("Preencha ao menos um subteste."); return; }
 
-    const indicesInfo = {
-      ICV: somarIndice(pondByCode, INDICES.ICV),
-      IOP: somarIndice(pondByCode, INDICES.IOP),
-      IMO: somarIndice(pondByCode, INDICES.IMO),
-      IVP: somarIndice(pondByCode, INDICES.IVP),
-    };
+    // ATENÇÃO: COLOQUE AQUI O LINK DO SEU RENDER + /wisc/calcular
+    const API_URL = "https://equilibrium-api-yjxx.onrender.com/wisc/calcular"; 
 
-    const qiInfo = somarQI(pondByCode);
-    const compostosData = await carregarCompostos();
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ nasc, apl, brutos })
+    });
 
-    const compostos = {
-      ICV: somaParaComposto(compostosData, "ICV", indicesInfo.ICV.soma),
-      IOP: somaParaComposto(compostosData, "IOP", indicesInfo.IOP.soma),
-      IMO: somaParaComposto(compostosData, "IMO", indicesInfo.IMO.soma),
-      IVP: somaParaComposto(compostosData, "IVP", indicesInfo.IVP.soma),
-      QIT: somaParaComposto(compostosData, "QIT", qiInfo.soma),
-    };
+    const data = await response.json();
 
-    montarRelatorio({ nome, cpf, sexo, escolaridade, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo, compostos });
+    if (!response.ok || !data.ok) {
+        throw new Error(data.error || "Erro desconhecido ao processar teste na API.");
+    }
+
+    const { idade, faixa, resultados, somas, compostos, indicesInfo, qiInfo } = data.resultado;
+
+    montarRelatorio({ nome, cpf, sexo, escolaridade, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo, somas, compostos});
 
     if(salvar){
       const rel = document.getElementById("relatorio");
-      // garante logo/imagens antes do canvas (especialmente no iOS)
-await esperarImagensCarregarem(rel);
-// pequeno delay para assegurar renderização dos gráficos/canvas
-await new Promise(r => setTimeout(r, 150));
-
-//await html2pdf().set({
-// margin: [8, 8, 8, 8],
-//  filename: `WISC-IV_${nome}.pdf`,
-//  pagebreak: { mode: ["css", "legacy"], avoid: ".no-break" },
-//  html2canvas: {
-//    scale: 2,
-//    useCORS: true,
-//    allowTaint: false,
-//    backgroundColor: "#ffffff",
-//    imageTimeout: 15000
-//  },
-//  jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
-//}).from(rel).save();
-
-const laudos = getLaudos();
+      await esperarImagensCarregarem(rel);
+      await new Promise(r => setTimeout(r, 150));
+      const laudos = getLaudos();
       laudos.unshift({
-        nome,
-        dataAplicacao: apl,
-        faixa,
-        createdAt: new Date().toISOString(),
-        htmlRelatorio: rel.outerHTML
+        nome, dataAplicacao: apl, faixa,
+        createdAt: new Date().toISOString(), htmlRelatorio: rel.outerHTML
       });
       setLaudos(laudos);
-
       alert("Laudo salvo!");
     }
-
-  }catch(e){
+  } catch(e){
     console.error(e);
-    alert("Erro ao calcular. Verifique normas-wisciv.json em /tests/wisciv/data/.");
+    alert(`Erro ao calcular: ${e.message}`);
   }
 }
 
-// ================= RELATÓRIO + GRÁFICOS + PDF =================
-let chartSub = null;
-let chartIdx = null;
+// === FUNÇÕES DE RENDERIZAÇÃO DO RELATÓRIO ===
 
-// Desenha banda da média (9–11) e divisórias de grupos no gráfico de subtestes
-const WISC_SCATTER_PLUGIN = {
-  id: "wiscScatterDecor",
-  beforeDraw(chart, args, opts) {
-    const { ctx, chartArea, scales } = chart;
-    if (!chartArea) return;
-
-    // Banda média (9–11)
-    if (opts && opts.band && scales?.y) {
-      const yTop = scales.y.getPixelForValue(opts.band.max);
-      const yBot = scales.y.getPixelForValue(opts.band.min);
-      ctx.save();
-      ctx.fillStyle = "rgba(13, 71, 161, 0.12)"; // azul translúcido
-      ctx.fillRect(chartArea.left, yTop, chartArea.right - chartArea.left, yBot - yTop);
-      ctx.restore();
-    }
-
-    // Divisórias verticais (grupos)
-    if (opts && Array.isArray(opts.vlines) && scales?.x) {
-      ctx.save();
-      ctx.strokeStyle = "rgba(13, 71, 161, 0.35)";
-      ctx.lineWidth = 2;
-      opts.vlines.forEach(v => {
-        const x = scales.x.getPixelForValue(v);
-        ctx.beginPath();
-        ctx.moveTo(x, chartArea.top);
-        ctx.lineTo(x, chartArea.bottom);
-        ctx.stroke();
-      });
-      ctx.restore();
-    }
-
-    // Títulos dos grupos (acima do chartArea)
-  //  if (opts && Array.isArray(opts.groupLabels) && scales?.x) {
-    //  ctx.save();
-//      //ctx.fillStyle = "rgba(13, 71, 161, 0.95)";
-  //    ctx.font = "600 12px Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial";
-   //   ctx.textAlign = "center";
-  //    const y = chartArea.top - 10;
-  //    opts.groupLabels.forEach(g => {
-  //      const x1 = scales.x.getPixelForValue(g.from);
-   //     const x2 = scales.x.getPixelForValue(g.to);
-  //      const xc = (x1 + x2) / 2;
-  //      ctx.fillText(g.text, xc, y);
-  //    });
-  //    ctx.restore();
-  //  }
- }
-};
-
-function registrarPluginsChart(){
-  if (typeof Chart === "undefined") return;
-  // evita registrar duas vezes
-  const already = Chart.registry?.plugins?.get?.("wiscScatterDecor");
-  if (!already) Chart.register(WISC_SCATTER_PLUGIN);
+function obterNomeSubteste(codigo){
+  const sub = SUBTESTES.find(s => s.codigo === codigo);
+  return sub ? sub.nome : codigo;
 }
 
-function formatarDataISO(iso){
-  if(!iso) return "";
-  // mantém ISO para consistência no seu sistema, mas permite trocar depois
-  return iso;
+function cellIndice(codigo, usadosSet, possiveisSet, resultados){
+  if(!possiveisSet || !possiveisSet.has(codigo)) return `<td class="idx fill"></td>`;
+  const r = resultados?.[codigo];
+  const v = r?.ponderado;
+  if(v == null || v === "") return `<td class="idx fill"></td>`;
+  const suplementar = !(usadosSet && usadosSet.has(codigo));
+  const cls = suplementar ? "pill sup" : "pill";
+  const txt = suplementar ? `(${v})` : `${v}`;
+  return `<td class="idx fill"><span class="${cls}">${txt}</span></td>`;
 }
 
-function renderPerfilSubtestes(resultados){
-  const grupos = [
-    { titulo: "Compreensão Verbal", codes: ["SM","VC","CO","IN","RP"] },
-    { titulo: "Organização Perceptual", codes: ["CB","CN","RM","CF"] },
-    { titulo: "Memória Operacional", codes: ["DG","SNL","AR"] },
-    { titulo: "Velocidade de Proc.", codes: ["CD","PS","CA"] },
-  ];
-  const supl = new Set(["CF","CA","IN","AR","RP"]);
+function renderMatrizConversao({ resultados, indicesInfo, somas }) {
+  const usadosICV = new Set(indicesInfo?.ICV?.usados || []);
+  const usadosIOP = new Set(indicesInfo?.IOP?.usados || []);
+  const usadosIMO = new Set(indicesInfo?.IMO?.usados || []);
+  const usadosIVP = new Set(indicesInfo?.IVP?.usados || []);
+  const usadosQIT = new Set(somas?.QI_TOTAL?.usados || []);
 
-  const head1 = grupos.map(g => `<th colspan="${g.codes.length}" class="perfil-group">${g.titulo}</th>`).join("");
-  const codes = grupos.flatMap(g => g.codes).map(c=>{
-    const label = supl.has(c) ? `(${c})` : c;
-    return `<th class="perfil-code">${label}</th>`;
-  }).join("");
-  const vals = grupos.flatMap(g => g.codes).map(c=>{
-    const v = resultados?.[c]?.ponderado;
-    return `<td class="perfil-val">${v ?? "—"}</td>`;
+  const possiveis = {
+    ICV: new Set(["SM","VC","CO","IN","RP"]),
+    IOP: new Set(["CB","CN","RM","CF"]),
+    IMO: new Set(["DG","SNL","AR"]),
+    IVP: new Set(["CD","PS","CA"]),
+    QIT: new Set(["CB","SM","DG","CN","CD","VC","SNL","RM","CO","PS","CF","CA","IN","AR","RP"])
+  };
+
+  const ordem = ["CB","SM","DG","CN","CD","VC","SNL","RM","CO","PS","CF","CA","IN","AR","RP"];
+
+  const linhas = ordem.map(codigo => {
+    const r = resultados[codigo] || { bruto: "", ponderado: "" };
+    const nome = obterNomeSubteste(codigo);
+    return `
+      <tr>
+        <td class="col-sub"><b>${nome}</b> <span class="muted">(${codigo})</span></td>
+        <td class="col-pb">${r.bruto ?? ""}</td>
+        <td class="col-pp">${r.ponderado ?? ""}</td>
+          ${cellIndice(codigo, usadosICV, possiveis.ICV, resultados)}
+          ${cellIndice(codigo, usadosIOP, possiveis.IOP, resultados)}
+          ${cellIndice(codigo, usadosIMO, possiveis.IMO, resultados)}
+          ${cellIndice(codigo, usadosIVP, possiveis.IVP, resultados)}
+          ${cellIndice(codigo, usadosQIT, possiveis.QIT, resultados)}
+      </tr>
+    `;
   }).join("");
 
-  return `
-    <table class="perfil-table">
-      <thead>
-        <tr>${head1}</tr>
-        <tr>${codes}</tr>
-      </thead>
-      <tbody>
-        <tr>${vals}</tr>
-      </tbody>
-    </table>
-  `;
+ return `
+  <table class="wisc-matrix">
+    <thead>
+      <tr>
+        <th class="col-sub">Subtestes</th>
+        <th class="col-pb">PB</th>
+        <th class="col-pp">Ponderado</th>
+        <th colspan="5">Contribuição (Pontos Ponderados)</th>
+      </tr>
+      <tr>
+        <th></th><th></th><th></th>
+        <th class="idx">ICV</th>
+        <th class="idx">IOP</th>
+        <th class="idx">IMO</th>
+        <th class="idx">IVP</th>
+        <th class="idx">QIT</th>
+      </tr>
+    </thead>
+    <tbody>${linhas}</tbody>
+    <tfoot>
+      <tr>
+        <td class="sum-label" colspan="3">Soma dos Pontos Ponderados</td>
+        <td>${indicesInfo?.ICV?.soma ?? "—"}</td>
+        <td>${indicesInfo?.IOP?.soma ?? "—"}</td>
+        <td>${indicesInfo?.IMO?.soma ?? "—"}</td>
+        <td>${indicesInfo?.IVP?.soma ?? "—"}</td>
+        <td>${somas?.QI_TOTAL?.soma ?? "—"}</td>
+      </tr>
+    </tfoot>
+  </table>
+`;
 }
+
+function formatarCPF(cpf){
+  if(!cpf) return "";
+  const nums = cpf.replace(/\D/g, "");
+  if(nums.length !== 11) return cpf;
+  return nums.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+}
+
+function fmtIC(arr){ return !Array.isArray(arr) ? "—" : `${arr[0]}–${arr[1]}`; }
 
 function montarRelatorio(data) {
   const rel = document.getElementById("relatorio");
   if (!rel) return;
-
-  registrarPluginsChart();
-
-  const { nome, cpf, sexo, escolaridade, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo, compostos } = data;
-  const faixaEtariaTxt = data?.faixa ?? ""; // ou o texto que você já exibe no relatório
-  const textoInterp = gerarTextoInterpretativoWISC({ nome, compostos, faixaEtariaTxt });
+  
+  const { nome, cpf, sexo, escolaridade, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo, compostos, somas } = data;
   const cpfTxt = formatarCPF(cpf);
-  const sexoTxt = sexo;
-  const escTxt = escolaridade;
-  const matriz = renderMatrizConversao({ resultados, indicesInfo, qiInfo });
-  const perfil = renderPerfilSubtestes(resultados);
+  const matriz = renderMatrizConversao({ resultados, indicesInfo, somas });
 
   rel.style.display = "block";
   rel.innerHTML = `
     <div class="report">
       <div class="report-header">
-        <img class="report-logo report-logo-top" src="/Equilibrium_Neuro/logo2.png" alt="Logo" onerror="this.style.display='none'">
+        <img class="report-logo report-logo-top" src="/logo2.png" alt="Logo" onerror="this.style.display='none'">
         <div class="report-title">
           <div class="t1">Relatório – WISC-IV</div>
-          <div class="t2">Conversão PB → Ponderado e somatórios por índice</div>
+          <div class="t2">Correção automatizada via API</div>
         </div>
-        <div class="report-meta">
-          <div class="badge">Faixa: ${faixa}</div>
-          <div class="muted">Idade: ${idade.anos}a ${idade.meses}m</div>
-        </div>
+        <div class="report-meta"><div class="badge">Faixa: ${faixa.replace("_", " a ")} meses</div><div class="muted">Idade: ${idade.anos}a ${idade.meses}m</div></div>
       </div>
-
       <div class="section">
         <div class="info-grid">
           <div><span class="k">Nome:</span> <span class="v">${nome}</span></div>
           <div><span class="k">CPF:</span> <span class="v">${cpfTxt || "—"}</span></div>
-          <div><span class="k">Sexo:</span> <span class="v">${sexoTxt || "—"}</span></div>
-          <div><span class="k">Escolaridade:</span> <span class="v">${escTxt || "—"}</span></div>
+          <div><span class="k">Sexo:</span> <span class="v">${sexo || "—"}</span></div>
+          <div><span class="k">Escolaridade:</span> <span class="v">${escolaridade || "—"}</span></div>
           <div><span class="k">Nascimento:</span> <span class="v">${nasc}</span></div>
           <div><span class="k">Aplicação:</span> <span class="v">${apl}</span></div>
         </div>
       </div>
-      
-<div class="duas-colunas">
-
-  <!-- MATRIZ -->
-  <div class="section no-break">
-    <h3>Conversão PB → Ponderado e contribuição nos Índices</h3>
-    <div class="matrix-card">${matriz}</div>
-    <p class="muted" style="margin:10px 0 0;">
-      Células azuis indicam subtestes usados na soma do índice/QIT. Suplementares podem aparecer entre parênteses.
-    </p>
-  </div>
-
-    <!-- PERFIL (direita no seu exemplo, mas ordem visual é CSS) -->
-  <div class="section no-break">
-    <h3>Perfil dos Pontos Ponderados dos Subtestes</h3>
-    <div class="perfil-card">
-      ${perfil}
-      <div class="canvas-wrap perfil-canvas">
-        <canvas id="grafSub" height="560"></canvas>
+      <div class="section no-break">
+        <h3>Conversão PB → Ponderado e contribuição nos Índices</h3>
+        <div class="matrix-card">${matriz}</div>
+        <p class="muted" style="margin:10px 0 0;">Células azuis indicam subtestes usados na soma do índice/QIT. Suplementares podem aparecer entre parênteses.</p>
       </div>
-    </div>
-    <p class="muted" style="margin:10px 0 0;">
-      A faixa azul indica a região média aproximada (9–11) dos pontos ponderados.
-    </p>
-  </div>
-
-</div>
-
-    <div class="duas-colunas">
-
-  <!-- SUBTESTES -->
-  <div class="section no-break">
-    <h3>Subtestes (detalhamento)</h3>
-    <table class="table">
-      <thead><tr><th>Subteste</th><th>PB</th><th>Ponderado</th><th>Classificação</th></tr></thead>
-      <tbody>
-        ${Object.values(resultados).map(r=>`
-          <tr>
-            <td><b>${r.nome}</b> <span class="muted">(${r.codigo})</span></td>
-            <td>${r.bruto}</td>
-            <td>${r.ponderado}</td>
-            <td>${r.classificacao}</td>
-          </tr>
-        `).join("")}
-      </tbody>
-    </table>
-  </div>
-
-  <!-- INDICES -->
-  <div class="section no-break">
-    <h3>Índices e QIT (somatórios)</h3>
-
-    <div class="canvas-wrap">
-      <canvas id="grafIdx" height="300"></canvas>
-    </div>
-
-    <table class="table" style="margin-top:12px;">
-  <thead>
-    <tr>
-      <th>Escala</th>
-      <th>Ponto Composto</th>
-      <th>Rank Percentil</th>
-      <th>IC 90%</th>
-      <th>IC 95%</th>
-    </tr>
-  </thead>
-  <tbody>
-    ${["ICV","IOP","IMO","IVP"].map(k=>{
-      const info = indicesInfo[k];
-      const comp = compostos?.[k];
-      return `
-        <tr>
-          <td><b>${k}</b></td>
-          <td>${comp?.composto ?? "—"}</td>
-          <td>${comp?.percentil ?? "—"}</td>
-          <td>${comp?.ic90 ?? "—"}</td>
-          <td>${comp?.ic95 ?? "—"}</td>
-        </tr>
-      `;
-    }).join("")}
-
-    <tr>
-      <td><b>QIT</b></td>
-      <td>${compostos?.QIT?.composto ?? "—"}</td>
-      <td>${compostos?.QIT?.percentil ?? "—"}</td>
-      <td>${compostos?.QIT?.ic90 ?? "—"}</td>
-      <td>${compostos?.QIT?.ic95 ?? "—"}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-</div>
-
-<div class="section no-break">
-  <h3>Interpretação (síntese)</h3>
-  ${textoInterp.split("\n\n").map(p => `<p class="interp">${p}</p>`).join("")}
-</div>
-
+      <div class="duas-colunas">
+        <div class="section no-break">
+          <h3>Subtestes (detalhamento)</h3>
+          <table class="table">
+            <thead><tr><th>Subteste</th><th>PB</th><th>Ponderado</th><th>Classificação</th></tr></thead>
+            <tbody>
+              ${Object.values(resultados).map(r=>`<tr><td><b>${r.nome}</b> <span class="muted">(${r.codigo})</span></td><td>${r.bruto}</td><td>${r.ponderado}</td><td>${r.classificacao}</td></tr>`).join("")}
+            </tbody>
+          </table>
+        </div>
+        <div class="section no-break">
+          <h3>Índices e QI Total</h3>
+          <table class="table" style="margin-top:12px;">
+          <thead><tr><th>Escala</th><th>Soma</th><th>Composto</th><th>Percentil</th><th>IC 90%</th><th>IC 95%</th></tr></thead>
+          <tbody>
+              ${[["ICV", "ICV"],["IOP", "IOP"],["IMO", "IMO"],["IVP", "IVP"],["QIT", "QI_TOTAL"]].map(([rotulo, chave]) => {
+                const s = somas?.[chave]; const c = compostos?.[chave];
+                return `<tr><td><b>${rotulo}</b></td><td>${s?.soma ?? "—"}</td><td>${c?.composto ?? "—"}</td><td>${c?.percentil ?? "—"}</td><td>${fmtIC(c?.ic90)}</td><td>${fmtIC(c?.ic95)}</td></tr>`;
+              }).join("")}
+            </tbody>
+          </table>
+        </div>
+      </div>
       <div class="report-footer">
-        <div class="muted">Documento gerado automaticamente</div>
-
-        <button class="btn-print no-print" onclick="imprimirRelatorio()">
-            Imprimir (PDF)
-        </button>
-
-        <img class="report-logo report-logo-bottom" src="/Equilibrium_Neuro/logo2.png" alt="Logo" onerror="this.style.display='none'">
+        <div class="muted">Documento gerado automaticamente com segurança</div>
+        <button class="btn-print no-print" onclick="imprimirRelatorio()">Imprimir (PDF)</button>
+        <img class="report-logo report-logo-bottom" src="/logo2.png" alt="Logo" onerror="this.style.display='none'">
       </div>
-  `;
-
-  desenharGraficos(resultados, indicesInfo, qiInfo);
+    </div>`;
 }
 
-function desenharGraficos(resultados, indicesInfo, qiInfo){
-  registrarPluginsChart();
-
-  // ---------- Subtestes: SCATTER (pontos) ----------
-  const ctxSub = document.getElementById("grafSub");
-  if(ctxSub){
-    if(chartSub) chartSub.destroy();
-
-   // ordem correta (como você definiu)
-const LABELS_SUB = [
-  "SM","VC","CO","IN","RP",     // CV (5)
-  "CB","CN","RM","CF",          // OP (4)  -> total 9
-  "DG","SNL","AR",              // MO (3)  -> total 12
-  "CD","PS","CA"                // VP (3)  -> total 15
-];
-
-// posições fixas 1..15 (sem gaps)
-let x = 1;
-const xPos = {};
-const tickAt = [];
-
-LABELS_SUB.forEach(code => {
-  xPos[code] = x;
-  tickAt[x] = code;
-  x++;
-});
-
-// pontos na ordem
-const points = LABELS_SUB
-  .map(code => {
-    const v = resultados?.[code]?.ponderado;
-    return (v == null) ? null : { x: xPos[code], y: Number(v) };
-  })
-  .filter(Boolean);
-
-const xMax = LABELS_SUB.length;
-
-    chartSub = new Chart(ctxSub, {
-      type:"scatter",
-      data:{
-        datasets:[{
-          data: points,
-          pointRadius: 5,
-          pointHoverRadius: 6,
-        }]
-      },
-      options:{
-        responsive:true,
-        maintainAspectRatio:false,
-
-        layout: { padding: { left: 6, right: 6, top: 18, bottom: 6 } },
-        
-        plugins:{
-          legend:{ display:false },
-          wiscScatterDecor:{
-            band:{ min:9, max:11 },
-            vlines: [5.5, 9.5, 12.5], // depois do 5º, 9º, 12º
-            groupLabels:[
-             { from:1,  to:5,  text:"Compreensão Verbal" },
-             { from:6,  to:9,  text:"Organização Perceptual" },
-             { from:10, to:12, text:"Memória Operacional" },
-             { from:13, to:15, text:"Velocidade de Proc." },
-            ]
-          }
-        },
-        scales:{
-          x:{
-  type:"linear",
-  min: 0.5,
-  max: xMax + 0.5,
-  grid:{ display:false },
-  ticks:{
-    font:{ size:10 },
-    maxRotation:0,
-    minRotation:0,
-    padding:6,
-    stepSize:1,
-    autoSkip:false,
-    callback:(val)=>{
-      const code = tickAt[Math.round(val)];
-      if (!code) return "";
-      if (code === "IN") return "IN(R)";
-      if (["RP","CF","CA","AR"].includes(code)) return `(${code})`;
-      return code;
-    }
-  }
-},
-
-          y:{
-            min:1, max:19,
-              grid:{ color: "rgba(13,71,161,.10)" },
-                ticks:{ stepSize:1,
-                  font: { size: 10 },
-            },
-          }
-        }
-      }
-    });
-  }
-
-  // ---------- Índices e QIT: pontos ----------
-  const ctxIdx = document.getElementById("grafIdx");
-  if(ctxIdx){
-    if(chartIdx) chartIdx.destroy();
-    const labels = ["ICV","IOP","IMO","IVP","QIT"];
-    const vals = [
-      indicesInfo?.ICV?.soma ?? null,
-      indicesInfo?.IOP?.soma ?? null,
-      indicesInfo?.IMO?.soma ?? null,
-      indicesInfo?.IVP?.soma ?? null,
-      qiInfo?.soma ?? null,
-    ];
-    const pts = vals.map((v,i)=> v==null ? null : ({x:i+1, y:Number(v)})).filter(Boolean);
-
-    chartIdx = new Chart(ctxIdx, {
-      type:"scatter",
-      data:{ datasets:[{ data: pts, pointRadius:5, pointHoverRadius:6 }] },
-      options:{
-  responsive:true,
-  maintainAspectRatio:false,
-  layout: { padding: { left: 6, right: 6, top: 6, bottom: 6 } },
-  plugins:{ legend:{ display:false } },
-  scales:{
-    x:{
-      min:0.5, max:5.5,
-      grid:{ display:false },
-      ticks:{
-        autoSkip:false,
-        font:{ size: 10 },
-        callback:(val)=>{
-          const idx=Math.round(val)-1;
-          return labels[idx] || "";
-        }
-      }
-    },
-    y:{
-      // em vez de beginAtZero, fica clínico e legível
-      suggestedMin: 0,
-      suggestedMax: 60,
-      ticks:{ font:{ size: 10 } },
-      grid:{ color:"rgba(13,71,161,.10)" }
-    }
-  }
-}
-
-    });
-  }
+async function esperarImagensCarregarem(container){
+  const imgs = Array.from(container.querySelectorAll("img"));
+  await Promise.all(imgs.map(img => {
+    if (img.complete && img.naturalWidth > 0) return Promise.resolve();
+    return new Promise(resolve => { img.onload = () => resolve(); img.onerror = () => resolve(); });
+  }));
 }
 
 function renderListaLaudos(){
   const box = document.getElementById("listaLaudos");
   if(!box) return;
-
   const laudos = getLaudos();
-  if(!laudos.length){
-    box.innerHTML = `<p class="muted">Nenhum laudo salvo ainda.</p>`;
-    return;
-  }
-
-  box.innerHTML = `
-    <table class="table">
-      <thead><tr><th>Paciente</th><th>Aplicação</th><th>Faixa</th><th>Ações</th></tr></thead>
-      <tbody>
-        ${laudos.map((x, idx)=>`
-          <tr>
-            <td>${x.nome}</td>
-            <td>${x.dataAplicacao}</td>
-            <td><span class="badge">${x.faixa}</span></td>
-            <td><button class="btn-outline" onclick="baixarPDFSalvo(${idx})">Baixar PDF</button></td>
-          </tr>
-        `).join("")}
-      </tbody>
-    </table>
-  `;
-}
-
-
-
-// =========================
-// PDF (html2pdf) — helpers
-// =========================
-async function esperarImagensCarregarem(container){
-  const imgs = Array.from(container.querySelectorAll("img"));
-  await Promise.all(imgs.map(img => {
-    if (img.complete && img.naturalWidth > 0) return Promise.resolve();
-    return new Promise(resolve => {
-      img.onload = () => resolve();
-      img.onerror = () => resolve(); // não trava o PDF
-    });
-  }));
-}
-
-function pctText(p){
-  if(p == null || p === "" || Number.isNaN(+p)) return "—";
-  return `${+p} %`;
-}
-
-function fmtICRange(ic){
-  if(!ic) return "—";
-  if(Array.isArray(ic)) return `${ic[0]}–${ic[1]}`;
-  return String(ic).replace(",", "–");
-}
-
-// Classificação típica para índices/QIT (WISC-IV usa média 100, DP 15)
-function classByCompositeWISC(score){
-  const s = +score;
-  if(Number.isNaN(s)) return null;
-  if(s >= 130) return "Muito Superior";
-  if(s >= 120) return "Superior";
-  if(s >= 110) return "Médio Superior";
-  if(s >= 90)  return "Médio";
-  if(s >= 80)  return "Médio Inferior";
-  if(s >= 70)  return "Limítrofe";
-  return "Extremamente Baixo";
-}
-
-function introVerbByClass(cls){
-  const map = {
-    "Muito Superior": "situa-se muito acima",
-    "Superior": "situa-se acima",
-    "Médio Superior": "situa-se acima",
-    "Médio": "situa-se na faixa média",
-    "Médio Inferior": "situa-se ligeiramente abaixo",
-    "Limítrofe": "situa-se abaixo",
-    "Extremamente Baixo": "situa-se muito abaixo",
-  };
-  return map[cls] || "situa-se";
-}
-
-function wiscScaleLabelLong(key){
-  const map = {
-    QIT: "QI Total (QIT)",
-    ICV: "Índice de Compreensão Verbal (ICV)",
-    IOP: "Índice de Organização Perceptual (IOP)",
-    IMO: "Índice de Memória Operacional (IMO)",
-    IVP: "Índice de Velocidade de Processamento (IVP)",
-  };
-  return map[key] || key;
-}
-
-function wiscAbilityDescription(key){
-  const map = {
-    QIT: "funcionamento intelectual global",
-
-    ICV: "raciocínio verbal, formação de conceitos e conhecimento adquirido",
-    IOP: "raciocínio fluido não verbal, processamento visuoespacial e integração visomotora",
-    IMO: "atenção, memória de curto prazo e manipulação mental de informações",
-    IVP: "rapidez e eficiência no processamento de informações visuais simples sob demanda de tempo",
-  };
-  return map[key] || "habilidades cognitivas avaliadas";
-}
-
-function makeWiscParagraph({ nome, key, comp, percentil, ic95, faixaEtariaTxt }){
-  const cls = classByCompositeWISC(comp);
-  const verb = introVerbByClass(cls);
-  const label = wiscScaleLabelLong(key);
-  const abil = wiscAbilityDescription(key);
-
-  const openings = [
-    `${nome}, ${label}:`,
-    `Quanto ao ${label},`,
-    `Em relação ao ${label},`,
-  ];
-  const open = openings[Math.floor(Math.random() * openings.length)];
-
-  const pTxt = pctText(percentil);
-  const icTxt = fmtICRange(ic95);
-
-  const faixa = faixaEtariaTxt ? ` (faixa etária normativa: ${faixaEtariaTxt})` : "";
-
-  return `${open} as habilidades relacionadas a ${abil} ${verb} em comparação a crianças da mesma faixa etária${faixa} (pontuação composta = ${comp}; percentil ≈ ${pTxt}; IC 95% = ${icTxt}${cls ? `; classificação: ${cls}` : ""}).`;
-}
-
-/**
- * Gera síntese interpretativa estilo laudo para WISC-IV.
- * Espera um objeto "compostos" no formato:
- * { ICV:{composto,percentil,ic95}, IOP:{...}, IMO:{...}, IVP:{...}, QIT:{...} }
- */
-function gerarTextoInterpretativoWISC({ nome, compostos, faixaEtariaTxt }){
-  const keys = ["QIT","ICV","IOP","IMO","IVP"];
-  const parts = [];
-
-  // parágrafo introdutório (opcional) no estilo “decisão de subtestes”
-  parts.push(
-    `O WISC-IV permite a interpretação por meio do QI Total (QIT) e dos Índices fatoriais (ICV, IOP, IMO e IVP), considerando a consistência do perfil e a adequação da faixa etária normativa aplicada.`
-  );
-
-  for(const key of keys){
-    const c = compostos?.[key];
-    if(!c?.composto) continue;
-    parts.push(
-      makeWiscParagraph({
-        nome,
-        key,
-        comp: c.composto,
-        percentil: c.percentil,
-        ic95: c.ic95,
-        faixaEtariaTxt,
-      })
-    );
-  }
-
-  return parts.join("\n\n");
-}
-
-function limparCPF(cpf){
-  return (cpf || "").replace(/\D/g, "");
-}
-
-function validarCPF(cpfInput){
-  const cpf = limparCPF(cpfInput);
-
-  // precisa ter 11 dígitos
-  if (cpf.length !== 11) return false;
-
-  // bloqueia CPFs com todos os dígitos iguais (000..., 111..., etc)
-  if (/^(\d)\1{10}$/.test(cpf)) return false;
-
-  // calcula 1º dígito verificador
-  let soma = 0;
-  for (let i = 0; i < 9; i++){
-    soma += Number(cpf[i]) * (10 - i);
-  }
-  let d1 = (soma * 10) % 11;
-  if (d1 === 10) d1 = 0;
-
-  // calcula 2º dígito verificador
-  soma = 0;
-  for (let i = 0; i < 10; i++){
-    soma += Number(cpf[i]) * (11 - i);
-  }
-  let d2 = (soma * 10) % 11;
-  if (d2 === 10) d2 = 0;
-
-  return d1 === Number(cpf[9]) && d2 === Number(cpf[10]);
-}
-
-// opcional: formata 000.000.000-00
-function formatarCPF(cpfInput){
-  const cpf = limparCPF(cpfInput);
-  if (cpf.length !== 11) return cpfInput || "";
-  return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+  if(!laudos.length){ box.innerHTML = `<p class="muted">Nenhum laudo salvo ainda.</p>`; return; }
+  box.innerHTML = `<table class="table"><thead><tr><th>Paciente</th><th>Aplicação</th><th>Faixa</th><th>Ações</th></tr></thead><tbody>${laudos.map((x, idx)=>`<tr><td>${x.nome}</td><td>${x.dataAplicacao}</td><td><span class="badge">${x.faixa.replace("_", " a ")}</span></td><td><button class="btn-outline" onclick="baixarPDFSalvo(${idx})">Baixar PDF</button></td></tr>`).join("")}</tbody></table>`;
 }
 
 async function baixarPDFSalvo(index){
   const laudos = getLaudos();
   const item = laudos[index];
   if(!item) return alert("Laudo não encontrado.");
-
   const temp = document.createElement("div");
   temp.innerHTML = item.htmlRelatorio;
   document.body.appendChild(temp);
+  await esperarImagensCarregarem(temp);
+  await new Promise(r => setTimeout(r, 150));
+  window.print();
+  temp.remove();
+}
 
-  // garante logo/imagens antes do canvas (especialmente no iOS)
-await esperarImagensCarregarem(temp);
-// pequeno delay para assegurar renderização dos gráficos/canvas
-await new Promise(r => setTimeout(r, 150));
-
-//await html2pdf().set({
-//  margin: [8, 8, 8, 8],
-//  filename: `WISC-IV_${item.nome}.pdf`,
-//  pagebreak: { mode: ["css", "legacy"], avoid: ".no-break" },
-//  html2canvas: {
-//    scale: 2,
-//    useCORS: true,
-//    allowTaint: false,
-//    backgroundColor: "#ffffff",
-//    imageTimeout: 15000
-//  },
-//  jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
-//}).from(temp).save();
-
-temp.remove();
-
+async function imprimirRelatorio(){
+  const rel = document.getElementById("relatorio");
+  if(!rel) return;
+  await esperarImagensCarregarem(rel);
+  await new Promise(r => setTimeout(r, 250));
+  window.print();
 }
 
 (function init(){
-  // novo-laudo
   if(document.getElementById("tbodySubtestes")){
     montarInputsSubtestes();
     document.getElementById("dataNascimento")?.addEventListener("change", atualizarPreviewIdade);
     document.getElementById("dataAplicacao")?.addEventListener("change", atualizarPreviewIdade);
   }
+  if(document.getElementById("listaLaudos")){
+    renderListaLaudos();
+  }
+})();
 
-  // laudos
-  if(document.getElementById("listaLaudos")){renderListaLaudos();}})();
-
-async function imprimirRelatorio(){const rel = document.getElementById("relatorio");
-  if(!rel) return;
-
-  // garante imagens e gráficos antes de imprimir
-  await esperarImagensCarregarem(rel);
-  await new Promise(r => setTimeout(r, 250));
-
-  window.print();
-}
+// === EXPORTANDO FUNÇÕES PARA O HTML (Evita o erro "is not defined") ===
+window.calcular = calcular;
+window.imprimirRelatorio = imprimirRelatorio;
+window.baixarPDFSalvo = baixarPDFSalvo;
