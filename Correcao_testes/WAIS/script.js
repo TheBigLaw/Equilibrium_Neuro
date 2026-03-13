@@ -564,3 +564,8 @@ async function imprimirRelatorio(){
   await new Promise(r => setTimeout(r, 250));
   window.print();
 }
+
+// === EXPORTANDO FUNÇÕES PARA O HTML ===
+window.calcular = calcular;
+window.imprimirRelatorio = imprimirRelatorio;
+window.baixarPDFSalvo = baixarPDFSalvo;
