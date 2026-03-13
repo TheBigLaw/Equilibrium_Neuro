@@ -4,31 +4,6 @@ console.log("SCRIPT WAIS CARREGADO v3");
 
 const LAUDOS_KEY = "empresa_laudos_wais";
 
-let NORMAS = null;
-
-// novos: normas WAIS-III (as que você subiu na pasta /data)
-let RAW_NORMS = null;
-let COMP_NORMS = null;
-
-async function carregarNormas(){
-  if (RAW_NORMS && COMP_NORMS) {
-    return { rawNorms: RAW_NORMS, compNorms: COMP_NORMS };
-  }
-
-  const [rawResp, compResp] = await Promise.all([
-    fetch("./data/waisiii_raw_to_scaled_br.json", { cache:"no-store" }),
-    fetch("./data/waisiii_sum_to_composite_br.json", { cache:"no-store" }),
-  ]);
-
-  if(!rawResp.ok) throw new Error("Não foi possível carregar ./data/waisiii_raw_to_scaled_br.json");
-  if(!compResp.ok) throw new Error("Não foi possível carregar ./data/waisiii_sum_to_composite_br.json");
-
-  RAW_NORMS = await rawResp.json();
-  COMP_NORMS = await compResp.json();
-
-  return { rawNorms: RAW_NORMS, compNorms: COMP_NORMS };
-}
-
 // Subtestes WAIS-III (BR) — Verbais + Execução
 
 const SUBTESTES = [
@@ -48,20 +23,6 @@ const SUBTESTES = [
   { nome: "Sequência de Números e Letras", codigo: "SNL", id: "pb_SNL" },
   { nome: "Armar Objetos", codigo: "AO", id: "pb_AO" },
 ];
-
-// WAIS-III — composição das escalas (usando seus códigos)
-const WAIS_SCALES = {
-  // índices fatoriais (core do PDF)
-  ICV: ["SM","VC","IN"],        // (CO não entra no ICV do PDF)
-  IOP: ["CB","CF","RM"],        // (AF não entra no IOP do PDF)
-  IMO: ["AR","DG","SNL"],
-  IVP: ["CD","PS"],
-
-  // QIs (clássicos do PDF)
-  QI_VERBAL:   ["SM","VC","AR","DG","IN","CO"],          // sem SNL  -> dá 60 no caso Milena
-  QI_EXECUCAO: ["CF","CD","CB","RM","AF"],               // sem PS/AO -> dá 62 no caso Milena
-  QI_TOTAL:    ["SM","VC","AR","DG","IN","CO","CF","CD","CB","RM","AF"], // 11 subtestes -> dá 122
-};
 
 function calcularIdade(nascISO, aplISO) {
   if (!nascISO || !aplISO) return null;
@@ -90,104 +51,6 @@ function faixaEtariaWAISIII(idade){
   if (anos >= 65 && anos <= 89) return "65 - 89";
 
   return null;
-}
-
-function faixaEtaria(normas, idade) {
-  if (!idade || !normas) return null;
-
-  const total = idade.totalMeses;
-
-  for (const faixa of Object.keys(normas || {})) {
-    const [ini, fim] = faixa.split("-");
-    if (!ini || !fim) continue;
-
-    const [ai, mi] = ini.split(":").map(Number);
-    const [af, mf] = fim.split(":").map(Number);
-    if ([ai,mi,af,mf].some(x => Number.isNaN(x))) continue;
-
-    const min = ai * 12 + mi;
-    const max = af * 12 + mf;
-
-    if (total >= min && total <= max) return faixa;
-  }
-
-  return null;
-}
-
-function brutoParaPonderado(normas, faixa, codigo, bruto) {
-  if (!normas?.[faixa]?.subtestes?.[codigo]) return null;
-
-  const regras = normas[faixa].subtestes[codigo];
-  if (!Array.isArray(regras)) return null;
-
-  const r = regras.find(x => bruto >= x.min && bruto <= x.max);
-  return r ? Number(r.ponderado) : null;
-}
-
-function rawToScaledWAIS(rawNorms, faixa, codigo, bruto) {
-  const faixaData = rawNorms?.raw_to_scaled?.[faixa];
-  if (!faixaData) return null;
-
-  const sub = SUBTESTES.find(s => s.codigo === codigo);
-  const nome = sub?.nome;
-  if (!nome) return null;
-
-  const regras = faixaData[nome]; // ✅ bate com o JSON
-  if (!Array.isArray(regras)) return null;
-
-  for (const r of regras) {
-    if (r.rawMin != null && bruto >= r.rawMin && bruto <= r.rawMax) {
-      return Number(r.scaled);
-    }
-  }
-  return null;
-}
-
-function sumToCompositeWAIS(compNorms, scaleType, soma) {
-  const list = compNorms?.sum_to_composite || [];
-  const row = list.find(r => r.scale_type === scaleType && soma >= r.sum_min && soma <= r.sum_max);
-  if (!row) return null;
-
-  return {
-    composto: row.composite_score,
-    percentil: row.percentile,
-    ic90: [row.ci_90_min, row.ci_90_max],
-    ic95: [row.ci_95_min, row.ci_95_max],
-  };
-}
-
-function somarEscala(pondByCode, codigos){
-  let soma = 0;
-  const usados = [];
-  const faltando = [];
-
-  for(const c of codigos){
-    const v = pondByCode[c];
-    if(typeof v === "number" && !Number.isNaN(v)){
-      soma += v;
-      usados.push(c);      // ✅ agora é array
-    } else {
-      faltando.push(c);
-    }
-  }
-
-  return {
-    soma,
-    usados,               // ✅ compatível com renderMatrizConversao
-    faltando,
-    usadosCount: usados.length,
-    total: codigos.length
-  };
-}
-
-function classificarPonderado(p) {
-  if (p <= 4) return "Muito Inferior";
-  if (p <= 6) return "Inferior";
-  if (p <= 8) return "Médio Inferior";
-  if (p <= 11) return "Médio";
-  if (p <= 13) return "Médio Superior";
-  if (p <= 15) return "Superior";
-  return "Muito Superior";
 }
 
 function obterNomeSubteste(codigo){
@@ -369,7 +232,6 @@ function validarCPF(cpfInput){
 
 async function calcular(salvar){
   try{
-    const { rawNorms, compNorms } = await carregarNormas();
     const nome = (document.getElementById("nome")?.value || "").trim();
     const nasc = document.getElementById("dataNascimento")?.value;
     const apl  = document.getElementById("dataAplicacao")?.value;
@@ -378,91 +240,54 @@ async function calcular(salvar){
     const escolaridade = document.getElementById("escolaridade")?.value || "";
 
     if(!nome || !nasc || !apl){ alert("Preencha Nome, Nascimento e Aplicação."); return; }
-
-    const idade = calcularIdade(nasc, apl);
-    if(!idade){ alert("Datas inválidas."); return; }
     if(!cpf || !sexo || !escolaridade){alert("Preencha CPF, sexo e escolaridade.");return;}
     if(!validarCPF(cpf)){alert("CPF inválido. Verifique e tente novamente.");return;}
 
-    const faixa = faixaEtariaWAISIII(idade);
-    if(!faixa){ alert("Faixa normativa não encontrada."); return; }
-
-    const resultados = {};
-    const pondByCode = {};
-
+    const brutos = {};
+    
+    // Coleta as notas da tela
     for(const s of SUBTESTES){
       const v = document.getElementById(s.id)?.value;
-      if(v === "" || v == null) continue;
-      const bruto = Number(v);
-      if(Number.isNaN(bruto) || bruto < 0){ alert(`Valor inválido em ${s.nome}`); return; }
-
-      const pond = rawToScaledWAIS(rawNorms, faixa, s.codigo, bruto);
-      if(pond == null){ alert(`PB fora da norma em ${s.nome} (${s.codigo}) para faixa ${faixa}`); return; }
-
-      resultados[s.codigo] = {
-        nome: s.nome,
-        codigo: s.codigo,
-        bruto,
-        ponderado: pond,
-        classificacao: classificarPonderado(pond)
-      };
-      pondByCode[s.codigo] = pond;
+      if(v !== "" && v != null) {
+        const bruto = Number(v);
+        if(Number.isNaN(bruto) || bruto < 0){ alert(`Valor inválido em ${s.nome}`); return; }
+        brutos[s.codigo] = bruto;
+      }
     }
 
-    // somatórios WAIS-III
-const somas = {};
-for (const [tipo, codigos] of Object.entries(WAIS_SCALES)) {
-  somas[tipo] = somarEscala(pondByCode, codigos);
-}
-console.log("SOMAS WAIS:", somas);
+    if(Object.keys(brutos).length === 0){ alert("Preencha ao menos um subteste."); return; }
 
-    const compostos = {
-  ICV: sumToCompositeWAIS(compNorms, "ICV", somas.ICV.soma),
-  IOP: sumToCompositeWAIS(compNorms, "IOP", somas.IOP.soma),
-  IMO: sumToCompositeWAIS(compNorms, "IMO", somas.IMO.soma),
-  IVP: sumToCompositeWAIS(compNorms, "IVP", somas.IVP.soma),
-  QI_VERBAL: sumToCompositeWAIS(compNorms, "QI_VERBAL", somas.QI_VERBAL.soma),
-  QI_EXECUCAO: sumToCompositeWAIS(compNorms, "QI_EXECUCAO", somas.QI_EXECUCAO.soma),
-  QI_TOTAL: sumToCompositeWAIS(compNorms, "QI_TOTAL", somas.QI_TOTAL.soma),
-};
+    // ====== CHAMADA PARA A API PRIVADA ======
+    // Substitua esta URL pela URL do seu Render (ex: https://equilibrium-api-xxxx.onrender.com/wais/calcular)
+    // Para testar na sua máquina local, você pode usar "http://localhost:3000/wais/calcular"
+    const API_URL = "https://equilibrium-api-yjxx.onrender.com/wais/calcular"; 
 
-console.log("COMPOSTOS WAIS:", compostos);
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ nasc, apl, brutos })
+    });
 
-    if(Object.keys(pondByCode).length === 0){ alert("Preencha ao menos um subteste."); return; }
+    const data = await response.json();
 
-const indicesInfo = {
-  ICV: somas.ICV,
-  IOP: somas.IOP,
-  IMO: somas.IMO,
-  IVP: somas.IVP,
-};
+    if (!response.ok || !data.ok) {
+        throw new Error(data.error || "Erro desconhecido ao processar teste na API.");
+    }
 
-const qiInfo = somas.QI_TOTAL; // mantém compatível com relatório atual
+    // Extrai os resultados processados vindos do Back-end
+    const { idade, faixa, resultados, somas, compostos, indicesInfo, qiInfo } = data.resultado;
 
+    // ====== MONTAGEM DO RELATÓRIO ======
     montarRelatorio({ nome, cpf, sexo, escolaridade, nasc, apl, idade, faixa, resultados, indicesInfo, qiInfo, somas, compostos});
 
     if(salvar){
       const rel = document.getElementById("relatorio");
-      // garante logo/imagens antes do canvas (especialmente no iOS)
-await esperarImagensCarregarem(rel);
-// pequeno delay para assegurar renderização dos gráficos/canvas
-await new Promise(r => setTimeout(r, 150));
+      await esperarImagensCarregarem(rel);
+      await new Promise(r => setTimeout(r, 150));
 
-//await html2pdf().set({
-// margin: [8, 8, 8, 8],
-//  filename: `WISC-IV_${nome}.pdf`,
-//  pagebreak: { mode: ["css", "legacy"], avoid: ".no-break" },
-//  html2canvas: {
-//    scale: 2,
-//    useCORS: true,
-//    allowTaint: false,
-//    backgroundColor: "#ffffff",
-//    imageTimeout: 15000
-//  },
-//  jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
-//}).from(rel).save();
-
-const laudos = getLaudos();
+      const laudos = getLaudos();
       laudos.unshift({
         nome,
         dataAplicacao: apl,
@@ -475,9 +300,9 @@ const laudos = getLaudos();
       alert("Laudo salvo!");
     }
 
-  }catch(e){
+  } catch(e){
     console.error(e);
-    alert("Erro ao calcular. Verifique os arquivos em /WAIS/data (waisiii_raw_to_scaled_br.json e waisiii_sum_to_composite_br.json).");
+    alert(`Erro ao calcular: ${e.message}`);
   }
 }
 
